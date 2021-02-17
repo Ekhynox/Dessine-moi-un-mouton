@@ -1,0 +1,95 @@
+
+.background{
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+canvas{
+  border: 3px solid black;
+  background-color: rgb(255, 255, 255);
+}
+
+.styleB {
+    background-color: #008CBA;
+    color: black;
+    border-radius: 5px;
+    border: 2px solid black;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    width: 75px;
+}
+
+.wrapper {
+  display: grid;
+  grid-gap: 7px;
+  grid-template-areas:
+   "f f f f"
+   "x a b e "
+   "x a b e "
+   "x c d d "
+}
+
+.drawbox {
+  grid-area: a;
+  padding: 10px;
+  border: 3px solid black;
+  width:755px;
+	height:755px;
+	background:#222;
+  border-radius: 15px;
+}
+.couleurs {
+  padding: 10px;
+  grid-area: b;
+  border: 3px solid black;
+  width:28px;
+	height:755px;
+	background:#222;
+  border-radius: 15px;
+}
+.outils {
+  padding: 10px;
+  grid-area: c;
+  border: 3px solid black;
+  width:755px;
+	height:55px;
+	background:#222;
+  border-radius: 15px;
+}
+.chatbox {
+  text-align: center;
+  padding: 10px;
+  grid-area: e;
+  border: 3px solid black;
+  width:300px;
+	height:755px;
+	background:#222;
+  border-radius: 15px;
+}
+.titre {
+  text-align: center;
+  padding: 10px;
+  grid-area: f;
+  border: 3px solid black;
+  width:1440px;
+	height:75px;
+	background:#222;
+  border-radius: 15px;
+}
+
+.score {
+  text-align: center;
+  padding: 10px;
+  grid-area: x;
+  border: 3px solid black;
+  width:250px;
+	height:845px;
+	background:#222;
+  border-radius: 15px;
+}
