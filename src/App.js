@@ -47,7 +47,7 @@ function App() {
             />
           </div>
           <div class="chatbox">
-            Chat
+            ChatTEST123545
           </div>
           <div class="score">
             Score
