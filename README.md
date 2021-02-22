@@ -69,8 +69,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-##Author :
+## Author :
 
 COUTURIER-PETRASSON Claire p1710714
+
 DOMINGUES Kévin p1607884
+
 UCAR Ibrahim p1706473
