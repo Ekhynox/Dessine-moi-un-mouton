@@ -16,15 +16,12 @@ function App() {
   return (
     <div class="background">
       <div class="wrapper">
-          <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
-
           <div class="titre">
             TITRE !
           </div>
           <div class="drawbox">
             <canvas id="DrawBox" width="750" height="750"></canvas>
           </div>
-
           <div class="outils">
             <button class="styleB" id="Pen+">Pen+</button>
             <button class="styleB" id="Pen-">Pen-</button>
@@ -32,14 +29,12 @@ function App() {
             <button class="styleB" id="Erase">Eraser</button>
             <button class="styleB" id="Clear">Clear</button>
 
-            <button class="styleB" id="drawRect">Rectangle</button>
+              <button class="styleB" id="drawRect">Rectangle</button>
             <button class="styleB" >...</button>
             <button class="styleB" >...</button>
             <button class="styleB" >...</button>
             <button class="styleB" >...</button>
-
           </div>
-
           <div class="couleurs">
             <CirclePicker
               onChange={colorChange}
@@ -53,6 +48,9 @@ function App() {
             Score
           </div>
       </div>
+        <h3 id="show-peer"></h3>
+        <input id="peerID"></input>
+        <button id="connection"> connection </button>
     </div>
   )
 }

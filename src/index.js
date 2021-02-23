@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import reactCSS from 'reactcss'
+import reactCSS from 'reactcss';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import App from './App'
-//import Peer from 'peerjs';
+import App from './App';
+import Peer from 'peerjs';
 
 
 ReactDOM.render(
@@ -28,34 +28,60 @@ var clear = document.getElementById('Clear');
 var drawRect = document.getElementById('drawRect');
 context.lineWidth = 8;
 var isDrawing;
-var drawPinceau;
-var drawRectangle;
+var drawPinceau = true;
+var drawRectangle = false;
 
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
-/*
+
 //Fonction de PeerJS
-window.addEventListener('load', (event) =>{
   var peer = new Peer();
-  var conn = peer.connect('another-peers-id');
+  var peerID;
 
+  var btnConnection = document.getElementById("connection");
+  var connID;
+  var conn;
+
+  btnConnection.onclick = function() {
+    connID = document.getElementById("peerID").value;
+    var conn = peer.connect(connID);
+    conn.on('open', function(id) {
+      conn.send("hello");
+      console.log("here");
+    });
+  }
+
+  peer.on('open', function(id) {
+    peerID = id;
+    document.getElementById("show-peer").innerHTML = peerID;
+  });
+
+  peer.on('connection', function(conn) {
+    conn.on('data', function(data){
+      // Will print 'hi!'
+      console.log(data);
+    });
+  });
+
+
+
+/*
   conn.on('open', () => {
     conn.send('hi!');
   });
 
-  peer.on('connection', (conn) => {
-    conn.on('data', (data) => {
-      // Will print 'hi!'
-      console.log(data);
-    });
-    conn.on('open', () => {
-      conn.send('hello!');
-    });
-  });
-});
 
+peer.on('connection', (conn) => {
+  conn.on('data', (data) => {
+    // Will print 'hi!'
+    console.log(data);
+  });
+
+  conn.on('open', () => {
+    conn.send('hello!');
 */
+
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
@@ -135,7 +161,7 @@ drawRect.onclick = function(mouse)
     var pos = getMousePos(canvas, mouse);
     var xdeb = 100;
     var ydeb = 100;
-    context.strokeRect(pos.x, pos.y, largeur, hauteur);
+    //context.strokeRect(pos.x, pos.y, largeur, hauteur);
   }
 };
 
