@@ -94,6 +94,14 @@ clear.onclick = function() {
     context.strokeStyle = "black";
 };
 
+drawRect.onclick = function()
+{
+  isDrawing = false
+  drawPinceau = false;
+  drawRectangle = true;
+  context.strokeStyle = "black";
+};
+
 //Fonction de dessin
 function getMousePos(canvas, mouse) {
   var rect = canvas.getBoundingClientRect(); // retourne sa position par rapport à la zone d'affichage.
@@ -103,57 +111,40 @@ function getMousePos(canvas, mouse) {
   };
 }
 
-canvas.onmousedown = function drawpen(mouse) { //on commence le dessin
-  var pos = getMousePos(canvas, mouse); // position (x,y) du crayon
-  isDrawing = true;
-  context.beginPath(); // commencer un nouveau trait
-  context.moveTo(pos.x, pos.y); //déplacer le crayon avec la méthode à la nouvelle position
+var posInit;
+var posEnd;
+
+canvas.onmousedown = function (mouse) { //on commence le dessin
+  if (drawPinceau)
+  {
+    var pos = getMousePos(canvas, mouse); // position (x,y) du crayon
+    isDrawing = true;
+    context.beginPath(); // commencer un nouveau trait
+    context.moveTo(pos.x, pos.y); //déplacer le crayon avec la méthode à la nouvelle position
+  }
+  if (canvas.getContext && drawRectangle)
+  {
+    posInit=getMousePos(canvas,mouse);
+    isDrawing = true;
+  }
 };
 
-canvas.onmouseup = function drawpen() { //on arrete le dessin
+canvas.onmouseup = function (mouse) { //on arrete le dessin
+  if (canvas.getContext && isDrawing  && drawRectangle) {
+    posEnd=getMousePos(canvas,mouse);
+    var ctx = canvas.getContext('2d');
+      ctx.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
+  }
+
   isDrawing = false;
 };
 
-canvas.onmousemove = function drawpen(mouse) {
+canvas.onmousemove = function (mouse) {
   if (isDrawing && drawPinceau) {
     var pos = getMousePos(canvas, mouse); // position (x,y) du crayon
     context.lineTo(pos.x, pos.y); // dessiner une ligne
     context.linecap = 'round'
     context.stroke();
-  }
-};
-
-
-
-//Dessin de formes
-
-drawRect.onclick = function()
-{
-  isDrawing = false
-  drawPinceau = false;
-  drawRectangle = true;
-  context.strokeStyle = "black";
-};
-
-
-  var posInit;
-  var posEnd;
-
-
-canvas.onmousedown = function drawrt(mouse) { //On commence le dessin
-  if (canvas.getContext) {
-    var ctx = canvas.getContext('2d');
-    posInit=getMousePos(canvas,mouse);
-  }
-};
-
-
-canvas.onmouseup = function drawrt(mouse) { //on arrete le dessin
-  posEnd=getMousePos(canvas,mouse);
-  if (canvas.getContext) {
-    var ctx = canvas.getContext('2d');
-    if(isDrawing && drawRectangle)
-      ctx.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
   }
 };
 
