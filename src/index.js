@@ -47,8 +47,8 @@ var drawRectangle = false;
     connID = document.getElementById("peerID").value;
     var conn = peer.connect(connID);
     conn.on('open', function(id) {
-      conn.send("hello");
-      console.log("here");
+      conn.send("hello toi <3 !");
+      console.log("Check la console sur l'autre navigateur");
     });
   }
 
@@ -59,28 +59,10 @@ var drawRectangle = false;
 
   peer.on('connection', function(conn) {
     conn.on('data', function(data){
-      // Will print 'hi!'
+      // Will print 'hello!'
       console.log(data);
     });
   });
-
-
-
-/*
-  conn.on('open', () => {
-    conn.send('hi!');
-  });
-
-
-peer.on('connection', (conn) => {
-  conn.on('data', (data) => {
-    // Will print 'hi!'
-    console.log(data);
-  });
-
-  conn.on('open', () => {
-    conn.send('hello!');
-*/
 
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
