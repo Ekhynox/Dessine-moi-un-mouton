@@ -8,11 +8,21 @@ function getMousePos(canvas, mouse) {
 
 var canvas = document.getElementById('test');
 
-canvas.onmousedown = function draw(mouse) {
+var posInit;
+var posEnd;
+
+canvas.onmousedown = function draw(mouse) { //On commence le dessin
   if (canvas.getContext) {
     var ctx = canvas.getContext('2d');
-    var pos=getMousePos(canvas,mouse);
+    posInit=getMousePos(canvas,mouse);
+  }
+};
 
-    ctx.strokeRect(pos.x, pos.y, 200, 200);
+
+canvas.onmouseup = function(mouse) { //on arrete le dessin
+  posEnd=getMousePos(canvas,mouse);
+  if (canvas.getContext) {
+    var ctx = canvas.getContext('2d');
+    ctx.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
   }
 };
