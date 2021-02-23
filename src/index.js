@@ -112,7 +112,6 @@ canvas.onmousedown = function(mouse) { //on commence le dessin
 
 canvas.onmouseup = function() { //on arrete le dessin
   isDrawing = false;
-  drawRectangle =false;
 };
 
 canvas.onmousemove = function(mouse) {
@@ -125,17 +124,31 @@ canvas.onmousemove = function(mouse) {
 };
 
 //Dessin de formes
+
 drawRect.onclick = function(mouse)
 {
+  isDrawing = false
   drawPinceau = false;
   drawRectangle = true;
-  if(drawRectangle)
-  {
-    context.beginPath();
-    var pos = getMousePos(canvas, mouse);
-    var xdeb = 100;
-    var ydeb = 100;
-    context.strokeRect(pos.x, pos.y, largeur, hauteur);
+  context.strokeStyle = "black";
+};
+
+var posInit;
+var posEnd;
+
+canvas.onmousedown = function draw(mouse) { //On commence le dessin
+  if (canvas.getContext) {
+    var ctx = canvas.getContext('2d');
+    posInit=getMousePos(canvas,mouse);
+  }
+};
+
+canvas.onmouseup = function(mouse) { //on arrete le dessin
+  posEnd=getMousePos(canvas,mouse);
+  if (canvas.getContext) {
+    var ctx = canvas.getContext('2d');
+    if (isDrawing && drawRectangle)
+      ctx.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
   }
 };
 
