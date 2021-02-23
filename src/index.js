@@ -28,8 +28,8 @@ var clear = document.getElementById('Clear');
 var drawRect = document.getElementById('drawRect');
 context.lineWidth = 8;
 var isDrawing;
-var drawPinceau;
-var drawRectangle;
+var drawPinceau=true;
+var drawRectangle=false;
 
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
@@ -96,25 +96,25 @@ clear.onclick = function() {
 
 //Fonction de dessin
 function getMousePos(canvas, mouse) {
-    var rect = canvas.getBoundingClientRect(); // retourne sa position par rapport à la zone d'affichage.
-    return {
-      x: mouse.clientX - rect.left, // position en X de la souris - ditance depuis la droite de la fenêtre par rapport à la zone  de dessin.
-      y: mouse.clientY - rect.top // position en Y de la souris - ditance depuis le haut de la fenêtre par rapport à la zone de dessin.
-    };
+  var rect = canvas.getBoundingClientRect(); // retourne sa position par rapport à la zone d'affichage.
+  return {
+    x: mouse.clientX - rect.left, // position en X de la souris - ditance depuis la droite de la fenêtre par rapport à la zone  de dessin.
+    y: mouse.clientY - rect.top // position en Y de la souris - ditance depuis le haut de la fenêtre par rapport à la zone de dessin.
+  };
 }
 
-canvas.onmousedown = function(mouse) { //on commence le dessin
+canvas.onmousedown = function drawpen(mouse) { //on commence le dessin
   var pos = getMousePos(canvas, mouse); // position (x,y) du crayon
   isDrawing = true;
   context.beginPath(); // commencer un nouveau trait
   context.moveTo(pos.x, pos.y); //déplacer le crayon avec la méthode à la nouvelle position
 };
 
-canvas.onmouseup = function() { //on arrete le dessin
+canvas.onmouseup = function drawpen() { //on arrete le dessin
   isDrawing = false;
 };
 
-canvas.onmousemove = function(mouse) {
+canvas.onmousemove = function drawpen(mouse) {
   if (isDrawing && drawPinceau) {
     var pos = getMousePos(canvas, mouse); // position (x,y) du crayon
     context.lineTo(pos.x, pos.y); // dessiner une ligne
@@ -123,9 +123,11 @@ canvas.onmousemove = function(mouse) {
   }
 };
 
+
+
 //Dessin de formes
 
-drawRect.onclick = function(mouse)
+drawRect.onclick = function()
 {
   isDrawing = false
   drawPinceau = false;
@@ -133,24 +135,28 @@ drawRect.onclick = function(mouse)
   context.strokeStyle = "black";
 };
 
-var posInit;
-var posEnd;
 
-canvas.onmousedown = function draw(mouse) { //On commence le dessin
+  var posInit;
+  var posEnd;
+
+
+canvas.onmousedown = function drawrt(mouse) { //On commence le dessin
   if (canvas.getContext) {
     var ctx = canvas.getContext('2d');
     posInit=getMousePos(canvas,mouse);
   }
 };
 
-canvas.onmouseup = function(mouse) { //on arrete le dessin
+
+canvas.onmouseup = function drawrt(mouse) { //on arrete le dessin
   posEnd=getMousePos(canvas,mouse);
   if (canvas.getContext) {
     var ctx = canvas.getContext('2d');
-    if (isDrawing && drawRectangle)
+    if(isDrawing && drawRectangle)
       ctx.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
   }
 };
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
