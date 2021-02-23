@@ -9,7 +9,7 @@ Voila la liste des Fonctionnalités que nous souhaitons implémenter ! Celles qu
 - changer les couleurs du pinceau X
 - changer la couleur du canva (fond noir au lieu de blanc par exemple)
 - Quand on clique sur une couleur, le curseur redevient automatiquement un pinceau
-- Ne pas compter la casse 
+- Ne pas compter la casse
 - un chat
 - randomiser de mots
 - système de points
@@ -19,3 +19,4 @@ Voila la liste des Fonctionnalités que nous souhaitons implémenter ! Celles qu
 - Changement de langue
 - Plusieurs versions : par équipe, ou avec ses propres mots
 - système de votes: qualité dessin + ban
+- Enregister le dessin

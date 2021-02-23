@@ -32,7 +32,7 @@ function App() {
             <button class="styleB" id="Erase">Eraser</button>
             <button class="styleB" id="Clear">Clear</button>
 
-            <button class="styleB" >...</button>
+            <button class="styleB" id="drawRect">Rectangle</button>
             <button class="styleB" >...</button>
             <button class="styleB" >...</button>
             <button class="styleB" >...</button>

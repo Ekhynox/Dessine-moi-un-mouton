@@ -25,8 +25,11 @@ var penDown = document.getElementById('Pen-');
 var erase = document.getElementById('Erase');
 var pinceau = document.getElementById('Pinceau');
 var clear = document.getElementById('Clear');
+var drawRect = document.getElementById('drawRect');
 context.lineWidth = 8;
 var isDrawing;
+var drawPinceau;
+var drawRectangle;
 
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
@@ -80,6 +83,8 @@ erase.onclick = function() {
 
 pinceau.onclick = function() {
     isDrawing = false;
+    drawPinceau = true;
+    drawRectangle = false;
     context.strokeStyle = "black";
 };
 
@@ -107,15 +112,30 @@ canvas.onmousedown = function(mouse) { //on commence le dessin
 
 canvas.onmouseup = function() { //on arrete le dessin
   isDrawing = false;
+  drawRectangle =false;
 };
 
 canvas.onmousemove = function(mouse) {
-  if (isDrawing) {
+  if (isDrawing && drawPinceau) {
     var pos = getMousePos(canvas, mouse); // position (x,y) du crayon
-    context.fillStyle = 'blue';
     context.lineTo(pos.x, pos.y); // dessiner une ligne
     context.linecap = 'round'
     context.stroke();
+  }
+};
+
+//Dessin de formes
+drawRect.onclick = function(mouse)
+{
+  drawPinceau = false;
+  drawRectangle = true;
+  if(drawRectangle)
+  {
+    context.beginPath();
+    var pos = getMousePos(canvas, mouse);
+    var xdeb = 100;
+    var ydeb = 100;
+    context.strokeRect(pos.x, pos.y, largeur, hauteur);
   }
 };
 
