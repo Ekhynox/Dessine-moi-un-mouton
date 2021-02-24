@@ -85,6 +85,8 @@ penDown.onclick = function() {
 };
 
 erase.onclick = function() {
+    drawPinceau = true;
+    drawRectangle = false;
     isDrawing = false;
     context.strokeStyle = "white";
 };
@@ -97,8 +99,16 @@ pinceau.onclick = function() {
 };
 
 clear.onclick = function() {
+    drawPinceau = true;
+    drawRectangle = false;
     isDrawing = false;
     context.clearRect(0,0,1000,1000);
+    context.strokeStyle = "black";
+};
+
+drawRect.onclick = function() {
+    drawPinceau = false;
+    drawRectangle = true;
     context.strokeStyle = "black";
 };
 
@@ -122,7 +132,7 @@ canvas.onmousedown = function (mouse) { //on commence le dessin
     context.beginPath(); // commencer un nouveau trait
     context.moveTo(pos.x, pos.y); //déplacer le crayon avec la méthode à la nouvelle position
   }
-  if (canvas.getContext && drawRectangle)
+  if (drawRectangle)
   {
     posInit=getMousePos(canvas,mouse);
     isDrawing = true;
@@ -130,12 +140,11 @@ canvas.onmousedown = function (mouse) { //on commence le dessin
 };
 
 canvas.onmouseup = function (mouse) { //on arrete le dessin
-  if (canvas.getContext && isDrawing  && drawRectangle) {
+  if (isDrawing  && drawRectangle) {
     posEnd=getMousePos(canvas,mouse);
     var ctx = canvas.getContext('2d');
       ctx.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
   }
-
   isDrawing = false;
 };
 
