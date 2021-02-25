@@ -171,6 +171,12 @@ canvas.onmousemove = function (mouse) {
   }
 };
 
+async function downloadCanvas(el) //Fonction de download du canvas en jpg
+{
+  const imageURI = canvas.toDataURL("image/jpg");
+  el.href = imageURI;
+};
+
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
