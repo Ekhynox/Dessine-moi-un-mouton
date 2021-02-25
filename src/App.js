@@ -10,38 +10,39 @@ function App() {
   const colorChange = ({hex}) => {
     hex = ColorChange(hex); // fonction change la couleur du pinceau
   }
+
   return (
-    <div class="background">
-      <div class="wrapper">
-          <div class="titre">
+    <div className="background">
+      <div className="wrapper">
+          <div className="titre">
             TITRE !
           </div>
-          <div class="drawbox">
+          <div className="drawbox">
             <canvas id="DrawBox" width="750" height="750"></canvas>
           </div>
-          <div class="outils">
-            <button class="styleB" id="Pen+">Pen+</button>
-            <button class="styleB" id="Pen-">Pen-</button>
-            <button class="styleB" id="Pinceau">Pen</button>
-            <button class="styleB" id="Erase">Eraser</button>
-            <button class="styleB" id="Clear">Clear</button>
+          <div className="outils">
+            <button className="styleB" id="Pen+">Pen+</button>
+            <button className="styleB" id="Pen-">Pen-</button>
+            <button className="styleB" id="Pinceau">Pen</button>
+            <button className="styleB" id="Erase">Eraser</button>
+            <button className="styleB" id="Clear">Clear</button>
 
-            <button class="styleB" id="drawRect">Rectangle</button>
-            <button class="styleB" >...</button>
-            <button class="styleB" >...</button>
-            <button class="styleB" >...</button>
-            <button class="styleB" >...</button>
+            <button className="styleB" id="drawRect">Rectangle</button>
+            <button className="styleB" >...</button>
+            <button className="styleB" >...</button>
+            <button className="styleB" >...</button>
+            <button className="styleB" >...</button>
           </div>
-          <div class="couleurs">
+          <div className="couleurs">
             <CirclePicker
               onChange={colorChange}
               width = "0"
             />
           </div>
-          <div class="chatbox">
+          <div className="chatbox">
             ChatTEST123545
           </div>
-          <div class="score">
+          <div className="score">
             Score
           </div>
       </div>

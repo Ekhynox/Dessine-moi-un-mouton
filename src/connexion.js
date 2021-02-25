@@ -34,27 +34,35 @@ peer.on('connection', function(conn) {
 });
 
 //MediaConnection
-var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+var getUserMedia = navigator.getUserMedia ||
+                   navigator.webkitGetUserMedia ||
+                   navigator.mozGetUserMedia;
 
-getUserMedia({video: true, audio: true}, function(stream) {
-  var call = peer.call(connID, stream);
-  call.on('stream', function(remoteStream) {
-    console.log("ok")
-      // Show stream in some video/canvas element.
-  });
-},
-  function(err) {
-    console.log('Failed to get local stream' ,err);
-  });
+getUserMedia({video: true, audio: true},
+
+  function(stream){
+    var call = peer.call(connID, stream);
+    call.on('stream', function(remoteStream) {
+      console.log("ok")
+        // Show stream in some video/canvas element.
+    });
+  },
+    function(err) {
+      console.log('Failed to get local stream' ,err);
+    });
 
 peer.on('connection', function(call) {
-  getUserMedia({video: true, audio: true}, function(stream) {
-    console.log("ok")
-    call.answer(stream); // Answer the call with an A/V stream.
-    call.on('stream', function(remoteStream) {
-      console.log("connection ok!")// Show stream in some video/canvas element.
-    });
-  }, function(err) {
-    console.log('Failed to get local stream' ,err);
-  });
+  getUserMedia({
+      video: true,
+      audio: true},
+      function(stream) {
+        console.log("ok")
+        call.answer(stream); // Answer the call with an A/V stream.
+        call.on('stream', function(remoteStream) {
+          console.log("connection ok!")// Show stream in some video/canvas element.
+        });
+      },
+      function(err) {
+        console.log('Failed to get local stream' ,err);
+      });
 });

@@ -114,7 +114,6 @@ canvas.onmouseup = function (mouse) { //on arrete le dessin
 canvas.onmousemove = function (mouse) {
   if (isDrawing  && drawRectangle) {
     posEnd=getMousePos(canvas,mouse);
-    context.clearRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
   }
   if (isDrawing && drawPinceau) {
     var pos = getMousePos(canvas, mouse); // position (x,y) du crayon
