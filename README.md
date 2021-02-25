@@ -1,3 +1,19 @@
+# LIFPROJET Printemps 2021:
+
+## Sujet :
+
+Création d'un site web de jeu multijoueurs en ligne de type Pictionary.
+[Dessine-moi-un-mouton]https://ekhynox.github.io/Dessine-moi-un-mouton/
+
+## Autheur :
+
+COUTURIER-PETRASSON Claire p1710714
+
+DOMINGUES Kévin p1607884
+
+UCAR Ibrahim p1706473
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,11 +84,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-## Author :
-
-COUTURIER-PETRASSON Claire p1710714
-
-DOMINGUES Kévin p1607884
-
-UCAR Ibrahim p1706473
