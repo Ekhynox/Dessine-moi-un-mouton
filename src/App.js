@@ -46,9 +46,12 @@ function App() {
             Score
           </div>
       </div>
+      <div>
         <h3 id="show-peer"></h3>
         <input id="peerID"></input>
         <button onClick={Connexion}> connection </button>
+      </div>
+      <div><a download="example.jpg" href="" onclick="downloadCanvas(this);">Download</a></div>
     </div>
   )
 }
