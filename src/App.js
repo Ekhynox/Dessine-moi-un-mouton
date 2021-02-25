@@ -5,6 +5,13 @@ import {CirclePicker} from 'react-color';
 import {ColorChange} from './index';
 import {Connexion} from './connexion';
 import {DownloadCanvas} from './index';
+import { FaBeer } from 'react-icons/fa';
+
+class Question extends React.Component {
+  render() {
+    return <h3> Lets go for a <FaBeer />? </h3>
+  }
+}
 
 function App() {
   //const colorChange = ({ hex }) => hex = ColorChange(hex); // fonction change la couleur du pinceau

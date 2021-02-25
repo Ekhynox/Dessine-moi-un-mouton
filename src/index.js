@@ -100,6 +100,8 @@ line.onclick = function() {
     //context.strokeStyle = "black";
 }
 
+
+//Enregister une image
 save.onclick = function() {
   var img = document.createElement('a');
   img.href = canvas.toDataURL("image/jpg");
@@ -107,13 +109,7 @@ save.onclick = function() {
   img.click();
   console.log("bleh");
 }
-/*
-export async function DownloadCanvas(el) //Fonction de download du canvas en jpg
-{
-  console.log("bleh");
-  const imageURI = canvas.toDataURL("image/jpg");
-  el.href = imageURI;
-};*/
+
 
 //Fonction de dessin
 function getMousePos(canvas, mouse) {
