@@ -5,13 +5,15 @@ import {CirclePicker} from 'react-color';
 import {ColorChange} from './index';
 import {Connexion} from './connexion';
 import {DownloadCanvas} from './index';
-import { FaBeer } from 'react-icons/fa';
+import { BiSave } from 'react-icons/bi';
+import { FaPaintBrush } from 'react-icons/fa';
+import { BiEraser } from 'react-icons/bi';
+import { BiRectangle } from 'react-icons/bi';
+import { BsCircle } from 'react-icons/bs';
+import { SiCurl } from "react-icons/si";
+import { FaTrashAlt } from 'react-icons/fa';
+import { VscPaintcan } from 'react-icons/vsc';
 
-class Question extends React.Component {
-  render() {
-    return <h3> Lets go for a <FaBeer />? </h3>
-  }
-}
 
 function App() {
   //const colorChange = ({ hex }) => hex = ColorChange(hex); // fonction change la couleur du pinceau
@@ -23,7 +25,7 @@ function App() {
     <div className="background">
       <div className="wrapper">
           <div className="titre">
-            TITRE !
+
           </div>
           <div className="drawbox">
             <canvas id="DrawBox" width="750" height="750"></canvas>
@@ -31,15 +33,15 @@ function App() {
           <div className="outils">
             <button className="styleB" id="Pen+">Pen+</button>
             <button className="styleB" id="Pen-">Pen-</button>
-            <button className="styleB" id="Pinceau">Pen</button>
-            <button className="styleB" id="Erase">Eraser</button>
-            <button className="styleB" id="Clear">Clear</button>
+            <button className="styleB" id="Pinceau"><FaPaintBrush/></button>
+            <button className="styleB" id="Erase"><BiEraser/></button>
+            <button className="styleB" id="Clear"><FaTrashAlt/></button>
 
-            <button className="styleB" id="drawRect">Rectangle</button>
-            <button className="styleB" id="drawCircle">Cercles</button>
-            <button className="styleB" id="drawLine">Lignes</button>
-            <button className="styleB" >...</button>
-            <button className="styleB" download="example.jpg" id="saveImage">Download</button>
+            <button className="styleB" id="drawRect"><BiRectangle/></button>
+            <button className="styleB" id="drawCircle"><BsCircle/></button>
+            <button className="styleB" id="drawLine"><SiCurl/></button>
+            <button className="styleB" id="fill"><VscPaintcan/></button>
+            <button className="styleB" download="example.jpg" id="saveImage"><BiSave/></button>
           </div>
           <div className="couleurs">
             <CirclePicker

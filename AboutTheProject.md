@@ -20,3 +20,4 @@ Voila la liste des Fonctionnalités que nous souhaitons implémenter ! Celles qu
 - Plusieurs versions : par équipe, ou avec ses propres mots
 - système de votes: qualité dessin + ban
 - Enregister le dessin X
+- Thème Sombre
