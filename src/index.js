@@ -28,6 +28,7 @@ var clear = document.getElementById('Clear');
 var rect = document.getElementById('drawRect');
 var circle = document.getElementById('drawCircle');
 var line = document.getElementById('drawLine');
+var save = document.getElementById('saveImage');
 context.lineWidth = 8;
 var isDrawing;
 var drawPinceau = true;
@@ -99,6 +100,21 @@ line.onclick = function() {
     //context.strokeStyle = "black";
 }
 
+save.onclick = function() {
+  var img = document.createElement('a');
+  img.href = canvas.toDataURL("image/jpg");
+  img.download = ('dessine-moi.jpg');
+  img.click();
+  console.log("bleh");
+}
+/*
+export async function DownloadCanvas(el) //Fonction de download du canvas en jpg
+{
+  console.log("bleh");
+  const imageURI = canvas.toDataURL("image/jpg");
+  el.href = imageURI;
+};*/
+
 //Fonction de dessin
 function getMousePos(canvas, mouse) {
   var rect = canvas.getBoundingClientRect(); // retourne sa position par rapport à la zone d'affichage.
@@ -110,6 +126,11 @@ function getMousePos(canvas, mouse) {
 
 var posInit;
 var posEnd;
+
+canvas.onload = function (){
+  context.fillStyle("white");
+  context.fillRect(0,0,750,750);
+}
 
 canvas.onmousedown = function (mouse) { //on commence le dessin
   if (drawPinceau)
@@ -171,11 +192,6 @@ canvas.onmousemove = function (mouse) {
   }
 };
 
-async function downloadCanvas(el) //Fonction de download du canvas en jpg
-{
-  const imageURI = canvas.toDataURL("image/jpg");
-  el.href = imageURI;
-};
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

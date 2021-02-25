@@ -4,6 +4,7 @@ import reactCSS from 'reactcss';
 import {CirclePicker} from 'react-color';
 import {ColorChange} from './index';
 import {Connexion} from './connexion';
+import {DownloadCanvas} from './index';
 
 function App() {
   //const colorChange = ({ hex }) => hex = ColorChange(hex); // fonction change la couleur du pinceau
@@ -31,7 +32,7 @@ function App() {
             <button className="styleB" id="drawCircle">Cercles</button>
             <button className="styleB" id="drawLine">Lignes</button>
             <button className="styleB" >...</button>
-            <button className="styleB" >...</button>
+            <button className="styleB" download="example.jpg" id="saveImage">Download</button>
           </div>
           <div className="couleurs">
             <CirclePicker
@@ -51,7 +52,6 @@ function App() {
         <input id="peerID"></input>
         <button onClick={Connexion}> connection </button>
       </div>
-      <div><a download="example.jpg" href="" onclick="downloadCanvas(this);">Download</a></div>
     </div>
   )
 }

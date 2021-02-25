@@ -5,7 +5,7 @@ Voila la liste des Fonctionnalités que nous souhaitons implémenter ! Celles qu
 - Un espace dessin ("canva") X
 - plusieurs types de pinceau X
 - gomme / poubelle / bouton retour arrière X
-- formes géométriques automatiques
+- formes géométriques automatiques X
 - changer les couleurs du pinceau X
 - changer la couleur du canva (fond noir au lieu de blanc par exemple)
 - Quand on clique sur une couleur, le curseur redevient automatiquement un pinceau
@@ -19,4 +19,4 @@ Voila la liste des Fonctionnalités que nous souhaitons implémenter ! Celles qu
 - Changement de langue
 - Plusieurs versions : par équipe, ou avec ses propres mots
 - système de votes: qualité dessin + ban
-- Enregister le dessin
+- Enregister le dessin X
