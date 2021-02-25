@@ -31,47 +31,11 @@ var isDrawing;
 var drawPinceau = true;
 var drawRectangle = false;
 
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
-
-//Fonction de PeerJS
-  var peer = new Peer();
-  var peerID;
-
-  var btnConnection = document.getElementById("connection");
-  var connID;
-  var conn;
-
-  btnConnection.onclick = function() {
-    connID = document.getElementById("peerID").value;
-    var conn = peer.connect(connID);
-    conn.on('open', function(id) {
-      conn.send("hello toi <3 !");
-      console.log("Check la console sur l'autre navigateur");
-    });
-  }
-
-  peer.on('open', function(id) {
-    peerID = id;
-    document.getElementById("show-peer").innerHTML = peerID;
-  });
-
-  peer.on('connection', function(conn) {
-    conn.on('data', function(data){
-      // Will print 'hello!'
-      console.log(data);
-    });
-  });
-
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
-
 //Fonction sur le pinceau
 export function ColorChange(hex){
     isDrawing = false;
     context.strokeStyle = hex; // change la couleur du trait
+    context.fillStyle = hex;
 }
 
 penUp.onclick = function() {
@@ -142,13 +106,16 @@ canvas.onmousedown = function (mouse) { //on commence le dessin
 canvas.onmouseup = function (mouse) { //on arrete le dessin
   if (isDrawing  && drawRectangle) {
     posEnd=getMousePos(canvas,mouse);
-    var ctx = canvas.getContext('2d');
-      ctx.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
+    context.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
   }
   isDrawing = false;
 };
 
 canvas.onmousemove = function (mouse) {
+  if (isDrawing  && drawRectangle) {
+    posEnd=getMousePos(canvas,mouse);
+    context.clearRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
+  }
   if (isDrawing && drawPinceau) {
     var pos = getMousePos(canvas, mouse); // position (x,y) du crayon
     context.lineTo(pos.x, pos.y); // dessiner une ligne
@@ -156,8 +123,6 @@ canvas.onmousemove = function (mouse) {
     context.stroke();
   }
 };
-
-
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

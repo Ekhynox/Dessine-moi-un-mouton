@@ -2,11 +2,8 @@ import './App.css';
 import React, {useState} from 'react';
 import reactCSS from 'reactcss';
 import {CirclePicker} from 'react-color';
-import {CompactPicker} from 'react-color';
-import {SwatchesPicker} from 'react-color';
-import {GithubPicker} from 'react-color';
 import {ColorChange} from './index';
-
+import {Connexion} from './connexion';
 
 function App() {
   //const colorChange = ({ hex }) => hex = ColorChange(hex); // fonction change la couleur du pinceau
@@ -50,7 +47,7 @@ function App() {
       </div>
         <h3 id="show-peer"></h3>
         <input id="peerID"></input>
-        <button id="connection"> connection </button>
+        <button onClick={Connexion}> connection </button>
     </div>
   )
 }
