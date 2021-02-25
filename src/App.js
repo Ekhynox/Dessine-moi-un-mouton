@@ -28,7 +28,7 @@ function App() {
             <button className="styleB" id="Clear">Clear</button>
 
             <button className="styleB" id="drawRect">Rectangle</button>
-            <button className="styleB" >...</button>
+            <button className="styleB" id="drawCircle">Cercles</button>
             <button className="styleB" >...</button>
             <button className="styleB" >...</button>
             <button className="styleB" >...</button>

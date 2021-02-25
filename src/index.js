@@ -25,11 +25,13 @@ var penDown = document.getElementById('Pen-');
 var erase = document.getElementById('Erase');
 var pinceau = document.getElementById('Pinceau');
 var clear = document.getElementById('Clear');
-var drawRect = document.getElementById('drawRect');
+var rect = document.getElementById('drawRect');
+var circle = document.getElementById('drawCircle');
 context.lineWidth = 8;
 var isDrawing;
 var drawPinceau = true;
 var drawRectangle = false;
+var drawCircle = false;
 
 //Fonction sur le pinceau
 export function ColorChange(hex){
@@ -59,6 +61,7 @@ pinceau.onclick = function() {
     isDrawing = false;
     drawPinceau = true;
     drawRectangle = false;
+    drawCircle = false;
     context.strokeStyle = "black";
 };
 
@@ -70,10 +73,19 @@ clear.onclick = function() {
     context.strokeStyle = "black";
 };
 
-drawRect.onclick = function() {
+rect.onclick = function() {
     drawPinceau = false;
     drawRectangle = true;
+    drawCircle = false;
     context.strokeStyle = "black";
+};
+
+circle.onclick = function() {
+    drawPinceau = false;
+    drawRectangle = false;
+    drawCircle = true;
+    context.strokeStyle = "black";
+    console.log("on est dans le onclick");
 };
 
 //Fonction de dessin
@@ -100,19 +112,35 @@ canvas.onmousedown = function (mouse) { //on commence le dessin
   {
     posInit=getMousePos(canvas,mouse);
     isDrawing = true;
+    context.beginPath();
+  }
+  if(drawCircle)
+  {
+    console.log("début cercle");
+    posInit=getMousePos(canvas,mouse);
+    isDrawing = true;
+    context.beginPath();
   }
 };
 
 canvas.onmouseup = function (mouse) { //on arrete le dessin
-  if (isDrawing  && drawRectangle) {
+  if (isDrawing  && drawRectangle)
+  {
     posEnd=getMousePos(canvas,mouse);
     context.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
+  }
+
+  if(isDrawing && drawCircle)
+  {
+    posEnd=getMousePos(canvas,mouse);
+    context.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x), Math.abs(posEnd.y - posInit.y), 0, 0, 2*3.14);
+    context.stroke();
   }
   isDrawing = false;
 };
 
 canvas.onmousemove = function (mouse) {
-  if (isDrawing  && drawRectangle) {
+  if (isDrawing  && (drawRectangle || drawCircle)) {
     posEnd=getMousePos(canvas,mouse);
   }
   if (isDrawing && drawPinceau) {
