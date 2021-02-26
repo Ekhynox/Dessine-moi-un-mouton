@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import reactCSS from 'reactcss';
 import {CirclePicker} from 'react-color';
 import {ColorChange} from './index';
-// import {Connexion} from './connexion';
+import {Connexion} from './connexion';
 import {DownloadCanvas} from './index';
 import { BiSave } from 'react-icons/bi';
 import { FaPaintBrush } from 'react-icons/fa';
@@ -59,7 +59,7 @@ function App() {
       <div>
         <h3 id="show-peer"></h3>
         <input id="peerID"></input>
-        // <button onClick={Connexion}> connection </button>
+        <button onClick={Connexion}> connection </button>
       </div>
     </div>
   )
