@@ -2,10 +2,17 @@ import './App.css';
 import React, {useState} from 'react';
 import reactCSS from 'reactcss';
 import {CirclePicker} from 'react-color';
-import {CompactPicker} from 'react-color';
-import {SwatchesPicker} from 'react-color';
-import {GithubPicker} from 'react-color';
 import {ColorChange} from './index';
+// import {Connexion} from './connexion';
+import {DownloadCanvas} from './index';
+import { BiSave } from 'react-icons/bi';
+import { FaPaintBrush } from 'react-icons/fa';
+import { BiEraser } from 'react-icons/bi';
+import { BiRectangle } from 'react-icons/bi';
+import { BsCircle } from 'react-icons/bs';
+import { SiCurl } from "react-icons/si";
+import { FaTrashAlt } from 'react-icons/fa';
+import { VscPaintcan } from 'react-icons/vsc';
 
 
 function App() {
@@ -13,45 +20,46 @@ function App() {
   const colorChange = ({hex}) => {
     hex = ColorChange(hex); // fonction change la couleur du pinceau
   }
-  return (
-    <div class="background">
-      <div class="wrapper">
-          <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
 
-          <div class="titre">
-            TITRE !
+  return (
+    <div className="background">
+      <div className="wrapper">
+          <div className="titre">
+
           </div>
-          <div class="drawbox">
+          <div className="drawbox">
             <canvas id="DrawBox" width="750" height="750"></canvas>
           </div>
+          <div className="outils">
+            <button className="styleB" id="Pen+">Pen+</button>
+            <button className="styleB" id="Pen-">Pen-</button>
+            <button className="styleB" id="Pinceau"><FaPaintBrush/></button>
+            <button className="styleB" id="Erase"><BiEraser/></button>
+            <button className="styleB" id="Clear"><FaTrashAlt/></button>
 
-          <div class="outils">
-            <button class="styleB" id="Pen+">Pen+</button>
-            <button class="styleB" id="Pen-">Pen-</button>
-            <button class="styleB" id="Pinceau">Pen</button>
-            <button class="styleB" id="Erase">Eraser</button>
-            <button class="styleB" id="Clear">Clear</button>
-
-            <button class="styleB" id="drawRect">Rectangle</button>
-            <button class="styleB" >...</button>
-            <button class="styleB" >...</button>
-            <button class="styleB" >...</button>
-            <button class="styleB" >...</button>
-
+            <button className="styleB" id="drawRect"><BiRectangle/></button>
+            <button className="styleB" id="drawCircle"><BsCircle/></button>
+            <button className="styleB" id="drawLine"><SiCurl/></button>
+            <button className="styleB" id="fill"><VscPaintcan/></button>
+            <button className="styleB" download="example.jpg" id="saveImage"><BiSave/></button>
           </div>
-
-          <div class="couleurs">
+          <div className="couleurs">
             <CirclePicker
               onChange={colorChange}
               width = "0"
             />
           </div>
-          <div class="chatbox">
+          <div className="chatbox">
             ChatTEST123545
           </div>
-          <div class="score">
+          <div className="score">
             Score
           </div>
+      </div>
+      <div>
+        <h3 id="show-peer"></h3>
+        <input id="peerID"></input>
+        // <button onClick={Connexion}> connection </button>
       </div>
     </div>
   )

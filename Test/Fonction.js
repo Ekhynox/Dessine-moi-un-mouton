@@ -9,15 +9,30 @@ function getMousePos(canvas, mouse) {
 var canvas = document.getElementById('test');
 var ctx = canvas.getContext('2d');
 
+var save = document.getElementById('saveImage');
+ctx.lineWidth = 4;
+
 var posInit;
 var posEnd;
 var des=false;
 
+//crée un fond blanc
 canvas.onload = function (){
   ctx.fillStyle("white");
   ctx.fillRect(0,0,700,700);
 }
 
+//Enregister une image
+save.onclick = function() {
+  var img = document.createElement('a');
+  img.href = canvas.toDataURL("image/jpg").replace('png','jpg');
+  img.download = ('dessine-moi.jpg');
+  img.click();
+}
+
+
+
+//gere les actions de la souris
 canvas.onmousedown = function draw(mouse) { //On commence le dessin
     posInit=getMousePos(canvas,mouse);
     des=true;

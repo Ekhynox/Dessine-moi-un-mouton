@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import reactCSS from 'reactcss'
+import reactCSS from 'reactcss';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import App from './App'
-//import Peer from 'peerjs';
+import App from './App';
+import Peer from 'peerjs';
 
 
 ReactDOM.render(
@@ -25,45 +25,22 @@ var penDown = document.getElementById('Pen-');
 var erase = document.getElementById('Erase');
 var pinceau = document.getElementById('Pinceau');
 var clear = document.getElementById('Clear');
-var drawRect = document.getElementById('drawRect');
+var rect = document.getElementById('drawRect');
+var circle = document.getElementById('drawCircle');
+var line = document.getElementById('drawLine');
+var save = document.getElementById('saveImage');
 context.lineWidth = 8;
 var isDrawing;
-var drawPinceau=true;
-var drawRectangle=false;
-
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
-/*
-//Fonction de PeerJS
-window.addEventListener('load', (event) =>{
-  var peer = new Peer();
-  var conn = peer.connect('another-peers-id');
-
-  conn.on('open', () => {
-    conn.send('hi!');
-  });
-
-  peer.on('connection', (conn) => {
-    conn.on('data', (data) => {
-      // Will print 'hi!'
-      console.log(data);
-    });
-    conn.on('open', () => {
-      conn.send('hello!');
-    });
-  });
-});
-
-*/
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
-//---------------------------------------------------------------------------
+var drawPinceau = true;
+var drawRectangle = false;
+var drawCircle = false;
+var drawLine = false;
 
 //Fonction sur le pinceau
 export function ColorChange(hex){
     isDrawing = false;
     context.strokeStyle = hex; // change la couleur du trait
+    context.fillStyle = hex;
 }
 
 penUp.onclick = function() {
@@ -77,6 +54,8 @@ penDown.onclick = function() {
 };
 
 erase.onclick = function() {
+    drawPinceau = true;
+    drawRectangle = false;
     isDrawing = false;
     context.strokeStyle = "white";
 };
@@ -85,22 +64,52 @@ pinceau.onclick = function() {
     isDrawing = false;
     drawPinceau = true;
     drawRectangle = false;
-    context.strokeStyle = "black";
+    drawCircle = false;
+    context.strokeStyle = "black"
 };
 
 clear.onclick = function() {
+    drawPinceau = true;
+    drawRectangle = false;
     isDrawing = false;
     context.clearRect(0,0,1000,1000);
     context.strokeStyle = "black";
 };
 
-drawRect.onclick = function()
-{
-  isDrawing = false
-  drawPinceau = false;
-  drawRectangle = true;
-  context.strokeStyle = "black";
+rect.onclick = function() {
+    drawPinceau = false;
+    drawRectangle = true;
+    drawCircle = false;
+    drawLine = false;
+    //context.strokeStyle = "black";
 };
+
+circle.onclick = function() {
+    drawPinceau = false;
+    drawRectangle = false;
+    drawCircle = true;
+    drawLine = false;
+    //context.strokeStyle = "black";
+};
+
+line.onclick = function() {
+    drawPinceau = false;
+    drawRectangle = false;
+    drawCircle = false;
+    drawLine = true;
+    //context.strokeStyle = "black";
+}
+
+
+//Enregister une image
+save.onclick = function() {
+  var img = document.createElement('a');
+  img.href = canvas.toDataURL("image/jpg");
+  img.download = ('dessine-moi.jpg');
+  img.click();
+  console.log("bleh");
+}
+
 
 //Fonction de dessin
 function getMousePos(canvas, mouse) {
@@ -114,6 +123,11 @@ function getMousePos(canvas, mouse) {
 var posInit;
 var posEnd;
 
+canvas.onload = function (){
+  context.fillStyle("white");
+  context.fillRect(0,0,750,750);
+}
+
 canvas.onmousedown = function (mouse) { //on commence le dessin
   if (drawPinceau)
   {
@@ -122,20 +136,46 @@ canvas.onmousedown = function (mouse) { //on commence le dessin
     context.beginPath(); // commencer un nouveau trait
     context.moveTo(pos.x, pos.y); //déplacer le crayon avec la méthode à la nouvelle position
   }
-  if (canvas.getContext && drawRectangle)
+  if (drawRectangle)
   {
     posInit=getMousePos(canvas,mouse);
     isDrawing = true;
+    context.beginPath();
+  }
+  if(drawCircle)
+  {
+    posInit=getMousePos(canvas,mouse);
+    isDrawing = true;
+    context.beginPath();
+  }
+  if(drawLine)
+  {
+    posInit=getMousePos(canvas,mouse);
+    isDrawing = true;
+    context.beginPath();
+    context.moveTo(posInit.x, posInit.y);
   }
 };
 
 canvas.onmouseup = function (mouse) { //on arrete le dessin
-  if (canvas.getContext && isDrawing  && drawRectangle) {
+  if (isDrawing  && drawRectangle)
+  {
     posEnd=getMousePos(canvas,mouse);
-    var ctx = canvas.getContext('2d');
-      ctx.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
+    context.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
   }
 
+  if(isDrawing && drawCircle)
+  {
+    posEnd=getMousePos(canvas,mouse);
+    context.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x), Math.abs(posEnd.y - posInit.y), 0, 0, 2*3.14);
+    context.stroke();
+  }
+  if(isDrawing && drawLine)
+  {
+    posEnd=getMousePos(canvas,mouse);
+    context.lineTo(posEnd.x, posEnd.y);
+    context.stroke();
+  }
   isDrawing = false;
 };
 
