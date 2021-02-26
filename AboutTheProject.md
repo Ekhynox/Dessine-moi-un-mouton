@@ -21,3 +21,4 @@ Voila la liste des Fonctionnalités que nous souhaitons implémenter ! Celles qu
 - système de votes: qualité dessin + ban
 - Enregister le dessin X
 - Thème Sombre
+- Le curseur change de forme en fonction des icônes (pinceau, gomme, etc...)

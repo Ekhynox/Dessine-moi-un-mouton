@@ -29,12 +29,14 @@ var rect = document.getElementById('drawRect');
 var circle = document.getElementById('drawCircle');
 var line = document.getElementById('drawLine');
 var save = document.getElementById('saveImage');
+var fill = document.getElementById('fillIn');
 context.lineWidth = 8;
 var isDrawing;
 var drawPinceau = true;
 var drawRectangle = false;
 var drawCircle = false;
 var drawLine = false;
+var fillIn = false;
 
 //Fonction sur le pinceau
 export function ColorChange(hex){
@@ -56,6 +58,9 @@ penDown.onclick = function() {
 erase.onclick = function() {
     drawPinceau = true;
     drawRectangle = false;
+    drawCircle = false;
+    drawLine = false;
+    fillIn = false;
     isDrawing = false;
     context.strokeStyle = "white";
 };
@@ -65,12 +70,17 @@ pinceau.onclick = function() {
     drawPinceau = true;
     drawRectangle = false;
     drawCircle = false;
+    drawLine = false;
+    fillIn = false;
     context.strokeStyle = "black"
 };
 
 clear.onclick = function() {
     drawPinceau = true;
     drawRectangle = false;
+    drawCircle = false;
+    drawLine = false;
+    fillIn = false;
     isDrawing = false;
     context.clearRect(0,0,1000,1000);
     context.strokeStyle = "black";
@@ -81,6 +91,7 @@ rect.onclick = function() {
     drawRectangle = true;
     drawCircle = false;
     drawLine = false;
+    fillIn = false;
     //context.strokeStyle = "black";
 };
 
@@ -89,6 +100,7 @@ circle.onclick = function() {
     drawRectangle = false;
     drawCircle = true;
     drawLine = false;
+    fillIn = false;
     //context.strokeStyle = "black";
 };
 
@@ -97,6 +109,7 @@ line.onclick = function() {
     drawRectangle = false;
     drawCircle = false;
     drawLine = true;
+    fillIn = false;
     //context.strokeStyle = "black";
 }
 
@@ -104,6 +117,15 @@ line.onclick = function() {
 canvas.onload = function (){
   context.fillStyle("white");
   context.fillRect(0,0,750,750);
+}
+
+fill.onclick = function()
+{
+  drawPinceau = false;
+  drawRectangle = false;
+  drawCircle = false;
+  drawLine = false;
+  fillIn = true;
 }
 
 
@@ -155,6 +177,12 @@ canvas.onmousedown = function (mouse) { //on commence le dessin
     context.beginPath();
     context.moveTo(posInit.x, posInit.y);
   }
+  if(fillIn)
+  {
+    posInit=getMousePos(canvas,mouse);
+    isDrawing = true;
+    context.beginPath();
+  }
 };
 
 canvas.onmouseup = function (mouse) { //on arrete le dessin
@@ -175,6 +203,12 @@ canvas.onmouseup = function (mouse) { //on arrete le dessin
     posEnd=getMousePos(canvas,mouse);
     context.lineTo(posEnd.x, posEnd.y);
     context.stroke();
+  }
+  if(isDrawing && fillIn)
+  {
+    posEnd=getMousePos(canvas,mouse);
+    //context.fillStyle;
+    console.log("blablabla")
   }
   isDrawing = false;
 };

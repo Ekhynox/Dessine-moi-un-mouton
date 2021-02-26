@@ -40,7 +40,7 @@ function App() {
             <button className="styleB" id="drawRect"><BiRectangle/></button>
             <button className="styleB" id="drawCircle"><BsCircle/></button>
             <button className="styleB" id="drawLine"><SiCurl/></button>
-            <button className="styleB" id="fill"><VscPaintcan/></button>
+            <button className="styleB" id="fillIn"><VscPaintcan/></button>
             <button className="styleB" download="example.jpg" id="saveImage"><BiSave/></button>
           </div>
           <div className="couleurs">
