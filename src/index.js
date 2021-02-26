@@ -100,14 +100,19 @@ line.onclick = function() {
     //context.strokeStyle = "black";
 }
 
+//crée un fond blanc dans le canvas, cette fonction DOIT rester au dessus du save
+canvas.onload = function (){
+  context.fillStyle("white");
+  context.fillRect(0,0,750,750);
+}
+
 
 //Enregister une image
 save.onclick = function() {
   var img = document.createElement('a');
-  img.href = canvas.toDataURL("image/jpg");
+  img.href = canvas.toDataURL("image/jpg").replace('png','jpg');
   img.download = ('dessine-moi.jpg');
   img.click();
-  console.log("bleh");
 }
 
 
@@ -122,11 +127,6 @@ function getMousePos(canvas, mouse) {
 
 var posInit;
 var posEnd;
-
-canvas.onload = function (){
-  context.fillStyle("white");
-  context.fillRect(0,0,750,750);
-}
 
 canvas.onmousedown = function (mouse) { //on commence le dessin
   if (drawPinceau)
