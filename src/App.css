@@ -9,78 +9,77 @@
   color: white;
 }
 
-video{border: 3px solid black;
-      margin-top: 2%}
-
 canvas{
-  border: 3px solid black;
   background-color: rgb(255, 255, 255);
+  grid-area: a;
+  border: 3px solid black;
+  width:600px;
+  height:600px;
+  background:white;
+  border-radius: 15px;
+}
+
+video{
+  background-color: rgb(255, 255, 255);
+  border: 3px solid black;
+  width:600px;
+  height:600px;
+  border-radius: 15px;
+  background:white;
+  grid-area: y;
 }
 
 .styleB {
-    background-color: transparent;
     color: white;
-    border-radius: 5px;
-    border: none;
+    border-radius: 15px;
     text-align: center;
+    width:60px;
+    height:55px;
     font-size: 25px;
-    width: auto;
-    margin: 7px;
+    margin: 6px;
+    display: block;
+    grid-area: b;
+    border: 3px solid black;
+    background:#222;
 }
 
 .wrapper {
   display: grid;
   grid-gap: 7px;
   grid-template-areas:
-   "f f f f"
-   "x a b e "
-   "x a b e "
-   "x c d d "
+   "f f f f f f"
+   "x a b c e e"
+   "x a b c e e"
+   "x y d d d d"
+   "x y d d d d"
 }
 
-.drawbox {
-  grid-area: a;
-  padding: 10px;
-  border: 3px solid black;
-  width:755px;
-	height:755px;
-	background:#222;
-  border-radius: 15px;
-}
 .couleurs {
   padding: 10px;
-  grid-area: b;
+  grid-area: c;
   border: 3px solid black;
   width:28px;
 	height:755px;
 	background:#222;
   border-radius: 15px;
 }
-.outils {
-  padding: 10px;
-  grid-area: c;
-  border: 3px solid black;
-  width:755px;
-	height:55px;
-	background:#222;
-  border-radius: 15px;
-}
+
 .chatbox {
   text-align: center;
   padding: 10px;
   grid-area: e;
   border: 3px solid black;
-  width:300px;
-	height:755px;
+  width:265px;
+	height:600px;
 	background:#222;
   border-radius: 15px;
 }
+
 .titre {
   text-align: center;
-  padding: 10px;
   grid-area: f;
   border: 3px solid black;
-  width:1440px;
+  width:1200px;
 	height:75px;
 	background:#222;
   border-radius: 15px;
@@ -88,11 +87,10 @@ canvas{
 
 .score {
   text-align: center;
-  padding: 10px;
   grid-area: x;
   border: 3px solid black;
-  width:250px;
-	height:845px;
+  width: 200px;
+	height: 600px;
 	background:#222;
   border-radius: 15px;
 }

@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import reactCSS from 'reactcss';
 import {CirclePicker} from 'react-color';
 import {ColorChange} from './index';
-import {Connexion} from './connexion';
+import {Connexion} from './index';
 import {DownloadCanvas} from './index';
 import { BiSave } from 'react-icons/bi';
 import { FaPaintBrush } from 'react-icons/fa';
@@ -25,10 +25,12 @@ function App() {
     <div className="background">
       <div className="wrapper">
           <div className="titre">
-
+            <h3 id="show-peer"></h3>
+            <input id="peerID"></input>
+            <button onClick={Connexion}> connection </button>
           </div>
           <div className="drawbox">
-            <canvas id="DrawBox" width="750" height="750"></canvas>
+            <canvas id="DrawBox" width="600" height="600"></canvas>
           </div>
           <div className="outils">
             <button className="styleB" id="Pen+">Pen+</button>
@@ -50,18 +52,15 @@ function App() {
             />
           </div>
           <div className="chatbox">
-            ChatTEST123545
+            <p id="chat">aaa</p>
           </div>
           <div className="score">
             Score
           </div>
+          <div className="video">
+            <video id="Video" width="600" height="600"></video>
+          </div>
       </div>
-      <div>
-        <h3 id="show-peer"></h3>
-        <input id="peerID"></input>
-        <button onClick={Connexion}> connection </button>
-      </div>
-        <video id="Video"  width="750" height="750"></video>
     </div>
   )
 }

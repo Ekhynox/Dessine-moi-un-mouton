@@ -30,7 +30,7 @@ var circle = document.getElementById('drawCircle');
 var line = document.getElementById('drawLine');
 var save = document.getElementById('saveImage');
 var fill = document.getElementById('fillIn');
-context.lineWidth = 8;
+context.lineWidth = 5;
 var isDrawing;
 var drawPinceau = true;
 var drawRectangle = false;
@@ -41,12 +41,70 @@ var fillIn = false;
 
 //stream
 var video = document.getElementById('Video');
-console.log(canvas);
-console.log(video);
-var stream = canvas.captureStream(25);
-console.log(stream);
+var stream = canvas.captureStream(300);
 video.srcObject = stream;
-video.play();
+setTimeout(() => {console.log(canvas);}, 500);
+setTimeout(() => {console.log(video);}, 500);
+setTimeout(() => {console.log(stream);}, 500);
+setTimeout(() => {video.play()}, 500);
+
+//Fonction de PeerJS
+var peer = new Peer();
+var conn;
+var peerID;
+var connID;
+var getUserMedia = navigator.getUserMedia ||
+                   navigator.webkitGetUserMedia ||
+                   navigator.mozGetUserMedia;
+
+
+peer.on('open', function(id) {
+  peerID = id;
+  document.getElementById("show-peer").innerHTML = peerID;
+});
+
+export function Connexion() {
+  connID = document.getElementById("peerID").value;
+  conn = peer.connect(connID);
+  conn.on('open', function(id) {
+    conn.send("hello toi <3 !");
+    document.getElementById('chat').innerHTML="Check la console ou le chatbox de l'autre navigateur"
+    console.log("Check la console sur l'autre navigateur");
+  });
+
+  getUserMedia({video: true, audio: true}, function(stream){
+    var call = peer.call(connID, stream);
+    call.on('stream', function(remoteStream) {
+      console.log("call on");
+      // Show stream in some video/canvas element.
+    });
+  },
+  function(err) {
+    console.log('Failed to get local stream' ,err);
+  });
+}
+
+peer.on('connection', function(conn) {
+  conn.on('data', function(data){
+    // Will print 'hello toi <3 !'
+    document.getElementById('chat').innerHTML=data;
+    console.log(data);
+  });
+});
+
+peer.on('call', function(call) {
+  getUserMedia({video: true, audio: true}, function(stream) {
+    call.answer(stream); // Answer the call with an A/V stream.
+    call.on('stream', function(remoteStream) {
+      console.log("call answer")
+    });
+  }, function(err) {
+    console.log('Failed to get local stream' ,err);
+  });
+});
+
+
+
 
 
 //Fonction sur le pinceau
