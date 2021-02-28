@@ -38,6 +38,17 @@ var drawCircle = false;
 var drawLine = false;
 var fillIn = false;
 
+
+//stream
+var video = document.getElementById('Video');
+console.log(canvas);
+console.log(video);
+var stream = canvas.captureStream(25);
+console.log(stream);
+video.srcObject = stream;
+video.play();
+
+
 //Fonction sur le pinceau
 export function ColorChange(hex){
     isDrawing = false;

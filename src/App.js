@@ -61,6 +61,7 @@ function App() {
         <input id="peerID"></input>
         <button onClick={Connexion}> connection </button>
       </div>
+        <video id="Video"  width="750" height="750"></video>
     </div>
   )
 }

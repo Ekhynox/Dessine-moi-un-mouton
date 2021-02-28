@@ -9,6 +9,9 @@
   color: white;
 }
 
+video{border: 3px solid black;
+      margin-top: 2%}
+
 canvas{
   border: 3px solid black;
   background-color: rgb(255, 255, 255);
@@ -21,8 +24,8 @@ canvas{
     border: none;
     text-align: center;
     font-size: 25px;
-    width: 50px;
-    margin: 5px;
+    width: auto;
+    margin: 7px;
 }
 
 .wrapper {
