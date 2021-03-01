@@ -8,6 +8,7 @@ function getMousePos(canvas, mouse) {
 
 var canvas = document.getElementById('test');
 var ctx = canvas.getContext('2d');
+var urlcanvas;
 
 var save = document.getElementById('saveImage');
 ctx.lineWidth = 4;
@@ -30,12 +31,26 @@ save.onclick = function() {
   img.click();
 }
 
+var sourceCanvas = document.getElementById("test");
+var destCanvas = document.getElementById("test");
+var sourceImageData ;
+var destCanvasContext = destCanvas.getContext('2d');
+var destinationImage = new Image;
+
+function loadCanvas(dataURL) {
+  // load image from data url
+  destinationImage.src = sourceImageData;
+  destCanvasContext.drawImage(destinationImage,0,0);
+}
+
+
 
 
 //gere les actions de la souris
 canvas.onmousedown = function draw(mouse) { //On commence le dessin
     posInit=getMousePos(canvas,mouse);
     des=true;
+    sourceImageData = sourceCanvas.toDataURL("image/jpg");
 };
 
 
@@ -52,7 +67,8 @@ canvas.onmousemove = function (mouse) {
   if (des)
   {
     var posEnd = getMousePos(canvas, mouse); // position (x,y) du crayon
-    ctx.clearRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
+    // ctx.clearRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
+    loadCanvas(urlcanvas);
     ctx.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y)
   }
 };
