@@ -79,8 +79,8 @@ video{
   text-align: center;
   grid-area: f;
   border: 3px solid black;
-  width:1200px;
-	height:75px;
+  width:1250px;
+	height:100px;
 	background:#222;
   border-radius: 15px;
 }

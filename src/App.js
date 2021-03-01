@@ -27,7 +27,7 @@ function App() {
           <div className="titre">
             <h3 id="show-peer"></h3>
             <input id="peerID"></input>
-            <button onClick={Connexion}> connection </button>
+            <button onClick={Connexion}> Connexion </button>
           </div>
           <div className="drawbox">
             <canvas id="DrawBox" width="600" height="600"></canvas>
@@ -52,13 +52,14 @@ function App() {
             />
           </div>
           <div className="chatbox">
-            <p id="chat">aaa</p>
+            Chatbox
+            <p id="chat"></p>
           </div>
           <div className="score">
             Score
           </div>
           <div className="video">
-            <video id="Video" width="600" height="600"></video>
+            <video autoPlay id="Video" width="600" height="600"></video>
           </div>
       </div>
     </div>
