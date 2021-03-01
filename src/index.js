@@ -306,6 +306,8 @@ canvas.onmousemove = function (mouse) {
 
   if (drawRectangle && isDrawing)
   {
+    posEnd = getMousePos(canvas, mouse); // position (x,y) du crayon
+    ctx.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
     drawDataURIOnCanvas(sourceCanvas);
   }
 };
