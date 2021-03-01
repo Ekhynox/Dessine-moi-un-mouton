@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Dessine-moi-un-mouton/static/css/main.a46c20ec.chunk.css",
-    "main.js": "/Dessine-moi-un-mouton/static/js/main.475a01a0.chunk.js",
-    "main.js.map": "/Dessine-moi-un-mouton/static/js/main.475a01a0.chunk.js.map",
+    "main.js": "/Dessine-moi-un-mouton/static/js/main.2fbbe024.chunk.js",
+    "main.js.map": "/Dessine-moi-un-mouton/static/js/main.2fbbe024.chunk.js.map",
     "runtime-main.js": "/Dessine-moi-un-mouton/static/js/runtime-main.9ec8fe5a.js",
     "runtime-main.js.map": "/Dessine-moi-un-mouton/static/js/runtime-main.9ec8fe5a.js.map",
     "static/js/2.910ea02a.chunk.js": "/Dessine-moi-un-mouton/static/js/2.910ea02a.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.9ec8fe5a.js",
     "static/js/2.910ea02a.chunk.js",
     "static/css/main.a46c20ec.chunk.css",
-    "static/js/main.475a01a0.chunk.js"
+    "static/js/main.2fbbe024.chunk.js"
   ]
 }
