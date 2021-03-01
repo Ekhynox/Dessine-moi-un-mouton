@@ -291,7 +291,7 @@ canvas.onmouseup = function (mouse) { //on arrete le dessin
   {
     posEnd=getMousePos(canvas,mouse);
     //context.fillStyle;
-    console.log("blablabla")
+    console.log("blablabla");
   }
   isDrawing = false;
 };
@@ -300,21 +300,34 @@ canvas.onmousemove = function (mouse) {
   if (isDrawing && drawPinceau) {
     var pos = getMousePos(canvas, mouse); // position (x,y) du crayon
     context.lineTo(pos.x, pos.y); // dessiner une ligne
-    context.linecap = 'round'
+    context.linecap = 'round';
     context.stroke();
   }
 
-  if (drawRectangle && isDrawing)
+  if (isDrawing && drawRectangle)
   {
+    drawDataURIOnCanvas(sourceCanvas);
     posEnd = getMousePos(canvas, mouse); // position (x,y) du crayon
     context.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
-    drawDataURIOnCanvas(sourceCanvas);
   }
+  // if(isDrawing && drawCircle)
+  // {
+  //   drawDataURIOnCanvas(sourceCanvas);
+  //   posEnd=getMousePos(canvas,mouse);
+  //   context.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x), Math.abs(posEnd.y - posInit.y), 0, 0, 2*3.14);
+  //   context.stroke();
+  // }
+  // if(isDrawing && drawLine)
+  // {
+  //   drawDataURIOnCanvas(sourceCanvas);
+  //   posEnd=getMousePos(canvas,mouse);
+  //   context.lineTo(posEnd.x, posEnd.y);
+  //   context.stroke();
+  // }
 };
 
 
 function drawDataURIOnCanvas(strDataURI) {  //elle prend en param l'url d'une image, ici le cache du canvas et le draw.
- console.log("drawDataURIOnCanvas");
   var img2 = new window.Image();
   img2.addEventListener("load", function () {
       canvas.getContext("2d").drawImage(img2, 0, 0,600,600);
