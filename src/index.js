@@ -196,9 +196,11 @@ line.onclick = function() {
 }
 
 //crée un fond blanc dans le canvas, cette fonction DOIT rester au dessus du save
-context.fillStyle = 'white';
-context.fillRect(0,0,750,750);
-
+function fillBackground(){
+  context.fillStyle = 'white';
+  context.fillRect(0,0,600,600);
+}
+fillBackground();
 
 fill.onclick = function()
 {
@@ -209,7 +211,6 @@ fill.onclick = function()
   fillIn = true;
 }
 
-
 //Enregister une image
 save.onclick = function() {
   var img = document.createElement('a');
@@ -217,7 +218,6 @@ save.onclick = function() {
   img.download = ('dessine-moi.jpg');
   img.click();
 }
-
 
 //Fonction de dessin
 function getMousePos(canvas, mouse) {
