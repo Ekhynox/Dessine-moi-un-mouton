@@ -214,7 +214,7 @@ fill.onclick = function()
 //Enregister une image
 save.onclick = function() {
   var img = document.createElement('a');
-  img.href = canvas.toDataURL("image/jpg").replace('png','jpg');
+  img.href = canvas.toDataURL('image/jpg', 1.0); //premier param demande d'être en jpg , le deuxieme dit que la conversion ce fait en HD.
   img.download = ('dessine-moi.jpg');
   img.click();
 }
@@ -230,8 +230,10 @@ function getMousePos(canvas, mouse) {
 
 var posInit;
 var posEnd;
+var sourceCanvas;
 
 canvas.onmousedown = function (mouse) { //on commence le dessin
+  sourceCanvas = canvas.toDataURL('image/jpeg', 1.0);
   if (drawPinceau)
   {
     var pos = getMousePos(canvas, mouse); // position (x,y) du crayon
@@ -301,8 +303,22 @@ canvas.onmousemove = function (mouse) {
     context.linecap = 'round'
     context.stroke();
   }
+
+  if (drawRectangle && isDrawing)
+  {
+    drawDataURIOnCanvas(sourceCanvas);
+  }
 };
 
+
+function drawDataURIOnCanvas(strDataURI) {  //elle prend en param l'url d'une image, ici le cache du canvas et le draw.
+ console.log("drawDataURIOnCanvas");
+  var img2 = new window.Image();
+  img2.addEventListener("load", function () {
+      canvas.getContext("2d").drawImage(img2, 0, 0,600,600);
+  });
+  img2.setAttribute("src", strDataURI);
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
