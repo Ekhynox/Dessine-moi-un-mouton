@@ -8,7 +8,7 @@ function getMousePos(canvas, mouse) {
 
 var canvas = document.getElementById('test');
 var ctx = canvas.getContext('2d');
-var urlcanvas;
+
 
 var save = document.getElementById('saveImage');
 ctx.lineWidth = 4;
@@ -26,23 +26,19 @@ canvas.onload = function (){
 //Enregister une image
 save.onclick = function() {
   var img = document.createElement('a');
-  img.href = canvas.toDataURL("image/jpg").replace('png','jpg');
-  img.download = ('dessine-moi.jpg');
+  img.href = canvas.toDataURL('image/jpeg', 1.0);
+  img.download = ('dessine-moi.png');
   img.click();
 }
 
-var sourceCanvas = document.getElementById("test");
-var destCanvas = document.getElementById("test");
-var sourceImageData ;
-var destCanvasContext = destCanvas.getContext('2d');
-var destinationImage = new Image;
-
-function loadCanvas(dataURL) {
-  // load image from data url
-  destinationImage.src = sourceImageData;
-  destCanvasContext.drawImage(destinationImage,0,0);
-}
-
+// load image from data url
+var sourceCanvas;
+// function loadCanvas() {
+//   console.log("load data");
+//   var dd=new Image;
+//   dd.src=sourceCanvas;
+//   ctx.drawImage(dd, 0,0,700,700);
+// }
 
 
 
@@ -50,13 +46,17 @@ function loadCanvas(dataURL) {
 canvas.onmousedown = function draw(mouse) { //On commence le dessin
     posInit=getMousePos(canvas,mouse);
     des=true;
-    sourceImageData = sourceCanvas.toDataURL("image/jpg");
-};
 
+    sourceCanvas=canvas.toDataURL('image/jpeg', 1.0);  // load image from data url
+    // sourceCanvas='file:///home/kevin/T%C3%A9l%C3%A9chargements/cover.jpg';
+
+};
 
 canvas.onmouseup = function(mouse) { //on arrete le dessin
   if (des)
   {
+    // drawDataURIOnCanvas(sourceCanvas);
+
     posEnd=getMousePos(canvas,mouse);
     ctx.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
     des=false;
@@ -68,14 +68,20 @@ canvas.onmousemove = function (mouse) {
   {
     var posEnd = getMousePos(canvas, mouse); // position (x,y) du crayon
     // ctx.clearRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
-    loadCanvas(urlcanvas);
-    ctx.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y)
+    ctx.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
+    // loadCanvas(); // load image from data url
+    // drawDataURIOnCanvas(sourceCanvas);
+
   }
 };
 
 
-async function downloadCanvas(el) //Fonction de download du canvas en jpg
-{
-  const imageURI = canvas.toDataURL("image/jpg");
-  el.href = imageURI;
-};
+
+function drawDataURIOnCanvas(strDataURI) {
+    "use strict";
+    var img2 = new window.Image();
+    img2.addEventListener("load", function () {
+        canvas.getContext("2d").drawImage(img2, 0, 0,700,700);
+    });
+    img2.setAttribute("src", strDataURI);
+}
