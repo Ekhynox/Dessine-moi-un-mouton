@@ -43,10 +43,7 @@ var peer = new Peer();
 var conn;
 var peerID;
 var connID;
-var stream = canvas.captureStream(60);
-var getUserMedia = navigator.getUserMedia ||
-                   navigator.webkitGetUserMedia ||
-                   navigator.mozGetUserMedia;
+var stream = canvas.captureStream(300);
 
 //Mon ID peerJS
 peer.on('open', function(id) {
@@ -56,6 +53,7 @@ peer.on('open', function(id) {
 
 //Stream
 function VideoStream(myStream){
+  document.createElement('a');
   var video = document.getElementById('Video');
   video.srcObject = myStream;
   console.log(video.srcObject);
@@ -74,7 +72,6 @@ export function Connexion() {
     console.log("Check la console sur l'autre navigateur");
   });
 
-  //V1
   var mystream = peer.call(connID, stream);
   mystream.on('stream', function(remoteStream){
     console.log("call on");
@@ -106,12 +103,7 @@ peer.on('connection', function(conn) {
 
 peer.on('call', function(call) {
   call.answer(stream); // Answer the call with an A/V stream.
-  call.on('stream', function(remoteStream) {
-    console.log("call answer");
-    VideoStream(remoteStream);
-  });
 });
-
 
 /*
 peer.on('call', function(call) {
@@ -204,10 +196,9 @@ line.onclick = function() {
 }
 
 //crée un fond blanc dans le canvas, cette fonction DOIT rester au dessus du save
-canvas.onload = function (){
-  context.fillStyle("white");
-  context.fillRect(0,0,750,750);
-}
+context.fillStyle = 'white';
+context.fillRect(0,0,750,750);
+
 
 fill.onclick = function()
 {
