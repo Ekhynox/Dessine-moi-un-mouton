@@ -17,11 +17,12 @@ var posInit;
 var posEnd;
 var des=false;
 
-//crée un fond blanc
-canvas.onload = function (){
-  ctx.fillStyle("white");
+//crée un fond blanc dans le canvas, cette fonction DOIT rester au dessus du save
+function fillBackground(){
+  ctx.fillStyle = 'white';
   ctx.fillRect(0,0,700,700);
 }
+fillBackground();
 
 //Enregister une image
 save.onclick = function() {
@@ -31,32 +32,16 @@ save.onclick = function() {
   img.click();
 }
 
-// load image from data url
-var sourceCanvas;
-// function loadCanvas() {
-//   console.log("load data");
-//   var dd=new Image;
-//   dd.src=sourceCanvas;
-//   ctx.drawImage(dd, 0,0,700,700);
-// }
-
-
-
 //gere les actions de la souris
 canvas.onmousedown = function draw(mouse) { //On commence le dessin
     posInit=getMousePos(canvas,mouse);
     des=true;
-
     sourceCanvas=canvas.toDataURL('image/jpeg', 1.0);  // load image from data url
-    // sourceCanvas='file:///home/kevin/T%C3%A9l%C3%A9chargements/cover.jpg';
-
 };
 
 canvas.onmouseup = function(mouse) { //on arrete le dessin
   if (des)
   {
-    // drawDataURIOnCanvas(sourceCanvas);
-
     posEnd=getMousePos(canvas,mouse);
     ctx.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
     des=false;
@@ -67,15 +52,11 @@ canvas.onmousemove = function (mouse) {
   if (des)
   {
     var posEnd = getMousePos(canvas, mouse); // position (x,y) du crayon
-    // ctx.clearRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
     ctx.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
-    // loadCanvas(); // load image from data url
-    // drawDataURIOnCanvas(sourceCanvas);
+    drawDataURIOnCanvas(sourceCanvas);
 
   }
 };
-
-
 
 function drawDataURIOnCanvas(strDataURI) {
     "use strict";
