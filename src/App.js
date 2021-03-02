@@ -1,19 +1,18 @@
 import './App.css';
 import React, {useState} from 'react';
 import reactCSS from 'reactcss';
+import 'bootstrap/dist/css/bootstrap.css';
+// React Color
 import {CirclePicker} from 'react-color';
-import {ColorChange} from './index';
-import {Connexion} from './index';
-import {DownloadCanvas} from './index';
-import { BiSave } from 'react-icons/bi';
-import { FaPaintBrush } from 'react-icons/fa';
-import { BiEraser } from 'react-icons/bi';
-import { BiRectangle } from 'react-icons/bi';
+// React Icons
+import { BiSave,BiRectangle, BiEraser   } from 'react-icons/bi';
+import { FaPaintBrush, FaTrashAlt } from 'react-icons/fa';
 import { BsCircle } from 'react-icons/bs';
 import { SiCurl } from "react-icons/si";
-import { FaTrashAlt } from 'react-icons/fa';
 import { VscPaintcan } from 'react-icons/vsc';
-
+// fonction
+import {ColorChange, DownloadCanvas} from './index';
+import {Connexion} from './index';
 
 function App() {
   //const colorChange = ({ hex }) => hex = ColorChange(hex); // fonction change la couleur du pinceau
