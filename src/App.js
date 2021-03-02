@@ -22,6 +22,10 @@ function App() {
   }
 
   return (
+<html>
+	<head>
+	</head>
+    <body>
     <div className="background">
       <div className="wrapper">
           <div className="titre">
@@ -48,7 +52,10 @@ function App() {
           <div className="couleurs">
             <CirclePicker
               onChange={colorChange}
-              width = "0"
+              width = {1}
+              circleSize ={26}
+              colors = {["#e91e63", "#9c27b0", "#673ab7", "#3f51b5", "#2196f3", "#00bcd4", "#009688", "#4caf50", "#ffeb3b", "#ffc107", "#ff9800", "#795548", "#607d8b", "black", "white"]}
+
             />
           </div>
             <div className="card">
@@ -81,6 +88,8 @@ function App() {
           </div>
       </div>
     </div>
+    </body>
+  </html>
   )
 }
 

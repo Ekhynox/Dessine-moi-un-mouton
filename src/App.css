@@ -1,6 +1,13 @@
 
+body,html{
+    height: 100%;
+    margin: 0;
+    background: #7F7FD5;
+      background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+      background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+  }
+
 .background{
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -12,7 +19,6 @@
 canvas{
   background-color: rgb(255, 255, 255);
   grid-area: a;
-  border: 3px solid black;
   width:600px;
   height:600px;
   background:white;
@@ -21,7 +27,6 @@ canvas{
 
 video{
   background-color: rgb(255, 255, 255);
-  border: 3px solid black;
   width:600px;
   height:600px;
   border-radius: 15px;
@@ -33,7 +38,7 @@ video{
     color: white;
     border-radius: 15px;
     text-align: center;
-    width:60px;
+    width:55px;
     height:55px;
     font-size: 25px;
     margin: 6px;
@@ -41,6 +46,7 @@ video{
     grid-area: b;
     border: 3px solid black;
     background:#222;
+    border-radius: 15px
 }
 
 .wrapper {
@@ -58,8 +64,8 @@ video{
   padding: 10px;
   grid-area: c;
   border: 3px solid black;
-  width: 50px;
-	height:760px;
+  width: 51px;
+	height: 610px;
 	background:#222;
   border-radius: 15px;
 }
@@ -67,35 +73,34 @@ video{
 .titre {
   text-align: center;
   grid-area: f;
-  border: 3px solid black;
   width:1250px;
 	height:100px;
-	background:#222;
   border-radius: 15px;
 }
 
 .score {
   text-align: center;
   grid-area: x;
-  border: 3px solid black;
   width: 200px;
 	height: 600px;
-	background:#222;
+	background: linear-gradient(to right, #86A8E7, #7F7FD5);
   border-radius: 15px;
 }
 
   .card{
     grid-area: e;
-    width:400px;
+    width:300px;
     height:600px;
     border-radius: 15px !important;
     background-color: rgba(174,214,241,1) !important;
   }
+  .msg_card_body{
+			overflow-y: auto;
+		}
 
   .type_msg{
     border-radius: 15px 0px 0px 15px !important;
     background-color: rgba(0,0,0,0.7) !important;
-    border:0 !important;
     color:white !important;
     height: 40px !important;
   }
