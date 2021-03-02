@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import {CirclePicker} from 'react-color';
 // React Icons
 import { BiSave,BiRectangle, BiEraser, BiSend} from 'react-icons/bi';
-import { FaPaintBrush, FaTrashAlt } from 'react-icons/fa';
+import { FaPaintBrush, FaTrashAlt, FaCircle } from 'react-icons/fa';
 import { BsCircle } from 'react-icons/bs';
 import { SiCurl } from "react-icons/si";
 import { VscPaintcan } from 'react-icons/vsc';
@@ -37,8 +37,10 @@ function App() {
             <canvas id="DrawBox" width="600" height="600"></canvas>
           </div>
           <div className="outils">
-            <button className="styleB" id="Pen+">Pen+</button>
-            <button className="styleB" id="Pen-">Pen-</button>
+            <button className="styleB tresgrand" id="Pen++"><FaCircle/></button>
+            <button className="styleB grand" id="Pen+"><FaCircle/></button>
+            <button className="styleB moyen" id="Pen"><FaCircle/></button>
+            <button className="styleB petit" id="Pen-"><FaCircle/></button>
             <button className="styleB" id="Pinceau"><FaPaintBrush/></button>
             <button className="styleB" id="Erase"><BiEraser/></button>
             <button className="styleB" id="Clear"><FaTrashAlt/></button>

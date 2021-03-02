@@ -49,6 +49,24 @@ video{
     border-radius: 15px
 }
 
+.tresgrand {
+  font-size: 30px;
+}
+
+.grand{
+  font-size: 20px;
+}
+
+.moyen {
+  font-size: 13px;
+}
+
+.petit {
+  font-size: 8px;
+}
+
+
+
 .wrapper {
   display: grid;
   grid-gap: 7px;

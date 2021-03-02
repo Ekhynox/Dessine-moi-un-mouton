@@ -19,8 +19,6 @@ var context = canvas.getContext('2d');
 
 //Pen
 var color = document.getElementsByClassName('color');
-var penUp = document.getElementById('Pen+');
-var penDown = document.getElementById('Pen-');
 var erase = document.getElementById('Erase');
 var pinceau = document.getElementById('Pinceau');
 var clear = document.getElementById('Clear');
@@ -158,14 +156,29 @@ export function ColorChange(hex){
     context.fillStyle = hex;
 }
 
-penUp.onclick = function() {
+var verybigPen = document.getElementById('Pen++');
+var bigPen = document.getElementById('Pen+');
+var smallPen = document.getElementById('Pen');
+var verysmallPen = document.getElementById('Pen-');
+
+verybigPen.onclick = function() {
     isDrawing = false;
-    context.lineWidth += 5;
+    context.lineWidth = 18;
 };
 
-penDown.onclick = function() {
+bigPen.onclick = function() {
     isDrawing = false;
-    context.lineWidth -= 5;
+    context.lineWidth = 12;
+};
+
+smallPen.onclick = function() {
+    isDrawing = false;
+    context.lineWidth = 6;
+};
+
+verysmallPen.onclick = function() {
+    isDrawing = false;
+    context.lineWidth = 2;
 };
 
 erase.onclick = function() {
