@@ -37,6 +37,7 @@ var drawCircle = false;
 var drawLine = false;
 var fillIn = false;
 var pseudos = "Ekhynox";
+var time = 23;
 
 //Fonction de PeerJS
 var peer = new Peer();
@@ -65,13 +66,6 @@ export function Connexion() {
   document.getElementById("show-peer").innerHTML = "Connexion " + connID;
   conn = peer.connect(connID);
 
-  conn.on('open', function(id) {
-    conn.send(pseudos + " : ");
-    conn.send("hello toi <3 !");
-    document.getElementById('chat').innerHTML="Check la console ou le chatbox de l'autre navigateur";
-    console.log("Check la console sur l'autre navigateur");
-  });
-
   var mystream = peer.call(connID, stream);
   mystream.on('stream', function(remoteStream){
     console.log("call on");
@@ -79,46 +73,83 @@ export function Connexion() {
   });
 }
 
-/*
-  //V2
-  getUserMedia({video: true, audio: false}, function(stream) {
-  var call = peer.call(connID, stream);
-  call.on('stream', function(remoteStream) {
-      VideoStream(remoteStream);
-  });
-}, function(err) {
-    console.log('Failed to get local stream' ,err);
-  });
-}
-*/
-
-//Reception
-peer.on('connection', function(conn) {
-  conn.on('data', function(data){
-    // Will print 'hello toi <3 !'
-    document.getElementById('chat').innerHTML +=data;
-    console.log(data);
-  });
-});
-
 peer.on('call', function(call) {
   call.answer(stream); // Answer the call with an A/V stream.
 });
 
-/*
-peer.on('call', function(call) {
-    getUserMedia({video: true, audio:false}, function(stream) {
-      call.answer(stream); // Answer the call with an A/V stream.
-      call.on('stream', function(stream) {
-      console.log(stream);
-      VideoStream(stream);
-    },
-    function(err) {
-      console.log('Failed to get local stream' ,err);
-    });
+
+//Envoyer des messages
+export function Send() {
+  var chatBox = document.getElementById("chatBox")
+  var div1 = document.createElement("div");
+  var div2 = document.createElement("div");
+  var span = document.createElement("span");
+  var message = document.getElementById("message");
+  conn = peer.connect(connID);
+
+  connID = document.getElementById("peerID").value; //Id du host
+  document.getElementById("show-peer").innerHTML = "Connexion " + connID;
+
+  div1.setAttribute("class", "d-flex justify-content-start mb-4");
+  div2.setAttribute("class", "msg_cotainer");
+  span.setAttribute("class", "msg_time");
+
+  div2.innerHTML = pseudos + " : " + message.value;
+
+  div2.appendChild(span);
+  div1.appendChild(div2);
+  chatBox.appendChild(div1);
+
+  peer.on('open', function(id) {
+    peerID = id;
+    console.log(peerID);
+  });
+
+  conn.on('open', function(id) {
+    conn.send(pseudos + " : " + message.value);
+  });
+}
+
+
+//Reception
+peer.on('connection', function(conn) {
+  conn.on('data', function(data){
+
+    var chatBox = document.getElementById("chatBox")
+    var div1 = document.createElement("div");
+    var div2 = document.createElement("div");
+    var span = document.createElement("span");
+
+    div1.setAttribute("class", "d-flex justify-content-start mb-4");
+    div2.setAttribute("class", "msg_cotainer");
+    span.setAttribute("class", "msg_time");
+
+    div2.innerHTML = data;
+
+    div2.appendChild(span);
+    div1.appendChild(div2);
+    chatBox.appendChild(div1);
+
+    console.log(data);
   });
 });
-*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Fonction sur le pinceau
 export function ColorChange(hex){

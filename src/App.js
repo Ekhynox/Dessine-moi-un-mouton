@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 // React Color
 import {CirclePicker} from 'react-color';
 // React Icons
-import { BiSave,BiRectangle, BiEraser   } from 'react-icons/bi';
+import { BiSave,BiRectangle, BiEraser, BiSend} from 'react-icons/bi';
 import { FaPaintBrush, FaTrashAlt } from 'react-icons/fa';
 import { BsCircle } from 'react-icons/bs';
 import { SiCurl } from "react-icons/si";
@@ -13,6 +13,7 @@ import { VscPaintcan } from 'react-icons/vsc';
 // fonction
 import {ColorChange, DownloadCanvas} from './index';
 import {Connexion} from './index';
+import {Send} from './index.js';
 
 function App() {
   //const colorChange = ({ hex }) => hex = ColorChange(hex); // fonction change la couleur du pinceau
@@ -50,13 +51,31 @@ function App() {
               width = "0"
             />
           </div>
-          <div className="chatbox">
-            Chatbox
-            <p id="chat"></p>
+            <div className="card">
+              <div id="chatBox" className="card-body msg_card_body">
+
+                <div className="d-flex justify-content-start mb-4">
+                  <div className="msg_cotainer">
+                    Ekhynox : Hello toi !
+                    <span className="msg_time">46 Sec</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="card-footer">
+                <div className="input-group">
+                  <input id="message" className="form-control type_msg" placeholder="Type your message..."></input>
+                  <div className="input-group-append">
+                    <button id="send" onClick={Send} className="input-group-text send_btn" ><BiSend/></button>
+                  </div>
+                </div>
+            </div>
           </div>
+
           <div className="score">
             Score
           </div>
+
           <div className="video">
             <video autoPlay id="Video" width="600" height="600"></video>
           </div>
