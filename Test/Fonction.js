@@ -46,9 +46,14 @@ canvas.onmouseup = function(mouse) { //on arrete le dessin
 
     // ctx.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);  //canvas du rectangle
 
+    // ctx.beginPath();
+    // ctx.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x ) , Math.abs(posEnd.y - posInit.y), 0, 0, 2 * Math.PI);
+    // ctx.stroke(); //canvas de l'ellipse(cerlce)
+
     ctx.beginPath();
-    ctx.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x ) , Math.abs(posEnd.y - posInit.y), 0, 0, 2 * Math.PI);
-    ctx.stroke(); //canvas de l'ellipse(cerlce)
+    ctx.moveTo(posInit.x, posInit.y);
+    ctx.lineTo(posEnd.x, posEnd.y);
+    ctx.stroke();   //canvas de la ligne
 
     des=false;
     console.log(sourceCanvas);
@@ -61,9 +66,14 @@ canvas.onmousemove = function (mouse) {
   {
     var posEnd = getMousePos(canvas, mouse); // position (x,y) du crayon
 
+    // ctx.beginPath();
+    // ctx.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x ) , Math.abs(posEnd.y - posInit.y), 0, 0, 2 * Math.PI);
+    // ctx.stroke();
+
     ctx.beginPath();
-    ctx.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x ) , Math.abs(posEnd.y - posInit.y), 0, 0, 2 * Math.PI);
-    ctx.stroke();
+    ctx.moveTo(posInit.x, posInit.y);
+    ctx.lineTo(posEnd.x, posEnd.y);
+    ctx.stroke(); //canvas de la ligne
 
     drawDataURIOnCanvas(sourceCanvas);
 
