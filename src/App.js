@@ -10,6 +10,7 @@ import { FaPaintBrush, FaTrashAlt, FaCircle, FaSquare } from 'react-icons/fa';
 import { BsCircle, BsSquare } from 'react-icons/bs';
 import { SiCurl } from "react-icons/si";
 import { VscPaintcan } from 'react-icons/vsc';
+import { RiArrowGoBackFill } from "react-icons/ri";
 // fonction
 import {ColorChange, DownloadCanvas} from './index';
 import {Connexion} from './index';
@@ -51,6 +52,7 @@ function App() {
             <button className="styleB" id="drawCircleFull"><FaCircle/></button>
             <button className="styleB" id="drawLine"><SiCurl/></button>
             <button className="styleB" id="fillIn"><VscPaintcan/></button>
+            <button className="styleB" id="Bundo"><RiArrowGoBackFill/></button>
             <button className="styleB" download="example.jpg" id="saveImage"><BiSave/></button>
           </div>
           <div className="couleurs">
