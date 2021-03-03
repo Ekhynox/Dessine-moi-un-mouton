@@ -8,7 +8,7 @@ Voila la liste des Fonctionnalités que nous souhaitons implémenter ! Celles qu
 - formes géométriques automatiques X
 - changer les couleurs du pinceau X
 - changer la couleur du canva (fond noir au lieu de blanc par exemple)
-- Quand on clique sur une couleur, le curseur redevient automatiquement un pinceau
+- Quand on clique sur clear/gomme, le curseur redevient automatiquement un pinceau X
 - Ne pas compter la casse
 - un chat
 - randomiser de mots
