@@ -23,7 +23,9 @@ var erase = document.getElementById('Erase');
 var pinceau = document.getElementById('Pinceau');
 var clear = document.getElementById('Clear');
 var rect = document.getElementById('drawRect');
+var rectfull = document.getElementById('drawRectFull');
 var circle = document.getElementById('drawCircle');
+var circlefull = document.getElementById('drawCircleFull');
 var line = document.getElementById('drawLine');
 var save = document.getElementById('saveImage');
 var fill = document.getElementById('fillIn');
@@ -31,7 +33,9 @@ context.lineWidth = 6;
 var isDrawing;
 var drawPinceau = true;
 var drawRectangle = false;
+var drawRectangleFull = false;
 var drawCircle = false;
+var drawCircleFull = false;
 var drawLine = false;
 var fillIn = false;
 var pseudos = "Ekhynox";
@@ -145,10 +149,14 @@ peer.on('connection', function(conn) {
 
 
 
-
-
-
-
+//initialise le canvas avec un fond blanc et les outils sont de couleur noir de base
+function CanvasInit(){
+  context.fillStyle = 'white';
+  context.fillRect(0,0,canvas.width, canvas.height);
+  context.fillStyle = 'black';
+  context.strokeStyle = 'black'
+}
+CanvasInit();
 
 //Fonction sur le pinceau
 export function ColorChange(hex){
@@ -185,7 +193,9 @@ verysmallPen.onclick = function() {
 erase.onclick = function() {
     drawPinceau = true;
     drawRectangle = false;
+    drawRectangleFull = false;
     drawCircle = false;
+    drawCircleFull=false;
     drawLine = false;
     fillIn = false;
     isDrawing = false;
@@ -196,62 +206,92 @@ pinceau.onclick = function() {
     isDrawing = false;
     drawPinceau = true;
     drawRectangle = false;
+    drawRectangleFull = false;
     drawCircle = false;
+    drawCircleFull=false;
     drawLine = false;
     fillIn = false;
-    context.strokeStyle = "black"
+    // context.strokeStyle = "black"
 };
 
 clear.onclick = function() {
     drawPinceau = true;
     drawRectangle = false;
+    drawRectangleFull = false;
     drawCircle = false;
+    drawCircleFull=false;
     drawLine = false;
     fillIn = false;
     isDrawing = false;
-    context.clearRect(0,0,1000,1000);
-    context.strokeStyle = "black";
+    var tmp=context.fillStyle;
+    context.fillStyle = 'white';
+    context.fillRect(0,0,canvas.width, canvas.height);
+    context.fillStyle = tmp;
+    // context.strokeStyle = "black";
 };
 
 rect.onclick = function() {
     drawPinceau = false;
     drawRectangle = true;
+    drawRectangleFull = false;
     drawCircle = false;
+    drawCircleFull=false
     drawLine = false;
     fillIn = false;
-    //context.strokeStyle = "black";
+    // context.strokeStyle = "black";
+};
+
+rectfull.onclick = function() {
+    drawPinceau = false;
+    drawRectangle = false;
+    drawRectangleFull = true;
+    drawCircle = false;
+    drawCircleFull=false;
+    drawLine = false;
+    fillIn = false;
+    // context.fillStyle = "black";
 };
 
 circle.onclick = function() {
     drawPinceau = false;
     drawRectangle = false;
+    drawRectangleFull = false;
     drawCircle = true;
+    drawCircleFull=false;
     drawLine = false;
     fillIn = false;
-    //context.strokeStyle = "black";
+    // context.strokeStyle = "black";
+};
+
+circlefull.onclick = function() {
+    drawPinceau = false;
+    drawRectangle = false;
+    drawRectangleFull = false;
+    drawCircle = false;
+    drawCircleFull=true;
+    drawLine = false;
+    fillIn = false;
+    // context.fillStyle = "black";
 };
 
 line.onclick = function() {
     drawPinceau = false;
     drawRectangle = false;
+    drawRectangleFull = false;
     drawCircle = false;
+    drawCircleFull=false;
     drawLine = true;
     fillIn = false;
-    //context.strokeStyle = "black";
+    // context.strokeStyle = "black";
 }
-
-//crée un fond blanc dans le canvas, cette fonction DOIT rester au dessus du save
-function fillBackground(){
-  context.fillStyle = 'white';
-  context.fillRect(0,0,600,600);
-}
-fillBackground();
 
 fill.onclick = function()
 {
   drawPinceau = false;
   drawRectangle = false;
+  drawRectangleFull = false;
   drawCircle = false;
+  drawCircleFull=false;
   drawLine = false;
   fillIn = true;
 }
@@ -291,7 +331,17 @@ canvas.onmousedown = function (mouse) { //on commence le dessin
     posInit=getMousePos(canvas,mouse);
     isDrawing = true;
   }
+  if (drawRectangleFull)
+  {
+    posInit=getMousePos(canvas,mouse);
+    isDrawing = true;
+  }
   if(drawCircle)
+  {
+    posInit=getMousePos(canvas,mouse);
+    isDrawing = true;
+  }
+  if(drawCircleFull)
   {
     posInit=getMousePos(canvas,mouse);
     isDrawing = true;
@@ -310,11 +360,18 @@ canvas.onmousedown = function (mouse) { //on commence le dessin
 };
 
 canvas.onmouseup = function (mouse) { //on arrete le dessin
+  console.log(sourceCanvas);
   if (isDrawing  && drawRectangle)
   {
     posEnd=getMousePos(canvas,mouse);
     context.beginPath();
     context.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
+  }
+  if (isDrawing  && drawRectangleFull)
+  {
+    posEnd=getMousePos(canvas,mouse);
+    context.beginPath();
+    context.fillRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
   }
 
   if(isDrawing && drawCircle)
@@ -324,6 +381,14 @@ canvas.onmouseup = function (mouse) { //on arrete le dessin
     context.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x), Math.abs(posEnd.y - posInit.y), 0, 0, 2*Math.PI);
     context.stroke();
   }
+  if(isDrawing && drawCircleFull)
+  {
+    posEnd=getMousePos(canvas,mouse);
+    context.beginPath();
+    context.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x), Math.abs(posEnd.y - posInit.y), 0, 0, 2*Math.PI);
+    context.fill();
+  }
+
   if(isDrawing && drawLine)
   {
     posEnd=getMousePos(canvas,mouse);
@@ -356,6 +421,14 @@ canvas.onmousemove = function (mouse) {
     context.beginPath();
     context.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
   }
+  if (isDrawing && drawRectangleFull)
+  {
+    drawDataURIOnCanvas(sourceCanvas);
+    posEnd = getMousePos(canvas, mouse); // position (x,y) du crayon
+    context.beginPath();
+    context.fillRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
+  }
+
   if(isDrawing && drawCircle)
   {
     drawDataURIOnCanvas(sourceCanvas);
@@ -364,6 +437,15 @@ canvas.onmousemove = function (mouse) {
     context.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x), Math.abs(posEnd.y - posInit.y), 0, 0, 2*Math.PI);
     context.stroke();
   }
+  if(isDrawing && drawCircleFull)
+  {
+    drawDataURIOnCanvas(sourceCanvas);
+    posEnd=getMousePos(canvas,mouse);
+    context.beginPath();
+    context.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x), Math.abs(posEnd.y - posInit.y), 0, 0, 2*Math.PI);
+    context.fill();
+  }
+
   if(isDrawing && drawLine)
   {
     drawDataURIOnCanvas(sourceCanvas);
@@ -379,7 +461,7 @@ canvas.onmousemove = function (mouse) {
 function drawDataURIOnCanvas(strDataURI) {  //elle prend en param l'url d'une image, ici le cache du canvas et le draw.
   var img2 = new window.Image();
   img2.addEventListener("load", function () {
-      canvas.getContext("2d").drawImage(img2, 0, 0,600,600);
+      canvas.getContext("2d").drawImage(img2, 0, 0,canvas.width, canvas.height);
   });
   img2.setAttribute("src", strDataURI);
 }
