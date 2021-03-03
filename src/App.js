@@ -5,9 +5,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 // React Color
 import {CirclePicker} from 'react-color';
 // React Icons
-import { BiSave,BiRectangle, BiEraser, BiSend} from 'react-icons/bi';
-import { FaPaintBrush, FaTrashAlt, FaCircle } from 'react-icons/fa';
-import { BsCircle } from 'react-icons/bs';
+import { BiSave, BiEraser, BiSend} from 'react-icons/bi';
+import { FaPaintBrush, FaTrashAlt, FaCircle, FaSquare } from 'react-icons/fa';
+import { BsCircle, BsSquare } from 'react-icons/bs';
 import { SiCurl } from "react-icons/si";
 import { VscPaintcan } from 'react-icons/vsc';
 // fonction
@@ -45,8 +45,10 @@ function App() {
             <button className="styleB" id="Erase"><BiEraser/></button>
             <button className="styleB" id="Clear"><FaTrashAlt/></button>
 
-            <button className="styleB" id="drawRect"><BiRectangle/></button>
+            <button className="styleB" id="drawRect"><BsSquare/></button>
+            <button className="styleB" id="drawRectFull"><FaSquare/></button>
             <button className="styleB" id="drawCircle"><BsCircle/></button>
+            <button className="styleB" id="drawCircleFull"><FaCircle/></button>
             <button className="styleB" id="drawLine"><SiCurl/></button>
             <button className="styleB" id="fillIn"><VscPaintcan/></button>
             <button className="styleB" download="example.jpg" id="saveImage"><BiSave/></button>
