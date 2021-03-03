@@ -37,13 +37,16 @@ canvas.onmousedown = function draw(mouse) { //On commence le dessin
     posInit=getMousePos(canvas,mouse);
     des=true;
     sourceCanvas=canvas.toDataURL('image/jpeg', 1.0);  // load image from data url
+    ctx.beginPath();
 };
 
 canvas.onmouseup = function(mouse) { //on arrete le dessin
   if (des)
   {
     posEnd=getMousePos(canvas,mouse);
-    ctx.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
+    // ctx.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
+    ctx.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x ) , Math.abs(posEnd.y - posInit.y), 0, 0, 2 * Math.PI);
+    ctx.stroke();
     des=false;
   }
 };
@@ -52,7 +55,7 @@ canvas.onmousemove = function (mouse) {
   if (des)
   {
     var posEnd = getMousePos(canvas, mouse); // position (x,y) du crayon
-    ctx.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
+    // ctx.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
     drawDataURIOnCanvas(sourceCanvas);
 
   }
