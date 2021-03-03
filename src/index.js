@@ -93,6 +93,7 @@ export function Send() {
   span.setAttribute("class", "msg_time");
 
   div2.innerHTML = pseudos + " : " + message.value;
+  document.getElementById("message").value = "";
 
   div2.appendChild(span);
   div1.appendChild(div2);
