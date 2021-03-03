@@ -214,7 +214,7 @@ pinceau.onclick = function() {
     drawCircleFull=false;
     drawLine = false;
     fillIn = false;
-    // context.strokeStyle = "black"
+    context.strokeStyle = "black"
 };
 
 clear.onclick = function() {
@@ -227,10 +227,9 @@ clear.onclick = function() {
     drawLine = false;
     fillIn = false;
     isDrawing = false;
-    var tmp=context.fillStyle;
     context.fillStyle = 'white';
     context.fillRect(0,0,canvas.width, canvas.height);
-    context.fillStyle = tmp;
+    context.fillStyle = 'black';
     // context.strokeStyle = "black";
 };
 
@@ -328,10 +327,10 @@ canvas.onmousedown = function (mouse) { //on commence le dessin
   sourceCanvas = canvas.toDataURL('image/jpeg', 1.0);
   if (drawPinceau)
   {
-    var pos = getMousePos(canvas, mouse); // position (x,y) du crayon
+    posInit = getMousePos(canvas, mouse); // position (x,y) du crayon
     isDrawing = true;
     context.beginPath(); // commencer un nouveau trait
-    context.moveTo(pos.x, pos.y); //déplacer le crayon avec la méthode à la nouvelle position
+    context.moveTo(posInit.x, posInit.y); //déplacer le crayon avec la méthode à la nouvelle position
   }
   if (drawRectangle)
   {
