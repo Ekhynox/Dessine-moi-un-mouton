@@ -43,10 +43,13 @@ canvas.onmouseup = function(mouse) { //on arrete le dessin
   if (des)
   {
     posEnd=getMousePos(canvas,mouse);
-    // ctx.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
+
+    // ctx.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);  //canvas du rectangle
+
     ctx.beginPath();
     ctx.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x ) , Math.abs(posEnd.y - posInit.y), 0, 0, 2 * Math.PI);
-    ctx.stroke();
+    ctx.stroke(); //canvas de l'ellipse(cerlce)
+
     des=false;
     console.log(sourceCanvas);
 
@@ -57,16 +60,17 @@ canvas.onmousemove = function (mouse) {
   if (des)
   {
     var posEnd = getMousePos(canvas, mouse); // position (x,y) du crayon
-    // ctx.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
+
     ctx.beginPath();
     ctx.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x ) , Math.abs(posEnd.y - posInit.y), 0, 0, 2 * Math.PI);
     ctx.stroke();
+
     drawDataURIOnCanvas(sourceCanvas);
 
   }
 };
 
-function drawDataURIOnCanvas(strDataURI) {
+function drawDataURIOnCanvas(strDataURI) {  //fonction de prévisualisation
     "use strict";
     var img2 = new window.Image();
     img2.addEventListener("load", function () {
