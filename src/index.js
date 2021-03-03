@@ -27,8 +27,9 @@ var rectfull = document.getElementById('drawRectFull');
 var circle = document.getElementById('drawCircle');
 var circlefull = document.getElementById('drawCircleFull');
 var line = document.getElementById('drawLine');
-var save = document.getElementById('saveImage');
 var fill = document.getElementById('fillIn');
+var undo = document.getElementById('Bundo');
+var save = document.getElementById('saveImage');
 context.lineWidth = 6;
 var isDrawing;
 var drawPinceau = true;
@@ -40,6 +41,8 @@ var drawLine = false;
 var fillIn = false;
 var pseudos = "Ekhynox";
 var time = 23;
+var sourceCanvas;
+
 
 //Fonction de PeerJS
 var peer = new Peer();
@@ -215,6 +218,7 @@ pinceau.onclick = function() {
 };
 
 clear.onclick = function() {
+    sourceCanvas = canvas.toDataURL('image/jpeg', 1.0);
     drawPinceau = true;
     drawRectangle = false;
     drawRectangleFull = false;
@@ -296,6 +300,10 @@ fill.onclick = function()
   fillIn = true;
 }
 
+undo.onclick = function() {
+  drawDataURIOnCanvas(sourceCanvas);
+}
+
 //Enregister une image
 save.onclick = function() {
   var img = document.createElement('a');
@@ -315,7 +323,6 @@ function getMousePos(canvas, mouse) {
 
 var posInit;
 var posEnd;
-var sourceCanvas;
 
 canvas.onmousedown = function (mouse) { //on commence le dessin
   sourceCanvas = canvas.toDataURL('image/jpeg', 1.0);
@@ -360,7 +367,6 @@ canvas.onmousedown = function (mouse) { //on commence le dessin
 };
 
 canvas.onmouseup = function (mouse) { //on arrete le dessin
-  console.log(sourceCanvas);
   if (isDrawing  && drawRectangle)
   {
     posEnd=getMousePos(canvas,mouse);
