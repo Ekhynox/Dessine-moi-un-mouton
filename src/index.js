@@ -295,7 +295,6 @@ canvas.onmousedown = function (mouse) { //on commence le dessin
   {
     posInit=getMousePos(canvas,mouse);
     isDrawing = true;
-    context.beginPath();
   }
   if(drawLine)
   {
@@ -322,7 +321,8 @@ canvas.onmouseup = function (mouse) { //on arrete le dessin
   if(isDrawing && drawCircle)
   {
     posEnd=getMousePos(canvas,mouse);
-    context.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x), Math.abs(posEnd.y - posInit.y), 0, 0, 2*3.14);
+    context.beginPath();
+    context.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x), Math.abs(posEnd.y - posInit.y), 0, 0, 2*Math.PI);
     context.stroke();
   }
   if(isDrawing && drawLine)
@@ -354,13 +354,14 @@ canvas.onmousemove = function (mouse) {
     posEnd = getMousePos(canvas, mouse); // position (x,y) du crayon
     context.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
   }
-  // if(isDrawing && drawCircle)
-  // {
-  //   drawDataURIOnCanvas(sourceCanvas);
-  //   posEnd=getMousePos(canvas,mouse);
-  //   context.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x), Math.abs(posEnd.y - posInit.y), 0, 0, 2*3.14);
-  //   context.stroke();
-  // }
+  if(isDrawing && drawCircle)
+  {
+    drawDataURIOnCanvas(sourceCanvas);
+    posEnd=getMousePos(canvas,mouse);
+    context.beginPath();
+    context.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x), Math.abs(posEnd.y - posInit.y), 0, 0, 2*Math.PI);
+    context.stroke();
+  }
   // if(isDrawing && drawLine)
   // {
   //   drawDataURIOnCanvas(sourceCanvas);
