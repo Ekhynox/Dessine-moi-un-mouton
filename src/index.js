@@ -289,7 +289,6 @@ canvas.onmousedown = function (mouse) { //on commence le dessin
   {
     posInit=getMousePos(canvas,mouse);
     isDrawing = true;
-    context.beginPath();
   }
   if(drawCircle)
   {
@@ -300,8 +299,6 @@ canvas.onmousedown = function (mouse) { //on commence le dessin
   {
     posInit=getMousePos(canvas,mouse);
     isDrawing = true;
-    context.beginPath();
-    context.moveTo(posInit.x, posInit.y);
   }
   if(fillIn)
   {
@@ -315,6 +312,7 @@ canvas.onmouseup = function (mouse) { //on arrete le dessin
   if (isDrawing  && drawRectangle)
   {
     posEnd=getMousePos(canvas,mouse);
+    context.beginPath();
     context.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
   }
 
@@ -328,6 +326,8 @@ canvas.onmouseup = function (mouse) { //on arrete le dessin
   if(isDrawing && drawLine)
   {
     posEnd=getMousePos(canvas,mouse);
+    context.beginPath();
+    context.moveTo(posInit.x, posInit.y);
     context.lineTo(posEnd.x, posEnd.y);
     context.stroke();
   }
@@ -352,6 +352,7 @@ canvas.onmousemove = function (mouse) {
   {
     drawDataURIOnCanvas(sourceCanvas);
     posEnd = getMousePos(canvas, mouse); // position (x,y) du crayon
+    context.beginPath();
     context.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
   }
   if(isDrawing && drawCircle)
@@ -362,13 +363,15 @@ canvas.onmousemove = function (mouse) {
     context.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x), Math.abs(posEnd.y - posInit.y), 0, 0, 2*Math.PI);
     context.stroke();
   }
-  // if(isDrawing && drawLine)
-  // {
-  //   drawDataURIOnCanvas(sourceCanvas);
-  //   posEnd=getMousePos(canvas,mouse);
-  //   context.lineTo(posEnd.x, posEnd.y);
-  //   context.stroke();
-  // }
+  if(isDrawing && drawLine)
+  {
+    drawDataURIOnCanvas(sourceCanvas);
+    posEnd=getMousePos(canvas,mouse);
+    context.beginPath();
+    context.moveTo(posInit.x, posInit.y);
+    context.lineTo(posEnd.x, posEnd.y);
+    context.stroke();
+  }
 };
 
 
