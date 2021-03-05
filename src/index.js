@@ -329,7 +329,13 @@ canvas.onmousedown = function (mouse) { //on commence le dessin
   {
     posInit = getMousePos(canvas, mouse); // position (x,y) du crayon
     isDrawing = true;
+
+    context.beginPath();
+    context.arc(posInit.x, posInit.y, context.lineWidth/2, 0, 2 * Math.PI, false);
+    context.fill();
+
     context.beginPath(); // commencer un nouveau trait
+    context.lineCap = 'round';
     context.moveTo(posInit.x, posInit.y); //déplacer le crayon avec la méthode à la nouvelle position
   }
   if (drawRectangle)
@@ -415,7 +421,6 @@ canvas.onmousemove = function (mouse) {
   if (isDrawing && drawPinceau) {
     var pos = getMousePos(canvas, mouse); // position (x,y) du crayon
     context.lineTo(pos.x, pos.y); // dessiner une ligne
-    context.linecap = 'round';
     context.stroke();
   }
 
