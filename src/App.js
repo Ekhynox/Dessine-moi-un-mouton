@@ -12,9 +12,7 @@ import { SiCurl } from "react-icons/si";
 import { VscPaintcan } from 'react-icons/vsc';
 import { RiArrowGoBackFill } from "react-icons/ri";
 // fonction
-import {ColorChange, DownloadCanvas} from './index';
-import {Connexion} from './index';
-import {Send} from './index.js';
+import {Connexion, Send, ColorChange, DownloadCanvas} from './index.js';
 
 function App() {
   //const colorChange = ({ hex }) => hex = ColorChange(hex); // fonction change la couleur du pinceau

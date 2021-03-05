@@ -19,6 +19,10 @@ var context = canvas.getContext('2d');
 
 //Pen
 var color = document.getElementsByClassName('color');
+var verybigPen = document.getElementById('Pen++');
+var bigPen = document.getElementById('Pen+');
+var smallPen = document.getElementById('Pen');
+var verysmallPen = document.getElementById('Pen-');
 var erase = document.getElementById('Erase');
 var pinceau = document.getElementById('Pinceau');
 var clear = document.getElementById('Clear');
@@ -30,7 +34,7 @@ var line = document.getElementById('drawLine');
 var fill = document.getElementById('fillIn');
 var undo = document.getElementById('Bundo');
 var save = document.getElementById('saveImage');
-context.lineWidth = 6;
+
 var isDrawing;
 var drawPinceau = true;
 var drawRectangle = false;
@@ -39,9 +43,16 @@ var drawCircle = false;
 var drawCircleFull = false;
 var drawLine = false;
 var fillIn = false;
+var sourceCanvas;
+var posInit;
+var posEnd;
+var rgbcolor = { r: 0, g: 0, b: 0 };;
+
+context.lineWidth = 6;
+
+//Connexion
 var pseudos = "Ekhynox";
 var time = 23;
-var sourceCanvas;
 
 
 //Fonction de PeerJS
@@ -62,7 +73,7 @@ function VideoStream(myStream){
   document.createElement('a');
   var video = document.getElementById('Video');
   video.srcObject = myStream;
-  console.log(video.srcObject);
+  // console.log(video.srcObject);
 }
 
 //Connexion
@@ -73,7 +84,7 @@ export function Connexion() {
 
   var mystream = peer.call(connID, stream);
   mystream.on('stream', function(remoteStream){
-    console.log("call on");
+    // console.log("call on");
     VideoStream(remoteStream);
   });
 }
@@ -108,7 +119,7 @@ export function Send() {
 
   peer.on('open', function(id) {
     peerID = id;
-    console.log(peerID);
+    // console.log(peerID);
   });
 
   conn.on('open', function(id) {
@@ -136,23 +147,15 @@ peer.on('connection', function(conn) {
     div1.appendChild(div2);
     chatBox.appendChild(div1);
 
-    console.log(data);
+    // console.log(data);
   });
 });
 
+/*------------------------------------------------------------------------------*/
+/*DRAW                                                                          */
+/*------------------------------------------------------------------------------*/
 
-
-
-
-
-
-
-
-
-
-
-
-//initialise le canvas avec un fond blanc et les outils sont de couleur noir de base
+//Initialise le canvas avec un fond blanc et les outils sont de couleur noir de base
 function CanvasInit(){
   context.fillStyle = 'white';
   context.fillRect(0,0,canvas.width, canvas.height);
@@ -161,18 +164,26 @@ function CanvasInit(){
 }
 CanvasInit();
 
+//fonction de conversion
+function hexToRgb(val) {
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(val);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : null;
+}
+
 //Fonction sur le pinceau
 export function ColorChange(hex){
     isDrawing = false;
     context.strokeStyle = hex; // change la couleur du trait
     context.fillStyle = hex;
+    rgbcolor=hexToRgb(hex);
+    console.log("hex: "+hex);
 }
 
-var verybigPen = document.getElementById('Pen++');
-var bigPen = document.getElementById('Pen+');
-var smallPen = document.getElementById('Pen');
-var verysmallPen = document.getElementById('Pen-');
-
+//Choix de l'ouils/action
 verybigPen.onclick = function() {
     isDrawing = false;
     context.lineWidth = 18;
@@ -215,6 +226,7 @@ pinceau.onclick = function() {
     drawLine = false;
     fillIn = false;
     context.strokeStyle = "black"
+    // rgbcolor={ r: 0, g: 0, b: 0 };
 };
 
 clear.onclick = function() {
@@ -230,6 +242,7 @@ clear.onclick = function() {
     context.fillStyle = 'white';
     context.fillRect(0,0,canvas.width, canvas.height);
     context.fillStyle = 'black';
+    // rgbcolor={ r: 0, g: 0, b: 0 };
     // context.strokeStyle = "black";
 };
 
@@ -303,6 +316,7 @@ undo.onclick = function() {
   drawDataURIOnCanvas(sourceCanvas);
 }
 
+
 //Enregister une image
 save.onclick = function() {
   var img = document.createElement('a');
@@ -311,7 +325,8 @@ save.onclick = function() {
   img.click();
 }
 
-//Fonction de dessin
+
+//récupère les coordonnées de la souris
 function getMousePos(canvas, mouse) {
   var rect = canvas.getBoundingClientRect(); // retourne sa position par rapport à la zone d'affichage.
   return {
@@ -320,11 +335,38 @@ function getMousePos(canvas, mouse) {
   };
 }
 
-var posInit;
-var posEnd;
+//Prend en param l'url d'une image, ici le cache du canvas et le draw.
+function drawDataURIOnCanvas(strDataURI) {
+  var img2 = new window.Image();
+  img2.addEventListener("load", function () {
+      canvas.getContext("2d").drawImage(img2, 0, 0,canvas.width, canvas.height);
+  });
+  img2.setAttribute("src", strDataURI);
+}
 
+//renvoie la couleur du pixel ou on click
+function pick(pos) {
+  var pixel = context.getImageData(pos.x, pos.y, 1, 1);
+  var data = pixel.data;
+  // var rgba = 'rgba(' + data[0] + ', ' + data[1] + ', ' + data[2] + ', ' + (data[3] / 255) + ')';
+ return data;
+}
+
+function setcanvas(pos_x, pos_y ,color)
+{
+  var id = context.createImageData(1,1); // only do this once per page
+  id.data[0]  = color[0];
+  id.data[1]  = color[1];
+  id.data[2]  = color[2];
+  id.data[3]  = 255;
+  context.putImageData( id, pos_x, pos_y );
+}
+
+
+//Fonction de dessin
 canvas.onmousedown = function (mouse) { //on commence le dessin
   sourceCanvas = canvas.toDataURL('image/jpeg', 1.0);
+
   if (drawPinceau)
   {
     posInit = getMousePos(canvas, mouse); // position (x,y) du crayon
@@ -367,7 +409,16 @@ canvas.onmousedown = function (mouse) { //on commence le dessin
   {
     posInit=getMousePos(canvas,mouse);
     isDrawing = true;
-    context.beginPath();
+    var colorInit = pick(posInit);
+    var  pos_x, pos_y;
+    for (var i = 0; i < 50; i++) {
+      for (var j = 0; j < 50; j++) {
+        pos_x=i;
+        pos_y=j;
+        setcanvas(pos_x, pos_y,Object.values(rgbcolor));
+      }
+    }
+    // setcanvas(posInit,Object.values(rgbcolor));
   }
 };
 
@@ -411,13 +462,11 @@ canvas.onmouseup = function (mouse) { //on arrete le dessin
   if(isDrawing && fillIn)
   {
     posEnd=getMousePos(canvas,mouse);
-    //context.fillStyle;
-    console.log("blablabla");
   }
   isDrawing = false;
 };
 
-canvas.onmousemove = function (mouse) {
+canvas.onmousemove = function (mouse) { //permet de voir en temps réel notre dessin
   if (isDrawing && drawPinceau) {
     var pos = getMousePos(canvas, mouse); // position (x,y) du crayon
     context.lineTo(pos.x, pos.y); // dessiner une ligne
@@ -467,14 +516,6 @@ canvas.onmousemove = function (mouse) {
   }
 };
 
-
-function drawDataURIOnCanvas(strDataURI) {  //elle prend en param l'url d'une image, ici le cache du canvas et le draw.
-  var img2 = new window.Image();
-  img2.addEventListener("load", function () {
-      canvas.getContext("2d").drawImage(img2, 0, 0,canvas.width, canvas.height);
-  });
-  img2.setAttribute("src", strDataURI);
-}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
