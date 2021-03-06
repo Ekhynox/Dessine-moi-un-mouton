@@ -13,8 +13,7 @@ import { VscPaintcan } from 'react-icons/vsc';
 import { RiArrowGoBackFill } from "react-icons/ri";
 // fonction
 import {ColorChange, DownloadCanvas} from './index';
-import {Connexion} from './index';
-import {Send} from './index.js';
+import {Connexion, Send} from './connexion';
 
 function App() {
   //const colorChange = ({ hex }) => hex = ColorChange(hex); // fonction change la couleur du pinceau
@@ -23,10 +22,6 @@ function App() {
   }
 
   return (
-<html>
-	<head>
-	</head>
-    <body>
     <div className="background">
       <div className="wrapper">
           <div className="titre">
@@ -94,8 +89,6 @@ function App() {
           </div>
       </div>
     </div>
-    </body>
-  </html>
   )
 }
 

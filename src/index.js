@@ -5,6 +5,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import Peer from 'peerjs';
+import {Connexion, SetCanvas} from './connexion';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,6 +17,7 @@ ReactDOM.render(
 //Canvas
 var canvas = document.getElementById('DrawBox');
 var context = canvas.getContext('2d');
+SetCanvas(canvas);
 
 //Pen
 var color = document.getElementsByClassName('color');
@@ -39,117 +41,7 @@ var drawCircle = false;
 var drawCircleFull = false;
 var drawLine = false;
 var fillIn = false;
-var pseudos = "Ekhynox";
-var time = 23;
 var sourceCanvas;
-
-
-//Fonction de PeerJS
-var peer = new Peer();
-var conn;
-var peerID;
-var connID;
-var stream = canvas.captureStream(300);
-
-//Mon ID peerJS
-peer.on('open', function(id) {
-  peerID = id;
-  document.getElementById("show-peer").innerHTML = peerID;
-});
-
-//Stream
-function VideoStream(myStream){
-  document.createElement('a');
-  var video = document.getElementById('Video');
-  video.srcObject = myStream;
-  console.log(video.srcObject);
-}
-
-//Connexion
-export function Connexion() {
-  connID = document.getElementById("peerID").value; //Id du host
-  document.getElementById("show-peer").innerHTML = "Connexion " + connID;
-  conn = peer.connect(connID);
-
-  var mystream = peer.call(connID, stream);
-  mystream.on('stream', function(remoteStream){
-    console.log("call on");
-    VideoStream(remoteStream);
-  });
-}
-
-peer.on('call', function(call) {
-  call.answer(stream); // Answer the call with an A/V stream.
-});
-
-
-//Envoyer des messages
-export function Send() {
-  var chatBox = document.getElementById("chatBox")
-  var div1 = document.createElement("div");
-  var div2 = document.createElement("div");
-  var span = document.createElement("span");
-  var message = document.getElementById("message");
-  conn = peer.connect(connID);
-
-  connID = document.getElementById("peerID").value; //Id du host
-  document.getElementById("show-peer").innerHTML = "Connexion " + connID;
-
-  div1.setAttribute("class", "d-flex justify-content-start mb-4");
-  div2.setAttribute("class", "msg_cotainer");
-  span.setAttribute("class", "msg_time");
-
-  div2.innerHTML = pseudos + " : " + message.value;
-  document.getElementById("message").value = "";
-
-  div2.appendChild(span);
-  div1.appendChild(div2);
-  chatBox.appendChild(div1);
-
-  peer.on('open', function(id) {
-    peerID = id;
-    console.log(peerID);
-  });
-
-  conn.on('open', function(id) {
-    conn.send(pseudos + " : " + message.value);
-  });
-}
-
-
-//Reception
-peer.on('connection', function(conn) {
-  conn.on('data', function(data){
-
-    var chatBox = document.getElementById("chatBox")
-    var div1 = document.createElement("div");
-    var div2 = document.createElement("div");
-    var span = document.createElement("span");
-
-    div1.setAttribute("class", "d-flex justify-content-start mb-4");
-    div2.setAttribute("class", "msg_cotainer");
-    span.setAttribute("class", "msg_time");
-
-    div2.innerHTML = data;
-
-    div2.appendChild(span);
-    div1.appendChild(div2);
-    chatBox.appendChild(div1);
-
-    console.log(data);
-  });
-});
-
-
-
-
-
-
-
-
-
-
-
 
 
 //initialise le canvas avec un fond blanc et les outils sont de couleur noir de base
@@ -302,6 +194,12 @@ fill.onclick = function()
 undo.onclick = function() {
   drawDataURIOnCanvas(sourceCanvas);
 }
+
+document.addEventListener('keydown', function(event) {
+  if (event.ctrlKey && event.key === 'z') {
+    drawDataURIOnCanvas(sourceCanvas);
+  }
+});
 
 //Enregister une image
 save.onclick = function() {
