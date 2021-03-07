@@ -31,7 +31,7 @@ video{
   height:600px;
   border-radius: 15px;
   background:white;
-  grid-area: a;
+  grid-area: d;
 }
 
 .styleB {
@@ -42,13 +42,18 @@ video{
     height:55px;
     font-size: 25px;
     margin: 6px;
-    display: block;
-    grid-area: b;
     border: 3px solid black;
     background:#222;
     border-radius: 15px
 }
 
+.outils1 {
+  grid-area: b;
+  display: block;
+}
+.outils2 {
+  grid-area: y;
+}
 .tresgrand {
   font-size: 30px;
 }
@@ -72,8 +77,10 @@ video{
    "f f f f f f"
    "x a b c c e"
    "x a b c c e"
-   "x y y y d d"
-   "x y y y d d"
+   "x y d d d d"
+   "x y d d d d"
+   "x z d d d d"
+   "x z d d d d"
 }
 
 .couleurs {

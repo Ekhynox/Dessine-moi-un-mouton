@@ -34,22 +34,23 @@ function App() {
             <canvas id="DrawBox" width="600" height="600"></canvas>
           </div>
           <div className="outils">
-            <button className="styleB tresgrand" id="Pen++"><FaCircle/></button>
-            <button className="styleB grand" id="Pen+"><FaCircle/></button>
-            <button className="styleB moyen" id="Pen"><FaCircle/></button>
-            <button className="styleB petit" id="Pen-"><FaCircle/></button>
-            <button className="styleB" id="Pinceau"><FaPaintBrush/></button>
-            <button className="styleB" id="Erase"><BiEraser/></button>
-            <button className="styleB" id="Clear"><FaTrashAlt/></button>
-
-            <button className="styleB" id="drawRect"><BsSquare/></button>
-            <button className="styleB" id="drawRectFull"><FaSquare/></button>
-            <button className="styleB" id="drawCircle"><BsCircle/></button>
-            <button className="styleB" id="drawCircleFull"><FaCircle/></button>
-            <button className="styleB" id="drawLine"><SiCurl/></button>
-            <button className="styleB" id="fillIn"><VscPaintcan/></button>
-            <button className="styleB" id="Bundo"><RiArrowGoBackFill/></button>
-            <button className="styleB" download="example.jpg" id="saveImage"><BiSave/></button>
+            <button className="styleB tresgrand outils1" id="Pen++"><FaCircle/></button>
+            <button className="styleB grand outils1" id="Pen+"><FaCircle/></button>
+            <button className="styleB moyen outils1" id="Pen"><FaCircle/></button>
+            <button className="styleB petit outils1" id="Pen-"><FaCircle/></button>
+            <button className="styleB outils1" id="Pinceau"><FaPaintBrush/></button>
+            <button className="styleB outils1" id="drawRect"><BsSquare/></button>
+            <button className="styleB outils1" id="drawRectFull"><FaSquare/></button>
+            <button className="styleB outils1" id="drawCircle"><BsCircle/></button>
+            <button className="styleB outils1" id="drawCircleFull"><FaCircle/></button>
+            <button className="styleB outils1" id="drawLine"><SiCurl/></button>
+            <button className="styleB outils1" id="fillIn"><VscPaintcan/></button>
+          </div>
+          <div className="outils">
+            <button className="styleB outils2" id="Erase"><BiEraser/></button>
+            <button className="styleB outils2" id="Clear"><FaTrashAlt/></button>
+            <button className="styleB outils2" id="Bundo"><RiArrowGoBackFill/></button>
+            <button className="styleB outils2" download="example.jpg" id="saveImage"><BiSave/></button>
           </div>
           <div className="couleurs">
             <CirclePicker
@@ -75,9 +76,8 @@ function App() {
           <div className="score">
             Score
           </div>
-
           <div className="video">
-            <video autoPlay id="Video" width="600" height="600"></video>
+              <video autoPlay id="Video" width="600" height="600"></video>           
           </div>
       </div>
     </div>
