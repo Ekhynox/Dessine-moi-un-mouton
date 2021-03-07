@@ -5,7 +5,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import Peer from 'peerjs';
-import {Connexion, SetCanvas} from './connexion';
+import {Connexion, SetCanvas, Send} from './connexion';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -52,6 +52,15 @@ function CanvasInit(){
   context.strokeStyle = 'black'
 }
 CanvasInit();
+
+//setup les variables pour la fonction Send() ('envoyer un message')
+var send = document.getElementById('send');
+send.onclick = function(){
+  var message = document.getElementById("message").value;
+  console.log(message)
+  Send(message);
+  document.getElementById("message").value = "";
+}
 
 //Fonction sur le pinceau
 export function ColorChange(hex){

@@ -58,12 +58,12 @@ peer.on('call', function(call) {
 
 ////////////////////////////////////////////////////////
 //Envoyer des messages
-export function Send() {
+export function Send(message) {
   var chatBox = document.getElementById("chatBox")
   var div1 = document.createElement("div");
   var div2 = document.createElement("div");
   var span = document.createElement("span");
-  var message = document.getElementById("message");
+
   conn = peer.connect(connID);
 
   connID = document.getElementById("peerID").value; //Id du host
@@ -73,9 +73,7 @@ export function Send() {
   div2.setAttribute("class", "msg_cotainer");
   span.setAttribute("class", "msg_time");
 
-  div2.innerHTML = pseudos + " : " + message.value;
-  document.getElementById("message").value = "";
-  console.log(message.value)
+  div2.innerHTML = pseudos + " : " + message;
 
   div2.appendChild(span);
   div1.appendChild(div2);
@@ -87,7 +85,7 @@ export function Send() {
   });
 
   conn.on('open', function(id) {
-    conn.send(pseudos + " : " + message.value);
+    conn.send(pseudos + " : " + message);
   });
 }
 

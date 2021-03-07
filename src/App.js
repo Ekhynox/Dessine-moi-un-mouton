@@ -13,7 +13,7 @@ import { VscPaintcan } from 'react-icons/vsc';
 import { RiArrowGoBackFill } from "react-icons/ri";
 // fonction
 import {ColorChange, DownloadCanvas} from './index';
-import {Connexion, Send} from './connexion';
+import {Connexion} from './connexion';
 
 function App() {
   //const colorChange = ({ hex }) => hex = ColorChange(hex); // fonction change la couleur du pinceau
@@ -60,21 +60,12 @@ function App() {
             />
           </div>
             <div className="card">
-              <div id="chatBox" className="card-body msg_card_body">
-
-                <div className="d-flex justify-content-start mb-4">
-                  <div className="msg_cotainer">
-                    Ekhynox : Hello toi !
-                    <span className="msg_time">46 Sec</span>
-                  </div>
-                </div>
-              </div>
-
+              <div id="chatBox" className="card-body msg_card_body"></div>
               <div className="card-footer">
                 <div className="input-group">
                   <input id="message" className="form-control type_msg" placeholder="Type your message..."></input>
                   <div className="input-group-append">
-                    <button id="send" onClick={Send} className="input-group-text send_btn" ><BiSend/></button>
+                    <button id="send" className="input-group-text send_btn" ><BiSend/></button>
                   </div>
                 </div>
             </div>
