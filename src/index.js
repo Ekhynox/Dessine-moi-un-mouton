@@ -62,6 +62,15 @@ send.onclick = function(){
   document.getElementById("message").value = "";
 }
 
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Enter') {
+    var message = document.getElementById("message").value;
+    var pseudos = document.getElementById('pseudos').value;
+    Send(message, pseudos);
+    document.getElementById("message").value = "";
+  }
+});
+
 //Fonction sur le pinceau
 export function ColorChange(hex){
     isDrawing = false;
@@ -209,6 +218,7 @@ document.addEventListener('keydown', function(event) {
     drawDataURIOnCanvas(sourceCanvas);
   }
 });
+
 
 //Enregister une image
 save.onclick = function() {
