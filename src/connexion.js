@@ -13,7 +13,7 @@ var stream;
 //Set le canvas
 export function SetCanvas(varCanvas){
   canvas = varCanvas;
-  stream = canvas.captureStream(60);
+  stream = canvas.captureStream(300);
 }
 
 //Fonction de PeerJS
