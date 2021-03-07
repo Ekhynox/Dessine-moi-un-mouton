@@ -57,8 +57,8 @@ CanvasInit();
 var send = document.getElementById('send');
 send.onclick = function(){
   var message = document.getElementById("message").value;
-  console.log(message)
-  Send(message);
+  var pseudos = document.getElementById('pseudos').value;
+  Send(message, pseudos);
   document.getElementById("message").value = "";
 }
 

@@ -6,8 +6,6 @@ import reportWebVitals from './reportWebVitals';
 import App from './App';
 import Peer from 'peerjs';
 
-var pseudos = "Ekhynox"
-
 //Canvas
 var canvas;
 var stream;
@@ -58,7 +56,7 @@ peer.on('call', function(call) {
 
 ////////////////////////////////////////////////////////
 //Envoyer des messages
-export function Send(message) {
+export function Send(message, pseudos) {
   var chatBox = document.getElementById("chatBox")
   var div1 = document.createElement("div");
   var div2 = document.createElement("div");

@@ -26,7 +26,8 @@ function App() {
       <div className="wrapper">
           <div className="titre">
             <h3 id="show-peer"></h3>
-            <input id="peerID"></input>
+            <input id="pseudos" placeholder="Nicknames"></input>
+            <input id="peerID" placeholder="Host ID"></input>
             <button onClick={Connexion}> Connexion </button>
           </div>
           <div className="drawbox">
