@@ -1,5 +1,6 @@
 
 Voila la liste des Fonctionnalités que nous souhaitons implémenter ! Celles qui ont déjà été réalisées sont signalées par un "X"
+
 -- Fonctionnalités basiques--
 - Un sablier (-+ 80sec)
 - Un espace dessin ("canva") X
@@ -13,7 +14,9 @@ Voila la liste des Fonctionnalités que nous souhaitons implémenter ! Celles qu
 - un chat
 - randomiser de mots
 - système de points
-- connexion : pseudo, pas de mp, PP = images
+- connexion : pseudo, pas de mp;
+- PP = images
+- gestion des erreurs
 
 -- Fonctionnalités "si on a le temps"--
 - Changement de langue

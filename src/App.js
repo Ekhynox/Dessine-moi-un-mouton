@@ -12,8 +12,9 @@ import { SiCurl } from "react-icons/si";
 import { VscPaintcan } from 'react-icons/vsc';
 import { RiArrowGoBackFill } from "react-icons/ri";
 // fonction
-import {ColorChange, DownloadCanvas} from './index';
+import {ColorChange, DownloadCanvas} from './canvas';
 import {Connexion} from './connexion';
+import {verybigPen, bigPen, smallPen, verysmallPen, erase, pinceau, clear, rect, rectfull, circle, circlefull, line, fill, save, undo} from './canvas';
 
 function App() {
   //const colorChange = ({ hex }) => hex = ColorChange(hex); // fonction change la couleur du pinceau
@@ -23,7 +24,7 @@ function App() {
 
   return (
 <div className="background row">
-        <div class="row">
+        <div className="row">
             <div className="titre ">
               <h3 id="show-peer"></h3>
               <input id="pseudos" placeholder="Nicknames"></input>
@@ -33,7 +34,7 @@ function App() {
         </div>
 
 
-        <div class="row">
+        <div className="row">
             <div className="score col-sd">Score</div>
 
             <div className="drawbox col-sd">
@@ -41,17 +42,17 @@ function App() {
             </div>
 
             <div className= "col-sd">
-                <button className="styleB tresgrand outils1" id="Pen++"><FaCircle/></button>
-                <button className="styleB grand outils1" id="Pen+"><FaCircle/></button>
-                <button className="styleB moyen outils1" id="Pen"><FaCircle/></button>
-                <button className="styleB petit outils1" id="Pen-"><FaCircle/></button>
-                <button className="styleB outils1" id="Pinceau"><FaPaintBrush/></button>
-                <button className="styleB outils1" id="drawRect"><BsSquare/></button>
-                <button className="styleB outils1" id="drawRectFull"><FaSquare/></button>
-                <button className="styleB outils1" id="drawCircle"><BsCircle/></button>
-                <button className="styleB outils1" id="drawCircleFull"><FaCircle/></button>
-                <button className="styleB outils1" id="drawLine"><SiCurl/></button>
-                <button className="styleB outils1" id="fillIn"><VscPaintcan/></button>
+                <button onClick={verybigPen} className="styleB tresgrand outils1" id="Pen++"><FaCircle/></button>
+                <button onClick={bigPen} className="styleB grand outils1" id="Pen+"><FaCircle/></button>
+                <button onClick={smallPen} className="styleB moyen outils1" id="Pen"><FaCircle/></button>
+                <button onClick={verysmallPen} className="styleB petit outils1" id="Pen-"><FaCircle/></button>
+                <button onClick={pinceau} className="styleB outils1" id="Pinceau"><FaPaintBrush/></button>
+                <button onClick={rect} className="styleB outils1" id="drawRect"><BsSquare/></button>
+                <button onClick={rectfull} className="styleB outils1" id="drawRectFull"><FaSquare/></button>
+                <button onClick={circle} className="styleB outils1" id="drawCircle"><BsCircle/></button>
+                <button onClick={circlefull} className="styleB outils1" id="drawCircleFull"><FaCircle/></button>
+                <button onClick={line} className="styleB outils1" id="drawLine"><SiCurl/></button>
+                <button onClick={fill} className="styleB outils1" id="fillIn"><VscPaintcan/></button>
             </div>
 
             <div className="couleurs col-sd">
@@ -74,14 +75,14 @@ function App() {
                 </div>
            </div>
 
-           <div class="row  col-5">
-              <button className="styleB outils2" id="Erase"><BiEraser/></button>
-              <button className="styleB outils2" id="Clear"><FaTrashAlt/></button>
-              <button className="styleB outils2" id="Bundo"><RiArrowGoBackFill/></button>
-              <button className="styleB outils2" download="example.jpg" id="saveImage"><BiSave/></button>
+           <div className="row  col-5">
+              <button onClick={erase} className="styleB outils2" id="Erase"><BiEraser/></button>
+              <button onClick={clear} className="styleB outils2" id="Clear"><FaTrashAlt/></button>
+              <button onClick={undo} className="styleB outils2" id="Bundo"><RiArrowGoBackFill/></button>
+              <button onClick={save} className="styleB outils2" download="example.jpg" id="saveImage"><BiSave/></button>
             </div>
 
-            <div class="row  col-5">
+            <div className="row  col-5">
                 <video autoPlay id="Video" width="600" height="600"></video>
             </div>
 </div>
