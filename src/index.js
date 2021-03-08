@@ -63,12 +63,19 @@ send.onclick = function(){
 }
 
 document.addEventListener('keydown', function(event) {
-  if (event.key === 'Enter') {
+  if ((event.key === 'Enter') && (document.getElementById("message").value != ""))
+  {
     var message = document.getElementById("message").value;
     var pseudos = document.getElementById('pseudos').value;
     Send(message, pseudos);
     document.getElementById("message").value = "";
   }
+
+  if ((event.key === 'Enter') && (document.getElementById("pseudos").value != "") && (document.getElementById("peerID").value != "") )
+  {
+    Connexion();
+  }
+
 });
 
 //Fonction sur le pinceau
