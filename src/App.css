@@ -77,8 +77,8 @@ video{
 }
 
 .score {
-  text-align: center;
-  width: 200px;
+  text-align: left;
+  width: 400px;
 	height:670px;
 	background: #344D59;
   border-radius: 15px;

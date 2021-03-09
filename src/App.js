@@ -11,16 +11,99 @@ import { BsCircle, BsSquare } from 'react-icons/bs';
 import { SiCurl } from "react-icons/si";
 import { VscPaintcan } from 'react-icons/vsc';
 import { RiArrowGoBackFill } from "react-icons/ri";
+//import Material-ui from '@material-ui';
+import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import logo from './Mylogo.jpg';
+import cx from 'clsx';
+import { Column, Row, Item } from '@mui-treasury/components/flex';
+import { useDynamicAvatarStyles } from '@mui-treasury/styles/avatar/dynamic';
+
 // fonction
 import {ColorChange, DownloadCanvas} from './canvas';
 import {Connexion} from './connexion';
 import {verybigPen, bigPen, smallPen, verysmallPen, erase, pinceau, clear, rect, rectfull, circle, circlefull, line, fill, save, undo} from './canvas';
 
+
+const usePersonStyles = makeStyles(() => ({
+  text: {
+    fontFamily: 'Barlow, san-serif',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+  },
+  name: {
+    fontWeight: 600,
+    fontSize: '1rem',
+    color: '#122740',
+  },
+  caption: {
+    fontSize: '0.875rem',
+    color: '#758392',
+    marginTop: -4,
+  },
+  btn: {
+    borderRadius: 20,
+    padding: '0.125rem 0.75rem',
+    borderColor: '#becddc',
+    fontSize: '0.75rem',
+  },
+}));
+
+const PersonItem = ({ src, name, friendCount }) => {
+  const avatarStyles = useDynamicAvatarStyles({ size: 56 });
+  const styles = usePersonStyles();
+  return (
+    <Row gap={2} p={2.5}>
+      <Item>
+        <Avatar classes={avatarStyles} src={src} />
+      </Item>
+      <Row wrap grow gap={0.5} minWidth={0}>
+        <Item grow minWidth={0}>
+          <div className={cx(styles.name, styles.text)}>{name}</div>
+        </Item>
+        <Item className ={styles.headline}> 4 </Item> 
+      </Row>
+    </Row>
+  );
+};
+
+const useStylescard = makeStyles(() => ({
+  card: {
+    width: '100%',
+    borderRadius: 16,
+    boxShadow: '0 8px 16px 0 #BDC9D7',
+    overflow: 'hidden',
+  },
+  header: {
+    fontFamily: 'Barlow, san-serif',
+    backgroundColor: '#fff',
+  },
+  headline: {
+    color: '#122740',
+    fontSize: '1.25rem',
+    fontWeight: 600,
+  },
+  link: {
+    color: '#2281bb',
+    padding: '0 0.25rem',
+    fontSize: '0.875rem',
+  },
+  divider: {
+    backgroundColor: '#d9e2ee',
+    margin: '0 20px',
+  }
+}));
+
 function App() {
+  const styles = useStylescard();
+
   //const colorChange = ({ hex }) => hex = ColorChange(hex); // fonction change la couleur du pinceau
   const colorChange = ({hex}) => {
     hex = ColorChange(hex); // fonction change la couleur du pinceau
   }
+
+
 
   return (
 <div className="background row">
@@ -35,8 +118,26 @@ function App() {
 
 
         <div className="row">
-            <div className="score col-sd">Score</div>
+            <div className="score col-sd">
+            <>
 
+             <Column p={0} gap={0} className={styles.card}>
+               <Row wrap p={2} alignItems={'baseline'} className={styles.header}>
+                 <Item stretched className={styles.headline}>Participant.e.s</Item>
+                 <Item className={styles.headline}>
+                   Score
+                 </Item>
+               </Row>
+               <Row wrap p={2} alignItems={'baseline'}>
+               <PersonItem name={'Amber Matthews'} src={'https://i.pravatar.cc/300?img=10'} />
+               </Row>
+               <Divider variant={'middle'} className={styles.divider} />
+               <PersonItem name={'Russel Robertson'} src={'https://i.pravatar.cc/300?img=20'} />
+               <Divider variant={'middle'} className={styles.divider} />
+               <PersonItem name={'Kathleen Ellis'} src={'https://i.pravatar.cc/300?img=30'} />
+             </Column>
+           </>
+</div>
             <div className="drawbox col-sd">
               <canvas id="DrawBox" width="670" height="670"></canvas>
             </div>

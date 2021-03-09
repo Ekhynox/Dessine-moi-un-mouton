@@ -5,15 +5,15 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import Peer from 'peerjs';
-import PageDeCo from './pagedeCo';
 import SignInSide from './SignInSide';
+import WaitingRoom from './WaitingRoom';
 import {Connexion, SetCanvas, Send} from './connexion';
 import {SetCanvasDraw} from './canvas';
 
 ReactDOM.render(
   <React.StrictMode>
-    <PageDeCo/>
     <SignInSide/>
+    <WaitingRoom/>
     <App/>
   </React.StrictMode>,
   document.getElementById('root')
