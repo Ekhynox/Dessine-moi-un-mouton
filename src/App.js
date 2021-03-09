@@ -12,15 +12,17 @@ import { SiCurl } from "react-icons/si";
 import { VscPaintcan } from 'react-icons/vsc';
 import { RiArrowGoBackFill } from "react-icons/ri";
 //import Material-ui from '@material-ui';
-import {Avatar, Divider} from '@material-ui/core';
+import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
-
+import { makeStyles } from '@material-ui/core/styles';
 // fonction
 import {ColorChange, DownloadCanvas} from './canvas';
 import {Connexion} from './connexion';
 import {verybigPen, bigPen, smallPen, verysmallPen, erase, pinceau, clear, rect, rectfull, circle, circlefull, line, fill, save, undo} from './canvas';
-
+import cx from 'clsx';
 function App() {
+  const classes = useStyles();
+  const styles = useStyles();
   //const colorChange = ({ hex }) => hex = ColorChange(hex); // fonction change la couleur du pinceau
   const colorChange = ({hex}) => {
     hex = ColorChange(hex); // fonction change la couleur du pinceau
@@ -50,20 +52,25 @@ function App() {
                 </div>
             </div>
             <div className="row">
-                <div>
-                 <Column gap={0} className="cardScore">
-                   <Row wrap p={3}>
-                     <Item stretched > Participant.e.s </Item>
-                     <Item> Score </Item>
-                   </Row>
-                   <Divider variant={'middle'}/>
-                   <PersonItem name={'Amber Matthews'} src={'https://i.pravatar.cc/300?img=40'} />
-                   <Divider variant={'middle'}/>
-                   <PersonItem name={'Russel Robertson'} src={'https://i.pravatar.cc/300?img=20'} />
-                   <Divider variant={'middle'}/>
-                   <PersonItem name={'Kathleen Ellis'} src={'https://i.pravatar.cc/300?img=30'} />
-                 </Column>
-               </div>
+            <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+              <div className={classes.paper}>
+
+               <Column p={0} gap={0} className={styles.card}>
+                 <Row wrap p={2} alignItems={'baseline'} className={styles.header}>
+                   <Item stretched className={styles.headline}>Participant.e.s</Item>
+                   <Item className={styles.actions}>
+                     <Link className={styles.link}>Refresh</Link> •{' '}
+                     <Link className={styles.link}>See all</Link>
+                   </Item>
+                 </Row>
+                 <PersonItem name={'Amber Matthews'} src={'https://i.pravatar.cc/300?img=10'} />
+                 <Divider variant={'middle'} className={styles.divider} />
+                 <PersonItem name={'Russel Robertson'} src={'https://i.pravatar.cc/300?img=20'} />
+                 <Divider variant={'middle'} className={styles.divider} />
+                 <PersonItem name={'Kathleen Ellis'} src={'https://i.pravatar.cc/300?img=30'} />
+               </Column>
+              </div>
+            </Grid>
 
                 <div className="drawbox col-sd">
                   <canvas id="DrawBox" width="670" height="670"></canvas>
@@ -116,5 +123,27 @@ function App() {
     </div>
   )
 }
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    margin: theme.spacing(8, 4),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  card: {
+    width: '100%',
+    borderRadius: 16,
+    boxShadow: '0 8px 16px 0 black',
+    overflow: 'hidden',
+    fontSize: '1.25rem',
+    fontWeight: 600,
+  },
+}));
+
 
 export default App

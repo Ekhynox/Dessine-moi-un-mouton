@@ -17,7 +17,6 @@ export default function SignInSide() {
       <CssBaseline />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-        <>
          <Column p={0} gap={0} className={styles.card}>
            <Row wrap p={2} alignItems={'baseline'} className={styles.header}>
              <Item stretched className={styles.headline}>Participant.e.s</Item>
@@ -32,8 +31,6 @@ export default function SignInSide() {
            <Divider variant={'middle'} className={styles.divider} />
            <PersonItem name={'Kathleen Ellis'} src={'https://i.pravatar.cc/300?img=30'} />
          </Column>
-       </>
-
         </div>
       </Grid>
      <Grid item xs={false} sm={4} md={7} className={classes.image}/>
