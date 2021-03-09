@@ -1,19 +1,11 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
+import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import logo from './Mylogo.jpg';
-
+import avatar1 from './1.jpg';
+import avatar2 from './2.jpg';
+import avatar3 from './3.jpg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,7 +36,21 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+
+  avatarchoice: {
+      display: 'flex',
+      '& > *': {
+      margin: theme.spacing(1),
+      },
+    },
+
+    large: {
+      width: theme.spacing(30),
+      height: theme.spacing(30),
+    },
+
 }));
+
 
 export default function SignInSide() {
   const classes = useStyles();
@@ -52,7 +58,13 @@ export default function SignInSide() {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image}/>
+      <Grid item xs={false} sm={4} md={7} className={classes.image}>
+      <div className={classes.avatarchoice}>
+        <Avatar className={classes.large} alt="Remy Sharp" src={avatar1} />
+        <Avatar className={classes.large} alt="Travis Howard" src={avatar2} />
+        <Avatar className={classes.large} alt="Cindy Baker" src={avatar3} />
+      </div>
+      </Grid>
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
         <img src={logo} width="10%" alt="My logo" />
