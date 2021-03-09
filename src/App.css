@@ -76,21 +76,23 @@ video{
   border-radius: 15px;
 }
 
-.score {
-  text-align: left;
-  width: 400px;
-	height:670px;
-	background: #344D59;
-  border-radius: 15px;
-  margin: 5px;
-}
-
 .card{
     width:300px;
     height:670px;
     border-radius: 15px !important;
     background: #344D59 !important;
     margin: 5px;
+    box-shadow: 16px 16px 20px 0 black;
+}
+
+.cardScore{
+  width: 450px;
+  border-radius: 15px;
+  box-shadow: -16px 16px 16px 16px black;
+  font-size: 1.40rem;
+  font-weight: 700;
+  margin: 5px;
+  text-align: left;
 }
 
 .msg_card_body{
