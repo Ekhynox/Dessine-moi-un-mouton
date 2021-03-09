@@ -6,6 +6,7 @@ import logo from './Mylogo.jpg';
 import avatar1 from './1.jpg';
 import avatar2 from './2.jpg';
 import avatar3 from './3.jpg';
+import avatar4 from './4.jpg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,6 +45,11 @@ const useStyles = makeStyles((theme) => ({
       },
     },
 
+    medium: {
+      width: theme.spacing(20),
+      height: theme.spacing(20),
+    },
+
     large: {
       width: theme.spacing(30),
       height: theme.spacing(30),
@@ -60,14 +66,18 @@ export default function SignInSide() {
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image}>
       <div className={classes.avatarchoice}>
-        <Avatar className={classes.large} alt="Remy Sharp" src={avatar1} />
-        <Avatar className={classes.large} alt="Travis Howard" src={avatar2} />
-        <Avatar className={classes.large} alt="Cindy Baker" src={avatar3} />
+        <Avatar className={classes.large} alt="avatar1" src={avatar1} />
+        <Avatar className={classes.large} alt="avatar2" src={avatar2} />
+        <Avatar className={classes.large} alt="avatar3" src={avatar3} />
+        <Avatar className={classes.large} alt="avatar4" src={avatar4} />
+      </div>
+      <div className={classes.avatarchoice}>
+        <Avatar className={classes.large} alt="avatar4" src={avatar4} />
       </div>
       </Grid>
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-        <img src={logo} width="10%" alt="My logo" />
+        <Avatar className={classes.medium} src={logo} alt="My logo" />
         <p></p>
         <h1> Dessine Moi Un Mouton</h1>
           <Avatar className={classes.avatar}>
