@@ -180,7 +180,6 @@ export function ColorChange(hex){
     context.strokeStyle = hex; // change la couleur du trait
     context.fillStyle = hex;
     rgbcolor=hexToRgb(hex);
-    console.log("hex: "+hex);
 }
 
 //Choix de l'ouils/action
@@ -352,14 +351,27 @@ function pick(pos) {
  return data;
 }
 
-function setcanvas(pos_x, pos_y ,color)
+function setcanvas(position_x, position_y ,color)
 {
   var id = context.createImageData(1,1); // only do this once per page
   id.data[0]  = color[0];
   id.data[1]  = color[1];
   id.data[2]  = color[2];
-  id.data[3]  = 255;
-  context.putImageData( id, pos_x, pos_y );
+  id.data[3]  = 1;
+  context.putImageData( id, position_x, position_y);
+}
+
+function FillInRec(pos, color_pick, new_color)
+{
+  var pp={x:0,y:0};
+  for (var i = 0; i < 40; i++) {
+    for (var j = 0; j < 40; j++) {
+      pp.x=i;
+      pp.y=j;
+      setcanvas(pp.x, pp.y , new_color);
+    }
+  }
+  // setcanvas(pos , new_color);
 }
 
 
@@ -410,15 +422,8 @@ canvas.onmousedown = function (mouse) { //on commence le dessin
     posInit=getMousePos(canvas,mouse);
     isDrawing = true;
     var colorInit = pick(posInit);
-    var  pos_x, pos_y;
-    for (var i = 0; i < 50; i++) {
-      for (var j = 0; j < 50; j++) {
-        pos_x=i;
-        pos_y=j;
-        setcanvas(pos_x, pos_y,Object.values(rgbcolor));
-      }
-    }
     // setcanvas(posInit,Object.values(rgbcolor));
+    FillInRec(posInit, colorInit, Object.values(rgbcolor));
   }
 };
 
