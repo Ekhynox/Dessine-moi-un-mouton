@@ -46,7 +46,7 @@ var fillIn = false;
 var sourceCanvas;
 var posInit;
 var posEnd;
-var rgbcolor = { r: 0, g: 0, b: 0 };;
+var rgbcolor = { r: 0, g: 0, b: 0 , t: 255 };;
 
 context.lineWidth = 6;
 
@@ -170,7 +170,8 @@ function hexToRgb(val) {
   return result ? {
     r: parseInt(result[1], 16),
     g: parseInt(result[2], 16),
-    b: parseInt(result[3], 16)
+    b: parseInt(result[3], 16),
+    t: 255
   } : null;
 }
 
@@ -344,8 +345,8 @@ function drawDataURIOnCanvas(strDataURI) {
 }
 
 //renvoie la couleur du pixel ou on click
-function pick(pos) {
-  var pixel = context.getImageData(pos.x, pos.y, 1, 1);
+function pick(position_x, position_y) {
+  var pixel = context.getImageData(position_x, position_y, 1, 1);
   var data = pixel.data;
   // var rgba = 'rgba(' + data[0] + ', ' + data[1] + ', ' + data[2] + ', ' + (data[3] / 255) + ')';
  return data;
@@ -357,22 +358,66 @@ function setcanvas(position_x, position_y ,color)
   id.data[0]  = color[0];
   id.data[1]  = color[1];
   id.data[2]  = color[2];
-  id.data[3]  = 1;
+  id.data[3]  = 255;
   context.putImageData( id, position_x, position_y);
 }
 
-function FillInRec(pos, color_pick, new_color)
+function colorequal(c1, c2)
 {
-  var pp={x:0,y:0};
-  for (var i = 0; i < 40; i++) {
-    for (var j = 0; j < 40; j++) {
-      pp.x=i;
-      pp.y=j;
-      setcanvas(pp.x, pp.y , new_color);
-    }
+  var i=0;
+  var res=true;
+  while ( i < 3 )
+  {
+    if(c1[i]!==c2[i])
+      res=false;
+    i++;
   }
-  // setcanvas(pos , new_color);
+  return res;
 }
+
+function FillInRec(position_x, position_y, color_init, new_color)
+{
+  // La fonction fonctionne mais fox lock car trop de récursion pour lui.
+  console.log("c");
+  if ( colorequal(color_init, new_color) )
+    return 0;
+
+  setcanvas(position_x, position_y , new_color);
+  var cp;
+
+  //On regarde autour du pixel coordonnées canvas inverser en y
+  //Pixel Nord
+  cp=pick(position_x, position_y-1);
+  if( (position_y >= 0) && colorequal(cp,color_init) )
+  {
+    FillInRec(position_x, position_y-1, color_init, new_color)
+  }
+
+  //Pixel Sud
+  cp=pick(position_x, position_y+1);
+  if( (position_y <= canvas.height) && colorequal(cp,color_init) )
+  {
+    FillInRec(position_x, position_y+1, color_init, new_color)
+  }
+
+  //Pixel Ouest
+  cp=pick(position_x-1, position_y);
+  if( (position_x >= 0) && colorequal(cp,color_init) )
+  {
+    FillInRec(position_x-1, position_y, color_init, new_color)
+  }
+
+  //Pixel Est
+  cp=pick(position_x+1, position_y);
+  if( (position_x <= canvas.width) && colorequal(cp,color_init) )
+  {
+    FillInRec(position_x+1, position_y, color_init, new_color)
+  }
+
+
+}
+
+// faire un FillInRec mais en récupérant les coordonnées des bords et faire un lineTo stroke avec ces point
 
 
 //Fonction de dessin
@@ -421,9 +466,9 @@ canvas.onmousedown = function (mouse) { //on commence le dessin
   {
     posInit=getMousePos(canvas,mouse);
     isDrawing = true;
-    var colorInit = pick(posInit);
+    var colorInit = pick(posInit.x, posInit.y);
     // setcanvas(posInit,Object.values(rgbcolor));
-    FillInRec(posInit, colorInit, Object.values(rgbcolor));
+    FillInRec(posInit.x, posInit.y, colorInit, Object.values(rgbcolor));
   }
 };
 
