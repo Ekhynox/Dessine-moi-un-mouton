@@ -1,3 +1,5 @@
+//Page de Connexion
+
 import React from 'react';
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -7,6 +9,8 @@ import avatar1 from './1.jpg';
 import avatar2 from './2.jpg';
 import avatar3 from './3.jpg';
 import avatar4 from './4.jpg';
+import avatar5 from './5.jpg';
+import avatar6 from './6.jpg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,7 +76,8 @@ export default function SignInSide() {
         <Avatar className={classes.large} alt="avatar4" src={avatar4} />
       </div>
       <div className={classes.avatarchoice}>
-        <Avatar className={classes.large} alt="avatar4" src={avatar4} />
+      <Avatar className={classes.large} alt="avatar5" src={avatar5} />
+      <Avatar className={classes.large} alt="avatar6" src={avatar6} />
       </div>
       </Grid>
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
