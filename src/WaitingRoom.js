@@ -82,4 +82,16 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.25rem',
     fontWeight: 600,
   },
+  
+  headline: {
+    color: '#122740',
+    fontSize: '1.25rem',
+    fontWeight: 600,
+  },
+
+  header: {
+    fontFamily: 'Barlow, san-serif',
+    backgroundColor: '#fff',
+  },
+
 }));

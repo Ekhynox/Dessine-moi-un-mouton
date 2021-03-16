@@ -14,8 +14,8 @@ Voila la liste des Fonctionnalités que nous souhaitons implémenter ! Celles qu
 - un chat
 - randomiser de mots
 - système de points
-- connexion : pseudo, pas de mp;
-- PP = images
+- connexion : pseudo, pas de mp; X
+- PP = images X
 - gestion des erreurs
 
 -- Fonctionnalités "si on a le temps"--
