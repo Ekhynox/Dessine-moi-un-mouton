@@ -81,18 +81,18 @@ export default function SignInSide() {
   const classes = useStyles();
 
   return (
-    <Grid container component="main" className={classes.root}>
+    <Grid container xs={12} component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image}>
-        <Column p={0} gap={0} className={classes.card}>
+      <Grid item xs={false} sm={8} container direction="row" className={classes.image}>
+        <Column p={0} gap={0} container className={classes.card}>
           <Row wrap p={2} alignItems={'baseline'} className={classes.header}>
             <Item stretched className={classes.headline}>Choisis un Avatar</Item>
           </Row>
-          <Row alignItems={'baseline'} className={classes.avatarchoice}>
-            <Avatar className={classes.large} alt="avatar1" src={avatar1} />
-            <Avatar className={classes.large} alt="avatar2" src={avatar2} />
-            <Avatar className={classes.large} alt="avatar3" src={avatar3} />
-            <Avatar className={classes.large} alt="avatar4" src={avatar4} />
+          <Row alignItems={'flex'} container xs={12}  sm={3} className={classes.avatarchoice}>
+            <Avatar item className={classes.large} alt="avatar1" src={avatar1} />
+            <Avatar item className={classes.large} alt="avatar2" src={avatar2} />
+            <Avatar item className={classes.large} alt="avatar3" src={avatar3} />
+            <Avatar item className={classes.large} alt="avatar4" src={avatar4} />
           </Row>
           <Row alignItems={'baseline'} className={classes.avatarchoice}>
             <Avatar className={classes.large} alt="avatar5" src={avatar5} />
@@ -102,7 +102,7 @@ export default function SignInSide() {
           </Row>
         </Column>
       </Grid>
-      <Grid item xs={12} sm={4} md={5} component={Paper} elevation={6} square>
+      <Grid item xs={12} sm={4} component={Paper} elevation={6} square>
         <div className={classes.paper}>
         <Avatar className={classes.medium} src={logo} alt="My logo" />
         <p></p>
