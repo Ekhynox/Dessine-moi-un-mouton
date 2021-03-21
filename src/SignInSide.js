@@ -4,7 +4,7 @@ import React from 'react';
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
-import {Connexion} from './connexion';
+import {CoWaitingRoom} from './connexion';
 import {SetWaiting} from './index';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDynamicAvatarStyles } from '@mui-treasury/styles/avatar/dynamic';
@@ -82,9 +82,22 @@ const useStyles = makeStyles((theme) => ({
 export default function SignInSide() {
   const classes = useStyles();
 
+  var players = {
+    pseudos: "",
+    avatar: "",
+    peerJsID: "",
+    score: "",
+   }
+
  const changeAvatar = (img) => {
    document.getElementById('logo').innerHTML ='<img alt='+ img.target.alt +' src= "' + img.target.src + '" class="MuiAvatar-img">';
+   players.avatar = img.target.src;
  };
+
+ const player = (aaa) => {
+    players.pseudos = document.getElementById("pseudos").value
+    SetWaiting();
+  }
 
   return (
     <Grid container xs={12} component="main" className={classes.root}>
@@ -131,7 +144,7 @@ export default function SignInSide() {
               fullWidth
               variant="contained"
               color="primary"
-              onClick={SetWaiting}
+              onClick={player}
             >
               Connexion
             </Button>

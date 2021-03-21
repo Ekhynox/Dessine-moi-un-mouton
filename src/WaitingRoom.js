@@ -8,11 +8,12 @@ import cx from 'clsx';
 import { Column, Row, Item } from '@mui-treasury/components/flex';
 import { useDynamicAvatarStyles } from '@mui-treasury/styles/avatar/dynamic';
 import {SetJeu} from './index';
-import {Connexion, MyId} from './connexion';
+import {Connexion, MyId, CoWaitingRoom} from './connexion';
 
 export default function SignInSide() {
   const classes = useStyles();
   const styles = useStyles();
+
   const getPeerId = () => {
      var abc = MyId();
      console.log(abc);
@@ -38,8 +39,10 @@ export default function SignInSide() {
                Score
              </Item>
            </Row>
+           <div id="player">
            <PersonItem name={'Amber Matthews'} src={'https://i.pravatar.cc/300?img=10'} />
            <Divider variant={'middle'} className={styles.divider} />
+           </div>
          </Column>
          <div id = 'zoneId'>
          <Button
@@ -61,14 +64,22 @@ export default function SignInSide() {
            autoComplete="Host_Id"
            autoFocus
          />
-
+         <Button
+           type="submit"
+           fullWidth
+           variant="contained"
+           color="primary"
+           onClick={CoWaitingRoom}
+         >Connexion</Button>
+        </div>
+        <div>
          <Button
            type="submit"
            fullWidth
            variant="contained"
            color="primary"
            onClick={start}
-         >Connexion</Button>
+         >Jouer</Button>
         </div>
       </Grid>
      <Grid item xs={false} sm={4} md={7} className={classes.image}/>

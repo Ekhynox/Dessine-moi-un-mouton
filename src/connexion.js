@@ -43,6 +43,20 @@ export function MyId(){
 
 ////////////////////////////////////////////////////////
 //Connexion
+export function CoWaitingRoom(id) {
+  connID = id;
+  conn = peer.connect(connID);
+  conn.on('open', function(id) {
+    console.log("ICI");
+  });
+
+  conn.on('open', function(id) {
+    console.log("ici");
+  });
+}
+
+
+
 export function Connexion(id) {
   connID = id;
   conn = peer.connect(connID);
