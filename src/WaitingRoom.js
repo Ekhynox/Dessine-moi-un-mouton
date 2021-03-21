@@ -8,10 +8,23 @@ import cx from 'clsx';
 import { Column, Row, Item } from '@mui-treasury/components/flex';
 import { useDynamicAvatarStyles } from '@mui-treasury/styles/avatar/dynamic';
 import {SetJeu} from './index';
+import {Connexion, MyId} from './connexion';
 
 export default function SignInSide() {
   const classes = useStyles();
   const styles = useStyles();
+  const getPeerId = () => {
+     var abc = MyId();
+     console.log(abc);
+     document.getElementById("zoneId").innerHTML = abc;
+  };
+
+  const start = () => {
+    var id = document.getElementById("peerID").value;
+    console.log(id.value);
+    SetJeu();
+    setTimeout(() => { Connexion(id); }, 1000); //PROMISE !! /!\ !!
+  }
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -22,25 +35,40 @@ export default function SignInSide() {
            <Row wrap p={2} alignItems={'baseline'} className={styles.header}>
              <Item stretched className={styles.headline}>Participant.e.s</Item>
              <Item className={styles.actions}>
-               <Link className={styles.link}>Refresh</Link> •{' '}
-               <Link className={styles.link}>See all</Link>
+               Score
              </Item>
            </Row>
            <PersonItem name={'Amber Matthews'} src={'https://i.pravatar.cc/300?img=10'} />
            <Divider variant={'middle'} className={styles.divider} />
-           <PersonItem name={'Russel Robertson'} src={'https://i.pravatar.cc/300?img=20'} />
-           <Divider variant={'middle'} className={styles.divider} />
-           <PersonItem name={'Kathleen Ellis'} src={'https://i.pravatar.cc/300?img=30'} />
          </Column>
+         <div id = 'zoneId'>
          <Button
            type="submit"
            fullWidth
            variant="contained"
            color="primary"
-           onClick={SetJeu}
-         >
-           Connexion
-         </Button>
+           onClick={getPeerId}
+         >Générer une ID</Button>
+         </div>
+         <TextField
+           variant="outlined"
+           margin="normal"
+           required
+           fullWidth
+           id="peerID"
+           label="Host_Id"
+           name="HostId"
+           autoComplete="Host_Id"
+           autoFocus
+         />
+
+         <Button
+           type="submit"
+           fullWidth
+           variant="contained"
+           color="primary"
+           onClick={start}
+         >Connexion</Button>
         </div>
       </Grid>
      <Grid item xs={false} sm={4} md={7} className={classes.image}/>

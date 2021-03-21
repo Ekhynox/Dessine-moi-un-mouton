@@ -126,19 +126,6 @@ export default function SignInSide() {
               autoComplete="Pseudo"
               autoFocus
             />
-
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="peerID"
-              label="Host_Id"
-              name="HostId"
-              autoComplete="Host_Id"
-              autoFocus
-            />
-
             <Button
               type="submit"
               fullWidth

@@ -39,7 +39,7 @@ export function SetJeu(){
   </React.StrictMode>,
   document.getElementById('root'),
   );
-  setTimeout(() => { start(); }, 500);
+  setTimeout(() => { start(); }, 100); //PROMISE !! /!\ !!
 }
 
 function start(){

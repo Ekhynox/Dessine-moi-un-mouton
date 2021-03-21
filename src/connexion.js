@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import App from './App';
 import Peer from 'peerjs';
 import {SetWaiting} from './index';
+import {SetJeu} from './index';
 
 //Canvas
 var canvas;
@@ -33,15 +34,17 @@ function VideoStream(myStream){
 ////////////////////////////////////////////////////////
 //Mon ID peerJS
 peer.on('open', function(id) {
-  peerID = id;
-  document.getElementById("show-peer").innerHTML = peerID;
+    peerID = id;
 });
+
+export function MyId(){
+    return peerID;
+}
 
 ////////////////////////////////////////////////////////
 //Connexion
-export function Connexion() {
-  connID = document.getElementById("peerID").value; //Id du host
-  document.getElementById("show-peer").innerHTML = "Connexion " + connID;
+export function Connexion(id) {
+  connID = id;
   conn = peer.connect(connID);
   var mystream = peer.call(connID, stream);
   mystream.on('stream', function(remoteStream){
