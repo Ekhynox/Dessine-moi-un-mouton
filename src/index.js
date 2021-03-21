@@ -10,7 +10,16 @@ import WaitingRoom from './WaitingRoom';
 import {Connexion, SetCanvas, Send} from './connexion';
 import {SetCanvasDraw} from './canvas';
 
-var pageDeJeu = false;
+var player;
+
+export function SetPlayer(playerInfo){
+  player = playerInfo;
+  console.log(player);
+}
+
+export function GetPlayer(){
+  return player;
+}
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,8 +29,6 @@ ReactDOM.render(
 );
 
 export function SetWaiting(){
-  pageDeJeu = false;
-  console.log(pageDeJeu);
   ReactDOM.render(
   <React.StrictMode>
   <WaitingRoom/>
@@ -31,8 +38,6 @@ export function SetWaiting(){
 }
 
 export function SetJeu(){
-  pageDeJeu = true;
-  console.log(pageDeJeu);
   ReactDOM.render(
   <React.StrictMode>
   <App/>
@@ -53,7 +58,7 @@ function start(){
   var send = document.getElementById('send');
   send.onclick = function(){
     var message = document.getElementById("message").value;
-    var pseudos = document.getElementById('pseudos').value;
+    var pseudos = player.pseudos;
     Send(message, pseudos);
     document.getElementById("message").value = "";
   }
@@ -62,18 +67,12 @@ function start(){
     if ((event.key === 'Enter') && (document.getElementById("message").value != ""))
     {
       var message = document.getElementById("message").value;
-      var pseudos = document.getElementById('pseudos').value;
-      Send(message, pseudos);
+      var pseudos = player.pseudos;
+      Send(message, player);
       document.getElementById("message").value = "";
-    }
-
-    if ((event.key === 'Enter') && (document.getElementById("pseudos").value != "") && (document.getElementById("peerID").value != "") )
-    {
-      Connexion();
     }
   });
 }
-
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

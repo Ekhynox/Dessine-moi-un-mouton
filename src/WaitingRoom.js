@@ -9,6 +9,7 @@ import { Column, Row, Item } from '@mui-treasury/components/flex';
 import { useDynamicAvatarStyles } from '@mui-treasury/styles/avatar/dynamic';
 import {SetJeu} from './index';
 import {Connexion, MyId, CoWaitingRoom} from './connexion';
+import { BiSave, BiEraser, BiSend } from 'react-icons/bi';
 
 export default function SignInSide() {
   const classes = useStyles();
@@ -39,7 +40,7 @@ export default function SignInSide() {
                Score
              </Item>
            </Row>
-           <div id="player">
+           <div id="playerZone">
            <PersonItem name={'Amber Matthews'} src={'https://i.pravatar.cc/300?img=10'} />
            <Divider variant={'middle'} className={styles.divider} />
            </div>
@@ -82,10 +83,11 @@ export default function SignInSide() {
          >Jouer</Button>
         </div>
       </Grid>
-     <Grid item xs={false} sm={4} md={7} className={classes.image}/>
-  </Grid>
+     <Grid item xs={12} sm={4} md={7} className={classes.image}/>
+     </Grid>
   );
 }
+
 
 
 const PersonItem = ({ src, name, friendCount }) => {
@@ -108,21 +110,25 @@ const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
   },
+
   image: {
     backgroundImage: 'url(https://source.unsplash.com/random)',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   },
+
   paper: {
     margin: theme.spacing(8, 4),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
+
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
+
   card: {
     width: '100%',
     borderRadius: 16,

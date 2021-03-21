@@ -5,8 +5,7 @@ import './css/index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import Peer from 'peerjs';
-import {SetWaiting} from './index';
-import {SetJeu} from './index';
+import {SetJeu,SetWaiting, SetPlayer, GetPlayer} from './index';
 
 //Canvas
 var canvas;
@@ -23,6 +22,7 @@ var peer = new Peer();
 var conn;
 var peerID;
 var connID;
+var player;
 
 ////////////////////////////////////////////////////////
 //Stream
@@ -34,11 +34,11 @@ function VideoStream(myStream){
 ////////////////////////////////////////////////////////
 //Mon ID peerJS
 peer.on('open', function(id) {
-    peerID = id;
+    peerID = id
 });
 
 export function MyId(){
-    return peerID;
+  return peerID;
 }
 
 ////////////////////////////////////////////////////////
@@ -46,12 +46,13 @@ export function MyId(){
 export function CoWaitingRoom(id) {
   connID = id;
   conn = peer.connect(connID);
-  conn.on('open', function(id) {
-    console.log("ICI");
+  conn.on('connection', () => {
+    conn.send('hello!');
+    console.log("con on");
   });
-
-  conn.on('open', function(id) {
-    console.log("ici");
+  conn.on('connection', function(data){
+     // Will print 'hi!'
+     console.log(data);
   });
 }
 
@@ -81,9 +82,6 @@ export function Send(message, pseudos) {
   var span = document.createElement("span");
 
   conn = peer.connect(connID);
-
-  connID = document.getElementById("peerID").value; //Id du host
-  document.getElementById("show-peer").innerHTML = "Connexion " + connID;
 
   div1.setAttribute("class", "d-flex justify-content-start mb-4");
   div2.setAttribute("class", "msg_cotainer");
