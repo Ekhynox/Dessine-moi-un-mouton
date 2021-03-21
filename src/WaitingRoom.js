@@ -1,5 +1,5 @@
 import React from 'react';
-import './WaitingRoom.css';
+import './css/WaitingRoom.css';
 //import Material-ui from '@material-ui';
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -7,6 +7,7 @@ import logo from './Mylogo.jpg';
 import cx from 'clsx';
 import { Column, Row, Item } from '@mui-treasury/components/flex';
 import { useDynamicAvatarStyles } from '@mui-treasury/styles/avatar/dynamic';
+import {SetJeu} from './index';
 
 export default function SignInSide() {
   const classes = useStyles();
@@ -31,6 +32,15 @@ export default function SignInSide() {
            <Divider variant={'middle'} className={styles.divider} />
            <PersonItem name={'Kathleen Ellis'} src={'https://i.pravatar.cc/300?img=30'} />
          </Column>
+         <Button
+           type="submit"
+           fullWidth
+           variant="contained"
+           color="primary"
+           onClick={SetJeu}
+         >
+           Connexion
+         </Button>
         </div>
       </Grid>
      <Grid item xs={false} sm={4} md={7} className={classes.image}/>
@@ -82,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.25rem',
     fontWeight: 600,
   },
-  
+
   headline: {
     color: '#122740',
     fontSize: '1.25rem',

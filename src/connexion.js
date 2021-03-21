@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reactCSS from 'reactcss';
-import './index.css';
+import './css/index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import Peer from 'peerjs';
+import {SetWaiting} from './index';
 
 //Canvas
 var canvas;

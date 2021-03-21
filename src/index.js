@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reactCSS from 'reactcss';
-import './index.css';
+import './css/index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import Peer from 'peerjs';
@@ -10,56 +10,69 @@ import WaitingRoom from './WaitingRoom';
 import {Connexion, SetCanvas, Send} from './connexion';
 import {SetCanvasDraw} from './canvas';
 
+var pageDeJeu = false;
+
 ReactDOM.render(
   <React.StrictMode>
-    <SignInSide/>
-    <WaitingRoom/>
-    <App/>
+  <SignInSide/>
   </React.StrictMode>,
   document.getElementById('root')
 );
 
-//Canvas
-var canvas = document.getElementById('DrawBox');
-var context = canvas.getContext('2d');
-SetCanvas(canvas);
-SetCanvasDraw(canvas, context);
-
-
-//initialise le canvas avec un fond blanc et les outils sont de couleur noir de base
-function CanvasInit(){
-  context.fillStyle = 'white';
-  context.fillRect(0,0,canvas.width, canvas.height);
-  context.fillStyle = 'black';
-  context.strokeStyle = 'black'
-}
-CanvasInit();
-
-//setup les variables pour la fonction Send() ('envoyer un message')
-var send = document.getElementById('send');
-send.onclick = function(){
-  var message = document.getElementById("message").value;
-  var pseudos = document.getElementById('pseudos').value;
-  Send(message, pseudos);
-  document.getElementById("message").value = "";
+export function SetWaiting(){
+  pageDeJeu = false;
+  console.log(pageDeJeu);
+  ReactDOM.render(
+  <React.StrictMode>
+  <WaitingRoom/>
+  </React.StrictMode>,
+  document.getElementById('root')
+  );
 }
 
-document.addEventListener('keydown', function(event) {
-  if ((event.key === 'Enter') && (document.getElementById("message").value != ""))
-  {
+export function SetJeu(){
+  pageDeJeu = true;
+  console.log(pageDeJeu);
+  ReactDOM.render(
+  <React.StrictMode>
+  <App/>
+  </React.StrictMode>,
+  document.getElementById('root'),
+  );
+  setTimeout(() => { start(); }, 500);
+}
+
+function start(){
+  //Canvas
+  var canvas = document.getElementById('DrawBox');
+  var context = canvas.getContext('2d');
+  SetCanvas(canvas);
+  SetCanvasDraw(canvas, context);
+
+  //setup les variables pour la fonction Send() ('envoyer un message')
+  var send = document.getElementById('send');
+  send.onclick = function(){
     var message = document.getElementById("message").value;
     var pseudos = document.getElementById('pseudos').value;
     Send(message, pseudos);
     document.getElementById("message").value = "";
   }
 
-  if ((event.key === 'Enter') && (document.getElementById("pseudos").value != "") && (document.getElementById("peerID").value != "") )
-  {
-    Connexion();
-  }
+  document.addEventListener('keydown', function(event) {
+    if ((event.key === 'Enter') && (document.getElementById("message").value != ""))
+    {
+      var message = document.getElementById("message").value;
+      var pseudos = document.getElementById('pseudos').value;
+      Send(message, pseudos);
+      document.getElementById("message").value = "";
+    }
 
-});
-
+    if ((event.key === 'Enter') && (document.getElementById("pseudos").value != "") && (document.getElementById("peerID").value != "") )
+    {
+      Connexion();
+    }
+  });
+}
 
 
 // If you want to start measuring performance in your app, pass a function

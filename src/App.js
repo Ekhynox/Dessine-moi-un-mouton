@@ -1,6 +1,6 @@
 //Page de dessin
 
-import './App.css';
+import './css/App.css';
 import React, {useState} from 'react';
 import reactCSS from 'reactcss';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -19,8 +19,14 @@ import {Column, Row, Item} from '@mui-treasury/components/flex';
 import { makeStyles } from '@material-ui/core/styles';
 // fonction
 import {ColorChange, DownloadCanvas} from './canvas';
-import {Connexion} from './connexion';
-import avatar1 from './1.jpg';
+import {Connexion, SetCanvas, Send} from './connexion';
+import {SetCanvasDraw} from './canvas';
+import avatar1 from './img/1.jpg';
+import avatar2 from './img/2.jpg';
+import avatar3 from './img/3.jpg';
+import avatar4 from './img/4.jpg';
+import avatar5 from './img/5.jpg';
+import avatar6 from './img/6.jpg';
 import {verybigPen, bigPen, smallPen, verysmallPen, erase, pinceau, clear, rect, rectfull, circle, circlefull, line, fill, save, undo} from './canvas';
 import cx from 'clsx';
 
@@ -43,15 +49,11 @@ function App() {
       </Row>
     );
   };
-
   return (
-    <div className="background">
+    <div id="game" className="background">
       <div className="row">
         <div className="titre ">
-          <h3 id="show-peer"></h3>
-          <input id="pseudos" placeholder="Nicknames"></input>
-          <input id="peerID" placeholder="Host ID"></input>
-          <button onClick={Connexion}> Connexion </button>
+            Titre !
         </div>
       </div>
           <div className="row">
@@ -116,5 +118,6 @@ function App() {
     </div>
   )
 }
+
 
 export default App
