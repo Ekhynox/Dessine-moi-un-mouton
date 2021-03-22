@@ -72,7 +72,7 @@ function App() {
                 <canvas id="DrawBox" width="550" height="550"></canvas>
               </div>
               </Row>
-              <Row >
+              <Row className={classes.center}>
               <button onClick={erase} className={classes.styleB} id="Erase"><BiEraser/></button>
               <button onClick={clear} className={classes.styleB} id="Clear"><FaTrashAlt/></button>
               <button onClick={undo} className={classes.styleB} id="Bundo"><RiArrowGoBackFill/></button>
@@ -135,8 +135,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: 'center',
   },
 
+  center:{
+    margin: theme.spacing('auto', 'auto'),
+  },
+
   paper: {
-    margin: theme.spacing(6, 2),
+    margin: theme.spacing(7.5, 2),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -150,10 +154,10 @@ const useStyles = makeStyles((theme) => ({
   },
 
   couleurs: {
-    margin: theme.spacing(6, 0),
+    margin: theme.spacing(8, 0),
     borderRadius: 15,
     width: '6vh',
-    height:'82vh',
+    height:'83vh',
     border: '3px solid black',
     background:'#222',
     borderRadius: 5,
@@ -163,15 +167,6 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
-  },
-
-  form: {
-    width: '80%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-
-  submit: {
-    margin: theme.spacing(3, 0, 2),
   },
 
   headline: {
@@ -195,23 +190,14 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.25rem',
     fontWeight: 600,
     flexWrap: 'wrap',
-    margin : theme.spacing (5, 5),
+    margin : theme.spacing (8, 2),
     background:'rgba(240, 160, 240, 0.30)',
   },
 
-  card: {
-    width: '92%',
-    height : '92%',
-    margin : theme.spacing (5, 5),
-    borderRadius: 16,
-    boxShadow: '0 8px 16px 0 #BDC9D7',
-    overflow: 'hidden',
-  },
-
   cardchat: {
-    margin: theme.spacing(5, 5),
+    margin: theme.spacing(8, 2),
     width: '90%',
-    height: '75%',
+    height: '80%',
     borderRadius: 16,
     display: 'flex',
     flexDirection: 'column',
