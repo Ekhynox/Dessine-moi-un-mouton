@@ -37,7 +37,7 @@ function App() {
   const colorChange = ({hex}) => {
     hex = ColorChange(hex); // fonction change la couleur du pinceau
   }
-  const PersonItem = ({ src, name, friendCount }) => {
+  const PersonItem = ({ src, name }) => {
     return (
       <Row gap={2} p={1}>
         <Item>
@@ -50,12 +50,13 @@ function App() {
       </Row>
     );
   };
+
   return (
     <Grid container xs={12} component="main" className={classes.root}>
       <CssBaseline />
-        <Grid item xs={false} sm={2} container direction="row" id="game">
+        <Grid item xs={false} sm={3} container direction="row" id="game">
           <Column p={1} gap={0} className={classes.cardjoueur}>
-            <Row wrap p={2} >
+            <Row wrap p={2}>
               <Item stretched>Participant.e.s</Item>
               <Item>Score</Item>
               </Row>
@@ -63,12 +64,24 @@ function App() {
               <PersonItem name={'Chocoluna'} src={avatar1} />
           </Column>
         </Grid>
-        <Grid item xs={false} sm={4} component={Paper} elevation={6} square className={classes.paper}>
-          <div className="drawbox">
-            <canvas id="DrawBox" width="670" height="670"></canvas>
-          </div>
+        <Grid item xs={false} sm={4} elevation={6} square className={classes.paper}>
+          <Column p={1} gap={0}>
+            <Row wrap p={2}>
+              <Row className={classes.canvas}>
+              <div className="drawbox">
+                <canvas id="DrawBox" width="670" height="670"></canvas>
+              </div>
+              </Row>
+              <Row>
+              <button onClick={erase} className="styleB outils2" id="Erase"><BiEraser/></button>
+              <button onClick={clear} className="styleB outils2" id="Clear"><FaTrashAlt/></button>
+              <button onClick={undo} className="styleB outils2" id="Bundo"><RiArrowGoBackFill/></button>
+              <button onClick={save} className="styleB outils2" download="example.jpg" id="saveImage"><BiSave/></button>
+              </Row>
+            </Row>
+           </Column>
           </Grid>
-          <Grid item xs={false} sm={0.5} component={Paper} elevation={6} square className={classes.paper}>
+          <Grid item xs={false} sm={0.5} elevation={6} square className={classes.paper}>
 
               <button onClick={verybigPen} className="styleB tresgrand outils1" id="Pen++"><FaCircle/></button>
               <button onClick={bigPen} className="styleB grand outils1" id="Pen+"><FaCircle/></button>
@@ -81,12 +94,9 @@ function App() {
               <button onClick={circlefull} className="styleB outils1" id="drawCircleFull"><FaCircle/></button>
               <button onClick={line} className="styleB outils1" id="drawLine"><SiCurl/></button>
               <button onClick={fill} className="styleB outils1" id="fillIn"><VscPaintcan/></button>
-              <button onClick={erase} className="styleB outils2" id="Erase"><BiEraser/></button>
-              <button onClick={clear} className="styleB outils2" id="Clear"><FaTrashAlt/></button>
-              <button onClick={undo} className="styleB outils2" id="Bundo"><RiArrowGoBackFill/></button>
-             <button onClick={save} className="styleB outils2" download="example.jpg" id="saveImage"><BiSave/></button>
+
         </Grid>
-        <Grid item xs={false} sm={0.5} component={Paper} elevation={6} square className={classes.paper}>
+        <Grid item xs={false} sm={0.5} elevation={6} square className={classes.paper}>
           <CirclePicker
             onChange={colorChange}
             width = {1}
@@ -94,8 +104,8 @@ function App() {
             colors = {["#e91e63", "#9c27b0", "#673ab7", "#2196f3", "#03a9f4", "#00bcd4", "#009688", "#4caf50", "#8bc34a", "#ffeb3b", "#ffc107", "#ff9800", "#ff5722", "#795548", "#607d8b", "black", "white"]}
             />
         </Grid>
-        <Grid item xs={12} sm={3} component={Paper} elevation={6} square className={classes.paper}>
-          <div id="chatBox" className="card-body msg_card_body"></div>
+        <Grid item xs={12} sm={3} elevation={6} square className={classes.cardchat}>
+          <div id="chatBox" className="card-body"></div>
             <div className="card-footer input-group">
                 <input id="message" className="form-control type_msg" placeholder="Type your message..."></input>
                 <div className="input-group-append">
@@ -125,23 +135,35 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
+
+  canvas: {
+    backgroundColor: 'rgb(255, 255, 255)',
+    background: 'white',
+    borderRadius: 15,
+    display: 'flex',
+  },
+
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
+
   form: {
     width: '80%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
+
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+
   headline: {
     color: '#122740',
     fontSize: '2.5rem',
     fontWeight: 600,
     align: 'center',
   },
+
   header: {
     fontFamily: 'Barlow, san-serif',
     backgroundColor: '#fff',
@@ -149,12 +171,14 @@ const useStyles = makeStyles((theme) => ({
 
   cardjoueur: {
     width: '100%',
+    height: '90%',
     borderRadius: 16,
     boxShadow: '0 8px 16px 0 #BDC9D7',
     overflow: 'hidden',
     fontSize: '1.25rem',
     fontWeight: 600,
     flexWrap: 'wrap',
+    margin : theme.spacing (5, 5),
   },
 
   card: {
@@ -162,6 +186,16 @@ const useStyles = makeStyles((theme) => ({
     height : '92%',
     margin : theme.spacing (5, 5),
     borderRadius: 16,
+    boxShadow: '0 8px 16px 0 #BDC9D7',
+    overflow: 'hidden',
+  },
+
+  cardchat: {
+    margin: theme.spacing(5, 5),
+    borderRadius: 16,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
     boxShadow: '0 8px 16px 0 #BDC9D7',
     overflow: 'hidden',
   },
