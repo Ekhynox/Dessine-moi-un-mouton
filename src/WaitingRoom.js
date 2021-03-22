@@ -93,7 +93,6 @@ export default function SignInSide() {
 }
 
 
-
 const PersonItem = ({ src, name, friendCount }) => {
   const avatarStyles = useDynamicAvatarStyles({ size: 56 });
   return (

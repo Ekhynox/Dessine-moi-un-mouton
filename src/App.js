@@ -69,38 +69,38 @@ function App() {
             <Row wrap p={2}>
               <Row className={classes.canvas}>
               <div className="drawbox">
-                <canvas id="DrawBox" width="670" height="670"></canvas>
+                <canvas id="DrawBox" width="550" height="550"></canvas>
               </div>
               </Row>
-              <Row>
-              <button onClick={erase} className="styleB outils2" id="Erase"><BiEraser/></button>
-              <button onClick={clear} className="styleB outils2" id="Clear"><FaTrashAlt/></button>
-              <button onClick={undo} className="styleB outils2" id="Bundo"><RiArrowGoBackFill/></button>
-              <button onClick={save} className="styleB outils2" download="example.jpg" id="saveImage"><BiSave/></button>
+              <Row >
+              <button onClick={erase} className={classes.styleB} id="Erase"><BiEraser/></button>
+              <button onClick={clear} className={classes.styleB} id="Clear"><FaTrashAlt/></button>
+              <button onClick={undo} className={classes.styleB} id="Bundo"><RiArrowGoBackFill/></button>
+              <button onClick={save} className={classes.styleB} download="example.jpg" id="saveImage"><BiSave/></button>
               </Row>
             </Row>
            </Column>
           </Grid>
           <Grid item xs={false} sm={0.5} elevation={6} square className={classes.paper}>
 
-              <button onClick={verybigPen} className="styleB tresgrand outils1" id="Pen++"><FaCircle/></button>
-              <button onClick={bigPen} className="styleB grand outils1" id="Pen+"><FaCircle/></button>
-              <button onClick={smallPen} className="styleB moyen outils1" id="Pen"><FaCircle/></button>
-              <button onClick={verysmallPen} className="styleB petit outils1" id="Pen-"><FaCircle/></button>
-              <button onClick={pinceau} className="styleB outils1" id="Pinceau"><FaPaintBrush/></button>
-              <button onClick={rect} className="styleB outils1" id="drawRect"><BsSquare/></button>
-              <button onClick={rectfull} className="styleB outils1" id="drawRectFull"><FaSquare/></button>
-              <button onClick={circle} className="styleB outils1" id="drawCircle"><BsCircle/></button>
-              <button onClick={circlefull} className="styleB outils1" id="drawCircleFull"><FaCircle/></button>
-              <button onClick={line} className="styleB outils1" id="drawLine"><SiCurl/></button>
-              <button onClick={fill} className="styleB outils1" id="fillIn"><VscPaintcan/></button>
+              <button onClick={verybigPen} className={cx(classes.styleB, classes.tresgrand)} id="Pen++"><FaCircle/></button>
+              <button onClick={bigPen} className={cx(classes.styleB, classes.grand)} id="Pen+"><FaCircle/></button>
+              <button onClick={smallPen} className={cx(classes.styleB, classes.moyen)} id="Pen"><FaCircle/></button>
+              <button onClick={verysmallPen} className={cx(classes.styleB, classes.petit)} id="Pen-"><FaCircle/></button>
+              <button onClick={pinceau} className={classes.styleB} id="Pinceau"><FaPaintBrush/></button>
+              <button onClick={rect} className={classes.styleB} id="drawRect"><BsSquare/></button>
+              <button onClick={rectfull} className={classes.styleB} id="drawRectFull"><FaSquare/></button>
+              <button onClick={circle} className={classes.styleB} id="drawCircle"><BsCircle/></button>
+              <button onClick={circlefull} className={classes.styleB} id="drawCircleFull"><FaCircle/></button>
+              <button onClick={line} className={classes.styleB} id="drawLine"><SiCurl/></button>
+              <button onClick={fill} className={classes.styleB} id="fillIn"><VscPaintcan/></button>
 
         </Grid>
-        <Grid item xs={false} sm={0.5} elevation={6} square className={classes.paper}>
+        <Grid item xs={false} sm={0.5} elevation={6} square className={classes.couleurs}>
           <CirclePicker
             onChange={colorChange}
             width = {1}
-            circleSize ={26}
+            circleSize ={21}
             colors = {["#e91e63", "#9c27b0", "#673ab7", "#2196f3", "#03a9f4", "#00bcd4", "#009688", "#4caf50", "#8bc34a", "#ffeb3b", "#ffc107", "#ff9800", "#ff5722", "#795548", "#607d8b", "black", "white"]}
             />
         </Grid>
@@ -117,6 +117,12 @@ function App() {
 
   )
 }
+/*
+███████ ████████ ██    ██ ██      ███████ 
+██         ██     ██  ██  ██      ██      
+███████    ██      ████   ██      █████ 
+     ██    ██       ██    ██      ██    
+███████    ██       ██    ███████ ███████ */
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -141,6 +147,17 @@ const useStyles = makeStyles((theme) => ({
     background: 'white',
     borderRadius: 15,
     display: 'flex',
+  },
+
+  couleurs: {
+    margin: theme.spacing(6, 0),
+    borderRadius: 15,
+    width: '6vh',
+    height:'82vh',
+    border: '3px solid black',
+    background:'#222',
+    borderRadius: 5,
+    padding:'1vh',
   },
 
   avatar: {
@@ -171,7 +188,7 @@ const useStyles = makeStyles((theme) => ({
 
   cardjoueur: {
     width: '100%',
-    height: '90%',
+    height: '75%',
     borderRadius: 16,
     boxShadow: '0 8px 16px 0 #BDC9D7',
     overflow: 'hidden',
@@ -179,6 +196,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     flexWrap: 'wrap',
     margin : theme.spacing (5, 5),
+    background:'rgba(240, 160, 240, 0.30)',
   },
 
   card: {
@@ -192,12 +210,42 @@ const useStyles = makeStyles((theme) => ({
 
   cardchat: {
     margin: theme.spacing(5, 5),
+    width: '90%',
+    height: '75%',
     borderRadius: 16,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     boxShadow: '0 8px 16px 0 #BDC9D7',
     overflow: 'hidden',
+    background:'rgba(240, 160, 240, 0.30)',
+  },
+
+  styleB: {
+      color: 'white',
+      fontSize: '150%',
+      borderRadius: 15,
+      textAlign: 'center',
+      width: '7vh',
+      height:'7vh',
+      border: '3px solid black',
+      background:'#222',
+      borderRadius: 5,
+      marginTop: '0.5vh',
+      marginLeft: '1vh',
+  },
+
+  tresgrand: {
+    fontSize: '150%',
+  },
+  grand: {
+    fontSize: '100%',
+  },
+  moyen: {
+    fontSize: '75%',
+  },
+  petit: {
+    fontSize: '50%',
   },
 
   avatarchoice: {

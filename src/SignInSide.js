@@ -16,68 +16,6 @@ import avatar4 from './img/4.jpg';
 import avatar5 from './img/5.jpg';
 import avatar6 from './img/6.jpg';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    height: '100vh',
-  },
-  image: {
-    backgroundImage: 'url(https://source.unsplash.com/random)',
-    backgroundRepeat: 'no-repeat',
-    backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  },
-  paper: {
-    margin: theme.spacing(6, 2),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '80%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-  headline: {
-    color: '#122740',
-    fontSize: '2.5rem',
-    fontWeight: 600,
-    align: 'center',
-  },
-  header: {
-    fontFamily: 'Barlow, san-serif',
-    backgroundColor: '#fff',
-  },
-  card: {
-    width: '92%',
-    height : '92%',
-    margin : theme.spacing (5, 5),
-    borderRadius: 16,
-    boxShadow: '0 8px 16px 0 #BDC9D7',
-    overflow: 'hidden',
-  },
-  avatarchoice: {
-      display: 'flex',
-      '& > *': {
-      margin: theme.spacing(1),
-      },
-    },
-    medium: {
-      width: '50%',
-      height: '70%',
-    },
-    large: {
-      width: '23%',
-      height: '80%',
-    },
-}));
 
 export default function SignInSide() {
   const classes = useStyles();
@@ -122,7 +60,7 @@ export default function SignInSide() {
             <Avatar onClick={changeAvatar} className={classes.large} alt="avatar3" src={avatar3} />
             <Avatar onClick={changeAvatar} className={classes.large} alt="avatar4" src={avatar4} />
           </Row>
-          <Row alignItems={'flex-end'} backgroundColor='white'>All righs reserved to PlaceIt!</Row>
+          <Row flexDirection={'row-reverse'} className={classes.copyright}><p>All righs reserved to <b><i>PlaceIt!</i></b></p></Row>
         </Column>
       </Grid>
       <Grid item xs={12} sm={4} component={Paper} elevation={6} square>
@@ -158,3 +96,83 @@ export default function SignInSide() {
     </Grid>
   );
 }
+
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: '100vh',
+  },
+
+  image: {
+    backgroundImage: 'url(https://source.unsplash.com/random)',
+    backgroundRepeat: 'no-repeat',
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  },
+
+  paper: {
+    margin: theme.spacing(6, 2),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+
+  form: {
+    width: '80%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+
+  headline: {
+    color: '#122740',
+    fontSize: '2.5rem',
+    fontWeight: 600,
+    align: 'center',
+  },
+
+  header: {
+    fontFamily: 'Barlow, san-serif',
+    backgroundColor: '#fff',
+  },
+
+  card: {
+    width: '92%',
+    height : '92%',
+    margin : theme.spacing (5, 5),
+    borderRadius: 16,
+    boxShadow: '0 8px 16px 0 #BDC9D7',
+    overflow: 'hidden',
+  },
+
+  avatarchoice: {
+      display: 'flex',
+      '& > *': {
+      margin: theme.spacing(1),
+      },
+    },
+    medium: {
+      width: '50%',
+      height: '70%',
+    },
+    large: {
+      width: '23%',
+      height: '80%',
+    },
+
+    copyright: {
+      fontFamily: 'Barlow, san-serif',
+      color: 'white',
+      margin: theme.spacing (3, 2),
+    },
+}));

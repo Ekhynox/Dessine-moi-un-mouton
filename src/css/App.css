@@ -8,13 +8,6 @@
   justify-content: center;
 }
 
-.canvasold{
-  background-color: rgb(255, 255, 255);
-  background:white;
-  border-radius: 15px;
-  margin: 5px;
-}
-
 video{
   background-color: rgb(255, 255, 255);
   width:670px;
@@ -22,51 +15,6 @@ video{
   border-radius: 15px;
   background:white;
   margin-left: -16px;
-}
-
-.styleB {
-    color: white;
-    border-radius: 15px;
-    text-align: center;
-    width:55px;
-    height:55px;
-    font-size: 25px;
-    margin: 6px;
-    border: 3px solid black;
-    background:#222;
-    border-radius: 15px
-}
-
-.outils1 {
-  display: block;
-}
-
-.outils2 {
-}
-
-.tresgrand {
-  font-size: 30px;
-}
-
-.grand{
-  font-size: 20px;
-}
-
-.moyen {
-  font-size: 13px;
-}
-
-.petit {
-  font-size: 8px;
-}
-
-.couleurs {
-  padding: 10px;
-  border: 3px solid black;
-  width: 51px;
-	height:680px;
-	background:#222;
-  border-radius: 15px;
 }
 
 .titre {
@@ -78,7 +26,7 @@ video{
 
 .cardold{
     width:300px;
-    height:670px;
+    height:370px;
     border-radius: 15px !important;
     background: #344D59 !important;
     margin: 5px;
