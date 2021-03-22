@@ -89,7 +89,7 @@ function drawDataURIOnCanvas(strDataURI) {  //fonction de prévisualisation
     img2.setAttribute("src", strDataURI);
 }
 
-fetch('https://github.com/Ekhynox/Dessine-moi-un-mouton/blob/Desmond/Test/wordsliste.txt')
+fetch('https://github.com/Ekhynox/Dessine-moi-un-mouton/blob/Desmond/Test/wordsliste.json')
 .then(function(response) {
   return console.log(response);
 });
