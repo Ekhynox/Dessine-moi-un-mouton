@@ -122,6 +122,7 @@ export default function SignInSide() {
             <Avatar onClick={changeAvatar} className={classes.large} alt="avatar3" src={avatar3} />
             <Avatar onClick={changeAvatar} className={classes.large} alt="avatar4" src={avatar4} />
           </Row>
+          <Row alignItems={'flex-end'} backgroundColor='white'>All righs reserved to PlaceIt!</Row>
         </Column>
       </Grid>
       <Grid item xs={12} sm={4} component={Paper} elevation={6} square>
