@@ -56,7 +56,7 @@ canvas.onmouseup = function(mouse) { //on arrete le dessin
     ctx.stroke();   //canvas de la ligne
 
     des=false;
-    console.log(sourceCanvas);
+    // console.log(sourceCanvas);
 
   }
 };
@@ -88,3 +88,27 @@ function drawDataURIOnCanvas(strDataURI) {  //fonction de prévisualisation
     });
     img2.setAttribute("src", strDataURI);
 }
+
+fetch('https://github.com/Ekhynox/Dessine-moi-un-mouton/blob/Desmond/Test/wordsliste.txt')
+.then(function(response) {
+  return console.log(response);
+});
+
+function readSingleFile(e) {
+  console.log(e);
+
+  var file = e.target.files[0];
+  if (!file) {
+    return;
+  }
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var contents = e.target.result;
+    // console.log(contents);
+  };
+  reader.readAsText(file);
+}
+// readSingleFile("wordlist.txt")
+
+document.getElementById('file-input')
+  .addEventListener('change', readSingleFile, false);
