@@ -5,6 +5,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import Peer from 'peerjs';
+import {get_wordlist} from './wordslist';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -468,7 +469,7 @@ canvas.onmousedown = function (mouse) { //on commence le dessin
     isDrawing = true;
     var colorInit = pick(posInit.x, posInit.y);
     // setcanvas(posInit,Object.values(rgbcolor));
-    FillInRec(posInit.x, posInit.y, colorInit, Object.values(rgbcolor));
+    // FillInRec(posInit.x, posInit.y, colorInit, Object.values(rgbcolor));
   }
 };
 
@@ -565,6 +566,36 @@ canvas.onmousemove = function (mouse) { //permet de voir en temps réel notre de
     context.stroke();
   }
 };
+
+var choix = document.getElementById('choix');
+
+
+var words_copy=get_wordlist().slice();
+var words_use=[];
+
+function words_list()
+{
+  while (words_use.length < 3) {
+
+    if (words_copy.length<=0)
+      words_copy = get_wordlist().slice();
+
+    var tt = words_copy[Math.floor(Math.random()*words_copy.length)];
+    if(words_use.find(element => element == tt)==undefined)
+      words_use.push(tt);
+  }
+  console.log(" Choix : "+words_use);
+  console.log("restant : "+words_copy);
+  document.getElementById("wchoix").innerHTML = words_use.map(
+    d => `<button onClick={() => this.choose_word} value="${d}"> ${d} </button>`);
+}
+words_list();
+
+export function choose_word(val)
+{
+  console.log("tt");
+  words_list();
+}
 
 
 // If you want to start measuring performance in your app, pass a function
