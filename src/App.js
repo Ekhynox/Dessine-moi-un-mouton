@@ -68,21 +68,20 @@ function App() {
           <Column p={1} gap={0}>
             <Row wrap p={2}>
               <Row className={classes.canvas}>
-              <div className="drawbox">
-                <canvas id="DrawBox" width="550" height="550"></canvas>
-              </div>
+                <div className="drawbox">
+                  <canvas id="DrawBox" width="550" height="550"></canvas>
+                  </div>
               </Row>
               <Row className={classes.center}>
-              <button onClick={erase} className={classes.styleB} id="Erase"><BiEraser/></button>
-              <button onClick={clear} className={classes.styleB} id="Clear"><FaTrashAlt/></button>
-              <button onClick={undo} className={classes.styleB} id="Bundo"><RiArrowGoBackFill/></button>
-              <button onClick={save} className={classes.styleB} download="example.jpg" id="saveImage"><BiSave/></button>
+                <button onClick={erase} className={classes.styleB} id="Erase"><BiEraser/></button>
+                <button onClick={clear} className={classes.styleB} id="Clear"><FaTrashAlt/></button>
+                <button onClick={undo} className={classes.styleB} id="Bundo"><RiArrowGoBackFill/></button>
+                <button onClick={save} className={classes.styleB} download="example.jpg" id="saveImage"><BiSave/></button>
               </Row>
             </Row>
            </Column>
           </Grid>
           <Grid item xs={false} sm={0.5} elevation={6} square className={classes.paper}>
-
               <button onClick={verybigPen} className={cx(classes.styleB, classes.tresgrand)} id="Pen++"><FaCircle/></button>
               <button onClick={bigPen} className={cx(classes.styleB, classes.grand)} id="Pen+"><FaCircle/></button>
               <button onClick={smallPen} className={cx(classes.styleB, classes.moyen)} id="Pen"><FaCircle/></button>
@@ -94,15 +93,13 @@ function App() {
               <button onClick={circlefull} className={classes.styleB} id="drawCircleFull"><FaCircle/></button>
               <button onClick={line} className={classes.styleB} id="drawLine"><SiCurl/></button>
               <button onClick={fill} className={classes.styleB} id="fillIn"><VscPaintcan/></button>
-
         </Grid>
         <Grid item xs={false} sm={0.5} elevation={6} square className={classes.couleurs}>
           <CirclePicker
             onChange={colorChange}
             width = {1}
             circleSize ={21}
-            colors = {["#e91e63", "#9c27b0", "#673ab7", "#2196f3", "#03a9f4", "#00bcd4", "#009688", "#4caf50", "#8bc34a", "#ffeb3b", "#ffc107", "#ff9800", "#ff5722", "#795548", "#607d8b", "black", "white"]}
-            />
+            colors = {["#e91e63", "#9c27b0", "#673ab7", "#2196f3", "#03a9f4", "#00bcd4", "#009688", "#4caf50", "#8bc34a", "#ffeb3b", "#ffc107", "#ff9800", "#ff5722", "#795548", "#607d8b", "black", "white"]}/>
         </Grid>
         <Grid item xs={12} sm={3} elevation={6} square className={classes.cardchat}>
           <div id="chatBox" className="card-body"></div>
@@ -114,9 +111,9 @@ function App() {
           </div>
         </Grid>
     </Grid>
-
   )
 }
+
 /*
 ███████ ████████ ██    ██ ██      ███████ 
 ██         ██     ██  ██  ██      ██      
@@ -127,7 +124,7 @@ function App() {
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
-    backgroundImage: 'url(https://source.unsplash.com/random)',
+    backgroundImage: 'url(https://source.unsplash.com/collection/24051068/)',
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],

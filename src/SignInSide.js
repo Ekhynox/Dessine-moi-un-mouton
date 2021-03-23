@@ -97,6 +97,12 @@ export default function SignInSide() {
   );
 }
 
+/*
+███████ ████████ ██    ██ ██      ███████ 
+██         ██     ██  ██  ██      ██      
+███████    ██      ████   ██      █████ 
+     ██    ██       ██    ██      ██    
+███████    ██       ██    ███████ ███████ */
 
 
 const useStyles = makeStyles((theme) => ({
@@ -105,7 +111,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   image: {
-    backgroundImage: 'url(https://source.unsplash.com/random)',
+    backgroundImage: 'url(https://source.unsplash.com/collection/24051068/)',
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],

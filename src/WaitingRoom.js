@@ -31,7 +31,7 @@ export default function SignInSide() {
   return (
     <Grid container xs={12} component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={12} sm={6} component={Paper} elevation={6} square>
+      <Grid item xs={12} sm={4} component={Paper} elevation={6} square>
         <div className={classes.paper}>
          <Column p={0} gap={0} className={styles.cardjoueur}>
            <Row wrap p={2} alignItems={'baseline'} className={styles.header}>
@@ -73,9 +73,17 @@ export default function SignInSide() {
            onClick={CoWaitingRoom}
          >Connexion</Button>
         </div>
-
       </Grid>
-     <Grid item xs={false} sm={6} className={classes.image}>
+      <Grid item xs={12} sm={3} elevation={6} square className={classes.cardchat}>
+        <div id="chatBox" className="card-body"></div>
+          <div className="card-footer input-group">
+              <input id="message" className="form-control type_msg" placeholder="Type your message..."></input>
+              <div className="input-group-append">
+                  <button id="send" className="input-group-text send_btn" ><BiSend/></button>
+              </div>
+        </div>
+      </Grid>
+     <Grid item xs={false} sm={4} className={classes.paper}>
       <Column p={0} gap={0} container direction="row" className={classes.card}>
         <Row wrap p={2} alignItems={'baseline'} className={classes.header}>
           <Item stretched className={classes.headline}>Choisis une phase de jeu</Item>
@@ -109,13 +117,17 @@ const PersonItem = ({ src, name, friendCount }) => {
   );
 };
 
+/*
+███████ ████████ ██    ██ ██      ███████ 
+██         ██     ██  ██  ██      ██      
+███████    ██      ████   ██      █████ 
+     ██    ██       ██    ██      ██    
+███████    ██       ██    ███████ ███████ */
+
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
-  },
-
-  image: {
-    backgroundImage: 'url(https://source.unsplash.com/random)',
+    backgroundImage: 'url(https://source.unsplash.com/collection/24051068/)',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   },
@@ -150,6 +162,20 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: '0 8px 16px 0 #BDC9D7',
     overflow: 'hidden',
     display : 'flex',
+    background:'rgba(240, 160, 240, 0.30)',
+  },
+
+  cardchat: {
+    margin: theme.spacing(8, 2),
+    width: '90%',
+    height: '80%',
+    borderRadius: 16,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    boxShadow: '0 8px 16px 0 #BDC9D7',
+    overflow: 'hidden',
+    background:'rgba(240, 160, 240, 0.30)',
   },
 
   headline: {
