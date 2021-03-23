@@ -1,5 +1,3 @@
-import React from 'react';
-
 const wordlist = ["un","deux","trois","quatre","cinq","six","sept","huit","neuf"];
 
 /*

@@ -583,8 +583,8 @@ function words_list()
     if (words_copy.length<3) //controle si on arrive a la fin de la liste de mots, très peu probable.
       words_copy = get_wordlist().slice();
 
-    var tt = words_copy[Math.floor(Math.random()*words_copy.length)]; //tire aléatoire d'un indice
-    if(words_use.find(element => element == tt)==undefined) //on regarde si un on a pas déjà tiree ce mots(indice)
+    const tt = words_copy[Math.floor(Math.random()*words_copy.length)]; //tire aléatoire d'un indice
+    if(words_use.find(element => element === tt)===undefined) //on regarde si un on a pas déjà tiree ce mots(indice)
       words_use.push(tt);
   }
   console.log(" Choix : "+words_use);
@@ -596,9 +596,9 @@ function words_list()
       console.debug(`@Click_choose_word()`);
       console.log("choisis : "+val);
       words_use=[]; //liste de propositions vider
-      const tmp = (element) => element == val;
+      const tmp = (element) => element === val;
       var ind = words_copy.findIndex(tmp);
-      if (ind != -1)
+      if (ind !== -1)
         words_copy.splice(ind, 1);  //on suprime le mot de la liste que si il exist dedans
       console.log("restant : "+words_copy);
       document.getElementById("wchoix").innerHTML= `<h3>${val}</h3>`
