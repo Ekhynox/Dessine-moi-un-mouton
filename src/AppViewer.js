@@ -31,93 +31,195 @@ import {verybigPen, bigPen, smallPen, verysmallPen, erase, pinceau, clear, rect,
 import cx from 'clsx';
 
 
-function App() {
-  //const colorChange = ({ hex }) => hex = ColorChange(hex); // fonction change la couleur du pinceau
-  const colorChange = ({hex}) => {
-    hex = ColorChange(hex); // fonction change la couleur du pinceau
-  }
-  const PersonItem = ({ src, name, friendCount }) => {
-    return (
-      <Row gap={2} p={1}>
-        <Item>
-          <Avatar className="avatar" src={src} />
-        </Item>
-        <Row gap={15} p={2}>
-          <Item><div>{name}</div></Item >
-          <Item> 400</Item>
-        </Row>
-      </Row>
-    );
-  };
-  return (
-    <div id="game" className="background">
-      <div className="row">
-        <div className="titre ">
-            Titre !
-        </div>
-      </div>
-          <div className="row">
-            <div className="paper">
-              <Column p={1} gap={0} >
-                <Row wrap p={2} >
+    function App() {
+      const classes = useStyles();
+      //const colorChange = ({ hex }) => hex = ColorChange(hex); // fonction change la couleur du pinceau
+      const colorChange = ({hex}) => {
+        hex = ColorChange(hex); // fonction change la couleur du pinceau
+      }
+      const PersonItem = ({ src, name }) => {
+        return (
+          <Row gap={2} p={1}>
+            <Item>
+              <Avatar className="avatar" src={src} />
+            </Item>
+            <Row gap={15} p={2}>
+              <Item><div>{name}</div></Item >
+              <Item> 400</Item>
+            </Row>
+          </Row>
+        );
+      };
+
+      return (
+        <Grid container xs={12} component="main" className={classes.root}>
+          <CssBaseline />
+            <Grid item xs={false} sm={3} container direction="row" id="game">
+              <Column p={1} gap={0} className={classes.cardjoueur}>
+                <Row wrap p={2}>
                   <Item stretched>Participant.e.s</Item>
                   <Item>Score</Item>
-                </Row>
-                <Divider variant={'middle'} />
-                <PersonItem name={'Chocoluna'} src={avatar1} />
+                  </Row>
+                  <Divider variant={'middle'} />
+                  <PersonItem name={'Chocoluna'} src={avatar1} />
               </Column>
-            </div>
-
-            <div className="drawbox col-sd">
-                <canvas id="DrawBox" width="670" height="670"></canvas>
-            </div>
-
-            <div className= "col-sd">
-                <button onClick={verybigPen} className="styleB tresgrand outils1" id="Pen++"><FaCircle/></button>
-                <button onClick={bigPen} className="styleB grand outils1" id="Pen+"><FaCircle/></button>
-                <button onClick={smallPen} className="styleB moyen outils1" id="Pen"><FaCircle/></button>
-                <button onClick={verysmallPen} className="styleB petit outils1" id="Pen-"><FaCircle/></button>
-                <button onClick={pinceau} className="styleB outils1" id="Pinceau"><FaPaintBrush/></button>
-                <button onClick={rect} className="styleB outils1" id="drawRect"><BsSquare/></button>
-                <button onClick={rectfull} className="styleB outils1" id="drawRectFull"><FaSquare/></button>
-                <button onClick={circle} className="styleB outils1" id="drawCircle"><BsCircle/></button>
-                <button onClick={circlefull} className="styleB outils1" id="drawCircleFull"><FaCircle/></button>
-                <button onClick={line} className="styleB outils1" id="drawLine"><SiCurl/></button>
-                <button onClick={fill} className="styleB outils1" id="fillIn"><VscPaintcan/></button>
-            </div>
-
-            <div className="couleurs col-sd">
-                <CirclePicker
-                  onChange={colorChange}
-                  width = {1}
-                  circleSize ={26}
-                  colors = {["#e91e63", "#9c27b0", "#673ab7", "#2196f3", "#03a9f4", "#00bcd4", "#009688", "#4caf50", "#8bc34a", "#ffeb3b", "#ffc107", "#ff9800", "#ff5722", "#795548", "#607d8b", "black", "white"]}
-                />
-            </div>
-            <div className="card  col-sd">
-                <div id="chatBox" className="card-body msg_card_body"></div>
-                    <div className="card-footer input-group">
-                        <input id="message" className="form-control type_msg" placeholder="Type your message..."></input>
-                        <div className="input-group-append">
-                            <button id="send" className="input-group-text send_btn" ><BiSend/></button>
-                        </div>
+            </Grid>
+            <Grid item xs={false} sm={4} elevation={6} square>
+              <Column p={1} gap={0}>
+                <Row wrap p={2}>
+                  <Row className={classes.canvas}>
+                    <div className="row  col-5">
+                      <video autoPlay id="Video" width="600" height="600"></video>
                     </div>
-                </div>
-           </div>
+                  </Row>
+                </Row>
+               </Column>
+              </Grid>
+            <Grid item xs={12} sm={3} elevation={6} square className={classes.cardchat}>
+              <div id="chatBox" className="card-body"></div>
+                <div className="card-footer input-group">
+                    <input id="message" className="form-control type_msg" placeholder="Type your message..."></input>
+                    <div className="input-group-append">
+                        <button id="send" className="input-group-text send_btn" ><BiSend/></button>
+                    </div>
+              </div>
+            </Grid>
+        </Grid>
+      )
+    }
 
-           <div className="row  col-5">
-              <button onClick={erase} className="styleB outils2" id="Erase"><BiEraser/></button>
-              <button onClick={clear} className="styleB outils2" id="Clear"><FaTrashAlt/></button>
-              <button onClick={undo} className="styleB outils2" id="Bundo"><RiArrowGoBackFill/></button>
-              <button onClick={save} className="styleB outils2" download="example.jpg" id="saveImage"><BiSave/></button>
-           </div>
+    /*
+    ███████ ████████ ██    ██ ██      ███████ 
+    ██         ██     ██  ██  ██      ██      
+    ███████    ██      ████   ██      █████ 
+         ██    ██       ██    ██      ██    
+    ███████    ██       ██    ███████ ███████ */
 
-            <div className="row  col-5">
-                <video autoPlay id="Video" width="600" height="600"></video>
-            </div>
-    </div>
-  )
-}
+    const useStyles = makeStyles((theme) => ({
+      root: {
+        height: '100vh',
+        backgroundImage: 'url(https://source.unsplash.com/collection/24051068/)',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor:
+        theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      },
 
+      center:{
+        margin: theme.spacing('auto', 'auto'),
+      },
+
+      paper: {
+        margin: theme.spacing(7.5, 2),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      },
+
+      canvas: {
+        backgroundColor: 'rgb(255, 255, 255)',
+        background: 'white',
+        borderRadius: 15,
+        display: 'flex',
+        marginTop: '6vh',
+      },
+
+      couleurs: {
+        margin: theme.spacing(8, 0),
+        borderRadius: 15,
+        width: '5.5vh',
+        height:'65vh',
+        border: '3px solid black',
+        background:'#222',
+        borderRadius: 5,
+        padding:'1vh',
+      },
+
+      avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+      },
+
+      headline: {
+        color: '#122740',
+        fontSize: '2.5rem',
+        fontWeight: 600,
+        align: 'center',
+      },
+
+      header: {
+        fontFamily: 'Barlow, san-serif',
+        backgroundColor: '#fff',
+      },
+
+      cardjoueur: {
+        width: '100%',
+        height: '75%',
+        borderRadius: 16,
+        boxShadow: '0 8px 16px 0 #BDC9D7',
+        overflow: 'hidden',
+        fontSize: '1.25rem',
+        fontWeight: 600,
+        flexWrap: 'wrap',
+        margin : theme.spacing (8, 2),
+        background:'rgba(240, 160, 240, 0.30)',
+      },
+
+      cardchat: {
+        margin: theme.spacing(8, 2),
+        width: '90%',
+        height: '80%',
+        borderRadius: 16,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        boxShadow: '0 8px 16px 0 #BDC9D7',
+        overflow: 'hidden',
+        background:'rgba(240, 160, 240, 0.30)',
+      },
+
+      styleB: {
+          color: 'white',
+          fontSize: '150%',
+          borderRadius: 15,
+          textAlign: 'center',
+          width: '5.5vh',
+          height:'5.5vh',
+          border: '3px solid black',
+          background:'#222',
+          borderRadius: 5,
+          marginTop: '0.5vh',
+          marginLeft: '1vh',
+      },
+
+      tresgrand: {
+        fontSize: '150%',
+      },
+      grand: {
+        fontSize: '100%',
+      },
+      moyen: {
+        fontSize: '75%',
+      },
+      petit: {
+        fontSize: '50%',
+      },
+
+      avatarchoice: {
+          display: 'flex',
+          '& > *': {
+          margin: theme.spacing(1),
+          },
+        },
+        medium: {
+          width: '50%',
+          height: '70%',
+        },
+        large: {
+          width: '23%',
+          height: '80%',
+        },
+    }));
 
 export default App
