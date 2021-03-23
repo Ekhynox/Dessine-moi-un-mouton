@@ -64,12 +64,12 @@ function App() {
               <PersonItem name={'Chocoluna'} src={avatar1} />
           </Column>
         </Grid>
-        <Grid item xs={false} sm={4} elevation={6} square className={classes.paper}>
+        <Grid item xs={false} sm={4} elevation={6} square>
           <Column p={1} gap={0}>
             <Row wrap p={2}>
               <Row className={classes.canvas}>
                 <div className="drawbox">
-                  <canvas id="DrawBox" width="550" height="550"></canvas>
+                  <canvas id="DrawBox" width="600" height="600"></canvas>
                   </div>
               </Row>
               <Row className={classes.center}>
@@ -148,13 +148,14 @@ const useStyles = makeStyles((theme) => ({
     background: 'white',
     borderRadius: 15,
     display: 'flex',
+    marginTop: '6vh',
   },
 
   couleurs: {
     margin: theme.spacing(8, 0),
     borderRadius: 15,
-    width: '6vh',
-    height:'83vh',
+    width: '5.5vh',
+    height:'65vh',
     border: '3px solid black',
     background:'#222',
     borderRadius: 5,
@@ -209,8 +210,8 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '150%',
       borderRadius: 15,
       textAlign: 'center',
-      width: '7vh',
-      height:'7vh',
+      width: '5.5vh',
+      height:'5.5vh',
       border: '3px solid black',
       background:'#222',
       borderRadius: 5,
