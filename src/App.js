@@ -203,6 +203,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: '0 8px 16px 0 #BDC9D7',
     overflow: 'hidden',
     background:'rgba(240, 160, 240, 0.30)',
+    overflow: 'auto',
   },
 
   styleB: {
