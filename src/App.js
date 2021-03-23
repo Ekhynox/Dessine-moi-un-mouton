@@ -1,5 +1,4 @@
 //Page de dessin
-
 import './css/App.css';
 import React, {useState} from 'react';
 import reactCSS from 'reactcss';
@@ -18,16 +17,15 @@ import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseli
 import {Column, Row, Item} from '@mui-treasury/components/flex';
 import { makeStyles } from '@material-ui/core/styles';
 // fonction
-import {ColorChange, DownloadCanvas} from './canvas';
 import {Connexion, SetCanvas, Send} from './connexion';
-import {SetCanvasDraw} from './canvas';
+import {ColorChange, DownloadCanvasn, SetCanvasDraw} from './canvas';
+import {verybigPen, bigPen, smallPen, verysmallPen, erase, pinceau, clear, rect, rectfull, circle, circlefull, line, fill, save, undo} from './canvas';
 import avatar1 from './img/1.jpg';
 import avatar2 from './img/2.jpg';
 import avatar3 from './img/3.jpg';
 import avatar4 from './img/4.jpg';
 import avatar5 from './img/5.jpg';
 import avatar6 from './img/6.jpg';
-import {verybigPen, bigPen, smallPen, verysmallPen, erase, pinceau, clear, rect, rectfull, circle, circlefull, line, fill, save, undo} from './canvas';
 import cx from 'clsx';
 
 
@@ -65,7 +63,7 @@ function App() {
           </Column>
         </Grid>
         <Grid item xs={false} sm={4} elevation={6} square>
-          <Column p={1} gap={0}>
+
             <Row wrap p={2}>
               <Row className={classes.canvas}>
                 <div className="drawbox">
@@ -79,7 +77,7 @@ function App() {
                 <button onClick={save} className={classes.styleB} download="example.jpg" id="saveImage"><BiSave/></button>
               </Row>
             </Row>
-           </Column>
+
           </Grid>
           <Grid item xs={false} sm={0.5} elevation={6} square className={classes.paper}>
               <button onClick={verybigPen} className={cx(classes.styleB, classes.tresgrand)} id="Pen++"><FaCircle/></button>
@@ -199,7 +197,6 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 16,
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
     boxShadow: '0 8px 16px 0 #BDC9D7',
     overflow: 'hidden',
     background:'rgba(240, 160, 240, 0.30)',

@@ -64,17 +64,9 @@ import cx from 'clsx';
                   <PersonItem name={'Chocoluna'} src={avatar1} />
               </Column>
             </Grid>
-            <Grid item xs={false} sm={4} elevation={6} square>
-              <Column p={1} gap={0}>
-                <Row wrap p={2}>
-                  <Row className={classes.canvas}>
-                    <div className="row  col-5">
-                      <video autoPlay id="Video" width="600" height="600"></video>
-                    </div>
-                  </Row>
-                </Row>
-               </Column>
-              </Grid>
+            <Grid item xs={false} sm={4} elevation={6} square className={classes.paper}>
+              <video autoPlay id="Video" width="600" height="600"></video>
+            </Grid>
             <Grid item xs={12} sm={3} elevation={6} square className={classes.cardchat}>
               <div id="chatBox" className="card-body"></div>
                 <div className="card-footer input-group">
@@ -173,10 +165,10 @@ import cx from 'clsx';
         borderRadius: 16,
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
         boxShadow: '0 8px 16px 0 #BDC9D7',
         overflow: 'hidden',
         background:'rgba(240, 160, 240, 0.30)',
+        overflow: 'auto',
       },
 
       styleB: {

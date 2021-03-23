@@ -56,8 +56,6 @@ export function CoWaitingRoom(id) {
   });
 }
 
-
-
 export function Connexion(id) {
   connID = id;
   conn = peer.connect(connID);

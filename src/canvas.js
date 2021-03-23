@@ -244,9 +244,11 @@ function drawDataURIOnCanvas(strDataURI)  //elle prend en param l'url d'une imag
 
   document.addEventListener('mousedown', function(mouse) //on commence le dessin
   {
-    if(game){
+
+    if(game ){
+      var posBegin = getMousePos(canvas, mouse); // position (x,y) du crayon
       sourceCanvas = canvas.toDataURL('image/jpeg', 1.0);
-      if (drawPinceau)
+      if (drawPinceau && posBegin.x > 0 && posBegin.y > 0 && posBegin.x < 600 && posBegin.y < 600)
       {
         isDrawing = true;
         posInit = getMousePos(canvas, mouse); // position (x,y) du crayon

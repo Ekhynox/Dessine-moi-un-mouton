@@ -4,12 +4,14 @@ import reactCSS from 'reactcss';
 import './css/index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
+import AppViewer from './AppViewer';
 import Peer from 'peerjs';
 import SignInSide from './SignInSide';
 import WaitingRoom from './WaitingRoom';
 import {Connexion, SetCanvas, Send} from './connexion';
 import {SetCanvasDraw} from './canvas';
 
+var tabPlayer = [];
 var player;
 
 export function SetPlayer(playerInfo){
@@ -35,25 +37,28 @@ export function SetWaiting(){
   </React.StrictMode>,
   document.getElementById('root')
   );
+  setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
+  setTimeout(() => { PlayerPool(); }, 100); //PROMISE !! /!\ !!
 }
 
 export function SetJeu(){
   ReactDOM.render(
   <React.StrictMode>
   <App/>
+  <AppViewer/>
   </React.StrictMode>,
   document.getElementById('root'),
   );
   setTimeout(() => { start(); }, 100); //PROMISE !! /!\ !!
+  setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
 }
 
-function start(){
-  //Canvas
-  var canvas = document.getElementById('DrawBox');
-  var context = canvas.getContext('2d');
-  SetCanvas(canvas);
-  SetCanvasDraw(canvas, context);
+export function PlayerPool(){
+  var playerZone = document.getElementById("playerZone");
+  playerZone.innerHTML = player.pseudos;
+}
 
+function chat(){
   //setup les variables pour la fonction Send() ('envoyer un message')
   var send = document.getElementById('send');
   send.onclick = function(){
@@ -68,10 +73,20 @@ function start(){
     {
       var message = document.getElementById("message").value;
       var pseudos = player.pseudos;
-      Send(message, player);
+      Send(message, pseudos);
       document.getElementById("message").value = "";
     }
   });
+}
+
+
+
+function start(){
+  //Canvas
+  var canvas = document.getElementById('DrawBox');
+  var context = canvas.getContext('2d');
+  SetCanvas(canvas);
+  SetCanvasDraw(canvas, context);
 }
 
 // If you want to start measuring performance in your app, pass a function

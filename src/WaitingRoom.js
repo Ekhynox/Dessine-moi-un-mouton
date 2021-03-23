@@ -41,8 +41,8 @@ export default function SignInSide() {
              </Item>
            </Row>
            <div id="playerZone">
-           <PersonItem name={'Amber Matthews'} src={'https://i.pravatar.cc/300?img=10'} />
-           <Divider variant={'middle'} className={styles.divider} />
+             <PersonItem name={'Amber Matthews'} src={'https://i.pravatar.cc/300?img=10'} />
+             <Divider variant={'middle'} className={styles.divider} />
            </div>
          </Column>
          <div id = 'zoneId'>
@@ -172,10 +172,10 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 16,
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
     boxShadow: '0 8px 16px 0 #BDC9D7',
     overflow: 'hidden',
     background:'rgba(240, 160, 240, 0.30)',
+    overflow: 'auto',
   },
 
   headline: {
