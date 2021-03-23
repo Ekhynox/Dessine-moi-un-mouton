@@ -12,7 +12,7 @@ import { SiCurl } from "react-icons/si";
 import { VscPaintcan } from 'react-icons/vsc';
 import { RiArrowGoBackFill } from "react-icons/ri";
 // fonction
-import {Connexion, Send, ColorChange, DownloadCanvas, choose_word} from './index.js';
+import {Connexion, Send, ColorChange, DownloadCanvas} from './index.js';
 
 function App() {
   //const colorChange = ({ hex }) => hex = ColorChange(hex); // fonction change la couleur du pinceau
@@ -32,8 +32,6 @@ function App() {
             <input id="peerID"></input>
             <button onClick={Connexion}> Connexion </button>
             <div id="wchoix">
-            </div>
-            <div id="wchoisi">
             </div>
           </div>
           <div className="drawbox">
