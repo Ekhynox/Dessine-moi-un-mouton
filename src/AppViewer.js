@@ -59,13 +59,13 @@ import cx from 'clsx';
                 <Row wrap p={2}>
                   <Item stretched>Participant.e.s</Item>
                   <Item>Score</Item>
-                  </Row>
-                  <Divider variant={'middle'} />
-                  <PersonItem name={'Chocoluna'} src={avatar1} />
+                </Row>
+                  <Divider variant={'middle'}/>
+                  <PersonItem name={'Chocoluna'} src={avatar1}/>
               </Column>
             </Grid>
-            <Grid item xs={false} sm={4} elevation={6} square className={classes.paper}>
-              <video autoPlay id="Video" width="600" height="600"></video>
+            <Grid item xs={false} sm={5} elevation={6} square className={classes.stream}>
+              <video autoPlay id="Video"></video>
             </Grid>
             <Grid item xs={12} sm={3} elevation={6} square className={classes.cardchat}>
               <div id="chatBox" className="card-body"></div>
@@ -96,6 +96,16 @@ import cx from 'clsx';
         theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+      },
+
+      stream: {
+        width:'60%',
+        height:'60%',
+        display: 'flex',
+        borderRadius: 16,
+        margin: theme.spacing(10, 3),
+        backgroundColor: 'rgb(255, 255, 255)',
+        background: 'white',
       },
 
       center:{

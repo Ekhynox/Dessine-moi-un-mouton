@@ -8,15 +8,6 @@
   justify-content: center;
 }
 
-video{
-  background-color: rgb(255, 255, 255);
-  width:670px;
-  height:670px;
-  border-radius: 15px;
-  background:white;
-  margin-left: -16px;
-}
-
 .titre {
   text-align: center;
   width:1250px;
