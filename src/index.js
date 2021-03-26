@@ -613,6 +613,30 @@ function words_list()
     });
 }
 
+//fonction minuteur;
+var minuteur = document.getElementById('bt_time');
+minuteur.onclick = function() {
+  countDown('aff_time');
+}
+var time_draw_init=10;  //temps de dessins choisi
+var time_draw=time_draw_init; //variable globale qui sera utiliser pour d'autre fonction ("score").
+
+//fonction qui prend en param la balise (elem) où le temps est afficher.
+function countDown(elem){
+  var element = document.getElementById(elem);
+  element.innerHTML = "Remaining Time: " + time_draw + " seconds";
+  if (time_draw < 1){  //si le temps "time" est a zero on affiche un pop-up alert et on quite la fonction.
+    element.innerHTML = "";
+    alert("Stop drawing !");
+    time_draw=time_draw_init;
+    return;
+  }
+  time_draw--; //on décrémente le "time" pour simuler le minuteur
+  setTimeout(function (){ countDown(elem); },1000); // on rappel la fonction avec un temps d'attente de 1sec
+}
+
+
+
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
