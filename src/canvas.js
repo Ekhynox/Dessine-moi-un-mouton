@@ -304,33 +304,40 @@ function drawDataURIOnCanvas(strDataURI)  //elle prend en param l'url d'une imag
           var nord, sud,est,ouest;
           while(tab.length != 0)
           {
-            nord = context.getImageData(tab[0], tab[1]-1, 1, 1);
-            sud = context.getImageData(tab[0], tab[1]+1, 1, 1);
-            est = context.getImageData(tab[0]+1, tab[1], 1, 1);
-            ouest = context.getImageData(tab[0]-1, tab[1], 1, 1);
-
             //NORD
-            if(tab[1]-1 >= 0 && pixel[0] == nord.data[0] && pixel[1] == nord.data[1] && pixel[2] == nord.data[2] && pixel[3] == nord.data[3]){
-              tab.push(tab[0], tab[1]-1);
-              setPixel(tab[0], tab[1]-1);
+            if(tab[1]-1 >= 0){
+              nord = context.getImageData(tab[0], tab[1]-1, 1, 1);
+              if(pixel[0] == nord.data[0] && pixel[1] == nord.data[1] && pixel[2] == nord.data[2] && pixel[3] == nord.data[3]){
+                tab.push(tab[0], tab[1]-1);
+                setPixel(tab[0], tab[1]-1);
+              }
             }
 
             //SUD
-            if(tab[1]+1 <= canvas.height && pixel[0] == sud.data[0] && pixel[1] == sud.data[1] && pixel[2] == sud.data[2] && pixel[3] == sud.data[3]){
-              tab.push(tab[0], tab[1]+1);
-              setPixel(tab[0], tab[1]+1);
+            if(tab[1]+1 <= canvas.height){
+              sud = context.getImageData(tab[0], tab[1]+1, 1, 1);
+              if(pixel[0] == sud.data[0] && pixel[1] == sud.data[1] && pixel[2] == sud.data[2] && pixel[3] == sud.data[3]){
+                tab.push(tab[0], tab[1]+1);
+                setPixel(tab[0], tab[1]+1);
+              }
             }
 
             //OUEST
-            if(tab[0]-1 >= 0 && pixel[0] == ouest.data[0] && pixel[1] == ouest.data[1] && pixel[2] == ouest.data[2] && pixel[3] == ouest.data[3]){
-              tab.push(tab[0]-1, tab[1]);
-              setPixel(tab[0]-1, tab[1]);
+            if(tab[0]-1 >= 0){
+              ouest = context.getImageData(tab[0]-1, tab[1], 1, 1);
+              if(pixel[0] == ouest.data[0] && pixel[1] == ouest.data[1] && pixel[2] == ouest.data[2] && pixel[3] == ouest.data[3]){
+                tab.push(tab[0]-1, tab[1]);
+                setPixel(tab[0]-1, tab[1]);
+              }
             }
 
             //EST
-            if(tab[0]+1 <= canvas.width && pixel[0] == est.data[0] && pixel[1] == est.data[1] && pixel[2] == est.data[2] && pixel[3] == est.data[3]){
-              tab.push(tab[0]+1, tab[1]);
-              setPixel(tab[0]+1, tab[1]);
+            if(tab[0]+1 <= canvas.width){
+              est = context.getImageData(tab[0]+1, tab[1], 1, 1);
+              if(pixel[0] == est.data[0] && pixel[1] == est.data[1] && pixel[2] == est.data[2] && pixel[3] == est.data[3]){
+                tab.push(tab[0]+1, tab[1]);
+                setPixel(tab[0]+1, tab[1]);
+              }
             }
             tab.shift();
             tab.shift();
