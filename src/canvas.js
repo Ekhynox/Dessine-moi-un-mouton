@@ -402,52 +402,55 @@ function setPixel(posx, posy)
 
   document.addEventListener('mousemove', function (mouse) {
     if(game){
-      if (isDrawing && drawPinceau) {
-        var pos = getMousePos(canvas, mouse); // position (x,y) du crayon
-        context.lineTo(pos.x, pos.y); // dessiner une ligne
-        context.stroke();
-      }
+      var posBegin = getMousePos(canvas, mouse); // position (x,y) du crayon
+      if(posBegin.x > 0 && posBegin.x < canvas.width && posBegin.y > 0 && posBegin.y < canvas.height){
+        if (isDrawing && drawPinceau) {
+          var pos = getMousePos(canvas, mouse); // position (x,y) du crayon
+          context.lineTo(pos.x, pos.y); // dessiner une ligne
+          context.stroke();
+        }
 
-      if (isDrawing && drawRectangle)
-      {
-        drawDataURIOnCanvas(sourceCanvas);
-        posEnd = getMousePos(canvas, mouse); // position (x,y) du crayon
-        context.beginPath();
-        context.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
-      }
-      if (isDrawing && drawRectangleFull)
-      {
-        drawDataURIOnCanvas(sourceCanvas);
-        posEnd = getMousePos(canvas, mouse); // position (x,y) du crayon
-        context.beginPath();
-        context.fillRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
-      }
+        if (isDrawing && drawRectangle)
+        {
+          drawDataURIOnCanvas(sourceCanvas);
+          posEnd = getMousePos(canvas, mouse); // position (x,y) du crayon
+          context.beginPath();
+          context.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
+        }
+        if (isDrawing && drawRectangleFull)
+        {
+          drawDataURIOnCanvas(sourceCanvas);
+          posEnd = getMousePos(canvas, mouse); // position (x,y) du crayon
+          context.beginPath();
+          context.fillRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
+        }
 
-      if(isDrawing && drawCircle)
-      {
-        drawDataURIOnCanvas(sourceCanvas);
-        posEnd=getMousePos(canvas,mouse);
-        context.beginPath();
-        context.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x), Math.abs(posEnd.y - posInit.y), 0, 0, 2*Math.PI);
-        context.stroke();
-      }
-      if(isDrawing && drawCircleFull)
-      {
-        drawDataURIOnCanvas(sourceCanvas);
-        posEnd=getMousePos(canvas,mouse);
-        context.beginPath();
-        context.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x), Math.abs(posEnd.y - posInit.y), 0, 0, 2*Math.PI);
-        context.fill();
-      }
+        if(isDrawing && drawCircle)
+        {
+          drawDataURIOnCanvas(sourceCanvas);
+          posEnd=getMousePos(canvas,mouse);
+          context.beginPath();
+          context.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x), Math.abs(posEnd.y - posInit.y), 0, 0, 2*Math.PI);
+          context.stroke();
+        }
+        if(isDrawing && drawCircleFull)
+        {
+          drawDataURIOnCanvas(sourceCanvas);
+          posEnd=getMousePos(canvas,mouse);
+          context.beginPath();
+          context.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x), Math.abs(posEnd.y - posInit.y), 0, 0, 2*Math.PI);
+          context.fill();
+        }
 
-      if(isDrawing && drawLine)
-      {
-        drawDataURIOnCanvas(sourceCanvas);
-        posEnd=getMousePos(canvas,mouse);
-        context.beginPath();
-        context.moveTo(posInit.x, posInit.y);
-        context.lineTo(posEnd.x, posEnd.y);
-        context.stroke();
+        if(isDrawing && drawLine)
+        {
+          drawDataURIOnCanvas(sourceCanvas);
+          posEnd=getMousePos(canvas,mouse);
+          context.beginPath();
+          context.moveTo(posInit.x, posInit.y);
+          context.lineTo(posEnd.x, posEnd.y);
+          context.stroke();
+        }
       }
     }
   });
