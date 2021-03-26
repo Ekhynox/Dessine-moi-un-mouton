@@ -58,10 +58,16 @@ var fillIn = false;
 var sourceCanvas;
 
 //Fonction sur le pinceau
+var rgbcolor;
+
 export function ColorChange(hex){
     isDrawing = false;
     context.strokeStyle = hex; // change la couleur du trait
     context.fillStyle = hex;
+
+    const hexRgb = require('hex-rgb');
+    rgbcolor = hexRgb(hex);
+    console.log(rgbcolor);
 }
 
 /*
@@ -290,9 +296,34 @@ function drawDataURIOnCanvas(strDataURI)  //elle prend en param l'url d'une imag
         posInit=getMousePos(canvas,mouse);
         isDrawing = true;
         context.beginPath();
+        var imageData = context.getImageData(posInit.x, posInit.y, 1, 1);
+        var pixel = imageData.data;
+        console.log(pixel);
+        var tab = [];
+        while(tab.length != 0)
+        {
+          var nord = context.getImageData(posInit.x, posInit.y+1, 1, 1);
+          var sud = context.getImageData(posInit.x, posInit.y-1, 1, 1);
+          var est = context.getImageData(posInit.x+1, posInit.y, 1, 1);
+          var ouest = context.getImageData(posInit.x-1, posInit.y, 1, 1);
+          if((nord.data[0] == pixel.data[0]) && (nord.data[1] == pixel.data[1]) && (nord.data[2] == pixel.data[2]) && (nord.data[3] == pixel.data[3])){
+            tab.push(x, y); 
+          }
+        }
       }
     }
   });
+
+function setPixel(posx, posy)
+{
+  var newColor = context.createImageData(1,1);
+  newColor.data[0] = 100;
+  newColor.data[1] = 100;
+  newColor.data[2] = 255;
+  newColor.data[3] = 255;
+  context.putImageData(newColor, posx, posy);
+  console.log(newColor);
+}
 
   document.addEventListener('mouseup', function (mouse) { //on arrete le dessin
     if(game){
