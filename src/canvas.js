@@ -58,16 +58,15 @@ var fillIn = false;
 var sourceCanvas;
 
 //Fonction sur le pinceau
-var rgbcolor;
+const hexRgb = require('hex-rgb');
+var rgbcolor = hexRgb('#000');
 
 export function ColorChange(hex){
     isDrawing = false;
     context.strokeStyle = hex; // change la couleur du trait
     context.fillStyle = hex;
-
-    const hexRgb = require('hex-rgb');
     rgbcolor = hexRgb(hex);
-    console.log(rgbcolor);
+    console.log(rgbcolor.red);
 }
 
 /*
@@ -250,64 +249,91 @@ function drawDataURIOnCanvas(strDataURI)  //elle prend en param l'url d'une imag
 
   document.addEventListener('mousedown', function(mouse) //on commence le dessin
   {
-
-    if(game ){
+    if(game){
       var posBegin = getMousePos(canvas, mouse); // position (x,y) du crayon
       sourceCanvas = canvas.toDataURL('image/jpeg', 1.0);
-      if (drawPinceau && posBegin.x > 0 && posBegin.y > 0 && posBegin.x < 600 && posBegin.y < 600)
-      {
-        isDrawing = true;
-        posInit = getMousePos(canvas, mouse); // position (x,y) du crayon
-        context.beginPath();
-        context.arc(posInit.x, posInit.y, context.lineWidth/2, 0, 2 * Math.PI, false);
-        context.fill();
-
-        context.beginPath(); // commencer un nouveau trait
-        context.lineCap = 'round';
-        context.moveTo(posInit.x, posInit.y); //déplacer le crayon avec la méthode à la nouvelle position
-      }
-      if (drawRectangle)
-      {
-        posInit=getMousePos(canvas,mouse);
-        isDrawing = true;
-      }
-      if (drawRectangleFull)
-      {
-        posInit=getMousePos(canvas,mouse);
-        isDrawing = true;
-      }
-      if(drawCircle)
-      {
-        posInit=getMousePos(canvas,mouse);
-        isDrawing = true;
-      }
-      if(drawCircleFull)
-      {
-        posInit=getMousePos(canvas,mouse);
-        isDrawing = true;
-      }
-      if(drawLine)
-      {
-        posInit=getMousePos(canvas,mouse);
-        isDrawing = true;
-      }
-      if(fillIn)
-      {
-        posInit=getMousePos(canvas,mouse);
-        isDrawing = true;
-        context.beginPath();
-        var imageData = context.getImageData(posInit.x, posInit.y, 1, 1);
-        var pixel = imageData.data;
-        console.log(pixel);
-        var tab = [];
-        while(tab.length != 0)
+      if(posBegin.x > 0 && posBegin.x < canvas.width && posBegin.y > 0 && posBegin.y < canvas.height){
+        if (drawPinceau && posBegin.x > 0 && posBegin.y > 0 && posBegin.x < 600 && posBegin.y < 600)
         {
-          var nord = context.getImageData(posInit.x, posInit.y+1, 1, 1);
-          var sud = context.getImageData(posInit.x, posInit.y-1, 1, 1);
-          var est = context.getImageData(posInit.x+1, posInit.y, 1, 1);
-          var ouest = context.getImageData(posInit.x-1, posInit.y, 1, 1);
-          if((nord.data[0] == pixel.data[0]) && (nord.data[1] == pixel.data[1]) && (nord.data[2] == pixel.data[2]) && (nord.data[3] == pixel.data[3])){
-            tab.push(x, y); 
+          isDrawing = true;
+          posInit = getMousePos(canvas, mouse); // position (x,y) du crayon
+          context.beginPath();
+          context.arc(posInit.x, posInit.y, context.lineWidth/2, 0, 2 * Math.PI, false);
+          context.fill();
+
+          context.beginPath(); // commencer un nouveau trait
+          context.lineCap = 'round';
+          context.moveTo(posInit.x, posInit.y); //déplacer le crayon avec la méthode à la nouvelle position
+        }
+        if (drawRectangle)
+        {
+          posInit=getMousePos(canvas,mouse);
+          isDrawing = true;
+        }
+        if (drawRectangleFull)
+        {
+          posInit=getMousePos(canvas,mouse);
+          isDrawing = true;
+        }
+        if(drawCircle)
+        {
+          posInit=getMousePos(canvas,mouse);
+          isDrawing = true;
+        }
+        if(drawCircleFull)
+        {
+          posInit=getMousePos(canvas,mouse);
+          isDrawing = true;
+        }
+        if(drawLine)
+        {
+          posInit=getMousePos(canvas,mouse);
+          isDrawing = true;
+        }
+        if(fillIn)
+        {
+          posInit=getMousePos(canvas,mouse);
+          isDrawing = true;
+          context.beginPath();
+          var imageData = context.getImageData(posInit.x, posInit.y, 1, 1);
+          var pixel = imageData.data;
+          var pixelPos = posInit;
+          var tab = [];
+          tab.push(pixelPos.x, pixelPos.y);
+          console.log("tab = " + tab);
+          var nord, sud,est,ouest;
+          while(tab.length != 0)
+          {
+            nord = context.getImageData(tab[0], tab[1]-1, 1, 1);
+            sud = context.getImageData(tab[0], tab[1]+1, 1, 1);
+            est = context.getImageData(tab[0]+1, tab[1], 1, 1);
+            ouest = context.getImageData(tab[0]-1, tab[1], 1, 1);
+
+            //NORD
+            if(tab[1]-1 >= 0 && pixel[0] == nord.data[0] && pixel[1] == nord.data[1] && pixel[2] == nord.data[2] && pixel[3] == nord.data[3]){
+              tab.push(tab[0], tab[1]-1);
+              setPixel(tab[0], tab[1]-1);
+            }
+
+            //SUD
+            if(tab[1]+1 <= canvas.height && pixel[0] == sud.data[0] && pixel[1] == sud.data[1] && pixel[2] == sud.data[2] && pixel[3] == sud.data[3]){
+              tab.push(tab[0], tab[1]+1);
+              setPixel(tab[0], tab[1]+1);
+            }
+
+            //OUEST
+            if(tab[0]-1 >= 0 && pixel[0] == ouest.data[0] && pixel[1] == ouest.data[1] && pixel[2] == ouest.data[2] && pixel[3] == ouest.data[3]){
+              tab.push(tab[0]-1, tab[1]);
+              setPixel(tab[0]-1, tab[1]);
+            }
+
+            //EST
+            if(tab[0]+1 <= canvas.width && pixel[0] == est.data[0] && pixel[1] == est.data[1] && pixel[2] == est.data[2] && pixel[3] == est.data[3]){
+              tab.push(tab[0]+1, tab[1]);
+              setPixel(tab[0]+1, tab[1]);
+            }
+            tab.shift();
+            tab.shift();
           }
         }
       }
@@ -317,12 +343,12 @@ function drawDataURIOnCanvas(strDataURI)  //elle prend en param l'url d'une imag
 function setPixel(posx, posy)
 {
   var newColor = context.createImageData(1,1);
-  newColor.data[0] = 100;
-  newColor.data[1] = 100;
-  newColor.data[2] = 255;
+  newColor.data[0] = rgbcolor.red;
+  newColor.data[1] = rgbcolor.green;
+  newColor.data[2] = rgbcolor.blue;
   newColor.data[3] = 255;
   context.putImageData(newColor, posx, posy);
-  console.log(newColor);
+  //console.log(newColor);
 }
 
   document.addEventListener('mouseup', function (mouse) { //on arrete le dessin
@@ -362,11 +388,6 @@ function setPixel(posx, posy)
         context.moveTo(posInit.x, posInit.y);
         context.lineTo(posEnd.x, posEnd.y);
         context.stroke();
-      }
-      if(isDrawing && fillIn)
-      {
-        posEnd=getMousePos(canvas,mouse);
-        //context.fillStyle;
       }
       isDrawing = false;
     }
