@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import App from './App';
 import Peer from 'peerjs';
 import {SetJeu,SetWaiting, SetPlayer, GetPlayer, SetTab, GetTab, Connected} from './index';
+import {PersonItem} from './WaitingRoom';
+import { Column, Row, Item } from '@mui-treasury/components/flex';
 
 //Canvas
 var canvas;
@@ -117,18 +119,19 @@ function messageTemp(data){
   chatBox.appendChild(div1);
 }
 
-function setPool(){
+export function setPool(){
   var tabPlayer = GetTab();
   console.log(tabPlayer);
   var playerBox = document.getElementById("playerZone")
   playerBox.innerHTML = " ";
   for(let i=0; i<tabPlayer.length; i++){
     var div = document.createElement("div");
-    div.innerHTML = tabPlayer[i].pseudos;
+    const elem = `<PersonItem name={'`+ tabPlayer[i].pseudos + `'} src={'` + tabPlayer[i].avatar+`'} />`;
+    div.textContent += elem;
+    //div.innerHTML += tabPlayer[i].pseudos;
     playerBox.appendChild(div);
   }
 }
-
 
 ////////////////////////////////////////////////////////
 //Stream

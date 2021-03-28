@@ -110,9 +110,8 @@ export default function SignInSide() {
   );
 }
 
-
-const PersonItem = ({ src, name, friendCount }) => {
-  const avatarStyles = useDynamicAvatarStyles({ size: 56 });
+export const PersonItem = ({ src, name}) => {
+  //const avatarStyles = useDynamicAvatarStyles({ size: 56 });
   return (
     <Row gap={2} p={2.5}>
       <Item>
