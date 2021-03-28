@@ -56,12 +56,16 @@ export function Send(message, pseudos) {
   msgBool = true;
   var msg = pseudos + " : " + message;
   messageTemp(msg);
-  for(let i = 0; i<tabPlayer.lenght; i++){
+  tabPlayer = GetTab();
+  console.log(tabPlayer);
+  for(let i = 0; i<tabPlayer.length; i++){
+    console.log(tabPlayer[i].peerID);
     conn = peer.connect(tabPlayer[i].peerID, {
         reliable: true
     });
     conn.on('open', function(id) {
         conn.send(msg);
+        console.log(msg);
     });
   }
 }
@@ -69,8 +73,8 @@ export function Send(message, pseudos) {
 ////////////////////////////////////////////////////////
 //Reception tabPlayer
 peer.on('connection', function(conn) {
-  if(msgBool == false){
-      conn.on('data', function(data){
+  conn.on('data', function(data){
+    //if(msgBool == false){
         console.log(data);
           SetTab(data);
           setPool();
@@ -82,27 +86,16 @@ peer.on('connection', function(conn) {
               conn = peer.connect(tabPlayer[i].peerID, {
                   reliable: true
               });
-
               conn.on('open', function(id) {
                 conn.send(GetPlayer());
               });
             }
           }
-      });
-    }
-    if(msgBool == true){
-      conn.on('data', function(data){
+      //  }
+      //else{
         messageTemp(data);
-        for(let i = 0; i<tabPlayer.length; i++){
-          conn = peer.connect(tabPlayer[i].peerID, {
-            reliable: true
-          });
-          conn.on('open', function(id) {
-            conn.send(data);
-          });
-        }
+      //}
       });
-    }
 });
 
 ///////////////////////////////////////////////////////
@@ -143,7 +136,6 @@ function VideoStream(myStream){
   var video = document.getElementById('Video');
   video.srcObject = myStream;
 }
-
 ////////////////////////////////////////////////////////
 //Connexion Stream
 export function Connexion(id) {
