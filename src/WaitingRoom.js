@@ -19,13 +19,21 @@ export default function SignInSide() {
      var abc = MyId();
      console.log(abc);
      document.getElementById("zoneId").innerHTML = abc;
+     //document.getElementById("textAndButton").innerHTML = "";
   };
 
   const start = () => {
+      var id = document.getElementById("peerID").value;
+      console.log(id.value);
+      SetJeu();
+      setTimeout(() => { Connexion(id); }, 1000); //PROMISE !! /!\ !!
+  }
+
+  const addpool = () => {
     var id = document.getElementById("peerID").value;
-    console.log(id.value);
-    SetJeu();
-    setTimeout(() => { Connexion(id); }, 1000); //PROMISE !! /!\ !!
+    CoWaitingRoom(id);
+    //document.getElementById("zoneId").innerHTML = "";
+    //document.getElementById("textAndButton").innerHTML = "";
   }
 
   return (
@@ -54,24 +62,26 @@ export default function SignInSide() {
            onClick={getPeerId}
          >Générer une ID</Button>
          </div>
-         <TextField
-           variant="outlined"
-           margin="normal"
-           required
-           fullWidth
-           id="peerID"
-           label="Host_Id"
-           name="HostId"
-           autoComplete="Host_Id"
-           autoFocus
-         />
-         <Button
-           type="submit"
-           fullWidth
-           variant="contained"
-           color="primary"
-           onClick={CoWaitingRoom}
-         >Connexion</Button>
+         <div id='textAndButton'>
+           <TextField
+             variant="outlined"
+             margin="normal"
+             required
+             fullWidth
+             id="peerID"
+             label="Host_Id"
+             name="HostId"
+             autoComplete="Host_Id"
+             autoFocus
+           />
+           <Button
+             type="submit"
+             fullWidth
+             variant="contained"
+             color="primary"
+             onClick={addpool}
+           >Connexion</Button>
+          </div>
         </div>
       </Grid>
       <Grid item xs={12} sm={3} elevation={6} square className={classes.cardchat}>

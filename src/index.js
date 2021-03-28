@@ -8,11 +8,23 @@ import AppViewer from './AppViewer';
 import Peer from 'peerjs';
 import SignInSide from './SignInSide';
 import WaitingRoom from './WaitingRoom';
-import {Connexion, SetCanvas, Send} from './connexion';
+import {Connexion, SetCanvas, Send, MyId} from './connexion';
 import {SetCanvasDraw} from './canvas';
 
 var tabPlayer = [];
 var player;
+
+export function SetTab(playerInfo){
+  tabPlayer.push(playerInfo);
+}
+
+export function GetTab(){
+  return tabPlayer;
+}
+
+export function Connected(id){
+  tabPlayer[id].co = true;
+}
 
 export function SetPlayer(playerInfo){
   player = playerInfo;
@@ -39,6 +51,7 @@ export function SetWaiting(){
   );
   setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
   setTimeout(() => { PlayerPool(); }, 100); //PROMISE !! /!\ !!
+  setTimeout(() => { player.peerID = MyId(); }, 100); //PROMISE !! /!\ !!
 }
 
 export function SetJeu(){

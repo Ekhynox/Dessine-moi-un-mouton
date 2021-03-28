@@ -5,7 +5,7 @@ import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseli
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
 import {CoWaitingRoom} from './connexion';
-import {SetWaiting, SetPlayer, PlayerPool} from './index';
+import {SetWaiting, SetPlayer, PlayerPool, SetTab, GetTab} from './index';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDynamicAvatarStyles } from '@mui-treasury/styles/avatar/dynamic';
 import logo from './Mylogo.jpg';
@@ -25,7 +25,8 @@ export default function SignInSide() {
     pseudos: "",
     avatar: "",
     peerID: "",
-    score: "",
+    score: "0",
+    co: false,
    }
 
  const changeAvatar = (img) => {
@@ -37,6 +38,7 @@ export default function SignInSide() {
     players.pseudos = document.getElementById("pseudos").value
     console.log(players);
     SetPlayer(players);
+    SetTab(players);
     SetWaiting();
   }
 
