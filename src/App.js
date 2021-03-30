@@ -53,6 +53,7 @@ function App() {
     <Grid container xs={12} component="main" className={classes.root}>
       <CssBaseline />
       <div id="wchoix">Ici on doit voir la liste de mots</div>
+      <div id="aff_time">Ici on doit voir le minuteur</div>
         <Grid item xs={false} sm={3} container direction="row" id="game">
           <Column p={1} gap={0} className={classes.cardjoueur}>
             <Row wrap p={2}>

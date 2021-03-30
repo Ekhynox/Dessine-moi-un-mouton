@@ -2,7 +2,7 @@
 Voila la liste des Fonctionnalités que nous souhaitons implémenter ! Celles qui ont déjà été réalisées sont signalées par un "X"
 
 -- Fonctionnalités basiques--
-- Un sablier (-+ 80sec)
+- Un sablier (-+ 80sec) X
 - Un espace dessin ("canva") X
 - plusieurs types de pinceau X
 - gomme / poubelle / bouton retour arrière X
