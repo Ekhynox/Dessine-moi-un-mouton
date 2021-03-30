@@ -6,8 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import App from './App';
 import Peer from 'peerjs';
 import {SetJeu,SetWaiting, SetPlayer, GetPlayer, SetTab, GetTab, Connected} from './index';
-import {PersonItem} from './WaitingRoom';
+//import {PersonItem} from './WaitingRoom';
 import { Column, Row, Item } from '@mui-treasury/components/flex';
+import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
 
 //Canvas
 var canvas;
@@ -55,7 +56,7 @@ export function CoWaitingRoom(id) {
 ////////////////////////////////////////////////////////
 //Envoyer des messages
 export function Send(message, pseudos) {
-  msgBool = true;
+  //msgBool = true;
   var msg = pseudos + " : " + message;
   messageTemp(msg);
   tabPlayer = GetTab();
@@ -119,17 +120,35 @@ function messageTemp(data){
   chatBox.appendChild(div1);
 }
 
+export const PersonItem = ({ src, name}) => {
+  //const avatarStyles = useDynamicAvatarStyles({ size: 56 });
+  return (
+    <Row gap={2} p={2.5}>
+      <Item>
+        <Avatar src={src} />
+      </Item>
+      <Row wrap grow gap={0.5} minWidth={0}>
+        <Item grow minWidth={0}>
+          <div>{name}</div>
+        </Item>
+      </Row>
+    </Row>
+  );
+};
+
 export function setPool(){
   var tabPlayer = GetTab();
   console.log(tabPlayer);
   var playerBox = document.getElementById("playerZone")
   playerBox.innerHTML = " ";
   for(let i=0; i<tabPlayer.length; i++){
-    var div = document.createElement("div");
-    const elem = `<PersonItem name={'`+ tabPlayer[i].pseudos + `'} src={'` + tabPlayer[i].avatar+`'} />`;
-    div.textContent += elem;
+    const el = React.createElement(PersonItem, {name : tabPlayer[i].pseudos , src : tabPlayer[i].avatar}, document.getElementById("playerZone"));
+    //const di = React.createElement(Divider, {variant : "middle" , className : "style.divider" }, document.getElementById("playerZone"));
+    ReactDOM.render(el, document.getElementById("playerZone"));
+    //ReactDOM.render(di, document.getElementById("playerZone"));
+    //div.textContent += elem;
     //div.innerHTML += tabPlayer[i].pseudos;
-    playerBox.appendChild(div);
+    //playerBox.appendChild(div);
   }
 }
 

@@ -301,13 +301,13 @@ function drawDataURIOnCanvas(strDataURI)  //elle prend en param l'url d'une imag
           var tab = [];
           tab.push(pixelPos.x, pixelPos.y);
           console.log("tab = " + tab);
-          var nord, sud,est,ouest;
+          var nord, sud, est,ouest;
           while(tab.length != 0)
           {
             //NORD
             if(tab[1]-1 >= 0){
               nord = context.getImageData(tab[0], tab[1]-1, 1, 1);
-              if(pixel[0] == nord.data[0] && pixel[1] == nord.data[1] && pixel[2] == nord.data[2] && pixel[3] == nord.data[3]){
+              if(pixel = nord.data[0] && pixel[1] == nord.data[1] && pixel[2] == nord.data[2] && pixel[3] == nord.data[3]){
                 tab.push(tab[0], tab[1]-1);
                 setPixel(tab[0], tab[1]-1);
               }
@@ -349,12 +349,15 @@ function drawDataURIOnCanvas(strDataURI)  //elle prend en param l'url d'une imag
 
 function setPixel(posx, posy)
 {
-  var newColor = context.createImageData(1,1);
+  context.fillStyle = rgbcolor;
+  context.fillRect(posx, posy, 1, 1);
+  /*
   newColor.data[0] = rgbcolor.red;
   newColor.data[1] = rgbcolor.green;
   newColor.data[2] = rgbcolor.blue;
   newColor.data[3] = 255;
-  context.putImageData(newColor, posx, posy);
+  */
+  //context.putImageData(newColor, posx, posy);
   //console.log(newColor);
 }
 
