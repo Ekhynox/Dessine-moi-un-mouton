@@ -29,6 +29,7 @@ var player;
 var rdy = false;
 var msgBool = false;
 var tabPlayer = GetTab();
+var tabConn = [];
 
 ////////////////////////////////////////////////////////
 //Mon ID peerJS
@@ -48,6 +49,7 @@ export function CoWaitingRoom(id) {
   });
   var player = GetPlayer();
   msgBool = false;
+  //tabConn.push(conn);
   conn.on('open', function(id) {
     conn.send(player);
   });
@@ -59,17 +61,12 @@ export function Send(message, pseudos) {
   //msgBool = true;
   var msg = pseudos + " : " + message;
   messageTemp(msg);
-  tabPlayer = GetTab();
-  console.log(tabPlayer);
-  for(let i = 0; i<tabPlayer.length; i++){
-    console.log(tabPlayer[i].peerID);
-    conn = peer.connect(tabPlayer[i].peerID, {
-        reliable: true
-    });
-    conn.on('open', function(id) {
-        conn.send(msg);
-        console.log(msg);
-    });
+  console.log(tabConn);
+  for(let i = 0; i<tabConn.length; i++){
+    console.log(tabConn[i]);
+    conn = tabConn[i];
+    conn.send(msg);
+    console.log(msg);
   }
 }
 
@@ -77,30 +74,32 @@ export function Send(message, pseudos) {
 //Reception tabPlayer
 peer.on('connection', function(conn) {
   conn.on('data', function(data){
-    //if(msgBool == false){
-        console.log(data);
-          SetTab(data);
-          setPool();
-          tabPlayer = GetTab();
-          for(let i = 0; i<tabPlayer.length; i++){
-            if(tabPlayer[i].co == false){
-              tabPlayer[i].co = true;
-              //Connected(i);
-              conn = peer.connect(tabPlayer[i].peerID, {
-                  reliable: true
-              });
-              conn.on('open', function(id) {
-                conn.send(GetPlayer());
-              });
-            }
-          }
-      //  }
-      //else{
-        messageTemp(data);
-      //}
+      messageTemp(data);
+      SetTab(data);
+      setPool();
+      tabPlayer = GetTab();
+      conn = peer.connect(data.peerID, {
+          reliable: true
       });
+      tabConn.push(conn);
+      tabPlayer = GetTab();
+      console.log(tabPlayer)
+      console.log(tabConn);
+      for(let i = 0; i<tabConn.length; i++){
+        conn = tabConn[i];
+        conn.on('open', function(id) {
+          conn.send(tabPlayer[i]);
+        });
+      }
+  });
+  console.log(tabConn);
+});
+/*
+conn.on('data', function(data){
+
 });
 
+*/
 ///////////////////////////////////////////////////////
 //Fonction render
 function messageTemp(data){
@@ -142,13 +141,14 @@ export function setPool(){
   var playerBox = document.getElementById("playerZone")
   playerBox.innerHTML = " ";
   for(let i=0; i<tabPlayer.length; i++){
-    const el = React.createElement(PersonItem, {name : tabPlayer[i].pseudos , src : tabPlayer[i].avatar}, document.getElementById("playerZone"));
+    var div = document.createElement("div");
+    //const el = React.createElement(PersonItem, {name : tabPlayer[i].pseudos , src : tabPlayer[i].avatar}, document.getElementById("playerZone"));
     //const di = React.createElement(Divider, {variant : "middle" , className : "style.divider" }, document.getElementById("playerZone"));
-    ReactDOM.render(el, document.getElementById("playerZone"));
+    //ReactDOM.render(el, document.getElementById("playerZone"));
     //ReactDOM.render(di, document.getElementById("playerZone"));
     //div.textContent += elem;
-    //div.innerHTML += tabPlayer[i].pseudos;
-    //playerBox.appendChild(div);
+    div.innerHTML += tabPlayer[i].pseudos;
+    playerBox.appendChild(div);
   }
 }
 
