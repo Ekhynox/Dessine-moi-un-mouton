@@ -11,8 +11,8 @@ Voila la liste des Fonctionnalités que nous souhaitons implémenter ! Celles qu
 - changer la couleur du canva (fond noir au lieu de blanc par exemple)
 - Quand on clique sur clear/gomme, le curseur redevient automatiquement un pinceau X
 - Ne pas compter la casse
-- un chat
-- randomiser de mots
+- un chat ~
+- randomiser de mots X
 - système de points
 - connexion : pseudo, pas de mp; X
 - PP = images X

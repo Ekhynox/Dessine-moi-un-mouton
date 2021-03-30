@@ -10,6 +10,7 @@ import SignInSide from './SignInSide';
 import WaitingRoom from './WaitingRoom';
 import {Connexion, SetCanvas, Send, MyId, setPool} from './connexion';
 import {SetCanvasDraw} from './canvas';
+import {Words_list} from './words';
 
 var tabPlayer = [];
 var player;
@@ -64,6 +65,7 @@ export function SetJeu(){
   );
   setTimeout(() => { start(); }, 100); //PROMISE !! /!\ !!
   setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
+  setTimeout(() => { Words_list(); }, 100); //PROMISE !! /!\ !!
 }
 
 function chat(){
