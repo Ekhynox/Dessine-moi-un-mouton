@@ -13,7 +13,7 @@ import { SiCurl } from "react-icons/si";
 import { VscPaintcan } from 'react-icons/vsc';
 import { RiArrowGoBackFill } from "react-icons/ri";
 //import Material-ui from '@material-ui';
-import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
+import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, LinearProgress, Link, Paper, TextField, Typography } from '@material-ui/core';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
 import { makeStyles } from '@material-ui/core/styles';
 // fonction
@@ -27,6 +27,8 @@ import avatar4 from './img/4.jpg';
 import avatar5 from './img/5.jpg';
 import avatar6 from './img/6.jpg';
 import cx from 'clsx';
+
+import PropTypes from "prop-types";
 
 
 function App() {
@@ -49,11 +51,53 @@ function App() {
     );
   };
 
+//fonction minuteur
+  var MIN = 0; // MIN = Minimum expected value
+  var MAX = 80; // MAX = Maximium expected value
+
+  const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
+
+  function LinearProgressWithLabel(props) {
+    return (
+      <Box display="flex" alignItems="center">
+        <Box className={classes.minuteur} mr={1}>
+          <LinearProgress variant="determinate" value={normalise(props.value)} />
+        </Box>
+        <Box minWidth={35}>
+          <Typography variant="body2" color="textSecondary">{`${Math.round(
+            props.value
+          )}Sec`}</Typography>
+        </Box>
+      </Box>
+    );
+  }
+
+  LinearProgressWithLabel.propTypes = {
+    /**
+     * The value of the progress indicator for the determinate and buffer variants.
+     * Value between 0 and 100.
+     */
+    value: PropTypes.number.isRequired
+  };
+
+  const [progress, setProgress] = React.useState(MIN);
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((prevProgress) =>
+        prevProgress >= MAX ? 0 : prevProgress + 1 // 0 a remplacer  avec une fonctio
+      );
+    }, 1000);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+//fin minuteur
+
   return (
     <Grid container xs={12} component="main" className={classes.root}>
       <CssBaseline />
       <div id="wchoix">Ici on doit voir la liste de mots</div>
-      <div id="aff_time">Ici on doit voir le minuteur</div>
         <Grid item xs={false} sm={3} container direction="row" id="game">
           <Column p={1} gap={0} className={classes.cardjoueur}>
             <Row wrap p={2}>
@@ -67,6 +111,9 @@ function App() {
         <Grid item xs={false} sm={4} elevation={6} square>
 
             <Row wrap p={2}>
+              <Row className={classes.minuteur}>
+                <LinearProgressWithLabel value={progress} />
+              </Row>
               <Row className={classes.canvas}>
                 <div className="drawbox">
                   <canvas id="DrawBox" width="600" height="600"></canvas>
@@ -134,6 +181,10 @@ const useStyles = makeStyles((theme) => ({
 
   center:{
     margin: theme.spacing('auto', 'auto'),
+  },
+
+  minuteur:{
+      width: "100vh",
   },
 
   paper: {
