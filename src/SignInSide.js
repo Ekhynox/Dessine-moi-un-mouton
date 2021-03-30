@@ -15,7 +15,8 @@ import avatar3 from './img/3.jpg';
 import avatar4 from './img/4.jpg';
 import avatar5 from './img/5.jpg';
 import avatar6 from './img/6.jpg';
-
+import avatar7 from './img/7.jpg';
+import avatar8 from './img/8.jpg';
 
 export default function SignInSide() {
   const classes = useStyles();
@@ -59,8 +60,8 @@ export default function SignInSide() {
           <Row alignItems={'baseline'} className={classes.avatarchoice}>
             <Avatar onClick={changeAvatar} className={classes.large} alt="avatar5" src={avatar5} />
             <Avatar onClick={changeAvatar} className={classes.large} alt="avatar6" src={avatar6} />
-            <Avatar onClick={changeAvatar} className={classes.large} alt="avatar3" src={avatar3} />
-            <Avatar onClick={changeAvatar} className={classes.large} alt="avatar4" src={avatar4} />
+            <Avatar onClick={changeAvatar} className={classes.large} alt="avatar7" src={avatar7} />
+            <Avatar onClick={changeAvatar} className={classes.large} alt="avatar8" src={avatar8} />
           </Row>
           <Row flexDirection={'row-reverse'} className={classes.copyright}><p>All righs reserved to <b><i>PlaceIt!</i></b></p></Row>
         </Column>
