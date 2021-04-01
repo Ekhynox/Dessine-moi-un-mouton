@@ -13,7 +13,7 @@ import { SiCurl } from "react-icons/si";
 import { VscPaintcan } from 'react-icons/vsc';
 import { RiArrowGoBackFill } from "react-icons/ri";
 //import Material-ui from '@material-ui';
-import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, LinearProgress, Link, Paper, TextField, Typography } from '@material-ui/core';
+import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, LinearProgress, Link, Modal, Paper, TextField, Typography } from '@material-ui/core';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
 import { makeStyles } from '@material-ui/core/styles';
 // fonction
@@ -33,6 +33,18 @@ import PropTypes from "prop-types";
 
 function App() {
   const classes = useStyles();
+  const rootRef = React.useRef(null);
+  //fonction pour gérer l'état de la fenêtre modal
+  const [open, setOpen] = React.useState(true);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   //const colorChange = ({ hex }) => hex = ColorChange(hex); // fonction change la couleur du pinceau
   const colorChange = ({hex}) => {
     hex = ColorChange(hex); // fonction change la couleur du pinceau
@@ -97,7 +109,20 @@ function App() {
   return (
     <Grid container xs={12} component="main" className={classes.root}>
       <CssBaseline />
-      <div id="wchoix">Ici on doit voir la liste de mots</div>
+        <Modal disablePortal
+              disableEnforceFocus
+              disableAutoFocus
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="simple-modal-title"
+              aria-describedby="simple-modal-description"
+              className={classes.modal}
+              container={() => rootRef.current}>
+             <div className={classes.choixmots}>
+                <Item stretched> Choisissez un mot</Item>
+                <p id="wchoix"></p>
+             </div>
+        </Modal>
         <Grid item xs={false} sm={3} container direction="row" id="game">
           <Column p={1} gap={0} className={classes.cardjoueur}>
             <Row wrap p={2}>
@@ -297,6 +322,30 @@ const useStyles = makeStyles((theme) => ({
       width: '23%',
       height: '80%',
     },
+
+    modal: {
+    height: 300,
+    flexGrow: 1,
+    minWidth: 300,
+    display: 'flex',
+    padding: theme.spacing(8, 3, 4),
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  choixmots: {
+    width: '40%',
+    height: '80%',
+    borderRadius: 16,
+    boxShadow: '0 8px 16px 0 #BDC9D7',
+    overflow: 'hidden',
+    fontSize: '1.25rem',
+    fontWeight: 600,
+    flexWrap: 'wrap',
+    padding: theme.spacing(2, 4, 3),
+    background:'rgba(240, 160, 240, 0.70)',
+  },
+
 }));
 
 export default App

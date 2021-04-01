@@ -19,7 +19,8 @@ export function Words_list()
       words_use.push(tt);
   }
   document.getElementById("wchoix").innerHTML = words_use.map(
-    d => `<button id="choose_word" value="${d}"> ${d} </button>`);//crée l'HTML des propositions
+   d => `<button id="choose_word" value="${d}" onClick={handleClose}> ${d} </button>`);//crée l'HTML des propositions
+//d => React.createElement(button, {id : "choose_word", value : "${d}", onClick : {handleClose} }, document.getElementById("choose_word")));
 
     function Click_choose_word(val) {
       words_use=[]; //liste de propositions vider
