@@ -52,7 +52,7 @@ export function SetWaiting(){
   document.getElementById('root')
   );
   setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
-  setTimeout(() => { setPool(); }, 100); //PROMISE !! /!\ !!
+  setTimeout(() => { setPool(tabPlayer); }, 100); //PROMISE !! /!\ !!
   setTimeout(() => { player.peerID = MyId(); }, 100); //PROMISE !! /!\ !!
 }
 

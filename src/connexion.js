@@ -59,9 +59,14 @@ export function ConnectionToHost(id){
 }
 
 function coWaitingRoom() {
+  tabPlayer = GetTab();
+  setPool(tabPlayer);
   for(let i = 0; i<tabConn.length; i++){
     conn = tabConn[i];
-    conn.send(tabPlayer);
+    conn.on('open', function(id) {
+      conn.send(tabPlayer);
+    });
+    console.log(tabPlayer);
   }
 }
 
@@ -83,57 +88,47 @@ export function SendToAll(msg){
   }
 }
 
-/*
 ////////////////////////////////////////////////////////
-//Reception tabPlayer
+//Reception
 peer.on('connection', function(conn) {
   conn.on('data', function(data){
-    //if(msgBool == false){
-        console.log(data);
-          tabConn
-          setPool();
-          tabPlayer = GetTab();
-          for(let i = 0; i<tabPlayer.length; i++){
-            if(tabPlayer[i].co == false){
-              tabPlayer[i].co = true;
-              //Connected(i);
-              conn = peer.connect(tabPlayer[i].peerID, {
-                  reliable: true
-              });
-              conn.on('open', function(id) {
-                conn.send(GetPlayer());
-              });
-            }
-          }
-        messageTemp(data);
-    });
-});
-*/
-////////////////////////////////////////////////////////
-//Reception tabPlayer
-peer.on('connection', function(conn) {
-  conn.on('data', function(data){
+    console.log(data);
     var me = GetPlayer();
     if(me.etat == "host"){
-      tabPlayer = GetTab();
-      tabPlayer.push(data);
-      conn = peer.connect(data.peerID, {
-          reliable: true
-      });
-      tabConn.push(conn);
-      SendToAll(data);
-      //coWaitingRoom();
+      if(data.co == false){
+        data.co = true;
+        conn = peer.connect(data.peerID, {
+            reliable: true
+        });
+        tabConn.push(conn);
+        SetTab(data);
+        coWaitingRoom();
+      }
+      else{
+        SendToAll(data);
+        //coWaitingRoom();
+      }
     }
     else{
-      messageTemp(data);
+      if(data[0].etat == "host"){
+        setPool(data);
+        console.log(data);
+      }
+      else{
+        messageTemp(data);
+        console.log(data);
+      }
     }
   });
 });
 
+peer.on('open', function(id) {
+  console.log('My peer ID is: ' + id);
+});
 
 
-function notInTab(tab, data){
-  if(tabPlayer.lenght > 0){
+function inTab(tab, data){
+  if(tabPlayer.length > 0){
     for(let i = 0; i<tab.length;i++){
       if(tab[i].peerID == data[i].peerID){
         return true;
@@ -179,12 +174,12 @@ export const PersonItem = ({ src, name}) => {
   );
 };
 
-export function setPool(){
-  tabPlayer = GetTab();
-  console.log(tabPlayer);
-  var playerBox = document.getElementById("playerZone")
+export function setPool(data){
+  tabPlayer = data;
+  console.log(data);
+  var playerBox = document.getElementById("playerZone");
   playerBox.innerHTML = " ";
-    for(let i=0; i<tabPlayer.lenght; i++){
+    for(let i=0; i<tabPlayer.length; i++){
       var div = document.createElement("div");
       //const el = React.createElement(PersonItem, {name : tabPlayer[i].pseudos , src : tabPlayer[i].avatar}, document.getElementById("playerZone"));
       //const di = React.createElement(Divider, {variant : "middle" , className : "style.divider" }, document.getElementById("playerZone"));

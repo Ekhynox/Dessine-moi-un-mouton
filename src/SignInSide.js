@@ -26,10 +26,9 @@ export default function SignInSide() {
     pseudos: "",
     avatar: "",
     peerID: "",
-    conn: [],
     score: "0",
     co: false,
-    msg: "",
+    msg: false,
    }
 
  const changeAvatar = (img) => {
