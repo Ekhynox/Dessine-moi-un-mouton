@@ -101,9 +101,11 @@ function App() {
 
   React.useEffect(() => {
     const timer = setInterval(() => {
-      setProgress((prevProgress) =>
-        prevProgress >= MAX ? 0 : prevProgress + 1 // 0 a remplacer  avec une fonctio
-      );
+      if (Start_chrono()){
+        setProgress((prevProgress) =>
+          prevProgress >= MAX ? 0 : prevProgress + 1 // 0 a remplacer  avec une fonctio
+        );
+      }
     }, 1000);
     return () => {
       clearInterval(timer);
