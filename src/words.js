@@ -7,10 +7,14 @@ import {get_wordlist} from './wordslist';
 var words_copy=get_wordlist().slice();  //cree une copie de la liste de mots c'est avec elle qu'on évite les doublon
 var words_use=[]; //tab des 3 propositions de mots
 
-var chrono = false;
+var choisi = false;
 
-export function Start_chrono(){
-  return chrono;
+export function GetChoisi(){
+  return choisi;
+}
+
+export function SetChoisi(tmp){
+  choisi=tmp;
 }
 
 function Click_choose_word(val) {
@@ -20,7 +24,7 @@ function Click_choose_word(val) {
   if (ind !== -1)
     words_copy.splice(ind, 1);  //on suprime le mot de la liste que si il exist dedans
   document.getElementById("wchoixfinal").innerHTML= `<h3>${val}</h3>`
-  chrono=true;
+  choisi=true;
 }
 
 export function Words_list()
@@ -35,7 +39,7 @@ export function Words_list()
       words_use.push(tt);
   }
   document.getElementById("wchoix").innerHTML = words_use.map(
-   d => `<button id="choose_word" value="${d}" onClick={handleClose}> ${d} </button>`);//crée l'HTML des propositions
+   d => `<button id="choose_word" value="${d}"> ${d} </button>`);//crée l'HTML des propositions
 //d => React.createElement(button, {id : "choose_word", value : "${d}", onClick : {handleClose} }, document.getElementById("choose_word")));
 
 

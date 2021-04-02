@@ -20,7 +20,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import {Connexion, SetCanvas, Send} from './connexion';
 import {ColorChange, DownloadCanvasn, SetCanvasDraw} from './canvas';
 import {verybigPen, bigPen, smallPen, verysmallPen, erase, pinceau, clear, rect, rectfull, circle, circlefull, line, fill, save, undo} from './canvas';
-import {Start_chrono} from './words';
+import {GetChoisi, SetChoisi, Words_list} from './words';
 import avatar1 from './img/1.jpg';
 import avatar2 from './img/2.jpg';
 import avatar3 from './img/3.jpg';
@@ -44,7 +44,6 @@ function App() {
 
   const handleClose = () => {
     setOpen(false);
-    console.log("coucou fermeture modal");
   };
 
   //const colorChange = ({ hex }) => hex = ColorChange(hex); // fonction change la couleur du pinceau
@@ -65,14 +64,23 @@ function App() {
     );
   };
 
+//fonction fin de manche
+function endround(){
+  SetChoisi(false); //on n'a plus de mot choisi
+  handleOpen(); //on raffiche le modal
+  setTimeout(() => { Words_list(); }, 100); //on relance le choix du mot
+  document.getElementById("wchoixfinal").innerHTML=""; //on nettoie l'html
+  return 0; //On restart le chrono a 0;
+}
+
 //fonction minuteur
-  var MIN = 0; // MIN = Minimum expected value
-  var MAX = 80; // MAX = Maximium expected value
+  var MIN = 0; // MIN = Minimum expected value of time
+  var MAX = 80; // MAX = Maximium expected value of time
 
   const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
 
   function LinearProgressWithLabel(props) {
-    if (Start_chrono()){
+    if (GetChoisi()){ //On affiche le chrono que si on a choisi un mot
       return (
         <Box display="flex" alignItems="center">
           <Box className={classes.minuteur} mr={1}>
@@ -101,9 +109,9 @@ function App() {
 
   React.useEffect(() => {
     const timer = setInterval(() => {
-      if (Start_chrono()){
+      if (GetChoisi()){ //On lance le chrono que si on a choisi un mot
         setProgress((prevProgress) =>
-          prevProgress >= MAX ? 0 : prevProgress + 1 // 0 a remplacer  avec une fonctio
+          prevProgress >= MAX ? endround() : prevProgress + 1 // 0 a remplacer  avec une fonctio
         );
       }
     }, 1000);

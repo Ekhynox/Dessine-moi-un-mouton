@@ -11,7 +11,6 @@ import WaitingRoom from './WaitingRoom';
 import {Connexion, SetCanvas, Send, SendToAll, MyId, setPool} from './connexion';
 import {SetCanvasDraw} from './canvas';
 import {Words_list} from './words';
-import {CountDown} from './minuteur';
 
 var tabPlayer = [];
 var player;
@@ -67,7 +66,6 @@ export function SetJeu(){
   setTimeout(() => { start(); }, 100); //PROMISE !! /!\ !!
   setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
   setTimeout(() => { Words_list(); }, 100); //PROMISE !! /!\ !!
-  setTimeout(() => { CountDown(); }, 100); //PROMISE !! /!\ !!
 }
 
 function chat(){
