@@ -1,32 +1,34 @@
 {
   "files": {
     "main.css": "/Dessine-moi-un-mouton/static/css/main.985c6885.chunk.css",
-    "main.js": "/Dessine-moi-un-mouton/static/js/main.377e2005.chunk.js",
-    "main.js.map": "/Dessine-moi-un-mouton/static/js/main.377e2005.chunk.js.map",
-    "runtime-main.js": "/Dessine-moi-un-mouton/static/js/runtime-main.b35a8e25.js",
-    "runtime-main.js.map": "/Dessine-moi-un-mouton/static/js/runtime-main.b35a8e25.js.map",
+    "main.js": "/Dessine-moi-un-mouton/static/js/main.a793741f.chunk.js",
+    "main.js.map": "/Dessine-moi-un-mouton/static/js/main.a793741f.chunk.js.map",
+    "runtime-main.js": "/Dessine-moi-un-mouton/static/js/runtime-main.88e52b35.js",
+    "runtime-main.js.map": "/Dessine-moi-un-mouton/static/js/runtime-main.88e52b35.js.map",
     "static/css/2.658248ec.chunk.css": "/Dessine-moi-un-mouton/static/css/2.658248ec.chunk.css",
-    "static/js/2.75db3c97.chunk.js": "/Dessine-moi-un-mouton/static/js/2.75db3c97.chunk.js",
-    "static/js/2.75db3c97.chunk.js.map": "/Dessine-moi-un-mouton/static/js/2.75db3c97.chunk.js.map",
-    "static/js/3.178968e8.chunk.js": "/Dessine-moi-un-mouton/static/js/3.178968e8.chunk.js",
-    "static/js/3.178968e8.chunk.js.map": "/Dessine-moi-un-mouton/static/js/3.178968e8.chunk.js.map",
+    "static/js/2.b6b62866.chunk.js": "/Dessine-moi-un-mouton/static/js/2.b6b62866.chunk.js",
+    "static/js/2.b6b62866.chunk.js.map": "/Dessine-moi-un-mouton/static/js/2.b6b62866.chunk.js.map",
+    "static/js/3.a2332684.chunk.js": "/Dessine-moi-un-mouton/static/js/3.a2332684.chunk.js",
+    "static/js/3.a2332684.chunk.js.map": "/Dessine-moi-un-mouton/static/js/3.a2332684.chunk.js.map",
     "index.html": "/Dessine-moi-un-mouton/index.html",
     "static/css/2.658248ec.chunk.css.map": "/Dessine-moi-un-mouton/static/css/2.658248ec.chunk.css.map",
     "static/css/main.985c6885.chunk.css.map": "/Dessine-moi-un-mouton/static/css/main.985c6885.chunk.css.map",
-    "static/js/2.75db3c97.chunk.js.LICENSE.txt": "/Dessine-moi-un-mouton/static/js/2.75db3c97.chunk.js.LICENSE.txt",
+    "static/js/2.b6b62866.chunk.js.LICENSE.txt": "/Dessine-moi-un-mouton/static/js/2.b6b62866.chunk.js.LICENSE.txt",
     "static/media/1.3ced86bf.jpg": "/Dessine-moi-un-mouton/static/media/1.3ced86bf.jpg",
     "static/media/2.806601f5.jpg": "/Dessine-moi-un-mouton/static/media/2.806601f5.jpg",
     "static/media/3.75e9463d.jpg": "/Dessine-moi-un-mouton/static/media/3.75e9463d.jpg",
     "static/media/4.629d15b9.jpg": "/Dessine-moi-un-mouton/static/media/4.629d15b9.jpg",
     "static/media/5.c93cb95b.jpg": "/Dessine-moi-un-mouton/static/media/5.c93cb95b.jpg",
     "static/media/6.4c95e113.jpg": "/Dessine-moi-un-mouton/static/media/6.4c95e113.jpg",
+    "static/media/7.3bbc6554.jpg": "/Dessine-moi-un-mouton/static/media/7.3bbc6554.jpg",
+    "static/media/8.15172146.jpg": "/Dessine-moi-un-mouton/static/media/8.15172146.jpg",
     "static/media/Mylogo.0c955908.jpg": "/Dessine-moi-un-mouton/static/media/Mylogo.0c955908.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.b35a8e25.js",
+    "static/js/runtime-main.88e52b35.js",
     "static/css/2.658248ec.chunk.css",
-    "static/js/2.75db3c97.chunk.js",
+    "static/js/2.b6b62866.chunk.js",
     "static/css/main.985c6885.chunk.css",
-    "static/js/main.377e2005.chunk.js"
+    "static/js/main.a793741f.chunk.js"
   ]
 }
