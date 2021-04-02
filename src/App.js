@@ -20,6 +20,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import {Connexion, SetCanvas, Send} from './connexion';
 import {ColorChange, DownloadCanvasn, SetCanvasDraw} from './canvas';
 import {verybigPen, bigPen, smallPen, verysmallPen, erase, pinceau, clear, rect, rectfull, circle, circlefull, line, fill, save, undo} from './canvas';
+import {Start_chrono} from './words';
 import avatar1 from './img/1.jpg';
 import avatar2 from './img/2.jpg';
 import avatar3 from './img/3.jpg';
@@ -43,6 +44,7 @@ function App() {
 
   const handleClose = () => {
     setOpen(false);
+    console.log("coucou fermeture modal");
   };
 
   //const colorChange = ({ hex }) => hex = ColorChange(hex); // fonction change la couleur du pinceau
@@ -70,19 +72,22 @@ function App() {
   const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
 
   function LinearProgressWithLabel(props) {
-    return (
-      <Box display="flex" alignItems="center">
-        <Box className={classes.minuteur} mr={1}>
-          <LinearProgress variant="determinate" value={normalise(props.value)} />
+    if (Start_chrono()){
+      return (
+        <Box display="flex" alignItems="center">
+          <Box className={classes.minuteur} mr={1}>
+            <LinearProgress variant="determinate" value={normalise(props.value)} />
+          </Box>
+          <Box minWidth={35}>
+            <Typography variant="body2" color="textSecondary">{`${Math.round(
+              props.value
+            )}Sec`}</Typography>
+          </Box>
         </Box>
-        <Box minWidth={35}>
-          <Typography variant="body2" color="textSecondary">{`${Math.round(
-            props.value
-          )}Sec`}</Typography>
-        </Box>
-      </Box>
-    );
-  }
+      );
+    }
+    return(<div/>);
+}
 
   LinearProgressWithLabel.propTypes = {
     /**
@@ -120,7 +125,7 @@ function App() {
               container={() => rootRef.current}>
              <div className={classes.choixmots}>
                 <Item stretched> Choisissez un mot</Item>
-                <p id="wchoix"></p>
+                <p id="wchoix" onClick={handleClose}></p>
              </div>
         </Modal>
         <Grid item xs={false} sm={3} container direction="row" id="game">
@@ -136,6 +141,9 @@ function App() {
         <Grid item xs={false} sm={4} elevation={6} square>
 
             <Row wrap p={2}>
+              <Row>
+                <div id="wchoixfinal"></div>
+              </Row>
               <Row className={classes.minuteur}>
                 <LinearProgressWithLabel value={progress} />
               </Row>
