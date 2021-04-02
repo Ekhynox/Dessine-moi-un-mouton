@@ -4,7 +4,7 @@ import React from 'react';
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
-import {CoWaitingRoom} from './connexion';
+import {ConnectionToHost} from './connexion';
 import {SetWaiting, SetPlayer, PlayerPool, SetTab, GetTab} from './index';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDynamicAvatarStyles } from '@mui-treasury/styles/avatar/dynamic';
@@ -22,12 +22,14 @@ export default function SignInSide() {
   const classes = useStyles();
 
   var players = {
-    etat: "viewer",
+    etat: "host",
     pseudos: "",
     avatar: "",
     peerID: "",
+    conn: [],
     score: "0",
     co: false,
+    msg: "",
    }
 
  const changeAvatar = (img) => {

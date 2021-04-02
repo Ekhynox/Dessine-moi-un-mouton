@@ -8,7 +8,7 @@ import AppViewer from './AppViewer';
 import Peer from 'peerjs';
 import SignInSide from './SignInSide';
 import WaitingRoom from './WaitingRoom';
-import {Connexion, SetCanvas, Send, MyId, setPool} from './connexion';
+import {Connexion, SetCanvas, Send, SendToAll, MyId, setPool} from './connexion';
 import {SetCanvasDraw} from './canvas';
 import {Words_list} from './words';
 import {CountDown} from './minuteur';
@@ -76,7 +76,13 @@ function chat(){
   send.onclick = function(){
     var message = document.getElementById("message").value;
     var pseudos = player.pseudos;
-    Send(message, pseudos);
+    var msg = pseudos + " : " + message;
+    if(player.etat == "host"){
+      SendToAll(msg);
+    }
+    else{
+      Send(msg);
+    }
     document.getElementById("message").value = "";
   }
 
@@ -90,8 +96,6 @@ function chat(){
     }
   });
 }
-
-
 
 function start(){
   //Canvas

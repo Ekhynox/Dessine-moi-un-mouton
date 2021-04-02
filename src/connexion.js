@@ -43,63 +43,107 @@ export function MyId(){
 
 ////////////////////////////////////////////////////////
 //Connexion
-export function CoWaitingRoom(id) {
+export function ConnectionToHost(id){
+  var me = GetPlayer();
+  me.etat = "viewer";
+
+  console.log(me);
   conn = peer.connect(id, {
       reliable: true
-  });
+});
+
   var player = GetPlayer();
-  msgBool = false;
-  //tabConn.push(conn);
   conn.on('open', function(id) {
     conn.send(player);
   });
 }
 
-////////////////////////////////////////////////////////
-//Envoyer des messages
-export function Send(message, pseudos) {
-  //msgBool = true;
-  var msg = pseudos + " : " + message;
-  messageTemp(msg);
-  console.log(tabConn);
+function coWaitingRoom() {
   for(let i = 0; i<tabConn.length; i++){
-    console.log(tabConn[i]);
     conn = tabConn[i];
-    conn.send(msg);
-    console.log(msg);
+    conn.send(tabPlayer);
   }
 }
 
 ////////////////////////////////////////////////////////
+//Envoyer des messages
+export function Send(msg) {
+  //var msg = pseudos + " : " + message;
+  //messageTemp(msg);
+  conn.send(msg);
+}
+
+export function SendToAll(msg){
+  //var msg = pseudos + " : " + message;
+  messageTemp(msg);
+  for(let i = 0; i<tabConn.length; i++){
+    conn = tabConn[i];
+    console.log(conn);
+    conn.send(msg);
+  }
+}
+
+/*
+////////////////////////////////////////////////////////
 //Reception tabPlayer
 peer.on('connection', function(conn) {
   conn.on('data', function(data){
-      messageTemp(data);
-      SetTab(data);
-      setPool();
+    //if(msgBool == false){
+        console.log(data);
+          tabConn
+          setPool();
+          tabPlayer = GetTab();
+          for(let i = 0; i<tabPlayer.length; i++){
+            if(tabPlayer[i].co == false){
+              tabPlayer[i].co = true;
+              //Connected(i);
+              conn = peer.connect(tabPlayer[i].peerID, {
+                  reliable: true
+              });
+              conn.on('open', function(id) {
+                conn.send(GetPlayer());
+              });
+            }
+          }
+        messageTemp(data);
+    });
+});
+*/
+////////////////////////////////////////////////////////
+//Reception tabPlayer
+peer.on('connection', function(conn) {
+  conn.on('data', function(data){
+    var me = GetPlayer();
+    if(me.etat == "host"){
       tabPlayer = GetTab();
+      tabPlayer.push(data);
       conn = peer.connect(data.peerID, {
           reliable: true
       });
       tabConn.push(conn);
-      tabPlayer = GetTab();
-      console.log(tabPlayer)
-      console.log(tabConn);
-      for(let i = 0; i<tabConn.length; i++){
-        conn = tabConn[i];
-        conn.on('open', function(id) {
-          conn.send(tabPlayer[i]);
-        });
-      }
+      SendToAll(data);
+      //coWaitingRoom();
+    }
+    else{
+      messageTemp(data);
+    }
   });
-  console.log(tabConn);
-});
-/*
-conn.on('data', function(data){
-
 });
 
-*/
+
+
+function notInTab(tab, data){
+  if(tabPlayer.lenght > 0){
+    for(let i = 0; i<tab.length;i++){
+      if(tab[i].peerID == data[i].peerID){
+        return true;
+      }
+    }
+    return false;
+  }
+  return false;
+}
+
 ///////////////////////////////////////////////////////
 //Fonction render
 function messageTemp(data){
@@ -136,20 +180,20 @@ export const PersonItem = ({ src, name}) => {
 };
 
 export function setPool(){
-  var tabPlayer = GetTab();
+  tabPlayer = GetTab();
   console.log(tabPlayer);
   var playerBox = document.getElementById("playerZone")
   playerBox.innerHTML = " ";
-  for(let i=0; i<tabPlayer.length; i++){
-    var div = document.createElement("div");
-    //const el = React.createElement(PersonItem, {name : tabPlayer[i].pseudos , src : tabPlayer[i].avatar}, document.getElementById("playerZone"));
-    //const di = React.createElement(Divider, {variant : "middle" , className : "style.divider" }, document.getElementById("playerZone"));
-    //ReactDOM.render(el, document.getElementById("playerZone"));
-    //ReactDOM.render(di, document.getElementById("playerZone"));
-    //div.textContent += elem;
-    div.innerHTML += tabPlayer[i].pseudos;
-    playerBox.appendChild(div);
-  }
+    for(let i=0; i<tabPlayer.lenght; i++){
+      var div = document.createElement("div");
+      //const el = React.createElement(PersonItem, {name : tabPlayer[i].pseudos , src : tabPlayer[i].avatar}, document.getElementById("playerZone"));
+      //const di = React.createElement(Divider, {variant : "middle" , className : "style.divider" }, document.getElementById("playerZone"));
+      //ReactDOM.render(el, document.getElementById("playerZone"));
+      //ReactDOM.render(di, document.getElementById("playerZone"));
+      //div.textContent += elem;
+      div.innerHTML += tabPlayer[i].pseudos;
+      playerBox.appendChild(div);
+    }
 }
 
 ////////////////////////////////////////////////////////

@@ -8,7 +8,7 @@ import cx from 'clsx';
 import { Column, Row, Item } from '@mui-treasury/components/flex';
 import { useDynamicAvatarStyles } from '@mui-treasury/styles/avatar/dynamic';
 import {SetJeu} from './index';
-import {Connexion, MyId, CoWaitingRoom} from './connexion';
+import {Connexion, MyId, ConnectionToHost} from './connexion';
 import { BiSave, BiEraser, BiSend } from 'react-icons/bi';
 
 export default function SignInSide() {
@@ -31,7 +31,7 @@ export default function SignInSide() {
 
   const addpool = () => {
     var id = document.getElementById("peerID").value;
-    CoWaitingRoom(id);
+    ConnectionToHost(id);
     //document.getElementById("zoneId").innerHTML = "";
     //document.getElementById("textAndButton").innerHTML = "";
   }
