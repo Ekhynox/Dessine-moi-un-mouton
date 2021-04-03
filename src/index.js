@@ -71,6 +71,7 @@ export function SetJeu(){
 function chat(){
   //setup les variables pour la fonction Send() ('envoyer un message')
   var send = document.getElementById('send');
+
   send.onclick = function(){
     var message = document.getElementById("message").value;
     var pseudos = player.pseudos;
@@ -89,7 +90,13 @@ function chat(){
     {
       var message = document.getElementById("message").value;
       var pseudos = player.pseudos;
-      Send(message, pseudos);
+      var msg = pseudos + " : " + message;
+      if(player.etat == "host"){
+        SendToAll(msg);
+      }
+      else{
+        Send(msg);
+      }
       document.getElementById("message").value = "";
     }
   });
