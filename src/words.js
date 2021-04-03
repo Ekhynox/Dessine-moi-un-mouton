@@ -38,9 +38,38 @@ export function Words_list()
     if(words_use.find(element => element === tt)===undefined) //on regarde si un on a pas déjà tiree ce mots(indice)
       words_use.push(tt);
   }
+  /*
   document.getElementById("wchoix").innerHTML = words_use.map(
    d => `<button id="choose_word" value="${d}"> ${d} </button>`);//crée l'HTML des propositions
-//d => React.createElement(button, {id : "choose_word", value : "${d}", onClick : {handleClose} }, document.getElementById("choose_word")));
+   */
+
+  //var d = words_use;
+  var wchoix = document.getElementById("wchoix");
+  var bt1 = document.createElement("BUTTON");
+  var bt2 = document.createElement("BUTTON");
+  var bt3 = document.createElement("BUTTON");
+
+  bt1.setAttribute("id", "choose_word");
+  bt2.setAttribute("id", "choose_word");
+  bt3.setAttribute("id", "choose_word");
+
+    bt3.setAttribute("class", "buttoncss");
+
+  bt1.setAttribute("value", words_use[0]);
+  bt2.setAttribute("value", words_use[1]);
+  bt3.setAttribute("value", words_use[2]);
+
+  bt1.className = "btn";
+  bt2.className = "btn";
+  bt3.className = "btn";
+
+  bt1.innerHTML = words_use[0];
+  bt2.innerHTML = words_use[1];
+  bt3.innerHTML = words_use[2];
+
+  wchoix.appendChild(bt1);
+  wchoix.appendChild(bt2);
+  wchoix.appendChild(bt3);
 
 
     //on récupère la liste des boutons choix mots et on regarde si y'a un click dessus
