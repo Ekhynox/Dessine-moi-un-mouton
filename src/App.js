@@ -128,7 +128,6 @@ function endround(){
               disableEnforceFocus
               disableAutoFocus
               open={open}
-              onClose={handleClose}
               aria-labelledby="simple-modal-title"
               aria-describedby="simple-modal-description"
               className={classes.modal}
@@ -352,16 +351,17 @@ const useStyles = makeStyles((theme) => ({
   },
 
   choixmots: {
-    width: '40%',
-    height: '80%',
+    width: '45%',
+    height: '96%',
     borderRadius: 16,
     boxShadow: '0 8px 16px 0 #BDC9D7',
     overflow: 'hidden',
-    fontSize: '1.25rem',
+    fontSize: '1.75rem',
     fontWeight: 600,
     flexWrap: 'wrap',
     padding: theme.spacing(2, 4, 3),
-    background:'rgba(240, 160, 240, 0.70)',
+    background:'rgba(240, 160, 240, 0.90)',
+    justifyContent: 'center',
   },
 
 }));

@@ -8,10 +8,10 @@ Voila la liste des Fonctionnalités que nous souhaitons implémenter ! Celles qu
 - gomme / poubelle / bouton retour arrière X
 - formes géométriques automatiques X
 - changer les couleurs du pinceau X
-- changer la couleur du canva (fond noir au lieu de blanc par exemple)
+- Pot de peinture X
 - Quand on clique sur clear/gomme, le curseur redevient automatiquement un pinceau X
 - Ne pas compter la casse
-- un chat ~
+- un chat X
 - randomiser de mots X
 - système de points
 - connexion : pseudo, pas de mp; X
