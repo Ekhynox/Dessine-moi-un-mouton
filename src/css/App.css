@@ -1,0 +1,55 @@
+.background{
+  background: #7F7FD5;
+  background: -webkit-linear-gradient(to right,#137C8B, #709CA7, #B8CBD0);
+  background: linear-gradient(to right, #137C8B, #709CA7, #B8CBD0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.titre {
+  text-align: center;
+  width:1250px;
+	height:100px;
+  border-radius: 15px;
+}
+
+.cardold{
+    width:300px;
+    height:370px;
+    border-radius: 15px !important;
+    background: #344D59 !important;
+    margin: 5px;
+    box-shadow: 0px 8px 16px 0 black;
+}
+
+
+.type_msg{
+    border-radius: 15px 0px 0px 15px !important;
+    background-color: rgba(0,0,0,0.7) !important;
+    color:white !important;
+    height: 40px !important;
+}
+
+.send_btn{
+    border-radius: 0 15px 15px 0 !important;
+    background-color: rgba(0,0,0,0.7) !important;
+    border:0 !important;
+    color: white !important;
+    cursor: pointer;
+}
+
+.msg_cotainer{
+  border-radius: 10px;
+  background-color: rgba(165,105,189,0.8);
+  padding: 5px;
+  position: relative;
+}
+
+.msg_time{
+  position: absolute;
+  left: 0;
+  bottom: -15px;
+  font-size: 10px;
+}

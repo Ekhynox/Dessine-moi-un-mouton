@@ -1,6 +1,5 @@
-const wordlist = ["un","deux","trois","quatre","cinq","six","sept","huit","neuf"];
+// const wordlist = ["un","deux","trois","quatre","cinq","six","sept","huit","neuf"];
 
-/*
 const wordlist = [
     "Une montre",
     "Pêcheur",
@@ -156,7 +155,7 @@ const wordlist = [
     "Au pied de la lettre",
     "En avoir par dessus la tête"
 ];
-*/
+
 export function get_wordlist()
 {
   return wordlist;
