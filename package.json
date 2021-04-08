@@ -4,6 +4,8 @@
   "private": true,
   "homepage": "https://ekhynox.github.io/Dessine-moi-un-mouton/",
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "@mui-treasury/components": "^1.10.1",
     "@mui-treasury/styles": "^1.13.1",
     "@testing-library/jest-dom": "^5.11.9",

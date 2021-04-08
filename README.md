@@ -5,7 +5,7 @@
 Création d'un site web de jeu multijoueurs en ligne de type Pictionary.
 [Dessine-moi-un-mouton](https://ekhynox.github.io/Dessine-moi-un-mouton/)
 
-## Autheur :
+## Auteurs :
 
 COUTURIER-PETRASSON Claire p1710714
 

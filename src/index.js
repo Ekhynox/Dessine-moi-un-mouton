@@ -84,7 +84,7 @@ function chat(){
   send.onclick = function(){
     var message = document.getElementById("message").value;
 
-    comparttochat(message);  //Ne pas envoyer le message aux autres si il a trouver le mots
+    comparttochat(message); //Ne pas envoyer le message aux autres si il a trouver le mots
 
     var pseudos = player.pseudos;
     var msg = pseudos + " : " + message;
@@ -102,7 +102,7 @@ function chat(){
     {
       var message = document.getElementById("message").value;
 
-      comparttochat(message)
+      comparttochat(message); //Ne pas envoyer le message aux autres si il a trouver le mots
 
       var pseudos = player.pseudos;
       var msg = pseudos + " : " + message;
