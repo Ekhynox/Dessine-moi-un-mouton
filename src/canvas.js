@@ -16,12 +16,8 @@ var context;
 export function SetCanvasDraw(varCanvas, varContext){
   canvas = varCanvas;
   context = varContext;
-  console.log(canvas);
-  console.log(context);
-  console.log('aa');
   CanvasInit();
   game = true;
-  console.log(game);
 }
 
 //initialise le canvas avec un fond blanc et les outils sont de couleur noir de base
@@ -367,7 +363,7 @@ function setPixel(posx, posy)
   newColor.data[3] = 255;
   context.putImageData(newColor, posx, posy);
   console.log(newColor);
-  
+
 }
 
   document.addEventListener('mouseup', function (mouse) { //on arrete le dessin

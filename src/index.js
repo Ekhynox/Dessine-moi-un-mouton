@@ -56,16 +56,26 @@ export function SetWaiting(){
 }
 
 export function SetJeu(){
-  ReactDOM.render(
-  <React.StrictMode>
-  <App/>
-  <AppViewer/>
-  </React.StrictMode>,
-  document.getElementById('root'),
-  );
-  setTimeout(() => { start(); }, 100); //PROMISE !! /!\ !!
-  setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
-  setTimeout(() => { Words_list(); }, 100); //PROMISE !! /!\ !!
+  if(player.etat == "host"){
+    ReactDOM.render(
+    <React.StrictMode>
+    <App/>
+    </React.StrictMode>,
+    document.getElementById('root'),
+    );
+    setTimeout(() => { start(); }, 100); //PROMISE !! /!\ !!
+    setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
+    setTimeout(() => { Words_list(); }, 100); //PROMISE !! /!\ !!
+  }
+  else{
+    ReactDOM.render(
+    <React.StrictMode>
+    <AppViewer/>
+    </React.StrictMode>,
+    document.getElementById('root'),
+    );
+    setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
+  }
 }
 
 function chat(){
