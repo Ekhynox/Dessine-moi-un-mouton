@@ -6,11 +6,15 @@ import {get_wordlist} from './wordslist';
 
 var words_copy=get_wordlist().slice();  //cree une copie de la liste de mots c'est avec elle qu'on évite les doublon
 var words_use=[]; //tab des 3 propositions de mots
-
+var wordUse;
 var choisi = false;
 
 export function GetChoisi(){
   return choisi;
+}
+
+export function GetWordUse(){
+  return wordUse;
 }
 
 export function SetChoisi(tmp){
@@ -19,6 +23,7 @@ export function SetChoisi(tmp){
 
 function Click_choose_word(val) {
   words_use=[]; //liste de propositions vider
+  wordUse=val;
   const tmp = (element) => element === val;
   var ind = words_copy.findIndex(tmp);
   if (ind !== -1)
