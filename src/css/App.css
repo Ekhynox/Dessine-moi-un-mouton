@@ -53,3 +53,17 @@
   bottom: -15px;
   font-size: 10px;
 }
+
+.btn{
+  width: 30%;
+  height: 100%;
+  padding: 10px;
+  margin-right: 1.5%;
+  margin-left: 1.5%;
+  margin-top: 5%;
+  font-size: 150%;
+  box-shadow: 0px 8px 16px 0 black;
+  text-align: center;
+  padding: 5px;
+  font-family: Arial Black;
+}

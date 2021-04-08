@@ -29,6 +29,7 @@ export default function SignInSide() {
     score: "0",
     co: false,
     msg: false,
+    canvas : "",
    }
 
  const changeAvatar = (img) => {

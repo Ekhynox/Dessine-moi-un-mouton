@@ -5,7 +5,7 @@ import './css/index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import Peer from 'peerjs';
-import {SetJeu,SetWaiting, SetPlayer, GetPlayer, SetTab, GetTab, Connected} from './index';
+import {SetJeu, SetWaiting, SetPlayer, GetPlayer, SetTab, GetTab, Connected} from './index';
 //import {PersonItem} from './WaitingRoom';
 import { Column, Row, Item } from '@mui-treasury/components/flex';
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
@@ -13,6 +13,7 @@ import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseli
 //Canvas
 var canvas;
 var stream;
+var video;
 
 //Set le canvas
 export function SetCanvas(varCanvas){
@@ -30,6 +31,7 @@ var rdy = false;
 var msgBool = false;
 var tabPlayer = GetTab();
 var tabConn = [];
+var currentPlayer = 0;
 
 ////////////////////////////////////////////////////////
 //Mon ID peerJS
@@ -46,8 +48,6 @@ export function MyId(){
 export function ConnectionToHost(id){
   var me = GetPlayer();
   me.etat = "viewer";
-
-  console.log(me);
   conn = peer.connect(id, {
       reliable: true
 });
@@ -66,7 +66,6 @@ function coWaitingRoom() {
     conn.on('open', function(id) {
       conn.send(tabPlayer);
     });
-    console.log(tabPlayer);
   }
 }
 
@@ -83,7 +82,6 @@ export function SendToAll(msg){
   messageTemp(msg);
   for(let i = 0; i<tabConn.length; i++){
     conn = tabConn[i];
-    console.log(conn);
     conn.send(msg);
   }
 }
@@ -112,20 +110,17 @@ peer.on('connection', function(conn) {
     else{
       if(data[0].etat == "host"){
         setPool(data);
-        console.log(data);
       }
       else{
         messageTemp(data);
-        console.log(data);
+      }
+      if(data.canvas){
+        canvas = data.canvas;
+        console.log(canvas);
       }
     }
   });
 });
-
-peer.on('open', function(id) {
-  console.log('My peer ID is: ' + id);
-});
-
 
 function inTab(tab, data){
   if(tabPlayer.length > 0){
@@ -176,7 +171,6 @@ export const PersonItem = ({ src, name}) => {
 
 export function setPool(data){
   tabPlayer = data;
-  console.log(data);
   var playerBox = document.getElementById("playerZone");
   playerBox.innerHTML = " ";
     for(let i=0; i<tabPlayer.length; i++){
@@ -194,22 +188,33 @@ export function setPool(data){
 ////////////////////////////////////////////////////////
 //Stream
 function VideoStream(myStream){
-  var video = document.getElementById('Video');
+  video = document.getElementById('Video');
   video.srcObject = myStream;
 }
 ////////////////////////////////////////////////////////
 //Connexion Stream
 export function Connexion(id) {
-  connID = id;
-  conn = peer.connect(connID);
-  var mystream = peer.call(connID, stream);
-  mystream.on('stream', function(remoteStream){
-    VideoStream(remoteStream);
-  });
+  if(GetPlayer().etat == 'host'){
+    for(let i = 0; i<tabPlayer.length; i++){
+      var call = peer.call(tabPlayer[i].peerID, stream);
+      console.log(call);
+      call.on('stream', function(remoteStream){
+        //VideoStream(remoteStream);
+        console.log(remoteStream);
+      });
+    }
+  }
 }
 
 ////////////////////////////////////////////////////////
 //reception stream
 peer.on('call', function(call) {
-  call.answer(stream); // Answer the call with an A/V stream.
+  if(GetPlayer().etat != "host"){
+    call.answer(); // Answer the call with an A/V stream.
+    SetJeu();
+    console.log(call);
+    call.on('stream', function(remoteStream){
+      VideoStream(remoteStream);
+    });
+  }
 })

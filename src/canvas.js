@@ -16,12 +16,8 @@ var context;
 export function SetCanvasDraw(varCanvas, varContext){
   canvas = varCanvas;
   context = varContext;
-  console.log(canvas);
-  console.log(context);
-  console.log('aa');
   CanvasInit();
   game = true;
-  console.log(game);
 }
 
 //initialise le canvas avec un fond blanc et les outils sont de couleur noir de base
@@ -307,7 +303,7 @@ function drawDataURIOnCanvas(strDataURI)  //elle prend en param l'url d'une imag
             //NORD
             if(tab[1]-1 >= 0){
               nord = context.getImageData(tab[0], tab[1]-1, 1, 1);
-              if(pixel = nord.data[0] && pixel[1] == nord.data[1] && pixel[2] == nord.data[2] && pixel[3] == nord.data[3]){
+              if(testPixel(nord, pixel)){
                 tab.push(tab[0], tab[1]-1);
                 setPixel(tab[0], tab[1]-1);
               }
@@ -316,7 +312,7 @@ function drawDataURIOnCanvas(strDataURI)  //elle prend en param l'url d'une imag
             //SUD
             if(tab[1]+1 <= canvas.height){
               sud = context.getImageData(tab[0], tab[1]+1, 1, 1);
-              if(pixel[0] == sud.data[0] && pixel[1] == sud.data[1] && pixel[2] == sud.data[2] && pixel[3] == sud.data[3]){
+              if(testPixel(sud, pixel)){
                 tab.push(tab[0], tab[1]+1);
                 setPixel(tab[0], tab[1]+1);
               }
@@ -325,7 +321,7 @@ function drawDataURIOnCanvas(strDataURI)  //elle prend en param l'url d'une imag
             //OUEST
             if(tab[0]-1 >= 0){
               ouest = context.getImageData(tab[0]-1, tab[1], 1, 1);
-              if(pixel[0] == ouest.data[0] && pixel[1] == ouest.data[1] && pixel[2] == ouest.data[2] && pixel[3] == ouest.data[3]){
+              if(testPixel(ouest, pixel)){
                 tab.push(tab[0]-1, tab[1]);
                 setPixel(tab[0]-1, tab[1]);
               }
@@ -334,7 +330,7 @@ function drawDataURIOnCanvas(strDataURI)  //elle prend en param l'url d'une imag
             //EST
             if(tab[0]+1 <= canvas.width){
               est = context.getImageData(tab[0]+1, tab[1], 1, 1);
-              if(pixel[0] == est.data[0] && pixel[1] == est.data[1] && pixel[2] == est.data[2] && pixel[3] == est.data[3]){
+              if(testPixel(est, pixel)){
                 tab.push(tab[0]+1, tab[1]);
                 setPixel(tab[0]+1, tab[1]);
               }
@@ -347,10 +343,19 @@ function drawDataURIOnCanvas(strDataURI)  //elle prend en param l'url d'une imag
     }
   });
 
+  function testPixel(dir, pixel){
+    if(pixel = dir.data[0] && pixel[1] == dir.data[1] && pixel[2] == dir.data[2] && pixel[3] == dir.data[3]){
+      return true;
+    }
+    return false;
+  }
+
 function setPixel(posx, posy)
 {
-/*  context.fillStyle = rgbcolor;
-  context.fillRect(posx, posy, 1, 1);*/
+  /*
+  context.fillStyle = rgbcolor;
+  context.fillRect(posx, posy, 1, 1)
+  */
   var newColor = context.createImageData(1,1);
   newColor.data[0] = rgbcolor.red;
   newColor.data[1] = rgbcolor.green;
@@ -358,6 +363,7 @@ function setPixel(posx, posy)
   newColor.data[3] = 255;
   context.putImageData(newColor, posx, posy);
   console.log(newColor);
+
 }
 
   document.addEventListener('mouseup', function (mouse) { //on arrete le dessin

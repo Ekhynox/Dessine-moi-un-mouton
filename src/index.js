@@ -56,21 +56,32 @@ export function SetWaiting(){
 }
 
 export function SetJeu(){
-  ReactDOM.render(
-  <React.StrictMode>
-  <App/>
-  <AppViewer/>
-  </React.StrictMode>,
-  document.getElementById('root'),
-  );
-  setTimeout(() => { start(); }, 100); //PROMISE !! /!\ !!
-  setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
-  setTimeout(() => { Words_list(); }, 100); //PROMISE !! /!\ !!
+  if(player.etat == "host"){
+    ReactDOM.render(
+    <React.StrictMode>
+    <App/>
+    </React.StrictMode>,
+    document.getElementById('root'),
+    );
+    setTimeout(() => { start(); }, 100); //PROMISE !! /!\ !!
+    setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
+    setTimeout(() => { Words_list(); }, 100); //PROMISE !! /!\ !!
+  }
+  else{
+    ReactDOM.render(
+    <React.StrictMode>
+    <AppViewer/>
+    </React.StrictMode>,
+    document.getElementById('root'),
+    );
+    setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
+  }
 }
 
 function chat(){
   //setup les variables pour la fonction Send() ('envoyer un message')
   var send = document.getElementById('send');
+
   send.onclick = function(){
     var message = document.getElementById("message").value;
     var pseudos = player.pseudos;
@@ -89,7 +100,13 @@ function chat(){
     {
       var message = document.getElementById("message").value;
       var pseudos = player.pseudos;
-      Send(message, pseudos);
+      var msg = pseudos + " : " + message;
+      if(player.etat == "host"){
+        SendToAll(msg);
+      }
+      else{
+        Send(msg);
+      }
       document.getElementById("message").value = "";
     }
   });

@@ -142,7 +142,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   paper: {
-    margin: theme.spacing(8, 4),
+    margin: theme.spacing(8, 2),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -200,11 +200,13 @@ const useStyles = makeStyles((theme) => ({
 
   button : {
     fontFamily: 'Barlow, san-serif',
+    fontSize: '200%',
+    fontWeight: 'bold',
     background: 'linear-gradient(45deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #8B00FF)',
-    borderRadius: 3,
+    borderRadius: 6,
     border: 0,
-    width: '30%',
-    height: '10%',
+    width: '40%',
+    height: '15%',
     padding: '0 30px',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
     margin : theme.spacing ('auto', 'auto'),
