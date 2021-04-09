@@ -1,4 +1,5 @@
 import React from 'react';
+import MenuAppBar from './Header';
 import './css/WaitingRoom.css';
 //import Material-ui from '@material-ui';
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
@@ -39,6 +40,9 @@ export default function SignInSide() {
   return (
     <Grid container xs={12} component="main" className={classes.root}>
       <CssBaseline />
+      <Grid item xs={true} sm={12} >
+        <Row><MenuAppBar /></Row>
+      </Grid>
       <Grid item xs={12} sm={4} component={Paper} elevation={6} square>
         <div className={classes.paper}>
          <Column p={0} gap={0} className={styles.cardjoueur}>

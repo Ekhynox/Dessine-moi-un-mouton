@@ -1,6 +1,7 @@
 //Page de Connexion
 
 import React from 'react';
+import MenuAppBar from './Header';
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
@@ -48,6 +49,10 @@ export default function SignInSide() {
   return (
     <Grid container xs={12} component="main" className={classes.root}>
       <CssBaseline />
+      <Grid item xs={true} sm={12} >
+        <Row><MenuAppBar /></Row>
+      </Grid>
+      
       <Grid item xs={false} sm={8} container direction="row" className={classes.image}>
         <Column p={0} gap={0} container className={classes.card}>
           <Row wrap p={2} alignItems={'baseline'} className={classes.header}>

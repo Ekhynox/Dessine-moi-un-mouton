@@ -1,5 +1,6 @@
 //Page de dessin
 import './css/App.css';
+import MenuAppBar from './Header';
 import React, {useState} from 'react';
 import reactCSS from 'reactcss';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -137,6 +138,9 @@ function endround(){
                 <p id="wchoix" onClick={handleClose}></p>
              </div>
         </Modal>
+        <Grid item xs={true} sm={12} >
+          <Row><MenuAppBar /></Row>
+        </Grid>
         <Grid item xs={false} sm={3} container direction="row" id="game">
           <Column p={1} gap={0} className={classes.cardjoueur}>
             <Row wrap p={2}>
@@ -148,7 +152,6 @@ function endround(){
           </Column>
         </Grid>
         <Grid item xs={false} sm={4} elevation={6} square>
-
             <Row wrap p={2}>
               <Row>
                 <div id="wchoixfinal"></div>

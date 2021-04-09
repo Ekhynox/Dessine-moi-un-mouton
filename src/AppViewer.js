@@ -1,6 +1,7 @@
 //Page de dessin
 
 import './css/App.css';
+import MenuAppBar from './Header';
 import React, {useState} from 'react';
 import reactCSS from 'reactcss';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -54,6 +55,9 @@ import cx from 'clsx';
       return (
         <Grid container xs={12} component="main" className={classes.root}>
           <CssBaseline />
+            <Grid item xs={true} sm={12} >
+                <Row><MenuAppBar /></Row>
+            </Grid>
             <Grid item xs={false} sm={3} container direction="row" id="game">
               <Column p={1} gap={0} className={classes.cardjoueur}>
                 <Row wrap p={2}>
