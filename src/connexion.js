@@ -221,7 +221,8 @@ function VideoStream(myStream){
 }
 ////////////////////////////////////////////////////////
 //Connexion Stream
-export function Connexion(id) {
+export function Connexion() {
+  console.log(GetTab());
   if(meInTab().canvas == true){
     console.log("debut de stream");
     for(let i = 0; i<tabPlayer.length; i++){
@@ -238,10 +239,12 @@ export function Connexion(id) {
 //reception stream
 peer.on('call', function(call) {
   console.log(GetTab());
-  if(meInTab().canvas != true){
+  if(meInTab().canvas!= true){
+    if(meInTab().etat != "host"){
+      SetJeu();
+    }
     console.log("reception de stream");
     call.answer(); // Answer the call with an A/V stream.
-    SetJeu();
     console.log(call);
     call.on('stream', function(remoteStream){
       VideoStream(remoteStream);

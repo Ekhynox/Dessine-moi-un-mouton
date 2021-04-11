@@ -97,6 +97,7 @@ export function SetJeu(){
     setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
     setTimeout(() => { setPool(tabPlayer); }, 100); //PROMISE !! /!\ !!
   }
+  setTimeout(() => { Connexion(); }, 100); //PROMISE !! /!\ !!
   etatjeu="Jeu";
 }
 

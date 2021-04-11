@@ -27,7 +27,6 @@ export default function SignInSide() {
       var id = document.getElementById("peerID").value;
       console.log(id.value);
       SetJeu();
-      setTimeout(() => { Connexion(id); }, 1000); //PROMISE !! /!\ !!
   }
 
   const addpool = () => {
