@@ -171,8 +171,9 @@ function addScore(){
 }
 
 export function ChangePlayer(){
-    tabPlayer[0].canvas = false;
-    tabPlayer[1].canvas = true;
+    tabPlayer[indicejoueur].canvas = false;
+    indicejoueur++;
+    tabPlayer[indicejoueur].canvas = true;
     SendTabPlayerToAll();
 }
 
