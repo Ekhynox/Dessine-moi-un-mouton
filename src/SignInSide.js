@@ -27,10 +27,11 @@ export default function SignInSide() {
     pseudos: "",
     avatar: "",
     peerID: "",
-    score: "0",
+    score: 0,
     co: false,
     msg: false,
     canvas : "",
+    mot: "",
    }
 
  const changeAvatar = (img) => {
@@ -52,7 +53,7 @@ export default function SignInSide() {
       <Grid item xs={true} sm={12} >
         <Row><MenuAppBar /></Row>
       </Grid>
-      
+
       <Grid item xs={false} sm={8} container direction="row" className={classes.image}>
         <Column p={0} gap={0} container className={classes.card}>
           <Row wrap p={2} alignItems={'baseline'} className={classes.header}>

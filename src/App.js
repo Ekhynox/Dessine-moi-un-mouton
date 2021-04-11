@@ -125,7 +125,7 @@ function endround(){
   return (
     <Grid container xs={12} component="main" className={classes.root}>
       <CssBaseline />
-        <Modal disablePortal
+        <Modal 
               disableEnforceFocus
               disableAutoFocus
               open={open}

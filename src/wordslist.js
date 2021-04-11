@@ -106,7 +106,6 @@ const wordlist = [
     "Faire des crèpes",
     "Traire une vache",
     "Manger un hamburger",
-    "Lire un livre en braille",
     "Écrire un SMS",
     "Couper du bois",
     "Avoir mal aux dents",
@@ -117,7 +116,6 @@ const wordlist = [
     "Grimper à un arbre",
     "Sauter du plongeoir",
     "Jouer aux lego",
-    "Lire dans les lignes de la main",
     "Se laver les dents",
     "Se coiffer les cheveux",
     "Allumer une bougie",
@@ -133,8 +131,6 @@ const wordlist = [
     "Courir un marathon",
     "Tondre la pelouse",
     "Être en retard",
-    "Les doigts dans le nez",
-    "Vouloir le beurre et l'argent du beurre",
     "Toucher du bois",
     "Regarder les mouches voler",
     "Pisser dans un violon",
@@ -151,7 +147,6 @@ const wordlist = [
     "Appuyer sur le champignon",
     "Sans queue ni tête",
     "Ne pas avoir les yeux en face des trous",
-    "Les bras m'en tombent !",
     "Au pied de la lettre",
     "En avoir par dessus la tête"
 ];

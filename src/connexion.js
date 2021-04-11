@@ -70,6 +70,23 @@ function coWaitingRoom() {
 }
 
 ////////////////////////////////////////////////////////
+//Envoyer le tableau player
+export function SendTabPlayerToAll() {
+  tabPlayer = GetTab();
+  // setPool(tabPlayer);
+  for(let i = 0; i<tabConn.length; i++){
+    conn = tabConn[i];
+    conn.send(tabPlayer);
+  }
+}
+
+export function SendTabPlayer() {
+  tabPlayer = GetTab();
+  conn.send(tabPlayer);
+  // setPool(tabPlayer); //fonctionnel côtés stream mais casse le côté host
+}
+
+////////////////////////////////////////////////////////
 //Envoyer des messages
 export function Send(msg) {
   //var msg = pseudos + " : " + message;
@@ -103,8 +120,14 @@ peer.on('connection', function(conn) {
         coWaitingRoom();
       }
       else{
-        SendToAll(data);
-        //coWaitingRoom();
+        if(data[0].etat == "host"){
+          // setPool(data);
+          CloneTab(data);
+        }
+        else{
+          SendToAll(data);
+          //coWaitingRoom();
+        }
       }
     }
     else{
@@ -181,7 +204,7 @@ export function setPool(data){
       //ReactDOM.render(el, document.getElementById("playerZone"));
       //ReactDOM.render(di, document.getElementById("playerZone"));
       //div.textContent += elem;
-      div.innerHTML += tabPlayer[i].pseudos;
+      div.innerHTML += tabPlayer[i].pseudos + " " + tabPlayer[i].score;
       playerBox.appendChild(div);
     }
 }

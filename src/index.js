@@ -8,12 +8,20 @@ import AppViewer from './AppViewer';
 import Peer from 'peerjs';
 import SignInSide from './SignInSide';
 import WaitingRoom from './WaitingRoom';
-import {Connexion, SetCanvas, Send, SendToAll, MyId, setPool} from './connexion';
+import {Connexion, SetCanvas, Send, SendTabPlayer, SendTabPlayerToAll, SendToAll, MyId, setPool} from './connexion';
 import {SetCanvasDraw} from './canvas';
-import {Words_list, GetWordUse} from './words';
+import {GetWordUse, JaroDistance, SansAccent, Words_list} from './words';
 
 var tabPlayer = [];
 var player;
+var etatjeu="sign";
+var indicejoueur=0;
+
+export function SetMot() {
+  tabPlayer[indicejoueur].mot=GetWordUse();
+  console.log("tabPlayer[indicejoueur].mot : " + tabPlayer[indicejoueur].mot);
+  SendTabPlayerToAll();
+}
 
 export function SetTab(playerInfo){
   tabPlayer.push(playerInfo);
@@ -56,6 +64,7 @@ export function SetWaiting(){
   setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
   setTimeout(() => { setPool(tabPlayer); }, 100); //PROMISE !! /!\ !!
   setTimeout(() => { player.peerID = MyId(); }, 100); //PROMISE !! /!\ !!
+  etatjeu="WaitingRoom";
 }
 
 export function SetJeu(){
@@ -80,6 +89,7 @@ export function SetJeu(){
     setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
     setTimeout(() => { setPool(tabPlayer); }, 100); //PROMISE !! /!\ !!
   }
+  etatjeu="Jeu";
 }
 
 function chat(){
@@ -89,7 +99,7 @@ function chat(){
   send.onclick = function(){
     var message = document.getElementById("message").value;
 
-    comparttochat(message); //Ne pas envoyer le message aux autres si il a trouver le mots
+    if (etatjeu=="Jeu") compartToChat(message); //Ne pas envoyer le message aux autres si il a trouver le mots
 
     var pseudos = player.pseudos;
     var msg = pseudos + " : " + message;
@@ -107,7 +117,7 @@ function chat(){
     {
       var message = document.getElementById("message").value;
 
-      comparttochat(message); //Ne pas envoyer le message aux autres si il a trouver le mots
+      if (etatjeu=="Jeu") compartToChat(message); //Ne pas envoyer le message aux autres si il a trouver le mots
 
       var pseudos = player.pseudos;
       var msg = pseudos + " : " + message;
@@ -122,67 +132,35 @@ function chat(){
   });
 }
 
-function comparttochat(msg){
-  console.log("comparttochat()");
+function compartToChat(msg){
   if (true){ //vérifier que le joueur n'a pas déjà donnée la bonne réponse
 
     setTimeout(() => {
-      var word = GetWordUse();
-      console.log(msg);
-      console.log(word);
-      JaroDistance (msg, word)
+      var word = tabPlayer[indicejoueur].mot;
+      msg = SansAccent(msg);
+      if (JaroDistance(msg, word)>0.99){  //ici c'est bon, on incrémente le score.
+        console.log("JaroDistance : " + JaroDistance(msg, word));
+        console.log("La comparaison est valider");
+        addScore();
+        SendTabPlayer();
+        console.log(tabPlayer);
+      }
+      else {
+        console.log("JaroDistance : " + JaroDistance(msg, word));
+        console.log("La comparaison n'est pas valider");
+      }
     }, 100) //PROMISE !! /!\ !!
   }
   return false;
 }
 
-function JaroDistance (Word1, Word2) {
-  var Word1 = Word1
-  var Word2 = Word2
-
-  var MaxLength
-
-  if (Word1.length > Word2.length) {
-    MaxLength = Word1.length
-  } else {
-    MaxLength = Word2.length
-  }
-  var MaxDistance = (MaxLength / 2) - 1
-
-  var SameChar = 0
-  var Transposition = 0
-
-  var Index1 = []
-  var Index2 = []
-
-  for (var i = 0; i < Word1.length; i++) {
-    for (var j = 0; j < Word2.length; j++) {
-      if (Word1[i] === Word2[j] &&
-          Math.abs(i - j) < MaxDistance) {
-        Index1.push(i)
-        Index2.push(j)
-        SameChar += 1
-        break
-      }
+function addScore(){
+  for (var i = 0; i < tabPlayer.length; i++) {
+    if (tabPlayer[i].pseudos==player.pseudos){
+      tabPlayer[i].score+=100;
     }
   }
-
-  for (var i = 0; i < Index1.length-1; i++) {
-      if ( (Index1[i] > Index1[i+1] && Index2[i] < Index2[i+1])
-          || (Index1[i] < Index1[i+1] && Index2[i] > Index2[i+1]) ) {
-          Transposition += 2
-      }
-  }
-
-  var Distance = (1 / 3) *
-              ((SameChar / Word1.length) +
-               (SameChar / Word2.length) +
-               ( (SameChar - Transposition / 2) ) / SameChar)
-
-  console.log(Word1 + ' => ' + Word2)
-  console.log(Distance)
 }
-
 
 function start(){
   //Canvas
