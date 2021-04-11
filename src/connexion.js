@@ -5,7 +5,7 @@ import './css/index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import Peer from 'peerjs';
-import {SetJeu, SetWaiting, SetPlayer, GetPlayer, SetTab, GetTab, Connected, CloneTab} from './index';
+import {SetJeu, SetWaiting, SetPlayer, GetPlayer, AddInTab, GetTab, Connected, SetTab, meInTab} from './index';
 //import {PersonItem} from './WaitingRoom';
 import { Column, Row, Item } from '@mui-treasury/components/flex';
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
@@ -48,6 +48,7 @@ export function MyId(){
 export function ConnectionToHost(id){
   var me = GetPlayer();
   me.etat = "viewer";
+  me.canvas = "false";
   conn = peer.connect(id, {
       reliable: true
 });
@@ -109,6 +110,9 @@ peer.on('connection', function(conn) {
   conn.on('data', function(data){
     console.log(data);
     var me = GetPlayer();
+    if(data == "NouvelleManche"){
+      SetJeu();
+    }
     if(me.etat == "host"){
       if(data.co == false){
         data.co = true;
@@ -116,13 +120,13 @@ peer.on('connection', function(conn) {
             reliable: true
         });
         tabConn.push(conn);
-        SetTab(data);
+        AddInTab(data);
         coWaitingRoom();
       }
       else{
         if(data[0].etat == "host"){
           // setPool(data);
-          CloneTab(data);
+          SetTab(data);
         }
         else{
           SendToAll(data);
@@ -133,7 +137,7 @@ peer.on('connection', function(conn) {
     else{
       if(data[0].etat == "host"){
         setPool(data);
-        CloneTab(data);
+        SetTab(data);
       }
       else{
         messageTemp(data);
@@ -218,10 +222,10 @@ function VideoStream(myStream){
 ////////////////////////////////////////////////////////
 //Connexion Stream
 export function Connexion(id) {
-  if(GetPlayer().etat == 'host'){
+  if(meInTab().canvas == true){
+    console.log("debut de stream");
     for(let i = 0; i<tabPlayer.length; i++){
       var call = peer.call(tabPlayer[i].peerID, stream);
-      console.log(call);
       call.on('stream', function(remoteStream){
         //VideoStream(remoteStream);
         console.log(remoteStream);
@@ -233,7 +237,9 @@ export function Connexion(id) {
 ////////////////////////////////////////////////////////
 //reception stream
 peer.on('call', function(call) {
-  if(GetPlayer().etat != "host"){
+  console.log(GetTab());
+  if(meInTab().canvas != true){
+    console.log("reception de stream");
     call.answer(); // Answer the call with an A/V stream.
     SetJeu();
     console.log(call);
@@ -242,3 +248,9 @@ peer.on('call', function(call) {
     });
   }
 })
+
+////////////////////////////////////////////////////////
+//NouvelleManche
+export function NouvelleManche(){
+  SendToAll("NouvelleManche");
+}

@@ -64,11 +64,10 @@ export function Words_list()
     if(words_use.find(element => element === tt)===undefined) //on regarde si un on a pas déjà tiree ce mots(indice)
       words_use.push(tt);
   }
-  /*
+/*
   document.getElementById("wchoix").innerHTML = words_use.map(
    d => `<button id="choose_word" value="${d}"> ${d} </button>`);//crée l'HTML des propositions
-   */
-
+*/
   //var d = words_use;
   var wchoix = document.getElementById("wchoix");
   var bt1 = document.createElement("BUTTON");
@@ -96,7 +95,6 @@ export function Words_list()
   wchoix.appendChild(bt1);
   wchoix.appendChild(bt2);
   wchoix.appendChild(bt3);
-
 
     //on récupère la liste des boutons choix mots et on regarde si y'a un click dessus
     const choose_word_button=document.querySelectorAll('#choose_word');

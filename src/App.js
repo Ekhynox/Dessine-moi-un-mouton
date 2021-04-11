@@ -18,7 +18,8 @@ import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseli
 import {Column, Row, Item} from '@mui-treasury/components/flex';
 import { makeStyles } from '@material-ui/core/styles';
 // fonction
-import {Connexion, SetCanvas, Send} from './connexion';
+import {Connexion, SetCanvas, Send, NouvelleManche} from './connexion';
+import {SetJeu, ChangePlayer} from './index';
 import {ColorChange, DownloadCanvasn, SetCanvasDraw} from './canvas';
 import {verybigPen, bigPen, smallPen, verysmallPen, erase, pinceau, clear, rect, rectfull, circle, circlefull, line, fill, save, undo} from './canvas';
 import {GetChoisi, SetChoisi, Words_list} from './words';
@@ -31,7 +32,6 @@ import avatar6 from './img/6.jpg';
 import cx from 'clsx';
 
 import PropTypes from "prop-types";
-
 
 function App() {
   const classes = useStyles();
@@ -46,6 +46,15 @@ function App() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const start = () => {
+      SetChoisi(false); //on n'a plus de mot choisi
+      ChangePlayer();
+      handleOpen(); //on raffiche le modal
+      NouvelleManche();
+      SetJeu();
+      document.getElementById("wchoixfinal").innerHTML=""; //on nettoie l'html
+  }
 
   //const colorChange = ({ hex }) => hex = ColorChange(hex); // fonction change la couleur du pinceau
   const colorChange = ({hex}) => {
@@ -76,7 +85,7 @@ function endround(){
 
 //fonction minuteur
   var MIN = 0; // MIN = Minimum expected value of time
-  var MAX = 80; // MAX = Maximium expected value of time
+  var MAX = 300; // MAX = Maximium expected value of time
 
   const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
 
@@ -124,8 +133,9 @@ function endround(){
 
   return (
     <Grid container xs={12} component="main" className={classes.root}>
+    <button onClick={start}>prochaine manche</button>
       <CssBaseline />
-        <Modal 
+        <Modal
               disableEnforceFocus
               disableAutoFocus
               open={open}

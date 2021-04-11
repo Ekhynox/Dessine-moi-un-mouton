@@ -8,7 +8,7 @@ import AppViewer from './AppViewer';
 import Peer from 'peerjs';
 import SignInSide from './SignInSide';
 import WaitingRoom from './WaitingRoom';
-import {Connexion, SetCanvas, Send, SendTabPlayer, SendTabPlayerToAll, SendToAll, MyId, setPool} from './connexion';
+import {Connexion, MyId, SetCanvas, Send, SendTabPlayer, SendTabPlayerToAll, SendToAll, setPool} from './connexion';
 import {SetCanvasDraw} from './canvas';
 import {GetWordUse, JaroDistance, SansAccent, Words_list} from './words';
 
@@ -23,7 +23,15 @@ export function SetMot() {
   SendTabPlayerToAll();
 }
 
-export function SetTab(playerInfo){
+export function meInTab(){
+  for (var i = 0; i < tabPlayer.length; i++) {
+    if (tabPlayer[i].pseudos == player.pseudos){
+      return tabPlayer[i];
+    }
+  }
+}
+
+export function AddInTab(playerInfo){
   tabPlayer.push(playerInfo);
 }
 
@@ -31,7 +39,7 @@ export function GetTab(){
   return tabPlayer;
 }
 
-export function CloneTab(data){
+export function SetTab(data){
   tabPlayer = data;
 }
 
@@ -68,7 +76,7 @@ export function SetWaiting(){
 }
 
 export function SetJeu(){
-  if(player.etat == "host"){
+  if(meInTab().canvas == true){
     ReactDOM.render(
     <React.StrictMode>
     <App/>
@@ -134,7 +142,6 @@ function chat(){
 
 function compartToChat(msg){
   if (true){ //vérifier que le joueur n'a pas déjà donnée la bonne réponse
-
     setTimeout(() => {
       var word = tabPlayer[indicejoueur].mot;
       msg = SansAccent(msg);
@@ -160,6 +167,12 @@ function addScore(){
       tabPlayer[i].score+=100;
     }
   }
+}
+
+export function ChangePlayer(){
+    tabPlayer[0].canvas = false;
+    tabPlayer[1].canvas = true;
+    SendTabPlayerToAll();
 }
 
 function start(){
