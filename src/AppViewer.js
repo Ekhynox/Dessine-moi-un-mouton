@@ -64,8 +64,10 @@ import cx from 'clsx';
                   <Item stretched>Participant.e.s</Item>
                   <Item>Score</Item>
                 </Row>
+                <div id="playerZone">
                   <Divider variant={'middle'}/>
                   <PersonItem name={'Chocoluna'} src={avatar1}/>
+                </div>
               </Column>
             </Grid>
             <Grid item xs={false} sm={5} elevation={6} square className={classes.stream}>

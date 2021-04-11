@@ -5,7 +5,7 @@ import './css/index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import Peer from 'peerjs';
-import {SetJeu, SetWaiting, SetPlayer, GetPlayer, SetTab, GetTab, Connected} from './index';
+import {SetJeu, SetWaiting, SetPlayer, GetPlayer, SetTab, GetTab, Connected, CloneTab} from './index';
 //import {PersonItem} from './WaitingRoom';
 import { Column, Row, Item } from '@mui-treasury/components/flex';
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
@@ -110,6 +110,7 @@ peer.on('connection', function(conn) {
     else{
       if(data[0].etat == "host"){
         setPool(data);
+        CloneTab(data);
       }
       else{
         messageTemp(data);

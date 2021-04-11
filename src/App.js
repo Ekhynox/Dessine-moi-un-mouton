@@ -147,8 +147,10 @@ function endround(){
               <Item stretched>Participant.e.s</Item>
               <Item>Score</Item>
               </Row>
-              <Divider variant={'middle'} />
-              <PersonItem name={'Chocoluna'} src={avatar1} />
+              <div id="playerZone">
+                <Divider variant={'middle'} />
+                <PersonItem name={'Chocoluna'} src={avatar1} />
+              </div>
           </Column>
         </Grid>
         <Grid item xs={false} sm={4} elevation={6} square>

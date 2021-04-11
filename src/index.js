@@ -23,6 +23,10 @@ export function GetTab(){
   return tabPlayer;
 }
 
+export function CloneTab(data){
+  tabPlayer = data;
+}
+
 export function Connected(id){
   tabPlayer[id].co = true;
 }
@@ -74,6 +78,7 @@ export function SetJeu(){
     document.getElementById('root'),
     );
     setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
+    setTimeout(() => { setPool(tabPlayer); }, 100); //PROMISE !! /!\ !!
   }
 }
 
