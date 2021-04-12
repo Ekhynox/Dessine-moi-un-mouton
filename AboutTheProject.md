@@ -20,6 +20,7 @@ Voila la liste des Fonctionnalités que nous souhaitons implémenter ! Celles qu
 - Changement de joueur X
 - gestion des erreurs
 - barre de navigation comprenant: onglet "Accueil", "contact" et "aide", le logo et le bouton darkTheme X
+- Logo ...
 
 -- Fonctionnalités "si on a le temps"--
 - Changement de langue

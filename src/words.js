@@ -105,7 +105,6 @@ export function Words_list()
     });
 }
 
-
 export function JaroDistance(a, b) {
   console.log(a + " => " + b);
   var matches = _matching(a, b);

@@ -74,7 +74,7 @@ function coWaitingRoom() {
 //Envoyer le tableau player
 export function SendTabPlayerToAll() {
   tabPlayer = GetTab();
-  // setPool(tabPlayer);
+  setPool(tabPlayer);
   for(let i = 0; i<tabConn.length; i++){
     conn = tabConn[i];
     conn.send(tabPlayer);
@@ -84,7 +84,7 @@ export function SendTabPlayerToAll() {
 export function SendTabPlayer() {
   tabPlayer = GetTab();
   conn.send(tabPlayer);
-  // setPool(tabPlayer); //fonctionnel côtés stream mais casse le côté host
+  setPool(tabPlayer); //fonctionnel côtés stream mais casse le côté host
 }
 
 ////////////////////////////////////////////////////////
@@ -125,7 +125,7 @@ peer.on('connection', function(conn) {
       }
       else{
         if(data[0].etat == "host"){
-          // setPool(data);
+          setPool(data);
           SetTab(data);
         }
         else{
