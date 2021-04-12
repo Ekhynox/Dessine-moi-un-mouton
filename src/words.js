@@ -36,8 +36,8 @@ export function SansAccent(msg){
   for(var i = 0; i < accent.length; i++){
       msg = msg.replace(accent[i], noaccent[i]);
   }
-  msg = msg.trim();
-  msg  = msg.toLowerCase();
+  msg = msg.trim(); //supprime les espaces en trop avant et après le string
+  msg  = msg.toLowerCase(); //transforme le string en minuscule
   return msg;
 }
 
