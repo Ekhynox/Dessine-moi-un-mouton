@@ -4,6 +4,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { FiSun, FiMoon } from "react-icons/fi";
 import {AppBar, Button, ButtonGroup, IconButton, FormControlLabel, FormGroup, Grid, Menu, MenuItem, Switch, Toolbar, Typography} from '@material-ui/core';
 import sheep from './img/sheep.png';
+import {Help} from './Help';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,7 +67,7 @@ function MenuAppBar() {
           color="inherit"
           className={classes.Button}>
           <Button> About Us </Button>
-          <Button> Help </Button>
+          <Button onClick={Help}> Help </Button>
           </ButtonGroup>
           <Grid container justify="flex-end">
            <FormGroup>
