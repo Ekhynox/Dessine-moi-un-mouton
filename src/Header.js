@@ -5,6 +5,7 @@ import { FiSun, FiMoon } from "react-icons/fi";
 import {AppBar, Button, ButtonGroup, IconButton, FormControlLabel, FormGroup, Grid, Menu, MenuItem, Switch, Toolbar, Typography} from '@material-ui/core';
 import sheep from './img/sheep.png';
 import {Help} from './Help';
+import {SetSignInSide} from './index';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,7 +61,7 @@ function MenuAppBar() {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <img src={sheep} />
+          <img src={sheep} onClick={SetSignInSide}/>
           <ButtonGroup variant="text"  aria-label="text primary button group" aria-controls="menu-appbar"
           aria-haspopup="true"
           onClick={handleMenu}

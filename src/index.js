@@ -55,12 +55,15 @@ export function GetPlayer(){
   return player;
 }
 
-ReactDOM.render(
-  <React.StrictMode>
-  <SignInSide/>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+export function SetSignInSide(){
+  ReactDOM.render(
+    <React.StrictMode>
+    <SignInSide/>
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+}
+SetSignInSide();
 
 export function SetWaiting(){
   ReactDOM.render(
