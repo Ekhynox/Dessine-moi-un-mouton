@@ -17,6 +17,15 @@ import {Column, Row, Item} from '@mui-treasury/components/flex';
 import { borders } from '@material-ui/system';
 import MenuAppBar from './Header';
 
+var controlePseudo = false;
+var controleMail = false;
+var controleExplication = false;
+
+var support = {
+  pseudo: "",
+  mail:"",
+  explication:"",
+};
 
 export function Help() {
   ReactDOM.render(
@@ -27,22 +36,168 @@ export function Help() {
   );
 }
 
-var support = {
-  pseudo: "",
-  mail:"",
-  explication:"",
-};
+export function HelpEnd() {
+  ReactDOM.render(
+    <React.StrictMode>
+    <HelpViewEnd/>
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+}
 
-function send(){
+
+function controleTextePseudo(cl){
+  if (!controlePseudo){
+    return (
+      <Grid item xs={12}>
+        <TextField
+          className={cl.cadre}
+          autoFocus
+          fullWidth
+          required
+          autoComplete="pseudo"
+          id="Pseudo"
+          label="Pseudo"
+          name="Pseudo"
+          variant="outlined"
+        />
+      </Grid>
+    );
+  }
+  else {
+    return (<Grid item xs={12}>
+      <TextField
+        className={cl.cadre}
+        autoFocus
+        error
+        helperText="Veuillez remplir ce champ."
+        fullWidth
+        required
+        autoComplete="pseudo"
+        id="Pseudo"
+        label="Pseudo"
+        name="Pseudo"
+        variant="outlined"
+      />
+    </Grid>);
+  }
+}
+
+function controleTexteMail(cl) {
+  if (!controleMail) {
+    return (
+      <Grid item xs={12}>
+        <TextField
+          className={cl.cadre}
+          fullWidth
+          required
+          autoComplete="email"
+          id="Email"
+          label="Email Address"
+          name="email"
+          variant="outlined"
+        />
+      </Grid>
+    );
+  }
+  else {
+    return (
+      <Grid item xs={12}>
+        <TextField
+          className={cl.cadre}
+          error
+          helperText="Veuillez remplir ce champ."
+          fullWidth
+          required
+          autoComplete="email"
+          id="Email"
+          label="Email Address"
+          name="email"
+          variant="outlined"
+        />
+      </Grid>
+    );
+  }
+}
+
+function controleTexteExplication(cl) {
+  if (!controleExplication) {
+    return (
+      <Grid item xs={12}>
+        <TextField
+          className={cl.cadre}
+          fullWidth
+          required
+          autoComplete=""
+          id="Explication"
+          label="Explication"
+          name="explication"
+          variant="outlined"
+        />
+      </Grid>
+    );
+  }
+  else {
+    return (
+      <Grid item xs={12}>
+        <TextField
+          className={cl.cadre}
+          error
+          helperText="Veuillez remplir ce champ."
+          fullWidth
+          required
+          autoComplete=""
+          id="Explication"
+          label="Explication"
+          name="explication"
+          variant="outlined"
+        />
+      </Grid>
+    );
+  }
+}
+
+function controleSend(){
   support.pseudo = document.getElementById('Pseudo').value;
   support.mail = document.getElementById('Email').value;
   support.explication = document.getElementById('Explication').value;
+
+  if (support.pseudo==""){
+    controlePseudo = true;
+    Help();
+  }
+  else {
+    controlePseudo = false;
+  }
+  if (support.mail==""){
+    controleMail = true;
+    Help();
+  }
+  else {
+    controleMail = false;
+  }
+  if (support.explication==""){
+    controleExplication = true;
+    Help();
+  }
+  else {
+    controleExplication = false;
+  }
+
+  if (support.pseudo!="" && support.mail!="" && support.explication!=""){
+    send();
+  }
+
+}
+
+function send(){
+
   console.log(support);
+  HelpEnd();
 }
 
 export default function HelpView() {
-  const classes = useStyles();
-
+  var classes = useStyles();
   return (
     <Grid container xs={12} component="main" className={classes.root}>
       <Grid item xs={true} sm={12}>
@@ -58,45 +213,11 @@ export default function HelpView() {
             Support
           </Typography>
             <Grid container spacing={1}>
-              <Grid item xs={12}>
-                <TextField
-                  className={classes.cadre}
-                  autoComplete="pseudo"
-                  name="Pseudo"
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="Pseudo"
-                  label="Pseudo"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  className={classes.cadre}
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="Email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  className={classes.cadre}
-                  variant="outlined"
-                  required
-                  fullWidth
-                  name="explication"
-                  label="Explication"
-                  id="Explication"
-                  autoComplete=""
-                />
-              </Grid>
+              {controleTextePseudo(classes)}
+              {controleTexteMail(classes)}
+              {controleTexteExplication(classes)}
               <Button
-                onClick={send}
+                onClick={controleSend}
                 type="submit"
                 fullWidth
                 variant="contained"
@@ -112,6 +233,29 @@ export default function HelpView() {
   );
 }
 
+
+function HelpViewEnd() {
+  var classes = useStyles();
+  return (
+    <Grid container xs={12} component="main" className={classes.root}>
+      <Grid item xs={true} sm={12}>
+        <Row><MenuAppBar/></Row>
+      </Grid>
+      <Grid>
+        <CssBaseline />
+        <div className={classes.paper}>
+          <CssBaseline />
+            <Typography variant="h2" component="h1" gutterBottom>
+              Merci pour votre retour
+            </Typography>
+            <Typography variant="h5" component="h2" gutterBottom>
+              {'Quelqu\'un va vous contacter prochainement.'}
+            </Typography>
+        </div>
+      </Grid>
+    </Grid>
+  );
+}
 
 
 const useStyles = makeStyles((theme) => ({
