@@ -74,18 +74,30 @@ function App() {
     );
   };
 
+
+
 //fonction fin de manche
 function endround(){
-  SetChoisi(false); //on n'a plus de mot choisi
   handleOpen(); //on raffiche le modal
-  setTimeout(() => { Words_list(); }, 100); //on relance le choix du mot
   document.getElementById("wchoixfinal").innerHTML=""; //on nettoie l'html
+
+  setTimeout(function () {
+    var wchoix = document.getElementById("wchoix");
+    wchoix.innerHTML = "";
+    var bt4 = document.createElement("BUTTON");
+    bt4.setAttribute("id", "nextTurn");
+    bt4.className = "btn";
+    bt4.innerHTML="Prochaine Manche";
+    wchoix.appendChild(bt4);
+
+    document.getElementById("titremodal1").innerHTML="Time's up !";
+  }, 10);
   return 0; //On restart le chrono a 0;
 }
 
 //fonction minuteur
   var MIN = 0; // MIN = Minimum expected value of time
-  var MAX = 300; // MAX = Maximium expected value of time
+  var MAX = 5; // MAX = Maximium expected value of time
 
   const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
 
@@ -133,7 +145,6 @@ function endround(){
 
   return (
     <Grid container xs={12} component="main" className={classes.root}>
-    <button onClick={start}>prochaine manche</button>
       <CssBaseline />
         <Modal
               disableEnforceFocus
@@ -144,7 +155,7 @@ function endround(){
               className={classes.modal}
               container={() => rootRef.current}>
              <div className={classes.choixmots}>
-                <Item stretched> Choisissez un mot</Item>
+                <div id="titremodal1"> Choisissez un mot</div>
                 <p id="wchoix" onClick={handleClose}></p>
              </div>
         </Modal>

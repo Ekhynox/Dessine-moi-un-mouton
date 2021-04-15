@@ -8,7 +8,7 @@ import AppViewer from './AppViewer';
 import Peer from 'peerjs';
 import SignInSide from './SignInSide';
 import WaitingRoom from './WaitingRoom';
-import {Connexion, MyId, SetCanvas, Send, SendTabPlayer, SendTabPlayerToAll, SendToAll, setPool} from './connexion';
+import {Connexion, MyId, SetCanvas, Send, SendTabPlayer, SendTabPlayerToAll, SendToAll, setPool, NouvelleManche} from './connexion';
 import {SetCanvasDraw} from './canvas';
 import {GetWordUse, JaroDistance, SansAccent, Words_list} from './words';
 
@@ -187,6 +187,14 @@ function start(){
   SetCanvas(canvas);
   SetCanvasDraw(canvas, context);
 }
+
+var nextTurn = document.getElementById('nextTurn');
+nextTurn.addEventListener('click', function(event){
+  ChangePlayer();
+  NouvelleManche();
+  SetJeu();
+  document.getElementById("wchoixfinal").innerHTML=""; //on nettoie l'html
+});
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
