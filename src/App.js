@@ -95,7 +95,11 @@ function endround(){
 
 //fonction minuteur
   var MIN = 0; // MIN = Minimum expected value of time
+<<<<<<< HEAD
   var MAX = 10; // MAX = Maximium expected value of time
+=======
+  var MAX = 80; // MAX = Maximium expected value of time
+>>>>>>> d86ae4646fe5d6d5411725083ad4acf203b75d01
 
   const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
 
