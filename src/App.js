@@ -75,7 +75,6 @@ function App() {
   };
 
 
-
 //fonction fin de manche
 function endround(){
   handleOpen(); //on raffiche le modal
@@ -89,6 +88,13 @@ function endround(){
     bt4.className = "btn";
     bt4.innerHTML="Prochaine Manche";
     wchoix.appendChild(bt4);
+
+    var nextTurn = document.getElementById('wchoix');
+    nextTurn.addEventListener('click', function(event){
+      ChangePlayer();
+      NouvelleManche();
+      SetJeu();
+    });
 
     document.getElementById("titremodal1").innerHTML="Time's up !";
   }, 10);

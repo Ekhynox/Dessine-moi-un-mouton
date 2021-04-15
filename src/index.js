@@ -188,14 +188,6 @@ function start(){
   SetCanvasDraw(canvas, context);
 }
 
-var nextTurn = document.getElementById('nextTurn');
-nextTurn.addEventListener('click', function(event){
-  ChangePlayer();
-  NouvelleManche();
-  SetJeu();
-  document.getElementById("wchoixfinal").innerHTML=""; //on nettoie l'html
-});
-
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
