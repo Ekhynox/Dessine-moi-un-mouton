@@ -240,9 +240,9 @@ export function Connexion() {
 peer.on('call', function(call) {
   console.log(GetTab());
   if(meInTab().canvas!= true){
-    if(meInTab().etat != "host"){
+  //  if(meInTab().etat != "host"){
       SetJeu();
-    }
+    //}
     console.log("reception de stream");
     call.answer(); // Answer the call with an A/V stream.
     console.log(call);

@@ -47,14 +47,6 @@ function App() {
     setOpen(false);
   };
 
-  const start = () => {
-      SetChoisi(false); //on n'a plus de mot choisi
-      ChangePlayer();
-      handleOpen(); //on raffiche le modal
-      NouvelleManche();
-      SetJeu();
-      document.getElementById("wchoixfinal").innerHTML=""; //on nettoie l'html
-  }
 
   //const colorChange = ({ hex }) => hex = ColorChange(hex); // fonction change la couleur du pinceau
   const colorChange = ({hex}) => {
@@ -89,7 +81,7 @@ function endround(){
     bt4.innerHTML="Prochaine Manche";
     wchoix.appendChild(bt4);
 
-    var nextTurn = document.getElementById('wchoix');
+    var nextTurn = document.getElementById('nextTurn');
     nextTurn.addEventListener('click', function(event){
       ChangePlayer();
       NouvelleManche();
@@ -103,7 +95,7 @@ function endround(){
 
 //fonction minuteur
   var MIN = 0; // MIN = Minimum expected value of time
-  var MAX = 5; // MAX = Maximium expected value of time
+  var MAX = 10; // MAX = Maximium expected value of time
 
   const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
 

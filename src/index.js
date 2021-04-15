@@ -15,7 +15,7 @@ import {GetWordUse, JaroDistance, SansAccent, Words_list} from './words';
 var tabPlayer = [];
 var player;
 var etatjeu="sign";
-var indicejoueur=0;
+var indicejoueur = 0;
 
 export function SetMot() {
   tabPlayer[indicejoueur].mot=GetWordUse();
@@ -110,9 +110,9 @@ function chat(){
 
   send.onclick = function(){
     var message = document.getElementById("message").value;
-
-    if (etatjeu=="Jeu") compartToChat(message); //Ne pas envoyer le message aux autres si il a trouver le mots
-
+    if (etatjeu=="Jeu"){
+       compartToChat(message); //Ne pas envoyer le message aux autres si il a trouver le mots
+    }
     var pseudos = player.pseudos;
     var msg = pseudos + " : " + message;
     if(player.etat == "host"){
@@ -128,9 +128,9 @@ function chat(){
     if ((event.key === 'Enter') && (document.getElementById("message").value != ""))
     {
       var message = document.getElementById("message").value;
-
-      if (etatjeu=="Jeu") compartToChat(message); //Ne pas envoyer le message aux autres si il a trouver le mots
-
+      if (etatjeu=="Jeu"){
+        compartToChat(message); //Ne pas envoyer le message aux autres si il a trouver le mots
+      }
       var pseudos = player.pseudos;
       var msg = pseudos + " : " + message;
       if(player.etat == "host"){
@@ -173,11 +173,30 @@ function addScore(){
   }
 }
 
+function whoDraw(){
+  var i=0;
+  while(tabPlayer[i].canvas == false){
+    i++;
+  }
+  return i;
+}
+
 export function ChangePlayer(){
-    tabPlayer[indicejoueur].canvas = false;
-    indicejoueur++;
-    tabPlayer[indicejoueur].canvas = true;
-    SendTabPlayerToAll();
+      indicejoueur = whoDraw();
+      tabPlayer[indicejoueur].canvas = false;
+      console.log(tabPlayer);
+      console.log(indicejoueur);
+      indicejoueur = indicejoueur+1;
+      if(indicejoueur < tabPlayer.length){
+        tabPlayer[indicejoueur].canvas = true;
+        SendTabPlayerToAll();
+      }
+      else{
+          indicejoueur = 0;
+          tabPlayer[indicejoueur].canvas = true;
+          SendTabPlayerToAll();
+          console.log(tabPlayer);
+      }
 }
 
 function start(){
