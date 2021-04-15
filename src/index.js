@@ -175,9 +175,11 @@ function addScore(){
 
 export function ChangePlayer(){
     tabPlayer[indicejoueur].canvas = false;
-    indicejoueur++;
-    tabPlayer[indicejoueur].canvas = true;
-    SendTabPlayerToAll();
+    if(indicejoueur < tabPlayer.length - 1){
+      indicejoueur++;
+      tabPlayer[indicejoueur].canvas = true;
+      SendTabPlayerToAll();
+    }
 }
 
 function start(){
