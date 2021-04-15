@@ -182,7 +182,6 @@ function whoDraw(){
 }
 
 export function ChangePlayer(){
-<<<<<<< HEAD
       indicejoueur = whoDraw();
       tabPlayer[indicejoueur].canvas = false;
       console.log(tabPlayer);
@@ -191,21 +190,15 @@ export function ChangePlayer(){
       if(indicejoueur < tabPlayer.length){
         tabPlayer[indicejoueur].canvas = true;
         SendTabPlayerToAll();
+        //NouvelleManche();
       }
       else{
           indicejoueur = 0;
           tabPlayer[indicejoueur].canvas = true;
           SendTabPlayerToAll();
+          //NouvelleManche();
           console.log(tabPlayer);
       }
-=======
-    tabPlayer[indicejoueur].canvas = false;
-    if(indicejoueur < tabPlayer.length - 1){
-      indicejoueur++;
-      tabPlayer[indicejoueur].canvas = true;
-      SendTabPlayerToAll();
-    }
->>>>>>> d86ae4646fe5d6d5411725083ad4acf203b75d01
 }
 
 function start(){

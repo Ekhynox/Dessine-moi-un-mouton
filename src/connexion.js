@@ -112,6 +112,9 @@ peer.on('connection', function(conn) {
     var me = GetPlayer();
     if(data == "NouvelleManche"){
       SetJeu();
+      if(me.etat == "host"){
+        SendTabPlayerToAll();
+      }
     }
     if(me.etat == "host"){
       if(data.co == false){
@@ -239,10 +242,10 @@ export function Connexion() {
 //reception stream
 peer.on('call', function(call) {
   console.log(GetTab());
-  if(meInTab().canvas!= true){
-  //  if(meInTab().etat != "host"){
+  if(meInTab().canvas != true){
+    if(meInTab().etat != "host"){
       SetJeu();
-    //}
+    }
     console.log("reception de stream");
     call.answer(); // Answer the call with an A/V stream.
     console.log(call);
@@ -255,5 +258,12 @@ peer.on('call', function(call) {
 ////////////////////////////////////////////////////////
 //NouvelleManche
 export function NouvelleManche(){
-  SendToAll("NouvelleManche");
+  if(GetPlayer.etat != "host"){
+    Send("NouvelleManche");
+  }
+  else
+  {
+    //SendTabPlayerToAll();
+    SendToAll("NouvelleManche");
+  }
 }
