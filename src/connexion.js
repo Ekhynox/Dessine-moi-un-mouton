@@ -246,7 +246,10 @@ peer.on('call', function(call) {
   if(meInTab().canvas != true){
     if(meInTab().etat != "host"){
       console.log("setjeu de peer.on");
-      SetJeu();
+      if(connect == true){
+        SetJeu();
+        connect = false;
+      }
     }
     call.answer(); // Answer the call with an A/V stream.
     call.on('stream', function(remoteStream){

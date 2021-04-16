@@ -16,6 +16,11 @@ var tabPlayer = [];
 var player;
 var etatjeu="sign";
 var indicejoueur = 0;
+var game = true;
+
+export function setGame(statut){
+  game = statut;
+}
 
 export function SetMot() {
   tabPlayer[indicejoueur].mot=GetWordUse();
@@ -79,29 +84,31 @@ export function SetWaiting(){
 }
 
 export function SetJeu(){
-  if(meInTab().canvas == true){
-    ReactDOM.render(
-    <React.StrictMode>
-    <App/>
-    </React.StrictMode>,
-    document.getElementById('root'),
-    );
-    setTimeout(() => { start(); }, 100); //PROMISE !! /!\ !!
-    setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
-    setTimeout(() => { Words_list(); }, 100); //PROMISE !! /!\ !!
+  if(game == true){
+    if(meInTab().canvas == true){
+      ReactDOM.render(
+      <React.StrictMode>
+      <App/>
+      </React.StrictMode>,
+      document.getElementById('root'),
+      );
+      setTimeout(() => { start(); }, 100); //PROMISE !! /!\ !!
+      setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
+      setTimeout(() => { Words_list(); }, 100); //PROMISE !! /!\ !!
+      setTimeout(() => { Connexion(); }, 100); //PROMISE !! /!\ !!
+    }
+    else{
+      ReactDOM.render(
+      <React.StrictMode>
+      <AppViewer/>
+      </React.StrictMode>,
+      document.getElementById('root'),
+      );
+      setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
+      setTimeout(() => { setPool(tabPlayer); }, 100); //PROMISE !! /!\ !!
+    }
+    etatjeu="Jeu";
   }
-  else{
-    ReactDOM.render(
-    <React.StrictMode>
-    <AppViewer/>
-    </React.StrictMode>,
-    document.getElementById('root'),
-    );
-    setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
-    setTimeout(() => { setPool(tabPlayer); }, 100); //PROMISE !! /!\ !!
-  }
-  setTimeout(() => { Connexion(); }, 100); //PROMISE !! /!\ !!
-  etatjeu="Jeu";
 }
 
 function chat(){
