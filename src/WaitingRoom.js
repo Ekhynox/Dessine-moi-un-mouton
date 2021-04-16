@@ -55,6 +55,7 @@ export default function SignInSide() {
              <Divider variant={'middle'} className={styles.divider} />
            </div>
          </Column>
+         <Column p={0} gap={0} container className={classes.card}>
          <div id = 'zoneId'>
          <Button
            type="submit"
@@ -84,6 +85,7 @@ export default function SignInSide() {
              onClick={addpool}
            >Connexion</Button>
           </div>
+          </Column>
         </div>
       </Grid>
       <Grid item xs={12} sm={3} elevation={6} square className={classes.cardchat}>
