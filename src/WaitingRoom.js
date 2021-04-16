@@ -19,13 +19,12 @@ export default function SignInSide() {
   const getPeerId = () => {
      var abc = MyId();
      console.log(abc);
-     document.getElementById("zoneId").innerHTML = abc;
+     document.getElementById("zoneId").innerHTML = "";
+     document.getElementById("textAndButton").innerHTML = abc;
      //document.getElementById("textAndButton").innerHTML = "";
   };
 
   const start = () => {
-      var id = document.getElementById("peerID").value;
-      console.log(id.value);
       SetJeu();
   }
 

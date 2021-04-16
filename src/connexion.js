@@ -47,6 +47,7 @@ export function MyId(){
 ////////////////////////////////////////////////////////
 //Connexion
 export function ConnectionToHost(id){
+  document.getElementById("textAndButton").innerHTML = "";
   var me = GetPlayer();
   me.etat = "viewer";
   me.canvas = "false";
