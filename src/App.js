@@ -85,9 +85,7 @@ function endround(){
     nextTurn.addEventListener('click', function(event){
       ChangePlayer();
       NouvelleManche();
-      if(GetPlayer().etat == "host"){
-        SetJeu();
-      }
+      SetJeu();
       //SetJeu();
     });
 

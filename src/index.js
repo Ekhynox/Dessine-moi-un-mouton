@@ -190,25 +190,27 @@ function whoDraw(){
 
 export function ChangePlayer(){
       indicejoueur = whoDraw();
+      console.log("le dessinateur actuel : " + indicejoueur);
+      console.log(tabPlayer[indicejoueur])
       tabPlayer[indicejoueur].canvas = false;
-      console.log(tabPlayer);
-      console.log(indicejoueur);
       indicejoueur = indicejoueur+1;
       if(indicejoueur < tabPlayer.length){
+        console.log("la taille du tableau : " + tabPlayer.length);
+        console.log("le prochain desinnateur : " + indicejoueur);
+        console.log(tabPlayer[indicejoueur])
         tabPlayer[indicejoueur].canvas = true;
+        console.log(indicejoueur);
         if(GetPlayer().etat == "host"){
           SendTabPlayerToAll();
         }
-        else{
-          SendTabPlayer();
-        }
-
       }
       else{
           indicejoueur = 0;
           tabPlayer[indicejoueur].canvas = true;
-          SendTabPlayerToAll();
-          //NouvelleManche();
+          if(GetPlayer().etat == "host"){
+            SendTabPlayerToAll();
+            SetJeu();
+          }
           console.log(tabPlayer);
       }
 }
