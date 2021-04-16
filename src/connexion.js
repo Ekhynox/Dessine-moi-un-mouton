@@ -191,7 +191,7 @@ function messageTemp(data){
   chatBox.appendChild(div1);
 }
 
-export const PersonItem = ({ src, name}) => {
+export const PersonItem = ({ src, name, score}) => {
   //const avatarStyles = useDynamicAvatarStyles({ size: 56 });
   return (
     <Row gap={2} p={2.5}>
@@ -202,6 +202,9 @@ export const PersonItem = ({ src, name}) => {
         <Item grow minWidth={0}>
           <div>{name}</div>
         </Item>
+        <Item>
+          <div>{score}</div>
+        </Item>
       </Row>
     </Row>
   );
@@ -209,17 +212,17 @@ export const PersonItem = ({ src, name}) => {
 
 export function setPool(data){
   tabPlayer = data;
-  var playerBox = document.getElementById("playerZone");
-  playerBox.innerHTML = " ";
+  //var playerZone = document.getElementById("playerZone");
+  //playerZone.innerHTML = " ";
     for(let i=0; i<tabPlayer.length; i++){
-      var div = document.createElement("div");
-      //const el = React.createElement(PersonItem, {name : tabPlayer[i].pseudos , src : tabPlayer[i].avatar}, document.getElementById("playerZone"));
+      //var div = document.createElement("div");
+      const el = React.createElement(PersonItem, {name : tabPlayer[i].pseudos , src : tabPlayer[i].avatar, score : tabPlayer[i].score}, document.getElementById("playerZone"));
       //const di = React.createElement(Divider, {variant : "middle" , className : "style.divider" }, document.getElementById("playerZone"));
-      //ReactDOM.render(el, document.getElementById("playerZone"));
+      ReactDOM.render(el, document.getElementById("playerZone"));
       //ReactDOM.render(di, document.getElementById("playerZone"));
       //div.textContent += elem;
-      div.innerHTML += tabPlayer[i].pseudos + " " + tabPlayer[i].score;
-      playerBox.appendChild(div);
+      //div.innerHTML += tabPlayer[i].pseudos + " " + tabPlayer[i].score;
+      //playerZone.appendChild(div);
     }
 }
 

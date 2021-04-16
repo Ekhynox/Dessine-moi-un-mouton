@@ -109,7 +109,7 @@ import cx from 'clsx';
         height:'60%',
         display: 'flex',
         borderRadius: 16,
-        margin: theme.spacing(10, 3),
+        margin: theme.spacing(10, 2),
         backgroundColor: 'rgb(255, 255, 255)',
         background: 'white',
       },
