@@ -189,8 +189,13 @@ export function ChangePlayer(){
       indicejoueur = indicejoueur+1;
       if(indicejoueur < tabPlayer.length){
         tabPlayer[indicejoueur].canvas = true;
-        SendTabPlayerToAll();
-        //NouvelleManche();
+        if(GetPlayer().etat == "host"){
+          SendTabPlayerToAll();
+        }
+        else{
+          SendTabPlayer();
+        }
+
       }
       else{
           indicejoueur = 0;

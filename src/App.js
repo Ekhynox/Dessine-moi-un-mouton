@@ -19,7 +19,7 @@ import {Column, Row, Item} from '@mui-treasury/components/flex';
 import { makeStyles } from '@material-ui/core/styles';
 // fonction
 import {Connexion, SetCanvas, Send, NouvelleManche} from './connexion';
-import {SetJeu, ChangePlayer} from './index';
+import {SetJeu, ChangePlayer, GetPlayer} from './index';
 import {ColorChange, DownloadCanvasn, SetCanvasDraw} from './canvas';
 import {verybigPen, bigPen, smallPen, verysmallPen, erase, pinceau, clear, rect, rectfull, circle, circlefull, line, fill, save, undo} from './canvas';
 import {GetChoisi, SetChoisi, Words_list} from './words';
@@ -85,7 +85,10 @@ function endround(){
     nextTurn.addEventListener('click', function(event){
       ChangePlayer();
       NouvelleManche();
-      SetJeu();
+      if(GetPlayer().etat == "host"){
+        SetJeu();
+      }
+      //SetJeu();
     });
 
     document.getElementById("titremodal1").innerHTML="Time's up !";
