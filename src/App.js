@@ -23,14 +23,7 @@ import {SetJeu, ChangePlayer, GetPlayer} from './index';
 import {ColorChange, DownloadCanvasn, SetCanvasDraw} from './canvas';
 import {verybigPen, bigPen, smallPen, verysmallPen, erase, pinceau, clear, rect, rectfull, circle, circlefull, line, fill, save, undo} from './canvas';
 import {GetChoisi, SetChoisi, Words_list} from './words';
-import avatar1 from './img/1.jpg';
-import avatar2 from './img/2.jpg';
-import avatar3 from './img/3.jpg';
-import avatar4 from './img/4.jpg';
-import avatar5 from './img/5.jpg';
-import avatar6 from './img/6.jpg';
 import cx from 'clsx';
-
 import PropTypes from "prop-types";
 
 function App() {
