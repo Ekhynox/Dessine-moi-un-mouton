@@ -49,13 +49,13 @@ export default function SignInSide() {
          </Column>
          <Column p={0} gap={0} container className={classes.card}>
          <div id = 'zoneId'>
-         <Button
-           type="submit"
-           fullWidth
-           variant="contained"
-           color="primary"
-           onClick={getPeerId}
-         >Générer une ID</Button>
+           <Button
+             type="submit"
+             fullWidth
+             variant="contained"
+             color="primary"
+             onClick={getPeerId}
+           >Générer une ID</Button>
          </div>
          <div id='textAndButton'>
            <TextField

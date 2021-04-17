@@ -50,12 +50,6 @@ export function ColorChange(hex){
     console.log(rgbcolor.red);
 }
 
-/*
-var verybigPen = document.getElementById('Pen++');
-var bigPen = document.getElementById('Pen+');
-var smallPen = document.getElementById('Pen');
-var verysmallPen = document.getElementById('Pen-'); */
-
 export function verybigPen() {
     isDrawing = false;
     context.lineWidth = 18;

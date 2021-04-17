@@ -100,9 +100,7 @@ export default function SignInSide() {
               variant="contained"
               color="primary"
               onClick={player}
-          >
-              Connexion
-          </Button>
+          >Connexion</Button>
         </div>
       </Grid>
     </Grid>

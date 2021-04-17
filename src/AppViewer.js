@@ -1,5 +1,4 @@
 //Page de dessin
-
 import './css/App.css';
 import MenuAppBar from './Header';
 import React, {useState} from 'react';
@@ -17,7 +16,7 @@ import { RiArrowGoBackFill } from "react-icons/ri";
 //import Material-ui from '@material-ui';
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 // fonction
 import {ColorChange, DownloadCanvas} from './canvas';
 import {Connexion, SetCanvas, Send} from './connexion';
@@ -31,60 +30,37 @@ import avatar6 from './img/6.jpg';
 import {verybigPen, bigPen, smallPen, verysmallPen, erase, pinceau, clear, rect, rectfull, circle, circlefull, line, fill, save, undo} from './canvas';
 import cx from 'clsx';
 
-
-    function App() {
-      const classes = useStyles();
-      //const colorChange = ({ hex }) => hex = ColorChange(hex); // fonction change la couleur du pinceau
-      const colorChange = ({hex}) => {
-        hex = ColorChange(hex); // fonction change la couleur du pinceau
-      }
-      const PersonItem = ({ src, name }) => {
-        return (
-          <Row gap={2} p={1}>
-            <Item>
-              <Avatar className="avatar" src={src} />
-            </Item>
-            <Row gap={15} p={2}>
-              <Item><div>{name}</div></Item >
-              <Item> 400</Item>
-            </Row>
+function App() {
+  const classes = useStyles();
+  return (
+    <Grid container xs={12} component="main" className={classes.root}>
+      <CssBaseline />
+      <Grid item xs={true} sm={12} >
+        <Row><MenuAppBar /></Row>
+      </Grid>
+      <Grid item xs={false} sm={3} container direction="row" id="game">
+        <Column p={1} gap={0} className={classes.cardjoueur}>
+          <Row wrap p={2}>
+            <Item stretched>Participant.e.s</Item>
+            <Item>Score</Item>
           </Row>
-        );
-      };
-
-      return (
-        <Grid container xs={12} component="main" className={classes.root}>
-          <CssBaseline />
-            <Grid item xs={true} sm={12} >
-                <Row><MenuAppBar /></Row>
-            </Grid>
-            <Grid item xs={false} sm={3} container direction="row" id="game">
-              <Column p={1} gap={0} className={classes.cardjoueur}>
-                <Row wrap p={2}>
-                  <Item stretched>Participant.e.s</Item>
-                  <Item>Score</Item>
-                </Row>
-                <div id="playerZone">
-                  <Divider variant={'middle'}/>
-                  <PersonItem name={'Chocoluna'} src={avatar1}/>
-                </div>
-              </Column>
-            </Grid>
-            <Grid item xs={false} sm={5} elevation={6} square className={classes.stream}>
-              <video autoPlay id="Video"></video>
-            </Grid>
-            <Grid item xs={12} sm={3} elevation={6} square className={classes.cardchat}>
-              <div id="chatBox" className="card-body"></div>
-                <div className="card-footer input-group">
-                    <input id="message" className="form-control type_msg" placeholder="Type your message..."></input>
-                    <div className="input-group-append">
-                        <button id="send" className="input-group-text send_btn" ><BiSend/></button>
-                    </div>
-              </div>
-            </Grid>
-        </Grid>
-      )
-    }
+          <div id="playerZone"></div>
+        </Column>
+      </Grid>
+      <Grid item xs={false} sm={5} elevation={6} square className={classes.stream}>
+        <video autoPlay id="Video"></video>
+      </Grid>
+      <Grid item xs={12} sm={3} elevation={6} square className={classes.cardchat}>
+        <div id="chatBox" className="card-body"></div>
+        <div className="card-footer input-group">
+          <input id="message" className="form-control type_msg" placeholder="Type your message..."></input>
+          <div className="input-group-append">
+            <button id="send" className="input-group-text send_btn" ><BiSend/></button>
+          </div>
+        </div>
+      </Grid>
+    </Grid>
+  )};
 
     /*
     ███████ ████████ ██    ██ ██      ███████ 
