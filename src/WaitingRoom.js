@@ -28,6 +28,7 @@ export default function SignInSide() {
   const addpool = () => {
     var id = document.getElementById("peerID").value;
     ConnectionToHost(id);
+    document.getElementById("zoneId").innerHTML = "Connecté!";
   }
 
   return (

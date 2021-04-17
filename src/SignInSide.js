@@ -20,7 +20,7 @@ export default function SignInSide() {
   const classes = useStyles();
 
   //Creation de l'objet joueur
-  var players = {
+  var player = {
     etat: "host",
     pseudos: "",
     avatar: "",
@@ -32,20 +32,21 @@ export default function SignInSide() {
     mot: "",
    }
 
-  //Change le logo en l'avatar choisi par le joueur
- const changeAvatar = (img) => {
+//Change le logo en l'avatar choisi par le joueur
+const ChangeAvatar = (img) => {
    document.getElementById('logo').innerHTML ='<img alt='+ img.target.alt +' src= "' + img.target.src + '" class="MuiAvatar-img">';
-   players.avatar = img.target.src;
- };
+   player.avatar = img.target.src;
+   SetPlayer(player); 
+};
 
  //lorsque l'on clic sur connexion
  //Recupere le pseudos du joueurs et l'ajoute l'objet joueur.
  //Sauvegarde en local le joueurs puis l'ajoute dans le tableau de joueurs.
  //Puis affiche la page de waiting room.
- const player = () => {
-    players.pseudos = document.getElementById("pseudos").value
-    SetPlayer(players);
-    AddInTab(players);
+ const start = () => {
+    player.pseudos = document.getElementById("pseudos").value;
+    SetPlayer(player);
+    AddInTab(player);
     SetWaiting();
   }
 
@@ -62,16 +63,16 @@ export default function SignInSide() {
             <Item stretched className={classes.headline}>Choisis un Avatar</Item>
           </Row>
           <Row alignItems={'flex'} container xs={12}  sm={3} className={classes.avatarchoice}>
-            <Avatar onClick={changeAvatar} className={classes.large} alt="avatar1" src={avatar1} />
-            <Avatar onClick={changeAvatar} item className={classes.large} alt="avatar2" src={avatar2} />
-            <Avatar onClick={changeAvatar} item className={classes.large} alt="avatar3" src={avatar3} />
-            <Avatar onClick={changeAvatar} item className={classes.large} alt="avatar4" src={avatar4} />
+            <Avatar onClick={ChangeAvatar} className={classes.large} alt="avatar1" src={avatar1} />
+            <Avatar onClick={ChangeAvatar} item className={classes.large} alt="avatar2" src={avatar2} />
+            <Avatar onClick={ChangeAvatar} item className={classes.large} alt="avatar3" src={avatar3} />
+            <Avatar onClick={ChangeAvatar} item className={classes.large} alt="avatar4" src={avatar4} />
           </Row>
           <Row alignItems={'baseline'} className={classes.avatarchoice}>
-            <Avatar onClick={changeAvatar} className={classes.large} alt="avatar5" src={avatar5} />
-            <Avatar onClick={changeAvatar} className={classes.large} alt="avatar6" src={avatar6} />
-            <Avatar onClick={changeAvatar} className={classes.large} alt="avatar7" src={avatar7} />
-            <Avatar onClick={changeAvatar} className={classes.large} alt="avatar8" src={avatar8} />
+            <Avatar onClick={ChangeAvatar} className={classes.large} alt="avatar5" src={avatar5} />
+            <Avatar onClick={ChangeAvatar} className={classes.large} alt="avatar6" src={avatar6} />
+            <Avatar onClick={ChangeAvatar} className={classes.large} alt="avatar7" src={avatar7} />
+            <Avatar onClick={ChangeAvatar} className={classes.large} alt="avatar8" src={avatar8} />
           </Row>
           <Row flexDirection={'row-reverse'} className={classes.copyright}><p>All righs reserved to <b><i>PlaceIt!</i></b></p></Row>
         </Column>
@@ -99,7 +100,7 @@ export default function SignInSide() {
               fullWidth
               variant="contained"
               color="primary"
-              onClick={player}
+              onClick={start}
           >Connexion</Button>
         </div>
       </Grid>

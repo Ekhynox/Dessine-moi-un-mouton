@@ -96,7 +96,7 @@ function endround(){
 
 //fonction minuteur
   var MIN = 0; // MIN = Minimum expected value of time
-  var MAX = 10; // MAX = Maximium expected value of time
+  var MAX = 60; // MAX = Maximium expected value of time
 
   const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
 
@@ -132,12 +132,13 @@ function endround(){
     const timer = setInterval(() => {
       if (GetChoisi()){ //On lance le chrono que si on a choisi un mot
         setProgress((prevProgress) =>
-          prevProgress >= MAX ? endround() : prevProgress + 1 // 0 a remplacer  avec une fonctio
+          prevProgress >= MAX ? endround() : prevProgress + 1 // 0 a remplacer  avec une fonction
         );
       }
     }, 1000);
     return () => {
       clearInterval(timer);
+
     };
   }, []);
 //fin minuteur

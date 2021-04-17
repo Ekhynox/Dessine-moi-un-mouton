@@ -8,16 +8,28 @@ import AppViewer from './AppViewer';
 import Peer from 'peerjs';
 import SignInSide from './SignInSide';
 import WaitingRoom from './WaitingRoom';
-import {Connexion, MyId, SetCanvas, Send, SendTabPlayer, SendTabPlayerToAll, SendToAll, setPool, NouvelleManche} from './connexion';
+import {Connexion, ConnectionToHost, MyId, SetCanvas, Send, SendTabPlayer, SendTabPlayerToAll, SendToAll, setPool, NouvelleManche} from './connexion';
 import {SetCanvasDraw} from './canvas';
 import {GetWordUse, JaroDistance, SansAccent, Words_list} from './words';
 
 var tabPlayer = [];
-var player;
 var etatjeu="sign";
 var indicejoueur = 0;
 var game = true;
 SetSignInSide();
+
+var player = {
+  etat: "host",
+  pseudos: "",
+  avatar: "",
+  peerID: "",
+  score: 0,
+  co: false,
+  msg: false,
+  canvas : true,
+  mot: "",
+ }
+
 
 export function setGame(statut){
   game = statut;
@@ -219,7 +231,7 @@ function whoDraw(){
   return i;
 }
 
-//Recupere le dessinateur actuel puis le passe ne viewer puis donne le cancas au prochain joueur
+//Recupere le dessinateur actuel puis le passe de viewer puis donne le cancas au prochain joueur
 export function ChangePlayer(){
       indicejoueur = whoDraw();
       tabPlayer[indicejoueur].canvas = false;
@@ -247,6 +259,21 @@ function start(){
   SetCanvas(canvas);
   SetCanvasDraw(canvas, context);
 }
+
+document.addEventListener('keydown', function(event) {
+  if ((etatjeu == "sign") && (event.key === 'Enter') && (document.getElementById("pseudos").value != "")){
+    player.pseudos = document.getElementById("pseudos").value;
+    SetPlayer(player);
+    AddInTab(player);
+    SetWaiting();
+  }
+  else if ((etatjeu == "WaitingRoom") && (event.key === 'Enter') && (document.getElementById("peerID").value != "")){
+    var id = document.getElementById("peerID").value;
+    ConnectionToHost(id);
+    document.getElementById("zoneId").innerHTML = "Connecté!";
+  }
+
+});
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
