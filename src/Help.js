@@ -191,8 +191,6 @@ function controleSend(){
 }
 
 function send(){
-
-  console.log(support);
   HelpEnd();
 }
 

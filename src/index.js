@@ -17,6 +17,7 @@ var player;
 var etatjeu="sign";
 var indicejoueur = 0;
 var game = true;
+SetSignInSide();
 
 export function setGame(statut){
   game = statut;
@@ -24,10 +25,10 @@ export function setGame(statut){
 
 export function SetMot() {
   tabPlayer[indicejoueur].mot=GetWordUse();
-  console.log("tabPlayer[indicejoueur].mot : " + tabPlayer[indicejoueur].mot);
   SendTabPlayerToAll();
 }
 
+//trouve la position de l'utilisateur et envoie les informations depuis le tableau des joueurs.
 export function meInTab(){
   for (var i = 0; i < tabPlayer.length; i++) {
     if (tabPlayer[i].pseudos == player.pseudos){
@@ -36,30 +37,36 @@ export function meInTab(){
   }
 }
 
+//Ajoute un joueur dans le tableau
 export function AddInTab(playerInfo){
   tabPlayer.push(playerInfo);
 }
 
+//Retourne le tableau de joueurs
 export function GetTab(){
   return tabPlayer;
 }
 
+//Modifie le tableau de joueurs
 export function SetTab(data){
   tabPlayer = data;
 }
 
+//Retourne vrai si le joueurs est deja connecté
 export function Connected(id){
   tabPlayer[id].co = true;
 }
 
+//Modifie le joueur
 export function SetPlayer(playerInfo){
   player = playerInfo;
 }
 
+//Retourne le joueur
 export function GetPlayer(){
   return player;
 }
-
+//Render de la page d'accueil
 export function SetSignInSide(){
   ReactDOM.render(
     <React.StrictMode>
@@ -68,8 +75,13 @@ export function SetSignInSide(){
     document.getElementById('root')
   );
 }
-SetSignInSide();
 
+/*
+-- Render de la WaitingRoom
+-- Mise a jour des fonction du chat
+-- Mise a jour du tableau de joueur
+-- Ajout du peerID dans dans les informations du joueur
+*/
 export function SetWaiting(){
   ReactDOM.render(
   <React.StrictMode>
@@ -83,6 +95,15 @@ export function SetWaiting(){
   etatjeu="WaitingRoom";
 }
 
+/*
+Si j'ai le canvas :
+-- Render de la l'app version Canvas
+-- Set le canvas ainsi que le context, on met a jour des fonction du chat
+-- Choix trois mots a faire deviner et on envoi le stream au viewer
+Si je suis viewer :
+-- Render de la l'app version viewer
+-- On met a jour des fonction du chat, Mise a jour du tableau de joueur
+*/
 export function SetJeu(){
   if(game == true){
     if(meInTab().canvas == true){
@@ -111,6 +132,12 @@ export function SetJeu(){
   }
 }
 
+
+/*
+-- Lors d'un click sur le bouton, on recupere les entrée dans le champ input du chat puis envoie le message à tout les utilisateurs
+-- Version click sur un bouton
+-- Version ecoute sur la touche entée
+*/
 function chat(){
   //setup les variables pour la fonction Send() ('envoyer un message')
   var send = document.getElementById('send');
@@ -151,6 +178,7 @@ function chat(){
   });
 }
 
+
 function compartToChat(msg){
   if (true){ //vérifier que le joueur n'a pas déjà donnée la bonne réponse
     setTimeout(() => {
@@ -161,7 +189,6 @@ function compartToChat(msg){
         console.log("La comparaison est valider");
         addScore();
         SendTabPlayer();
-        console.log(tabPlayer);
       }
       else {
         console.log("JaroDistance : " + JaroDistance(msg, word));
@@ -172,6 +199,9 @@ function compartToChat(msg){
   return false;
 }
 
+/*
+-- auguemente le score du joueur dans le tableau de joueurs
+*/
 function addScore(){
   for (var i = 0; i < tabPlayer.length; i++) {
     if (tabPlayer[i].pseudos==player.pseudos){
@@ -180,6 +210,7 @@ function addScore(){
   }
 }
 
+//Renvoie la personne qui est actuellement le dessinateur
 function whoDraw(){
   var i=0;
   while(tabPlayer[i].canvas == false){
@@ -188,18 +219,13 @@ function whoDraw(){
   return i;
 }
 
+//Recupere le dessinateur actuel puis le passe ne viewer puis donne le cancas au prochain joueur
 export function ChangePlayer(){
       indicejoueur = whoDraw();
-      console.log("le dessinateur actuel : " + indicejoueur);
-      console.log(tabPlayer[indicejoueur])
       tabPlayer[indicejoueur].canvas = false;
       indicejoueur = indicejoueur+1;
       if(indicejoueur < tabPlayer.length){
-        console.log("la taille du tableau : " + tabPlayer.length);
-        console.log("le prochain desinnateur : " + indicejoueur);
-        console.log(tabPlayer[indicejoueur])
         tabPlayer[indicejoueur].canvas = true;
-        console.log(indicejoueur);
         if(GetPlayer().etat == "host"){
           SendTabPlayerToAll();
         }
@@ -211,12 +237,11 @@ export function ChangePlayer(){
             SendTabPlayerToAll();
             SetJeu();
           }
-          console.log(tabPlayer);
       }
 }
 
+//Set le canvas ainsi que le context puis le transmet aux outils de dessin
 function start(){
-  //Canvas
   var canvas = document.getElementById('DrawBox');
   var context = canvas.getContext('2d');
   SetCanvas(canvas);

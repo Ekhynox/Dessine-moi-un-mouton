@@ -1,13 +1,12 @@
 //Page de Connexion
-
 import React from 'react';
+import {useStyles} from './css/SignInSideStyle'
 import MenuAppBar from './Header';
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
 import {ConnectionToHost} from './connexion';
 import {SetWaiting, SetPlayer, PlayerPool, AddInTab, GetTab} from './index';
-import { makeStyles } from '@material-ui/core/styles';
 import { useDynamicAvatarStyles } from '@mui-treasury/styles/avatar/dynamic';
 import logo from './Mylogo.jpg';
 import avatar1 from './img/1.jpg';
@@ -21,7 +20,8 @@ import avatar8 from './img/8.jpg';
 
 export default function SignInSide() {
   const classes = useStyles();
-
+  
+  //Creation de l'objet joueur
   var players = {
     etat: "host",
     pseudos: "",
@@ -34,14 +34,18 @@ export default function SignInSide() {
     mot: "",
    }
 
+  //Change le logo en l'avatar choisi par le joueur
  const changeAvatar = (img) => {
    document.getElementById('logo').innerHTML ='<img alt='+ img.target.alt +' src= "' + img.target.src + '" class="MuiAvatar-img">';
    players.avatar = img.target.src;
  };
 
+ //lorsque l'on clic sur connexion
+ //Recupere le pseudos du joueurs et l'ajoute l'objet joueur.
+ //Sauvegarde en local le joueurs puis l'ajoute dans le tableau de joueurs.
+ //Puis affiche la page de waiting room.
  const player = () => {
     players.pseudos = document.getElementById("pseudos").value
-    console.log(players);
     SetPlayer(players);
     AddInTab(players);
     SetWaiting();
@@ -76,120 +80,33 @@ export default function SignInSide() {
       </Grid>
       <Grid item xs={12} sm={4} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-        <h1> Dessine Moi Un Mouton</h1>
-          <Avatar id="logo" className={classes.medium} src={logo} alt="My logo" />
-          <Typography component="h1" variant="h5">
-            <h3 id="show-peer"></h3>
-          </Typography>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="pseudos"
-              label="Pseudo"
-              name="Pseudo"
-              autoComplete="Pseudo"
-              autoFocus
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              onClick={player}
-            >
-              Connexion
-            </Button>
-
+          <h1> Dessine Moi Un Mouton</h1>
+            <Avatar id="logo" className={classes.medium} src={logo} alt="My logo" />
+            <Typography component="h1" variant="h5">
+              <h3 id="show-peer"></h3>
+            </Typography>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="pseudos"
+                label="Pseudo"
+                name="Pseudo"
+                autoComplete="Pseudo"
+                autoFocus
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                onClick={player}
+              >
+                Connexion
+              </Button>
         </div>
         </Grid>
     </Grid>
   );
 }
-
-/*
-███████ ████████ ██    ██ ██      ███████ 
-██         ██     ██  ██  ██      ██      
-███████    ██      ████   ██      █████ 
-     ██    ██       ██    ██      ██    
-███████    ██       ██    ███████ ███████ */
-
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    height: '100vh',
-  },
-
-  image: {
-    backgroundImage: 'url(https://source.unsplash.com/collection/24051068/)',
-    backgroundRepeat: 'no-repeat',
-    backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  },
-
-  paper: {
-    margin: theme.spacing(6, 2),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-
-  form: {
-    width: '80%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-
-  headline: {
-    color: '#122740',
-    fontSize: '2.5rem',
-    fontWeight: 600,
-    align: 'center',
-  },
-
-  header: {
-    fontFamily: 'Barlow, san-serif',
-    backgroundColor: '#fff',
-  },
-
-  card: {
-    width: '92%',
-    height : '92%',
-    margin : theme.spacing (5, 5),
-    borderRadius: 16,
-    boxShadow: '0 8px 16px 0 #BDC9D7',
-    overflow: 'hidden',
-  },
-
-  avatarchoice: {
-      display: 'flex',
-      '& > *': {
-      margin: theme.spacing(1),
-      },
-    },
-    medium: {
-      width: '50%',
-      height: '70%',
-    },
-    large: {
-      width: '23%',
-      height: '80%',
-    },
-
-    copyright: {
-      fontFamily: 'Barlow, san-serif',
-      color: 'white',
-      margin: theme.spacing (3, 2),
-    },
-}));

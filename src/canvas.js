@@ -28,21 +28,6 @@ function CanvasInit(){
   context.strokeStyle = 'black'
 }
 
-//Pen
-/*
-var color = document.getElementsByClassName('color');
-var erase = document.getElementById('Erase');
-var pinceau = document.getElementById('Pinceau');
-var clear = document.getElementById('Clear');
-var rect = document.getElementById('drawRect');
-var rectfull = document.getElementById('drawRectFull');
-var circle = document.getElementById('drawCircle');
-var circlefull = document.getElementById('drawCircleFull');
-var line = document.getElementById('drawLine');
-var fill = document.getElementById('fillIn');
-var undo = document.getElementById('Bundo');
-var save = document.getElementById('saveImage'); */
-//context.lineWidth = 6;
 var isDrawing;
 var drawPinceau = true;
 var drawRectangle = false;
