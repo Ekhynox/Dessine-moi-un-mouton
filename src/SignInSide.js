@@ -2,13 +2,11 @@
 import React from 'react';
 import {useStyles} from './css/SignInSideStyle'
 import MenuAppBar from './Header';
-import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography} from '@material-ui/core';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
 import {ConnectionToHost} from './connexion';
 import {SetWaiting, SetPlayer, PlayerPool, AddInTab, GetTab} from './index';
-import { useDynamicAvatarStyles } from '@mui-treasury/styles/avatar/dynamic';
-import logo from './Mylogo.jpg';
+import logo from './img/Mylogo.jpg';
 import avatar1 from './img/1.jpg';
 import avatar2 from './img/2.jpg';
 import avatar3 from './img/3.jpg';
@@ -20,7 +18,7 @@ import avatar8 from './img/8.jpg';
 
 export default function SignInSide() {
   const classes = useStyles();
-  
+
   //Creation de l'objet joueur
   var players = {
     etat: "host",
@@ -81,32 +79,32 @@ export default function SignInSide() {
       <Grid item xs={12} sm={4} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <h1> Dessine Moi Un Mouton</h1>
-            <Avatar id="logo" className={classes.medium} src={logo} alt="My logo" />
-            <Typography component="h1" variant="h5">
+          <Avatar id="logo" className={classes.medium} src={logo} alt="My logo" />
+          <Typography component="h1" variant="h5">
               <h3 id="show-peer"></h3>
-            </Typography>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="pseudos"
-                label="Pseudo"
-                name="Pseudo"
-                autoComplete="Pseudo"
-                autoFocus
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                onClick={player}
-              >
-                Connexion
-              </Button>
+          </Typography>
+          <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="pseudos"
+              label="Pseudo"
+              name="Pseudo"
+              autoComplete="Pseudo"
+              autoFocus
+          />
+          <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              onClick={player}
+          >
+              Connexion
+          </Button>
         </div>
-        </Grid>
+      </Grid>
     </Grid>
   );
 }

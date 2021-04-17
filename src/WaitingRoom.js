@@ -1,17 +1,12 @@
 import React from 'react';
 import MenuAppBar from './Header';
-import './css/WaitingRoom.css';
 import {useStyles} from './css/WaitingRoomStyle'
-//import Material-ui from '@material-ui';
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import logo from './Mylogo.jpg';
-import cx from 'clsx';
-import { Column, Row, Item } from '@mui-treasury/components/flex';
-import { useDynamicAvatarStyles } from '@mui-treasury/styles/avatar/dynamic';
+import {Column, Row, Item} from '@mui-treasury/components/flex';
+import {BiSend} from 'react-icons/bi';
 import {SetJeu} from './index';
 import {Connexion, MyId, ConnectionToHost} from './connexion';
-import { BiSave, BiEraser, BiSend } from 'react-icons/bi';
+import cx from 'clsx';
 
 export default function SignInSide() {
   const classes = useStyles();
