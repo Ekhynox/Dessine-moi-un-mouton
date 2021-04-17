@@ -224,18 +224,19 @@ function messageTemp(data){
 // Met à jour le tableau de joueurs
 export function setPool(data){
   tabPlayer = data;
+  var rows = []
   //var playerZone = document.getElementById("playerZone");
   //playerZone.innerHTML = " ";
     for(let i=0; i<tabPlayer.length; i++){
       //var div = document.createElement("div");
-      const el = React.createElement(PersonItem, {name : tabPlayer[i].pseudos , src : tabPlayer[i].avatar, score : tabPlayer[i].score}, document.getElementById("playerZone"));
+      rows[i] = React.createElement(PersonItem, {name : tabPlayer[i].pseudos , src : tabPlayer[i].avatar, score : tabPlayer[i].score}, document.getElementById("playerZone"));
       //const di = React.createElement(Divider, {variant : "middle" , className : "style.divider" }, document.getElementById("playerZone"));
-      ReactDOM.render(el, document.getElementById("playerZone"));
       //ReactDOM.render(di, document.getElementById("playerZone"));
       //div.textContent += elem;
       //div.innerHTML += tabPlayer[i].pseudos + " " + tabPlayer[i].score;
       //playerZone.appendChild(div);
     }
+    ReactDOM.render(rows, document.getElementById("playerZone"));
 }
 
 export const PersonItem = ({ src, name, score}) => {
