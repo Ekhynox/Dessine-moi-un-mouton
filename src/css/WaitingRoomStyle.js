@@ -47,6 +47,29 @@ export const useStyles = makeStyles((theme) => ({
     background:'rgba(240, 160, 240, 0.30)',
   },
 
+  cardco: {
+    width: '92%',
+    height : '92%',
+    margin : theme.spacing (5, 5),
+    borderRadius: 16,
+    boxShadow: '0 8px 16px 0 #BDC9D7',
+    overflow: 'hidden',
+    display : 'flex',
+    background:'rgba(240, 160, 240, 0.30)',
+  },
+
+  copyright: {
+    fontFamily: 'Barlow, san-serif',
+    color: 'grey',
+    margin: theme.spacing (3, 2),
+  },
+
+  IDstyle: {
+    margin : theme.spacing (2, 'auto'),
+    fontSize: '1rem',
+    fontWeight: 'bold',
+  },
+
   cardchat: {
     margin: theme.spacing(8, 2),
     width: '90%',

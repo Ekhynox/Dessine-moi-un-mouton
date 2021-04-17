@@ -28,7 +28,8 @@ export default function SignInSide() {
   const addpool = () => {
     var id = document.getElementById("peerID").value;
     ConnectionToHost(id);
-    document.getElementById("zoneId").innerHTML = "Connecté!";
+    document.getElementById("zoneId").innerHTML = "";
+    document.getElementById('textAndButton').innerHTML="Connecté!";
   }
 
   return (
@@ -48,8 +49,9 @@ export default function SignInSide() {
            </Row>
            <div id="playerZone"></div>
          </Column>
-         <Column p={0} gap={0} container className={classes.card}>
-         <div id = 'zoneId'>
+         <Column p={0} gap={0} container className={classes.cardco}>
+         <div id = 'zoneId' className={classes.IDstyle}>
+           <Row className={classes.copyright}><i>Générez une ID pour créer une session et transmettez-là à vos ami.e.s pour qu'ils et elles s'y connectent!</i></Row>
            <Button
              type="submit"
              fullWidth
@@ -58,7 +60,7 @@ export default function SignInSide() {
              onClick={getPeerId}
            >Générer une ID</Button>
          </div>
-         <div id='textAndButton'>
+         <div id='textAndButton' className={classes.IDstyle}>
            <TextField
              variant="outlined"
              margin="normal"
