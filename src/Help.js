@@ -73,7 +73,7 @@ function controleTextePseudo(cl){
         fullWidth
         required
         autoComplete="pseudo"
-        helperText="Veuillez remplir ce champ."
+        helperText="Veuillez compléter ce champ."
         id="Pseudo"
         label="Pseudo"
         name="Pseudo"
@@ -109,7 +109,7 @@ function controleTexteMail(cl) {
           fullWidth
           required
           autoComplete="email"
-          helperText="Veuillez remplir ce champ."
+          helperText="Veuillez compléter ce champ."
           id="Email"
           label="Email Address"
           name="email"
@@ -149,7 +149,7 @@ function controleTexteExplication(cl) {
           multiline
           required
           autoComplete=""
-          helperText="Veuillez remplir ce champ."
+          helperText="Veuillez compléter ce champ."
           id="Explication"
           label="Explication"
           name="explication"
