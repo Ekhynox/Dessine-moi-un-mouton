@@ -30,6 +30,7 @@ export function SetSignInSide() {
 
 export default function SignInSide() {
   const classes = useStyles();
+  var etatjeu = "sign";
 
   //Creation de l'objet joueur
   var player = {
@@ -109,6 +110,12 @@ const ChangeAvatar = (img) => {
       start();
     }
   }
+
+  document.addEventListener('keydown', function(event) {
+    if ((etatjeu == "sign") && (event.key === 'Enter') ){
+      controleSend()
+    }
+  });
 
   return (
     <Grid container xs={12} component="main" className={classes.root}>
