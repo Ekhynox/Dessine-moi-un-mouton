@@ -70,10 +70,10 @@ function controleTextePseudo(cl){
         className={cl.cadre}
         autoFocus
         error
-        helperText="Veuillez remplir ce champ."
         fullWidth
         required
         autoComplete="pseudo"
+        helperText="Veuillez remplir ce champ."
         id="Pseudo"
         label="Pseudo"
         name="Pseudo"
@@ -106,10 +106,10 @@ function controleTexteMail(cl) {
         <TextField
           className={cl.cadre}
           error
-          helperText="Veuillez remplir ce champ."
           fullWidth
           required
           autoComplete="email"
+          helperText="Veuillez remplir ce champ."
           id="Email"
           label="Email Address"
           name="email"
@@ -127,11 +127,13 @@ function controleTexteExplication(cl) {
         <TextField
           className={cl.cadre}
           fullWidth
+          multiline
           required
           autoComplete=""
           id="Explication"
           label="Explication"
           name="explication"
+          rows={4}
           variant="outlined"
         />
       </Grid>
@@ -143,13 +145,15 @@ function controleTexteExplication(cl) {
         <TextField
           className={cl.cadre}
           error
-          helperText="Veuillez remplir ce champ."
           fullWidth
+          multiline
           required
           autoComplete=""
+          helperText="Veuillez remplir ce champ."
           id="Explication"
           label="Explication"
           name="explication"
+          rows={4}
           variant="outlined"
         />
       </Grid>
@@ -191,6 +195,7 @@ function controleSend(){
 }
 
 function send(){
+  console.log(support);
   HelpEnd();
 }
 
