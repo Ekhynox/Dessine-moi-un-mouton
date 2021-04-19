@@ -1,5 +1,6 @@
 //Page de Connexion
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {useStyles} from './css/SignInSideStyle'
 import MenuAppBar from './Header';
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography} from '@material-ui/core';
@@ -15,6 +16,17 @@ import avatar5 from './img/5.jpg';
 import avatar6 from './img/6.jpg';
 import avatar7 from './img/7.jpg';
 import avatar8 from './img/8.jpg';
+
+var controlePseudo = false;
+
+export function SetSignInSide() {
+  ReactDOM.render(
+    <React.StrictMode>
+    <SignInSide/>
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+}
 
 export default function SignInSide() {
   const classes = useStyles();
@@ -36,8 +48,9 @@ export default function SignInSide() {
 const ChangeAvatar = (img) => {
    document.getElementById('logo').innerHTML ='<img alt='+ img.target.alt +' src= "' + img.target.src + '" class="MuiAvatar-img">';
    player.avatar = img.target.src;
-   SetPlayer(player); 
+   SetPlayer(player);
 };
+
 
  //lorsque l'on clic sur connexion
  //Recupere le pseudos du joueurs et l'ajoute l'objet joueur.
@@ -48,6 +61,53 @@ const ChangeAvatar = (img) => {
     SetPlayer(player);
     AddInTab(player);
     SetWaiting();
+  }
+
+  function controleTextePseudo(){
+    if (!controlePseudo){
+      return (
+        <TextField
+          autoFocus
+          fullWidth
+          required
+          autoComplete="Pseudo"
+          id="pseudos"
+          label="Pseudo"
+          margin="normal"
+          name="Pseudo"
+          variant="outlined"
+        />
+      );
+    }
+    else {
+      return (
+        <TextField
+        autoFocus
+        error
+        fullWidth
+        required
+        autoComplete="Pseudo"
+        helperText="Veuillez compléter ce champ."
+        id="pseudos"
+        label="Pseudo"
+        margin="normal"
+        name="Pseudo"
+        variant="outlined"
+        />
+      );
+    }
+  }
+
+  function controleSend(){
+    var ctr = document.getElementById('pseudos').value;
+
+    if (ctr==""){
+      controlePseudo = true;
+      SetSignInSide();
+    }
+    else{
+      start();
+    }
   }
 
   return (
@@ -84,23 +144,13 @@ const ChangeAvatar = (img) => {
           <Typography component="h1" variant="h5">
               <h3 id="show-peer"></h3>
           </Typography>
-          <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="pseudos"
-              label="Pseudo"
-              name="Pseudo"
-              autoComplete="Pseudo"
-              autoFocus
-          />
+          {controleTextePseudo()}
           <Button
               type="submit"
               fullWidth
               variant="contained"
               color="primary"
-              onClick={start}
+              onClick={controleSend}
           >Connexion</Button>
         </div>
       </Grid>
