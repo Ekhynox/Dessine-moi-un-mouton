@@ -4,8 +4,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { FiSun, FiMoon } from "react-icons/fi";
 import {AppBar, Button, ButtonGroup, IconButton, FormControlLabel, FormGroup, Grid, Menu, MenuItem, Switch, Toolbar, Typography} from '@material-ui/core';
 import sheep from './img/sheep.png';
-import {Help} from './Help';
 import {SetSignInSide} from './index';
+import {AboutUs} from './AboutUs';
+import {Help} from './Help';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,16 +59,18 @@ function MenuAppBar() {
     <div className={classes.root}>
       <AppBar position="relative" style={{backgroundColor: '#000051'}}>
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
+          {/*
+            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+              <MenuIcon />
+            </IconButton>
+          */}
           <img src={sheep} onClick={SetSignInSide}/>
           <ButtonGroup variant="text"  aria-label="text primary button group" aria-controls="menu-appbar"
           aria-haspopup="true"
           onClick={handleMenu}
           color="inherit"
           className={classes.Button}>
-          <Button> About Us </Button>
+          <Button onClick={AboutUs}> About Us </Button>
           <Button onClick={Help}> Help </Button>
           </ButtonGroup>
           <Grid container justify="flex-end">
@@ -78,28 +81,6 @@ function MenuAppBar() {
              />
            </FormGroup>
            </Grid>
-          {auth && (
-            <div>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={open}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-              </Menu>
-            </div>
-          )}
         </Toolbar>
       </AppBar>
     </div>
