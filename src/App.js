@@ -89,7 +89,7 @@ function endround(){
 
 //fonction minuteur
   var MIN = 0; // MIN = Minimum expected value of time
-  var MAX = 60; // MAX = Maximium expected value of time
+  var MAX = 10; // MAX = Maximium expected value of time
 
   const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
 
@@ -173,8 +173,8 @@ function endround(){
                 <LinearProgressWithLabel value={progress} />
               </Row>
               <Row className={classes.canvas}>
-                <div className="drawbox">
-                  <canvas id="DrawBox" width="600" height="600"></canvas>
+                <div>
+                  <canvas className={classes.drawbox} id="DrawBox"></canvas>
                   </div>
               </Row>
               <Row className={classes.center}>
@@ -258,6 +258,10 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 15,
     display: 'flex',
     marginTop: '6vh',
+  },
+
+  drawbox:{
+    width: "100%",
   },
 
   couleurs: {

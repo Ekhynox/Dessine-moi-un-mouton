@@ -255,6 +255,9 @@ export function ChangePlayer(){
 //Set le canvas ainsi que le context puis le transmet aux outils de dessin
 function start(){
   var canvas = document.getElementById('DrawBox');
+  var widthRatio = 2;
+  canvas.width = canvas.width * widthRatio;
+  canvas.height = canvas.width;
   var context = canvas.getContext('2d');
   SetCanvas(canvas);
   SetCanvasDraw(canvas, context);
