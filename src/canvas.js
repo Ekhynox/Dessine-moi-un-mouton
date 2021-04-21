@@ -210,33 +210,37 @@ function drawDataURIOnCanvas(strDataURI)  //elle prend en param l'url d'une imag
 }
 
 var time;
+//Ecoute sur la redimension de la fenêtre
 window.addEventListener('resize', () => {
   clearTimeout(time);
-  time = setTimeout(reDraw, 100);
+  time = setTimeout(reDraw, 100); //Pour éviter de spam la redimension
 });
 
-function reDraw(){
-  if(canvas != undefined){
-    sourceCanvas = canvas.toDataURL('image/jpeg', 1.0);
-    setUpCanvas();
-    drawDataURIOnCanvas(sourceCanvas);
-  }
-}
-
+//Fonction de redimension
 function setUpCanvas(){
   // Feed the size back to the canvas.
-  context.canvas.width = window.innerHeight;
-  context.canvas.height = window.innerHeight;
-  context.canvas.width = canvas.clientWidth;
-  context.canvas.height = canvas.clientWidth;
+  context.canvas.width  = window.innerHeight; //redimension a la taille de la fenêtre
+  context.canvas.height = window.innerHeight; //redimension a la taille de la fenêtre
+
+  context.canvas.width  = canvas.clientWidth; //puis on set les coordonnées en fonction de l'utilisateur
+  context.canvas.height = canvas.clientWidth; //puis on set les coordonnées en fonction de l'utilisateur
 };
+
+//on redimensionne puis on redessine le canvas
+function reDraw(){
+  if(canvas != undefined){ //si le canvas existe
+    sourceCanvas = canvas.toDataURL('image/jpeg', 1.0); // Enregistre le canvas
+    setUpCanvas();                                      // redimensionne le canvas
+    drawDataURIOnCanvas(sourceCanvas);                  // redessine le canvas avec la taille redimensionnée
+  }
+}
 
 //Fonction de dessin
 function getMousePos(canvas, mouse) {
   var rect = canvas.getBoundingClientRect(); // retourne sa position par rapport à la zone d'affichage.
   return {
-    x: mouse.clientX - rect.left, // position en X de la souris - ditance depuis la droite de la fenêtre par rapport à la zone  de dessin.
-    y: mouse.clientY - rect.top // position en Y de la souris - ditance depuis le haut de la fenêtre par rapport à la zone de dessin.
+    x: mouse.clientX - rect.left, // position en X de la souris - distance entre le canvas et la droite de la fenêtre.
+    y: mouse.clientY - rect.top // position en Y de la souris - distance entre le canvas et le haut de la fenêtre.
   };
 }
 
