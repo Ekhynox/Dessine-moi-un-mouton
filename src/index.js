@@ -54,6 +54,11 @@ export function AddInTab(playerInfo){
   tabPlayer.push(playerInfo);
 }
 
+//Supprime un joueur dans le tableau
+export function DellInTab(playerInfo){
+  tabPlayer.pop(tabPlayer.indexOf(playerInfo));
+}
+
 //Retourne le tableau de joueurs
 export function GetTab(){
   return tabPlayer;
@@ -78,8 +83,10 @@ export function SetPlayer(playerInfo){
 export function GetPlayer(){
   return player;
 }
+
 //Render de la page d'accueil
 export function SetSignInSide(){
+  DellInTab(player);
   ReactDOM.render(
     <React.StrictMode>
     <SignInSide/>
