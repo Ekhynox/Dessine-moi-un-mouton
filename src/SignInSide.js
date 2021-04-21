@@ -107,6 +107,7 @@ const ChangeAvatar = (img) => {
       SetSignInSide();
     }
     else{
+      controlePseudo = false;
       start();
     }
   }
