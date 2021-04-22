@@ -16,7 +16,7 @@ var tabPlayer = [];
 var etatjeu="sign";
 var indicejoueur = 0;
 var game = true;
-SetSignInSide();
+SetSignInSide()
 
 var player = {
   etat: "host",
@@ -86,7 +86,7 @@ export function GetPlayer(){
 
 //Render de la page d'accueil
 export function SetSignInSide(){
-  DellInTab(player);
+//  DellInTab(player);
   ReactDOM.render(
     <React.StrictMode>
     <SignInSide/>

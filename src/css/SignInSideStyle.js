@@ -1,4 +1,5 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControl, FormControlLabel, Grid, Link, Paper, TextField, Typography} from '@material-ui/core';
 
 /*
 ███████ ████████ ██    ██ ██      ███████ 
@@ -7,6 +8,22 @@ import { makeStyles } from '@material-ui/core/styles';
      ██    ██       ██    ██      ██    
 ███████    ██       ██    ███████ ███████ */
 
+export const ValidationTextField = withStyles({
+root: {
+  '& input:valid + fieldset': {
+    borderColor: 'green',
+    borderWidth: 2,
+  },
+  '& input:invalid + fieldset': {
+    borderColor: 'red',
+    borderWidth: 2,
+  },
+  '& input:valid:focus + fieldset': {
+    borderLeftWidth: 6,
+    padding: '4px !important', // override inline-style
+  },
+},
+})(TextField);
 
 export const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,11 +53,13 @@ export const useStyles = makeStyles((theme) => ({
 
   form: {
     width: '80%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    margin: theme.spacing(2),
   },
 
   submit: {
     margin: theme.spacing(3, 0, 2),
+    width: '35%',
+    height: '30%',
   },
 
   headline: {

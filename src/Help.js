@@ -161,7 +161,7 @@ function controleTexteExplication(cl) {
   }
 }
 
-function controleSend(){
+function controleSendHelp(){
   support.pseudo = document.getElementById('Pseudo').value;
   support.mail = document.getElementById('Email').value;
   support.explication = document.getElementById('Explication').value;
@@ -189,12 +189,12 @@ function controleSend(){
   }
 
   if (support.pseudo!="" && support.mail!="" && support.explication!=""){
-    send();
+    sendHelp();
   }
 
 }
 
-function send(){
+function sendHelp(){
   console.log(support);
   HelpEnd();
 }
@@ -220,7 +220,7 @@ export default function HelpView() {
               {controleTexteMail(classes)}
               {controleTexteExplication(classes)}
               <Button
-                onClick={controleSend}
+                onClick={controleSendHelp}
                 type="submit"
                 fullWidth
                 variant="contained"

@@ -108,14 +108,4 @@ export const useStyles = makeStyles((theme) => ({
     margin : theme.spacing ('auto', 'auto'),
   },
 
-  buttongrid: {
-    fontFamily: 'Barlow, san-serif',
-    background: 'linear-gradient(45deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #8B00FF)',
-    borderRadius: 3,
-    border: 0,
-    width: '30%',
-    height: '30%',
-    padding: '0 30px',
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-  },
 }));

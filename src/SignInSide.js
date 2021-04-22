@@ -1,9 +1,9 @@
 //Page de Connexion
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {useStyles} from './css/SignInSideStyle'
+import {useStyles, ValidationTextField} from './css/SignInSideStyle'
 import MenuAppBar from './Header';
-import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography} from '@material-ui/core';
+import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControl, FormControlLabel, Grid, Link, Paper, TextField, Typography} from '@material-ui/core';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
 import {ConnectionToHost} from './connexion';
 import {SetWaiting, SetPlayer, PlayerPool, AddInTab, GetTab} from './index';
@@ -17,16 +17,6 @@ import avatar6 from './img/6.jpg';
 import avatar7 from './img/7.jpg';
 import avatar8 from './img/8.jpg';
 
-var controlePseudo = false;
-
-export function SetSignInSide() {
-  ReactDOM.render(
-    <React.StrictMode>
-    <SignInSide/>
-    </React.StrictMode>,
-    document.getElementById('root')
-  );
-}
 
 export default function SignInSide() {
   const classes = useStyles();
@@ -58,65 +48,13 @@ const ChangeAvatar = (img) => {
  //Sauvegarde en local le joueurs puis l'ajoute dans le tableau de joueurs.
  //Puis affiche la page de waiting room.
  const start = () => {
-    player.pseudos = document.getElementById("pseudos").value;
-    SetPlayer(player);
-    AddInTab(player);
-    SetWaiting();
+   if((document.getElementById('pseudos').value != "")){
+     player.pseudos = document.getElementById("pseudos").value;
+     SetPlayer(player);
+     AddInTab(player);
+     SetWaiting();
+   }
   }
-
-  function controleTextePseudo(){
-    if (!controlePseudo){
-      return (
-        <TextField
-          autoFocus
-          fullWidth
-          required
-          autoComplete="Pseudo"
-          id="pseudos"
-          label="Pseudo"
-          margin="normal"
-          name="Pseudo"
-          variant="outlined"
-        />
-      );
-    }
-    else {
-      return (
-        <TextField
-        autoFocus
-        error
-        fullWidth
-        required
-        autoComplete="Pseudo"
-        helperText="Veuillez compléter ce champ."
-        id="pseudos"
-        label="Pseudo"
-        margin="normal"
-        name="Pseudo"
-        variant="outlined"
-        />
-      );
-    }
-  }
-
-  function controleSend(){
-    var ctr = document.getElementById('pseudos').value;
-
-    if (ctr==""){
-      controlePseudo = true;
-      SetSignInSide();
-    }
-    else{
-      controlePseudo = false;
-      start();
-    }
-  }
-
-  document.addEventListener('keydown', function(event) {
-    if ((etatjeu == "sign") && (event.key === 'Enter') ){
-      controleSend()
-    }
-  });
 
   return (
     <Grid container xs={12} component="main" className={classes.root}>
@@ -149,16 +87,19 @@ const ChangeAvatar = (img) => {
         <div className={classes.paper}>
           <h1> Dessine Moi Un Mouton</h1>
           <Avatar id="logo" className={classes.medium} src={logo} alt="My logo" />
-          <Typography component="h1" variant="h5">
-              <h3 id="show-peer"></h3>
-          </Typography>
-          {controleTextePseudo()}
+          <ValidationTextField
+           className = {classes.form}
+            label="Pseudo"
+            required
+            variant="outlined"
+            id="pseudos"
+          />
           <Button
-              type="submit"
+              className = {classes.submit}
               fullWidth
               variant="contained"
               color="primary"
-              onClick={controleSend}
+              onClick={start}
           >Connexion</Button>
         </div>
       </Grid>
