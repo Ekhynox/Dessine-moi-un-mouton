@@ -4,9 +4,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { FiSun, FiMoon } from "react-icons/fi";
 import {AppBar, Button, ButtonGroup, IconButton, FormControlLabel, FormGroup, Grid, Menu, MenuItem, Switch, Toolbar, Typography} from '@material-ui/core';
 import sheep from './img/sheep.png';
-import {SetSignInSide} from './index';
-import {AboutUs} from './AboutUs';
-import {Help} from './Help';
+import { AboutUs, Help, SetSignInSide} from './index';
 
 const useStyles = makeStyles((theme) => ({
   root: {

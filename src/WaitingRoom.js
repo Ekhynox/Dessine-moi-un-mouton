@@ -4,7 +4,7 @@ import {useStyles} from './css/WaitingRoomStyle'
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
 import {BiSend} from 'react-icons/bi';
-import {SetJeu} from './index';
+import {SetConnecte, SetJeu} from './index';
 import {Connexion, MyId, ConnectionToHost} from './connexion';
 import cx from 'clsx';
 
@@ -17,6 +17,7 @@ export default function SignInSide() {
      var myId = MyId();
      document.getElementById("zoneId").innerHTML = "";
      document.getElementById("textAndButton").innerHTML = myId;
+     SetConnecte(true);
   };
 
   //lance le jeu

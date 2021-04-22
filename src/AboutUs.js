@@ -4,17 +4,38 @@ import { makeStyles } from '@material-ui/core/styles';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography} from '@material-ui/core';
 import MenuAppBar from './Header';
+import { AboutUs } from './index';
 
-export function AboutUs() {
-  ReactDOM.render(
-    <React.StrictMode>
-    <AboutUsView/>
-    </React.StrictMode>,
-    document.getElementById('root')
-  );
-}
-
-export default function AboutUsView() {
+export function AboutUsView() {
+  const useStyles = makeStyles((theme) => ({
+      root: {
+        height: '100vh',
+      },
+      image: {
+        backgroundImage: 'url(https://source.unsplash.com/collection/24051068/)',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor:
+          theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        height : '93%',
+      },
+      card: {
+        width: '92%',
+        height : '92%',
+        margin : theme.spacing (5, 5),
+        borderRadius: 16,
+        boxShadow: '0 8px 16px 0 #BDC9D7',
+        overflow: 'hidden',
+        backgroundColor: "white",
+        opacity: 0.50,
+        alignItems: 'center',
+      },
+      header: {
+        fontFamily: 'Barlow, san-serif',
+        backgroundColor: '#fff',
+      },
+    }));
   const classes = useStyles();
   return (
     <Grid component="main" className={classes.root}>
@@ -31,35 +52,6 @@ export default function AboutUsView() {
       </Grid>
     </Grid>
   );
+
+
 }
-
-
-export const useStyles = makeStyles((theme) => ({
-  root: {
-    height: '100vh',
-  },
-  image: {
-    backgroundImage: 'url(https://source.unsplash.com/collection/24051068/)',
-    backgroundRepeat: 'no-repeat',
-    backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    height : '93%',
-  },
-  card: {
-    width: '92%',
-    height : '92%',
-    margin : theme.spacing (5, 5),
-    borderRadius: 16,
-    boxShadow: '0 8px 16px 0 #BDC9D7',
-    overflow: 'hidden',
-    backgroundColor: "white",
-    opacity: 0.50,
-    alignItems: 'center',
-  },
-  header: {
-    fontFamily: 'Barlow, san-serif',
-    backgroundColor: '#fff',
-  },
-}));

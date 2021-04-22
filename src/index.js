@@ -11,12 +11,16 @@ import WaitingRoom from './WaitingRoom';
 import {Connexion, ConnectionToHost, MyId, SetCanvas, Send, SendTabPlayer, SendTabPlayerToAll, SendToAll, setPool, NouvelleManche} from './connexion';
 import {SetCanvasDraw} from './canvas';
 import {GetWordUse, JaroDistance, SansAccent, Words_list} from './words';
+import { HelpView, HelpViewEnd} from './Help';
+import { AboutUsView } from './AboutUs';
 
 var tabPlayer = [];
-var etatjeu="sign";
+var etatjeu;
 var indicejoueur = 0;
 var game = true;
-SetSignInSide()
+SetSignInSide();
+
+var connecte=false;
 
 var player = {
   etat: "host",
@@ -38,6 +42,10 @@ export function setGame(statut){
 export function SetMot() {
   tabPlayer[indicejoueur].mot=GetWordUse();
   SendTabPlayerToAll();
+}
+
+export function SetConnecte(val){
+  connecte = val;
 }
 
 //trouve la position de l'utilisateur et envoie les informations depuis le tableau des joueurs.
@@ -86,13 +94,14 @@ export function GetPlayer(){
 
 //Render de la page d'accueil
 export function SetSignInSide(){
-//  DellInTab(player);
+ // DellInTab(player);
   ReactDOM.render(
     <React.StrictMode>
     <SignInSide/>
     </React.StrictMode>,
     document.getElementById('root')
   );
+  etatjeu="sign";
 }
 
 /*
@@ -151,6 +160,35 @@ export function SetJeu(){
   }
 }
 
+export function Help() {
+  ReactDOM.render(
+    <React.StrictMode>
+    <HelpView/>
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+  etatjeu="Help";
+}
+
+export function HelpEnd() {
+  ReactDOM.render(
+    <React.StrictMode>
+    <HelpViewEnd/>
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+  etatjeu="HelpEnd";
+}
+
+export function AboutUs() {
+  ReactDOM.render(
+    <React.StrictMode>
+    <AboutUsView/>
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+  etatjeu="AboutUs";
+}
 
 /*
 -- Lors d'un click sur le bouton, on recupere les entrée dans le champ input du chat puis envoie le message à tout les utilisateurs
@@ -277,10 +315,11 @@ document.addEventListener('keydown', function(event) {
     AddInTab(player);
     SetWaiting();
   }
-  else if ((etatjeu == "WaitingRoom") && (event.key === 'Enter') && (document.getElementById("peerID").value != "")){
+  else if ((etatjeu == "WaitingRoom") && (event.key === 'Enter') && (connecte==false) && (document.getElementById("peerID").value != "")){
     var id = document.getElementById("peerID").value;
     ConnectionToHost(id);
     document.getElementById("zoneId").innerHTML = "Connecté!";
+    connecte=true;
   }
 
 });

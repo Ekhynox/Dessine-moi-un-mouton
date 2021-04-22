@@ -11,11 +11,12 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import BuildIcon from '@material-ui/icons/Build';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
 import { borders } from '@material-ui/system';
 import MenuAppBar from './Header';
+import { HelpEnd } from './index';
 
 var controlePseudo = false;
 var controleMail = false;
@@ -27,61 +28,8 @@ var support = {
   explication:"",
 };
 
-export function Help() {
-  ReactDOM.render(
-    <React.StrictMode>
-    <HelpView/>
-    </React.StrictMode>,
-    document.getElementById('root')
-  );
-}
-
-export function HelpEnd() {
-  ReactDOM.render(
-    <React.StrictMode>
-    <HelpViewEnd/>
-    </React.StrictMode>,
-    document.getElementById('root')
-  );
-}
 
 
-function controleTextePseudo(cl){
-  if (!controlePseudo){
-    return (
-      <Grid item xs={12}>
-        <TextField
-          className={cl.cadre}
-          autoFocus
-          fullWidth
-          required
-          autoComplete="pseudo"
-          id="Pseudo"
-          label="Pseudo"
-          name="Pseudo"
-          variant="outlined"
-        />
-      </Grid>
-    );
-  }
-  else {
-    return (<Grid item xs={12}>
-      <TextField
-        className={cl.cadre}
-        autoFocus
-        error
-        fullWidth
-        required
-        autoComplete="pseudo"
-        helperText="Veuillez compléter ce champ."
-        id="Pseudo"
-        label="Pseudo"
-        name="Pseudo"
-        variant="outlined"
-      />
-    </Grid>);
-  }
-}
 
 function controleTexteMail(cl) {
   if (!controleMail) {
@@ -161,46 +109,64 @@ function controleTexteExplication(cl) {
   }
 }
 
-function controleSendHelp(){
-  support.pseudo = document.getElementById('Pseudo').value;
-  support.mail = document.getElementById('Email').value;
-  support.explication = document.getElementById('Explication').value;
-
-  if (support.pseudo==""){
-    controlePseudo = true;
-    Help();
-  }
-  else {
-    controlePseudo = false;
-  }
-  if (support.mail==""){
-    controleMail = true;
-    Help();
-  }
-  else {
-    controleMail = false;
-  }
-  if (support.explication==""){
-    controleExplication = true;
-    Help();
-  }
-  else {
-    controleExplication = false;
-  }
-
-  if (support.pseudo!="" && support.mail!="" && support.explication!=""){
-    sendHelp();
-  }
-
-}
-
 function sendHelp(){
-  console.log(support);
-  HelpEnd();
+  if (support.pseudo!="" && support.mail!="" && support.explication!=""){
+    HelpEnd();
+    console.log(support);
+  }
 }
 
-export default function HelpView() {
-  var classes = useStyles();
+export function HelpView() {
+  const ValidationTextField = withStyles({
+    root: {
+      '& input:valid + fieldset': {
+        borderColor: 'green',
+        borderWidth: 2,
+      },
+      '& input:invalid + fieldset': {
+        borderColor: 'red',
+        borderWidth: 2,
+      },
+      '& input:valid:focus + fieldset': {
+        borderLeftWidth: 6,
+        padding: '4px !important', // override inline-style
+      },
+    },
+    })(TextField);
+
+    const useStyles = makeStyles((theme) => ({
+      root: {
+        height: '100vh',
+        backgroundImage: 'url(https://source.unsplash.com/collection/24051068/)',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor:
+          theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        margin: theme.spacing('auto', 'auto'),
+      },
+
+      paper: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        marginLeft: '70vh',
+      },
+
+      avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+      },
+
+      cadre: {
+        backgroundColor: "white",
+        opacity: 0.85,
+        borderRadius: 4,
+      },
+    }));
+
+    const classes = useStyles();
+
   return (
     <Grid container xs={12} component="main" className={classes.root}>
       <Grid item xs={true} sm={12}>
@@ -216,11 +182,16 @@ export default function HelpView() {
             Support
           </Typography>
             <Grid container spacing={1}>
-              {controleTextePseudo(classes)}
-              {controleTexteMail(classes)}
-              {controleTexteExplication(classes)}
+            <ValidationTextField
+             className = {classes.cadre }
+              label="Pseudo"
+              required
+              variant="outlined"
+              id="PseudoHelp"
+            />
+
               <Button
-                onClick={controleSendHelp}
+                onClick={sendHelp}
                 type="submit"
                 fullWidth
                 variant="contained"
@@ -234,10 +205,12 @@ export default function HelpView() {
       </Grid>
     </Grid>
   );
+
+
 }
 
 
-function HelpViewEnd() {
+export function HelpViewEnd() {
   var classes = useStyles();
   return (
     <Grid container xs={12} component="main" className={classes.root}>
@@ -258,37 +231,36 @@ function HelpViewEnd() {
       </Grid>
     </Grid>
   );
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      height: '100vh',
+      backgroundImage: 'url(https://source.unsplash.com/collection/24051068/)',
+      backgroundRepeat: 'no-repeat',
+      backgroundColor:
+        theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      margin: theme.spacing('auto', 'auto'),
+    },
+
+    paper: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      marginLeft: '70vh',
+    },
+
+    avatar: {
+      margin: theme.spacing(1),
+      backgroundColor: theme.palette.secondary.main,
+    },
+
+    cadre: {
+      backgroundColor: "white",
+      opacity: 0.85,
+      borderRadius: 4,
+    },
+
+  }));
 }
-
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    height: '100vh',
-    backgroundImage: 'url(https://source.unsplash.com/collection/24051068/)',
-    backgroundRepeat: 'no-repeat',
-    backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    margin: theme.spacing('auto', 'auto'),
-  },
-
-  paper: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginLeft: '70vh',
-  },
-
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-
-  cadre: {
-    backgroundColor: "white",
-    opacity: 0.85,
-    borderRadius: 4,
-  },
-
-}));
