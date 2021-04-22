@@ -59,12 +59,12 @@ function MenuAppBar() {
     <div className={classes.root}>
       <AppBar position="relative" style={{backgroundColor: '#000051'}}>
         <Toolbar>
-          {/*
+          {
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
               <MenuIcon />
             </IconButton>
-          */}
-          <img src={sheep} onClick={SetSignInSide}/>
+          }
+          <Button><img src={sheep} onClick={SetSignInSide}/></Button>
           <ButtonGroup variant="text"  aria-label="text primary button group" aria-controls="menu-appbar"
           aria-haspopup="true"
           onClick={handleMenu}

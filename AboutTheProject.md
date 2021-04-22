@@ -21,6 +21,7 @@ Voila la liste des Fonctionnalités que nous souhaitons implémenter ! Celles qu
 - gestion des erreurs
 - barre de navigation comprenant: onglet "Accueil", "contact" et "aide", le logo et le bouton darkTheme X
 - Logo ...
+- quand un joueur a deviné un mot, à la place du mot, on affiche un message dans le chat type "machin.e a deviné!"
 
 -- Fonctionnalités "si on a le temps"--
 - Changement de langue
@@ -29,6 +30,7 @@ Voila la liste des Fonctionnalités que nous souhaitons implémenter ! Celles qu
 - Enregister le dessin X
 - Thème Sombre
 - Le curseur change de forme en fonction des icônes (pinceau, gomme, etc...)
+- Responsivité de TOUTES les pages (y compris le canevas) X
 
 -- Post-Prod --
 - vérifier les commentaires
