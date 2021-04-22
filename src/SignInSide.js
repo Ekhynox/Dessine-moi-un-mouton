@@ -42,7 +42,6 @@ const ChangeAvatar = (img) => {
    SetPlayer(player);
 };
 
-
  //lorsque l'on clic sur connexion
  //Recupere le pseudos du joueurs et l'ajoute l'objet joueur.
  //Sauvegarde en local le joueurs puis l'ajoute dans le tableau de joueurs.

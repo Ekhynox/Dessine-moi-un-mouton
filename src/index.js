@@ -321,7 +321,6 @@ document.addEventListener('keydown', function(event) {
     document.getElementById("zoneId").innerHTML = "Connecté!";
     connecte=true;
   }
-
 });
 
 // If you want to start measuring performance in your app, pass a function

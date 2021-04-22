@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
-
+import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, LinearProgress, Link, Modal, Paper, TextField, Typography } from '@material-ui/core';
+import {Column, Row, Item} from '@mui-treasury/components/flex';
 /*
 ███████ ████████ ██    ██ ██      ███████ 
 ██         ██     ██  ██  ██      ██      
@@ -23,7 +24,7 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   minuteur:{
-      width: "100vh",
+      width: "25rem",
   },
 
   paper: {
@@ -39,6 +40,10 @@ export const useStyles = makeStyles((theme) => ({
     borderRadius: 15,
     display: 'flex',
     marginTop: '6vh',
+  },
+
+  drawbox:{
+    width: "100%",
   },
 
   couleurs: {
@@ -159,6 +164,21 @@ export const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
     background:'rgba(240, 160, 240, 0.90)',
     justifyContent: 'center',
+  },
+
+  type_msg : {
+      borderRadius: 16,
+      background:'#222',
+      color: "white",
+      width : "90%",
+      height: "4vh",
+  },
+
+  send_btn : {
+      borderRadius: 16,
+      background:'#222',
+      color: "white",
+      width : "4vh",
   },
 
 }));
