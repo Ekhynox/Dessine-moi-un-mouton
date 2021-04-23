@@ -17,7 +17,7 @@ X correspondance entre le mot à deviner et les mots du chat
 X système de points
 X connexion : pseudo, pas de mp;
 X PP = images
-X Changement de joueur
+X Changement de joueur / manche suivante
 X gestion des erreurs
 X barre de navigation comprenant: onglet "Accueil", "contact" et "aide", le logo et le bouton darkTheme X
 X Logo ...
@@ -27,11 +27,12 @@ X Logo ...
 - Changement de langue
 - Plusieurs versions : par équipe, ou avec ses propres mots
 - système de votes: qualité dessin + ban
-- Enregister le dessin X
+X Enregister le dessin
 - Thème Sombre
 - Le curseur change de forme en fonction des icônes (pinceau, gomme, etc...)
-- Responsivité de TOUTES les pages (y compris le canevas) X
+X Responsivité de TOUTES les pages (y compris le canevas)
 
 -- Post-Prod --
 - vérifier les commentaires
 - scinder le style de app.js / WaitingRoom.js et que SignInSide.js
+- Avancée du Rapport : 60%

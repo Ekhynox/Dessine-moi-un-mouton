@@ -30,7 +30,7 @@ export function AboutUsView() {
                   COUTURIER-PETRASSON Claire
                 </Typography>
                 <Typography variant="h5" gutterBottom >
-                  Github: Chocoluna
+                <a href="https://github.com/Chocoluna">Github: Chocoluna</a>
                 </Typography>
               </Grid>
             </Grid>
@@ -45,7 +45,7 @@ export function AboutUsView() {
                   DOMINGUES Kévin
                 </Typography>
                 <Typography variant="h5" gutterBottom >
-                  Github: D32mond
+                  <a href="https://github.com/D32mond">Github: D32mond</a>
                 </Typography>
               </Grid>
             </Grid>
@@ -60,7 +60,7 @@ export function AboutUsView() {
                   UCAR Ibrahim
                 </Typography>
                 <Typography variant="h5" gutterBottom >
-                  Github: Ekhynox
+                  <a href="https://github.com/Ekhynox">Github: Ekhynox</a>
                 </Typography>
               </Grid>
             </Grid>
@@ -78,7 +78,10 @@ export function AboutUsView() {
                   RADANNE Gabriel
                 </Typography>
                 <Typography variant="h5" gutterBottom >
-                  https://gabriel.radanne.net
+                  <a href="https://github.com/Drup">GitHub : Drup</a>
+                </Typography>
+                <Typography variant="h5" gutterBottom >
+                  <a href="https://gabriel.radanne.net"> page personelle</a>
                 </Typography>
               </Grid>
           </Grid>
