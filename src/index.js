@@ -40,8 +40,13 @@ export function setGame(statut){
 }
 
 export function SetMot() {
-  tabPlayer[indicejoueur].mot=GetWordUse();
-  SendTabPlayerToAll();
+  tabPlayer[0].mot=GetWordUse();
+  if(player.etat == "host"){
+      SendTabPlayerToAll();
+  }
+  else{
+    SendTabPlayer();
+  }
 }
 
 export function SetConnecte(val){
@@ -204,14 +209,6 @@ function chat(){
     if (etatjeu=="Jeu"){
        compartToChat(message); //Ne pas envoyer le message aux autres si il a trouver le mots
     }
-    var pseudos = player.pseudos;
-    var msg = pseudos + " : " + message;
-    if(player.etat == "host"){
-      SendToAll(msg);
-    }
-    else{
-      Send(msg);
-    }
     document.getElementById("message").value = "";
   }
 
@@ -219,37 +216,41 @@ function chat(){
     if ((event.key === 'Enter') && (document.getElementById("message").value != ""))
     {
       var message = document.getElementById("message").value;
-      if (etatjeu=="Jeu"){
+      if (etatjeu=="Jeu") {
         compartToChat(message); //Ne pas envoyer le message aux autres si il a trouver le mots
       }
-      var pseudos = player.pseudos;
-      var msg = pseudos + " : " + message;
-      if(player.etat == "host"){
-        SendToAll(msg);
-      }
-      else{
-        Send(msg);
-      }
-      document.getElementById("message").value = "";
+    document.getElementById("message").value = "";
     }
   });
 }
 
-
 function compartToChat(msg){
   if (true){ //vérifier que le joueur n'a pas déjà donnée la bonne réponse
     setTimeout(() => {
-      var word = tabPlayer[indicejoueur].mot;
+      var word = tabPlayer[0].mot;
+      var pseudos = player.pseudos;
+      var pseudosMessage = pseudos + " : " + msg;
+      var trouvé = pseudos + " a trouvé !";
       msg = SansAccent(msg);
       if (JaroDistance(msg, word)>0.99){  //ici c'est bon, on incrémente le score.
-        console.log("JaroDistance : " + JaroDistance(msg, word));
-        console.log("La comparaison est valider");
-        addScore();
-        SendTabPlayer();
+        if(player.etat == "host" && meInTab().canvas != true){
+          addScore();
+          SendTabPlayer();
+          SendToAll(trouvé);
+        }
+        if(player.etat != "host" && meInTab().canvas != true){
+          addScore();
+          SendTabPlayer();
+          Send(trouvé);
+        }
       }
       else {
-        console.log("JaroDistance : " + JaroDistance(msg, word));
-        console.log("La comparaison n'est pas valider");
+        if(player.etat == "host"){
+          SendToAll(pseudosMessage);
+        }
+        if(player.etat != "host"){
+          Send(pseudosMessage);
+        }
       }
     }, 100) //PROMISE !! /!\ !!
   }
