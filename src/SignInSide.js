@@ -56,6 +56,7 @@ const ChangeAvatar = (img) => {
  //Sauvegarde en local le joueurs puis l'ajoute dans le tableau de joueurs.
  //Puis affiche la page de waiting room.
  const start = () => {
+   player = GetPlayer();
    if((document.getElementById('pseudos').value != "")){
      player.pseudos = document.getElementById("pseudos").value;
      SetPlayer(player);
