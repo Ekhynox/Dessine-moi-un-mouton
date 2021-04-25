@@ -178,6 +178,7 @@ peer.on('connection', function(conn) {
         if(data[0].etat == "host"){ // Si je réceptionne d'un tableau
           setPool(data);         // j'actualise le tableau de joueurs
           SetTab(data);          // et je copie le tableau en local
+          SendTabPlayerToAll();  // Renvoyer le tableau mise à jour à tous les utilisateurs
         }
         else{                       // Si je réceptionne un message
           SendToAll(data);       //je transmet le message aux autres joueurs
