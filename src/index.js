@@ -14,13 +14,14 @@ import {GetWordUse, JaroDistance, SansAccent, Words_list} from './words';
 import { HelpView, HelpViewEnd} from './Help';
 import { AboutUsView } from './AboutUs';
 
+SetSignInSide();
+
 var tabPlayer = [];
 var etatjeu;
 var indicejoueur = 0;
 var game = true;
-SetSignInSide();
-
 var connecte=false;
+var theme = "light";
 
 var player = {
   etat: "host",
@@ -34,6 +35,18 @@ var player = {
   mot: "",
  }
 
+export function setTheme(){
+  if(theme == "light"){
+    theme = "dark";
+  }
+  else {
+    theme = "light";
+  }
+}
+
+export function getTheme(){
+  return theme;
+}
 
 export function setGame(statut){
   game = statut;
