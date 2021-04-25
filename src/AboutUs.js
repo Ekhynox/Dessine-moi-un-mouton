@@ -146,7 +146,7 @@ export function AboutUsView() {
               </Grid>
               <Grid container item xs={9} direction="column" className={classes.tool} >
                 <Typography variant="h5" gutterBottom >
-                  Nous avons créé nous-mêmes les Photo de profils / avatars créés via le site PlaceIt , qui est un site spécialisé dans la génération de logo et avatars personnalisés.
+                  Nous avons créé nous-mêmes les Photo de profils / avatars via le site PlaceIt , qui est un site spécialisé dans la génération de logo et avatars personnalisés.
                 </Typography>
               </Grid>
             </Grid>

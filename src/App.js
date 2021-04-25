@@ -1,5 +1,5 @@
 //Page de dessin
-import {useStyles} from './css/AppStyle'
+import {useStylesLight, useStylesDark} from './css/AppStyle'
 import './css/App.css';
 import MenuAppBar from './Header';
 import React, {useState} from 'react';
@@ -20,15 +20,35 @@ import {Column, Row, Item} from '@mui-treasury/components/flex';
 import { makeStyles } from '@material-ui/core/styles';
 // fonction
 import {Connexion, SetCanvas, Send, NouvelleManche} from './connexion';
-import {SetJeu, ChangePlayer, GetPlayer} from './index';
+import {SetJeu, ChangePlayer, GetPlayer, getTheme, setTheme} from './index';
 import {ColorChange, DownloadCanvasn, SetCanvasDraw} from './canvas';
 import {verybigPen, bigPen, smallPen, verysmallPen, erase, pinceau, clear, rect, rectfull, circle, circlefull, line, fill, save, undo} from './canvas';
 import {GetChoisi, SetChoisi, Words_list} from './words';
 import cx from 'clsx';
 import PropTypes from "prop-types";
 
+var light;
+var dark;
+var classes;
+
+export function ChangeThemeApp(){
+  var theme = getTheme();
+
+  if(theme == "light") {
+    classes = light;
+    console.log("change theme light");
+  }
+  else {
+    classes = dark;
+    console.log("change theme dark");
+  }
+}
+
 function App() {
-  const classes = useStyles();
+  light = useStylesLight();
+  dark = useStylesDark();
+  ChangeThemeApp();
+
   const rootRef = React.useRef(null);
   //fonction pour gérer l'état de la fenêtre modal
   const [open, setOpen] = React.useState(true);

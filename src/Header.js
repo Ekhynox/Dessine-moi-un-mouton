@@ -4,7 +4,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { FiSun, FiMoon } from "react-icons/fi";
 import {AppBar, Button, ButtonGroup, IconButton, FormControlLabel, FormGroup, Grid, Menu, MenuItem, Switch, Toolbar, Typography} from '@material-ui/core';
 import sheep from './img/sheep.png';
-import { AboutUs, Help, SetSignInSide} from './index';
+import { AboutUs, Help, SetSignInSide, setTheme, getTheme} from './index';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,6 +43,8 @@ function MenuAppBar() {
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
+    setTheme();
+    console.log(getTheme());
   };
 
   const handleMenu = (event) => {
@@ -75,7 +77,7 @@ function MenuAppBar() {
            <FormGroup>
              <FormControlLabel edge = "end"
                control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" style={{color: '#ffffcf'}} />}
-               label={auth ? <FiSun /> : <FiMoon/>}
+               label={auth ? <FiMoon/> : <FiSun />}
              />
            </FormGroup>
            </Grid>

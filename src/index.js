@@ -4,9 +4,11 @@ import reactCSS from 'reactcss';
 import './css/index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
+import {ChangeThemeApp} from './App';
 import AppViewer from './AppViewer';
 import Peer from 'peerjs';
 import SignInSide from './SignInSide';
+import {ChangeThemeSign} from './SignInSide';
 import WaitingRoom from './WaitingRoom';
 import {Connexion, ConnectionToHost, MyId, SetCanvas, Send, SendTabPlayer, SendTabPlayerToAll, SendToAll, setPool, NouvelleManche} from './connexion';
 import {SetCanvasDraw} from './canvas';
@@ -21,7 +23,7 @@ var etatjeu;
 var indicejoueur = 0;
 var game = true;
 var connecte=false;
-var theme = "light";
+var theme = "dark";
 
 var player = {
   etat: "host",
@@ -38,10 +40,27 @@ var player = {
 export function setTheme(){
   if(theme == "light"){
     theme = "dark";
+    if(etatjeu == "sign"){
+      ChangeThemeSign();
+      SetSignInSide();
+    }
+    if(etatjeu == "Jeu"){
+      ChangeThemeApp();
+      SetJeu();
+    }
   }
   else {
     theme = "light";
+    if(etatjeu == "sign"){
+      ChangeThemeSign();
+      SetSignInSide();
+    }
+    if(etatjeu = "Jeu"){
+      ChangeThemeApp();
+      SetJeu();
+    }
   }
+
 }
 
 export function getTheme(){
@@ -112,7 +131,7 @@ export function GetPlayer(){
 
 //Render de la page d'accueil
 export function SetSignInSide(){
-  DellInTab(player);
+  //DellInTab(player);
   ReactDOM.render(
     <React.StrictMode>
     <SignInSide/>
