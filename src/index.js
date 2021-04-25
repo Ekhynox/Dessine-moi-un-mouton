@@ -21,6 +21,7 @@ var etatjeu;
 var indicejoueur = 0;
 var game = true;
 var connecte=false;
+var repondu = false;
 var player = {
   etat: "host",
   pseudos: "",
@@ -153,6 +154,7 @@ export function SetJeu(){
       setTimeout(() => { Words_list(); }, 100); //PROMISE !! /!\ !!
       setTimeout(() => { Connexion(); }, 100); //PROMISE !! /!\ !!
       etatjeu="Jeu";
+      repondu = false;
     }
     else{
       ReactDOM.render(
@@ -164,6 +166,7 @@ export function SetJeu(){
       setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
       setTimeout(() => { setPool(tabPlayer); }, 100); //PROMISE !! /!\ !!
       etatjeu="JeuViewer";
+      repondu = false;
     }
 
   }
@@ -258,15 +261,17 @@ function compartToChat(msg){
       var trouvé = pseudos + " a trouvé !";
       msg = SansAccent(msg);
       if (JaroDistance(msg, word)>0.99){  //ici c'est bon, on incrémente le score.
-        if(player.etat == "host" && meInTab().canvas != true){
+        if(player.etat == "host" && meInTab().canvas != true && repondu == false){
           addScore();
           SendTabPlayer();
           SendToAll(trouvé);
+          repondu = true;
         }
-        if(player.etat != "host" && meInTab().canvas != true){
+        if(player.etat != "host" && meInTab().canvas != true && repondu == false){
           addScore();
           SendTabPlayer();
           Send(trouvé);
+          repondu = true;
         }
       }
       else {
