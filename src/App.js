@@ -20,10 +20,11 @@ import {Column, Row, Item} from '@mui-treasury/components/flex';
 import { makeStyles } from '@material-ui/core/styles';
 // fonction
 import {Connexion, SetCanvas, Send, NouvelleManche} from './connexion';
-import {SetJeu, ChangePlayer, GetPlayer, getTheme, setTheme} from './index';
+import {SetJeu, ChangePlayer, GetPlayer} from './index';
 import {ColorChange, DownloadCanvasn, SetCanvasDraw} from './canvas';
 import {verybigPen, bigPen, smallPen, verysmallPen, erase, pinceau, clear, rect, rectfull, circle, circlefull, line, fill, save, undo} from './canvas';
 import {GetChoisi, SetChoisi, Words_list} from './words';
+import {getTheme, setTheme} from './theme';
 import cx from 'clsx';
 import PropTypes from "prop-types";
 

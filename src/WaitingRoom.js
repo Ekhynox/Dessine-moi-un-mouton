@@ -1,16 +1,39 @@
 import React from 'react';
 import MenuAppBar from './Header';
-import {useStyles} from './css/WaitingRoomStyle'
+import {useStylesLight, useStylesDark} from './css/WaitingRoomStyle'
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
 import {BiSend} from 'react-icons/bi';
 import {SetConnecte, SetJeu} from './index';
 import {Connexion, MyId, ConnectionToHost} from './connexion';
+import {getTheme, setTheme} from './theme';
 import cx from 'clsx';
 
+var light;
+var dark;
+var classes;
+var styles;
+
+export function ChangeThemeWaiting(){
+  var theme = getTheme();
+
+  if(theme == "light") {
+    classes = light;
+    styles = light;
+    console.log("change theme light");
+  }
+  else {
+    classes = dark;
+    styles = dark;
+    console.log("change theme dark");
+  }
+}
+
 export default function SignInSide() {
-  const classes = useStyles();
-  const styles = useStyles();
+  light = useStylesLight();
+  dark = useStylesDark();
+  ChangeThemeWaiting();
+  var etatjeu = "sign";
 
   //genration de mon ID
   const getPeerId = () => {

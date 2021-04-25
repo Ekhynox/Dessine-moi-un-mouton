@@ -1,6 +1,6 @@
 //Page de dessin
 import './css/App.css';
-import {useStyles} from './css/AppViewerStyle'
+import {useStylesLight, useStylesDark} from './css/AppViewerStyle'
 import MenuAppBar from './Header';
 import React, {useState} from 'react';
 import reactCSS from 'reactcss';
@@ -17,13 +17,32 @@ import { RiArrowGoBackFill } from "react-icons/ri";
 //import Material-ui from '@material-ui';
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
-
 // fonction
 import {Connexion, SetCanvas, Send} from './connexion';
+import {getTheme, setTheme} from './theme';
 import cx from 'clsx';
 
+var light;
+var dark;
+var classes;
+
+export function ChangeThemeAppViewer(){
+  var theme = getTheme();
+
+  if(theme == "light") {
+    classes = light;
+    console.log("change theme light");
+  }
+  else {
+    classes = dark;
+    console.log("change theme dark");
+  }
+}
+
 function App() {
-  const classes = useStyles();
+  light = useStylesLight();
+  dark = useStylesDark();
+  ChangeThemeAppViewer();
   return (
     <Grid container xs={12} component="main" className={classes.root}>
       <CssBaseline />

@@ -4,12 +4,10 @@ import reactCSS from 'reactcss';
 import './css/index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
-import {ChangeThemeApp} from './App';
 import AppViewer from './AppViewer';
-import Peer from 'peerjs';
 import SignInSide from './SignInSide';
-import {ChangeThemeSign} from './SignInSide';
 import WaitingRoom from './WaitingRoom';
+import Peer from 'peerjs';
 import {Connexion, ConnectionToHost, MyId, SetCanvas, Send, SendTabPlayer, SendTabPlayerToAll, SendToAll, setPool, NouvelleManche} from './connexion';
 import {SetCanvasDraw} from './canvas';
 import {GetWordUse, JaroDistance, SansAccent, Words_list} from './words';
@@ -23,8 +21,6 @@ var etatjeu;
 var indicejoueur = 0;
 var game = true;
 var connecte=false;
-var theme = "dark";
-
 var player = {
   etat: "host",
   pseudos: "",
@@ -35,37 +31,7 @@ var player = {
   msg: false,
   canvas : true,
   mot: "",
- }
-
-export function setTheme(){
-  if(theme == "light"){
-    theme = "dark";
-    if(etatjeu == "sign"){
-      ChangeThemeSign();
-      SetSignInSide();
-    }
-    if(etatjeu == "Jeu"){
-      ChangeThemeApp();
-      SetJeu();
-    }
-  }
-  else {
-    theme = "light";
-    if(etatjeu == "sign"){
-      ChangeThemeSign();
-      SetSignInSide();
-    }
-    if(etatjeu = "Jeu"){
-      ChangeThemeApp();
-      SetJeu();
-    }
-  }
-
-}
-
-export function getTheme(){
-  return theme;
-}
+};
 
 export function setGame(statut){
   game = statut;
@@ -129,6 +95,10 @@ export function GetPlayer(){
   return player;
 }
 
+export function Getetat(){
+  return etatjeu;
+}
+
 //Render de la page d'accueil
 export function SetSignInSide(){
   //DellInTab(player);
@@ -182,6 +152,7 @@ export function SetJeu(){
       setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
       setTimeout(() => { Words_list(); }, 100); //PROMISE !! /!\ !!
       setTimeout(() => { Connexion(); }, 100); //PROMISE !! /!\ !!
+      etatjeu="Jeu";
     }
     else{
       ReactDOM.render(
@@ -192,8 +163,9 @@ export function SetJeu(){
       );
       setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
       setTimeout(() => { setPool(tabPlayer); }, 100); //PROMISE !! /!\ !!
+      etatjeu="JeuViewer";
     }
-    etatjeu="Jeu";
+
   }
 }
 
@@ -238,7 +210,7 @@ function chat(){
 
   send.onclick = function(){
     var message = document.getElementById("message").value;
-    if (etatjeu=="Jeu"){
+    if (etatjeu=="Jeu" || etatjeu=="JeuViewer"){
        compartToChat(message); //Ne pas envoyer le message aux autres si il a trouver le mots
     }
     if(etatjeu =="WaitingRoom"){
@@ -259,7 +231,7 @@ function chat(){
     if ((event.key === 'Enter') && (document.getElementById("message").value != ""))
     {
       var message = document.getElementById("message").value;
-      if (etatjeu=="Jeu") {
+      if (etatjeu=="Jeu" || etatjeu=="JeuViewer") {
         compartToChat(message); //Ne pas envoyer le message aux autres si il a trouver le mots
       }
       if(etatjeu == "WaitingRoom"){

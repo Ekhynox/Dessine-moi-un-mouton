@@ -6,7 +6,8 @@ import MenuAppBar from './Header';
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControl, FormControlLabel, Grid, Link, Paper, TextField, Typography} from '@material-ui/core';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
 import {ConnectionToHost} from './connexion';
-import {SetWaiting, SetPlayer, PlayerPool, AddInTab, GetPlayer, GetTab, getTheme, setTheme} from './index';
+import {SetWaiting, SetPlayer, PlayerPool, AddInTab, GetPlayer, GetTab} from './index';
+import {getTheme, setTheme} from './theme';
 import logo from './img/Mylogo.jpg';
 import avatar1 from './img/1.jpg';
 import avatar2 from './img/2.jpg';
@@ -20,6 +21,8 @@ import avatar8 from './img/8.jpg';
 var light;
 var dark;
 var classes;
+//Creation de l'objet joueur
+var player = GetPlayer();
 
 export function ChangeThemeSign(){
   var theme = getTheme();
@@ -40,14 +43,12 @@ export default function SignInSide() {
   ChangeThemeSign();
   var etatjeu = "sign";
 
-  //Creation de l'objet joueur
-  var player = GetPlayer();
-
 //Change le logo en l'avatar choisi par le joueur
 const ChangeAvatar = (img) => {
-   document.getElementById('logo').innerHTML ='<img alt='+ img.target.alt +' src= "' + img.target.src + '" class="MuiAvatar-img">';
-   player.avatar = img.target.src;
-   SetPlayer(player);
+  player = GetPlayer();
+  document.getElementById('logo').innerHTML ='<img alt='+ img.target.alt +' src= "' + img.target.src + '" class="MuiAvatar-img">';
+  player.avatar = img.target.src;
+  SetPlayer(player);
 };
 
  //lorsque l'on clic sur connexion
