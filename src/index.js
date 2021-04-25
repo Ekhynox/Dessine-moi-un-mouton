@@ -99,7 +99,7 @@ export function GetPlayer(){
 
 //Render de la page d'accueil
 export function SetSignInSide(){
- // DellInTab(player);
+  DellInTab(player);
   ReactDOM.render(
     <React.StrictMode>
     <SignInSide/>
@@ -209,6 +209,17 @@ function chat(){
     if (etatjeu=="Jeu"){
        compartToChat(message); //Ne pas envoyer le message aux autres si il a trouver le mots
     }
+    if(etatjeu =="WaitingRoom"){
+      var pseudos = player.pseudos;
+      message = pseudos + " : " + message;
+      if(player.etat == "host" ){
+
+        SendToAll(message);
+      }
+      else{
+        Send(message);
+      }
+    }
     document.getElementById("message").value = "";
   }
 
@@ -218,6 +229,16 @@ function chat(){
       var message = document.getElementById("message").value;
       if (etatjeu=="Jeu") {
         compartToChat(message); //Ne pas envoyer le message aux autres si il a trouver le mots
+      }
+      if(etatjeu == "WaitingRoom"){
+        var pseudos = player.pseudos;
+        message = pseudos + " : " + message;
+        if(player.etat == "host" ){
+          SendToAll(message);
+        }
+        else{
+          Send(message);
+        }
       }
     document.getElementById("message").value = "";
     }
