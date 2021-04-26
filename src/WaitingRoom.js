@@ -80,9 +80,7 @@ export default function SignInSide() {
          <Column p={0} gap={0} className={styles.cardjoueur}>
            <Row wrap p={2} alignItems={'baseline'} className={styles.header}>
              <Item stretched className={styles.headline}>Participant.e.s</Item>
-             <Item className={styles.actions}>
-               Score
-             </Item>
+             <Item className={styles.headline}> Score </Item>
            </Row>
            <div id="playerZone"></div>
          </Column>

@@ -158,6 +158,12 @@ import {makeStyles} from '@material-ui/core/styles';
 
 }));
 
+/*
+██████   █████  ██████  ██   ██     ████████ ██   ██ ███████ ███    ███ ███████ 
+██   ██ ██   ██ ██   ██ ██  ██         ██    ██   ██ ██      ████  ████ ██      
+██   ██ ███████ ██████  █████          ██    ███████ █████   ██ ████ ██ █████ 
+██   ██ ██   ██ ██   ██ ██  ██         ██    ██   ██ ██      ██  ██  ██ ██    
+██████  ██   ██ ██   ██ ██   ██        ██    ██   ██ ███████ ██      ██ ███████ */
 
 export const useStylesDark = makeStyles((theme) => ({
 root: {
@@ -251,6 +257,10 @@ cardchat: {
   overflow: 'hidden',
   background:'rgba(240, 160, 240, 0.30)',
   overflow: 'auto',
+  fontSize: '1.25rem',
+  fontWeight: 400,
+  color: '#FFFFFF',
+
 },
 
 styleB: {

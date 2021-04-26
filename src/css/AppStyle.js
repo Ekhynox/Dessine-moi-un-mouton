@@ -80,7 +80,7 @@ export const useStylesLight = makeStyles((theme) => ({
     borderRadius: 16,
     boxShadow: '0 8px 16px 0 #BDC9D7',
     overflow: 'hidden',
-    fontSize: '1.25rem',
+    fontSize: '1.5rem',
     fontWeight: 600,
     flexWrap: 'wrap',
     margin : theme.spacing (8, 2),
@@ -98,6 +98,8 @@ export const useStylesLight = makeStyles((theme) => ({
     overflow: 'hidden',
     background:'rgba(240, 160, 240, 0.30)',
     overflow: 'auto',
+    fontSize: '1.25rem',
+    fontWeight: 450,
   },
 
   styleB: {
@@ -147,7 +149,8 @@ export const useStylesLight = makeStyles((theme) => ({
     flexGrow: 1,
     minWidth: 300,
     display: 'flex',
-    padding: theme.spacing(8, 3, 4),
+    padding: theme.spacing('auto', 'auto'),
+    margin: theme.spacing('auto', 'auto'),
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -182,6 +185,12 @@ export const useStylesLight = makeStyles((theme) => ({
   },
 
 }));
+/*
+██████   █████  ██████  ██   ██     ████████ ██   ██ ███████ ███    ███ ███████ 
+██   ██ ██   ██ ██   ██ ██  ██         ██    ██   ██ ██      ████  ████ ██      
+██   ██ ███████ ██████  █████          ██    ███████ █████   ██ ████ ██ █████ 
+██   ██ ██   ██ ██   ██ ██  ██         ██    ██   ██ ██      ██  ██  ██ ██    
+██████  ██   ██ ██   ██ ██   ██        ██    ██   ██ ███████ ██      ██ ███████ */
 
 export const useStylesDark = makeStyles((theme) => ({
   root: {
@@ -255,11 +264,13 @@ export const useStylesDark = makeStyles((theme) => ({
     borderRadius: 16,
     boxShadow: '0 8px 16px 0 #BDC9D7',
     overflow: 'hidden',
-    fontSize: '1.25rem',
+    fontSize: '1.5rem',
     fontWeight: 600,
     flexWrap: 'wrap',
     margin : theme.spacing (8, 2),
-    background:'rgba(240, 160, 240, 0.30)',
+    background:'rgba(74, 20, 140, 0.50)',
+    color: '#FFFFFF',
+
   },
 
   cardchat: {
@@ -271,8 +282,11 @@ export const useStylesDark = makeStyles((theme) => ({
     flexDirection: 'column',
     boxShadow: '0 8px 16px 0 #BDC9D7',
     overflow: 'hidden',
-    background:'rgba(240, 160, 240, 0.30)',
+    background:'rgba(74, 20, 140, 0.50)',
     overflow: 'auto',
+    fontSize: '1.25rem',
+    fontWeight: 400,
+    color: '#FFFFFF',
   },
 
   styleB: {
@@ -322,7 +336,8 @@ export const useStylesDark = makeStyles((theme) => ({
     flexGrow: 1,
     minWidth: 300,
     display: 'flex',
-    padding: theme.spacing(8, 3, 4),
+    padding: theme.spacing('auto', 'auto'),
+    margin: theme.spacing('auto', 'auto'),
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -337,8 +352,9 @@ export const useStylesDark = makeStyles((theme) => ({
     fontWeight: 600,
     flexWrap: 'wrap',
     padding: theme.spacing(2, 4, 3),
-    background:'rgba(240, 160, 240, 0.90)',
+    background:'rgba(74, 20, 140, 0.60)',
     justifyContent: 'center',
+    color: '#FFFFFF',
   },
 
   type_msg : {

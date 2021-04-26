@@ -31,7 +31,7 @@ export const useStylesLight = makeStyles((theme) => ({
     borderRadius: 16,
     boxShadow: '0 8px 16px 0 #BDC9D7',
     overflow: 'hidden',
-    fontSize: '1.25rem',
+    fontSize: '1.5rem',
     fontWeight: 600,
     flexWrap: 'wrap',
   },
@@ -45,6 +45,8 @@ export const useStylesLight = makeStyles((theme) => ({
     overflow: 'hidden',
     display : 'flex',
     background:'rgba(240, 160, 240, 0.30)',
+    fontSize: '1.5rem',
+    fontWeight: 600,
   },
 
   cardco: {
@@ -81,6 +83,8 @@ export const useStylesLight = makeStyles((theme) => ({
     overflow: 'hidden',
     background:'rgba(240, 160, 240, 0.30)',
     overflow: 'auto',
+    fontSize: '1.25rem',
+    fontWeight: 400,
   },
 
   headline: {
@@ -96,9 +100,9 @@ export const useStylesLight = makeStyles((theme) => ({
 
   button : {
     fontFamily: 'Barlow, san-serif',
-    fontSize: '200%',
+    fontSize: '100%',
     fontWeight: 'bold',
-    background: 'linear-gradient(45deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #8B00FF)',
+    background: 'linear-gradient(45deg, #f0a0f0, #e55be5, #8B00FF, #4a148c)',
     borderRadius: 6,
     border: 0,
     width: '40%',
@@ -111,6 +115,9 @@ export const useStylesLight = makeStyles((theme) => ({
   slide: {
     width: '80%',
     margin : theme.spacing ('auto', 'auto'),
+    fontSize: '1.5rem',
+    fontWeight: 600,
+    color: '#311b92',
   },
 
   type_msg : {
@@ -131,9 +138,13 @@ export const useStylesLight = makeStyles((theme) => ({
 
 }));
 
-////////////
-//DarkTheme
-///////////
+/*
+██████   █████  ██████  ██   ██     ████████ ██   ██ ███████ ███    ███ ███████ 
+██   ██ ██   ██ ██   ██ ██  ██         ██    ██   ██ ██      ████  ████ ██      
+██   ██ ███████ ██████  █████          ██    ███████ █████   ██ ████ ██ █████ 
+██   ██ ██   ██ ██   ██ ██  ██         ██    ██   ██ ██      ██  ██  ██ ██    
+██████  ██   ██ ██   ██ ██   ██        ██    ██   ██ ███████ ██      ██ ███████ */
+
 export const useStylesDark = makeStyles((theme) => ({
   root: {
     height: '100vh',
@@ -159,7 +170,7 @@ export const useStylesDark = makeStyles((theme) => ({
     borderRadius: 16,
     boxShadow: '0 8px 16px 0 #BDC9D7',
     overflow: 'hidden',
-    fontSize: '1.25rem',
+    fontSize: '1.5rem',
     fontWeight: 600,
     flexWrap: 'wrap',
   },
@@ -172,7 +183,10 @@ export const useStylesDark = makeStyles((theme) => ({
     boxShadow: '0 8px 16px 0 #BDC9D7',
     overflow: 'hidden',
     display : 'flex',
-    background:'rgba(240, 160, 240, 0.30)',
+    background:'rgba(74, 20, 140, 0.50)',
+    fontSize: '1.5rem',
+    fontWeight: 600,
+    color: '#FFFFFF',
   },
 
   cardco: {
@@ -183,12 +197,14 @@ export const useStylesDark = makeStyles((theme) => ({
     boxShadow: '0 8px 16px 0 #BDC9D7',
     overflow: 'hidden',
     display : 'flex',
-    background:'rgba(240, 160, 240, 0.30)',
+    background:'rgba(74, 20, 140, 0.80)',
+    color: '#FFFFFF',
+
   },
 
   copyright: {
     fontFamily: 'Barlow, san-serif',
-    color: 'grey',
+    color: 'white',
     margin: theme.spacing (3, 2),
   },
 
@@ -207,26 +223,29 @@ export const useStylesDark = makeStyles((theme) => ({
     flexDirection: 'column',
     boxShadow: '0 8px 16px 0 #BDC9D7',
     overflow: 'hidden',
-    background:'rgba(240, 160, 240, 0.30)',
+    background:'rgba(74, 20, 140, 0.50)',
     overflow: 'auto',
+    fontSize: '1.25rem',
+    fontWeight: 450,
+    color: '#FFFFFF',
   },
 
   headline: {
-    color: '#122740',
+    color: '#FFFFFF',
     fontSize: '1.25rem',
     fontWeight: 600,
   },
 
   header: {
     fontFamily: 'Barlow, san-serif',
-    backgroundColor: '#fff',
+    backgroundColor: '#12005e',
   },
 
   button : {
     fontFamily: 'Barlow, san-serif',
-    fontSize: '200%',
+    fontSize: '100%',
     fontWeight: 'bold',
-    background: 'linear-gradient(45deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #8B00FF)',
+    background: 'linear-gradient(45deg, #f0a0f0, #e55be5, #8B00FF, #4a148c)',
     borderRadius: 6,
     border: 0,
     width: '40%',
@@ -239,6 +258,9 @@ export const useStylesDark = makeStyles((theme) => ({
   slide: {
     width: '80%',
     margin : theme.spacing ('auto', 'auto'),
+    fontSize: '1.5rem',
+    fontWeight: 600,
+    color: '#64b5f6',
   },
 
   type_msg : {

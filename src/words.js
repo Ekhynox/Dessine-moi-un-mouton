@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reactCSS from 'reactcss';
+import {useStylesLight, useStylesDark} from './css/AppStyle';
+import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControl, FormControlLabel, Grid, Link, Paper, TextField, Typography} from '@material-ui/core';
 import {SetMot} from './index';
 import {get_wordlist} from './wordslist';
 
@@ -71,7 +73,7 @@ export function Words_list()
   //var d = words_use;
   var wchoix = document.getElementById("wchoix");
   if (wchoix != undefined){
-    var bt1 = document.createElement("BUTTON");
+  /*  var bt1 = document.createElement("BUTTON");
     var bt2 = document.createElement("BUTTON");
     var bt3 = document.createElement("BUTTON");
 
@@ -96,6 +98,14 @@ export function Words_list()
     wchoix.appendChild(bt1);
     wchoix.appendChild(bt2);
     wchoix.appendChild(bt3);
+*/
+
+var rows = [];
+rows[0] = React.createElement(ButtonItem, {value : words_use[0]}, document.getElementById("wchoix"));
+rows[1] = React.createElement(ButtonItem, {value : words_use[1]}, document.getElementById("wchoix"));
+rows[2] = React.createElement(ButtonItem, {value : words_use[2]}, document.getElementById("wchoix"));
+
+ReactDOM.render(rows, document.getElementById("wchoix"));
 
       //on récupère la liste des boutons choix mots et on regarde si y'a un click dessus
       const choose_word_button=document.querySelectorAll('#choose_word');
@@ -106,6 +116,13 @@ export function Words_list()
       });
   }
 }
+
+export const ButtonItem= ({value}) => {
+  return(
+      <Button variant="outlined" className={classes.ChoixMots} value ={value} id="choose_word">{value}</Button>
+  );
+};
+
 
 export function JaroDistance(a, b) {
   console.log(a + " => " + b);
