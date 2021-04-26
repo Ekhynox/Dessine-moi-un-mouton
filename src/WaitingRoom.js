@@ -66,6 +66,7 @@ export default function SignInSide() {
     ConnectionToHost(id);
     document.getElementById("zoneId").innerHTML = "";
     document.getElementById('textAndButton').innerHTML="Connecté!";
+    document.getElementById("gridJouer").innerHTML = "";
   }
 
   return (
@@ -128,7 +129,7 @@ export default function SignInSide() {
               </div>
           </div>
       </Grid>
-     <Grid item xs={false} sm={4} className={classes.paper}>
+     <Grid id="gridJouer" item xs={false} sm={4} className={classes.paper}>
       <Column p={0} gap={0} container direction="row" className={classes.card}>
         <Row wrap p={2} alignItems={'baseline'} className={classes.header}>
           <Item stretched className={classes.headline}>Choisis une phase de jeu</Item>
