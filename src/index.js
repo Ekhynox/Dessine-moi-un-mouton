@@ -72,7 +72,7 @@ export function AddInTab(playerInfo){
 
 //Supprime un joueur dans le tableau
 export function DellInTab(playerInfo){
-  tabPlayer.pop(tabPlayer.indexOf(playerInfo));
+  tabPlayer = [];
 }
 
 //Retourne le tableau de joueurs
@@ -106,7 +106,7 @@ export function Getetat(){
 
 //Render de la page d'accueil
 export function SetSignInSide(){
-  //DellInTab(player);
+  DellInTab(player);
   ReactDOM.render(
     <React.StrictMode>
     <SignInSide/>
