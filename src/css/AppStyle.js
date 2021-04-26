@@ -25,6 +25,7 @@ export const useStylesLight = makeStyles((theme) => ({
 
   minuteur:{
       width: "25rem",
+      margin: theme.spacing(1, 1),
   },
 
   paper: {
@@ -229,6 +230,7 @@ export const useStylesDark = makeStyles((theme) => ({
 
   minuteur:{
       width: "25rem",
+      margin: theme.spacing(1, 1),
   },
 
   paper: {

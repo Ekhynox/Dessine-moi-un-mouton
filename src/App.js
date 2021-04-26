@@ -1,8 +1,9 @@
 //Page de dessin
+import React, {useState} from 'react';
+import ReactDOM from 'react-dom';
 import {useStylesLight, useStylesDark} from './css/AppStyle'
 import './css/App.css';
 import MenuAppBar from './Header';
-import React, {useState} from 'react';
 import reactCSS from 'reactcss';
 import 'bootstrap/dist/css/bootstrap.css';
 // React Color
@@ -72,24 +73,28 @@ function endround(){
 
   setTimeout(function () {
     var wchoix = document.getElementById("wchoix");
-    wchoix.innerHTML = "";
-    var bt4 = document.createElement("BUTTON");
-    bt4.setAttribute("id", "nextTurn");
-    bt4.className = "btn";
-    bt4.innerHTML="Prochaine Manche";
-    wchoix.appendChild(bt4);
-
-    var nextTurn = document.getElementById('nextTurn');
-    nextTurn.addEventListener('click', function(event){
-      ChangePlayer();
-      NouvelleManche();
-      SetJeu();
-    });
+  //  wchoix.innerHTML = "";
+    var val = "Nouvelle Manche";
+    const el = React.createElement(ButtonItem, {value : val}, document.getElementById("wchoix"));
+    ReactDOM.render(el, document.getElementById("wchoix"));
 
     document.getElementById("titremodal1").innerHTML="Time's up !";
   }, 10);
   return 0; //On restart le chrono a 0;
 }
+
+function endroundbest(){
+  ChangePlayer();
+  NouvelleManche();
+  SetJeu();
+}
+
+const ButtonItem= ({value}) => {
+  ChangeThemeApp();
+  return(
+      <Button className={classes.BtnMots} onClick={endroundbest} value ={value} id="nextTurn">{value}</Button>
+  );
+};
 
 //fonction minuteur
   var MIN = 0; // MIN = Minimum expected value of time
