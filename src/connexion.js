@@ -5,7 +5,7 @@ import './css/index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import Peer from 'peerjs';
-import {SetJeu, SetWaiting, SetPlayer, GetPlayer, AddInTab, GetTab, Connected, SetTab, meInTab, ChangePlayer} from './index';
+import {SetJeu, SetWaiting, SetPlayer, GetPlayer, AddInTab, GetTab, Connected, SetTab, meInTab, ChangePlayer, SetScoreFinal} from './index';
 //import {PersonItem} from './WaitingRoom';
 import { Column, Row, Item } from '@mui-treasury/components/flex';
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
@@ -160,6 +160,13 @@ peer.on('connection', function(conn) {
         SetJeu();                //  j'actualise la page pour passer en viewer
       }
     }
+
+    ////////////////////////////////////////////
+    //Si fin de jeu
+    if(data == "Fin de jeu"){
+      setTimeout(() => {SetScoreFinal();}, 100); //PROMISE !! /!\ !!
+    }
+
 
     ////////////////////////////////////////////
     //  Si je suis l'hote

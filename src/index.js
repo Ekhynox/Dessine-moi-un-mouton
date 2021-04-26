@@ -7,6 +7,7 @@ import App from './App';
 import AppViewer from './AppViewer';
 import SignInSide from './SignInSide';
 import WaitingRoom from './WaitingRoom';
+import ScoreFinal from './ScoreFinal';
 import Peer from 'peerjs';
 import {Connexion, ConnectionToHost, MyId, SetCanvas, Send, SendTabPlayer, SendTabPlayerToAll, SendToAll, setPool, NouvelleManche} from './connexion';
 import {SetCanvasDraw} from './canvas';
@@ -22,6 +23,8 @@ var indicejoueur = 0;
 var game = true;
 var connecte=false;
 var repondu = false;
+var maxManche = 1;
+var nbManche = 0;
 var player = {
   etat: "host",
   pseudos: "",
@@ -202,6 +205,17 @@ export function AboutUs() {
   etatjeu="AboutUs";
 }
 
+export function SetScoreFinal(){
+  ReactDOM.render(
+    <React.StrictMode>
+    <ScoreFinal/>
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+  setTimeout(() => { setPool(tabPlayer); }, 100); //PROMISE !! /!\ !!
+  etatjeu="ScoreFinal";
+}
+
 /*
 -- Lors d'un click sur le bouton, on recupere les entrée dans le champ input du chat puis envoie le message à tout les utilisateurs
 -- Version click sur un bouton
@@ -319,13 +333,25 @@ export function ChangePlayer(){
         }
       }
       else{
-          indicejoueur = 0;
-          tabPlayer[indicejoueur].canvas = true;
-          if(GetPlayer().etat == "host"){
-            SendTabPlayerToAll();
-            SetJeu();
-          }
-      }
+        nbManche = nbManche+1;
+        indicejoueur = 0;
+        tabPlayer[indicejoueur].canvas = true;
+        if(GetPlayer().etat == "host" && nbManche < maxManche){
+          SendTabPlayerToAll();
+          SetJeu();
+        }
+        if(GetPlayer().etat == "host" && nbManche == maxManche){
+          setTimeout(() => {FinDeJeu();}, 100); //PROMISE !! /!\ !!
+        }
+    }
+}
+
+function FinDeJeu(){
+  if(nbManche == maxManche){
+    var fin = "Fin de jeu";
+    SendToAll(fin);
+    SetScoreFinal();
+  }
 }
 
 //Set le canvas ainsi que le context puis le transmet aux outils de dessin
