@@ -188,7 +188,6 @@ function endround(){
                 <button onClick={save} className={classes.styleB} download="example.jpg" id="saveImage"><BiSave/></button>
               </Row>
             </Row>
-
           </Grid>
           <Grid item xs={false} sm={0.5} elevation={6} square className={classes.paper}>
               <button onClick={verybigPen} className={cx(classes.styleB, classes.tresgrand)} id="Pen++"><FaCircle/></button>

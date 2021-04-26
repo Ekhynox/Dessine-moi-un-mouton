@@ -104,6 +104,10 @@ export function Getetat(){
   return etatjeu;
 }
 
+export function setRepondu(){
+  repondu = false;
+}
+
 //Render de la page d'accueil
 export function SetSignInSide(){
   DellInTab(player);
@@ -146,6 +150,7 @@ Si je suis viewer :
 */
 export function SetJeu(){
   if(game == true){
+    repondu = false;
     if(meInTab().canvas == true){
       ReactDOM.render(
       <React.StrictMode>
@@ -158,7 +163,6 @@ export function SetJeu(){
       setTimeout(() => { Words_list(); }, 100); //PROMISE !! /!\ !!
       setTimeout(() => { Connexion(); }, 100); //PROMISE !! /!\ !!
       etatjeu="Jeu";
-      repondu = false;
     }
     else{
       ReactDOM.render(
@@ -170,9 +174,7 @@ export function SetJeu(){
       setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
       setTimeout(() => { setPool(tabPlayer); }, 100); //PROMISE !! /!\ !!
       etatjeu="JeuViewer";
-      repondu = false;
     }
-
   }
 }
 
@@ -225,8 +227,8 @@ export function SetScoreFinal(){
 function chat(){
   //setup les variables pour la fonction Send() ('envoyer un message')
   var send = document.getElementById('send');
-
   send.onclick = function(){
+    console.log(repondu);
     var message = document.getElementById("message").value;
     if (etatjeu=="Jeu" || etatjeu=="JeuViewer"){
        compartToChat(message); //Ne pas envoyer le message aux autres si il a trouver le mots
@@ -248,6 +250,7 @@ function chat(){
   document.addEventListener('keydown', function(event) {
     if ((event.key === 'Enter') && (document.getElementById("message").value != ""))
     {
+        console.log(repondu);
       var message = document.getElementById("message").value;
       if (etatjeu=="Jeu" || etatjeu=="JeuViewer") {
         compartToChat(message); //Ne pas envoyer le message aux autres si il a trouver le mots
@@ -332,6 +335,7 @@ export function ChangePlayer(){
         tabPlayer[indicejoueur].canvas = true;
         if(GetPlayer().etat == "host"){
           SendTabPlayerToAll();
+          repondu = false;
         }
       }
       else{
@@ -341,6 +345,7 @@ export function ChangePlayer(){
         if(GetPlayer().etat == "host" && nbManche < tabPlayer[0].manche){
           SendTabPlayerToAll();
           SetJeu();
+          repondu = false;
         }
         if(GetPlayer().etat == "host" && nbManche == tabPlayer[0].manche && tabPlayer.length > 1){
           setTimeout(() => {FinDeJeu();}, 100); //PROMISE !! /!\ !!

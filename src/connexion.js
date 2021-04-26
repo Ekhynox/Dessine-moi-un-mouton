@@ -5,7 +5,7 @@ import './css/index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import Peer from 'peerjs';
-import {SetJeu, SetWaiting, SetPlayer, GetPlayer, AddInTab, GetTab, Connected, SetTab, meInTab, ChangePlayer, SetScoreFinal} from './index';
+import {SetJeu, SetWaiting, SetPlayer, GetPlayer, AddInTab, GetTab, Connected, SetTab, meInTab, ChangePlayer, SetScoreFinal, setRepondu} from './index';
 //import {PersonItem} from './WaitingRoom';
 import { Column, Row, Item } from '@mui-treasury/components/flex';
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
@@ -71,6 +71,7 @@ peer.on('call', function(call) {
     if(meInTab().etat != "host"){
       if(connect == true){
         SetJeu();
+        setRepondu();
         connect = false;
       }
     }
@@ -155,9 +156,11 @@ peer.on('connection', function(conn) {
       if(me.etat == "host"){     //  Si je suis l'hote
         ChangePlayer();          //  je donne la mains au prochain joueur
         SendTabPlayerToAll();    //  renvoyer le tableau mise à jour à tous les utilisateurs
+        setRepondu();
       }
       if(me.etat != "host" && meInTab().canvas == true){ // si je ne suis pas l'hote et que j'ai le canvas (donc je suis le joueur qui click sur nouvelle Manche)
         SetJeu();                //  j'actualise la page pour passer en viewer
+        setRepondu();
       }
     }
 
@@ -166,7 +169,6 @@ peer.on('connection', function(conn) {
     if(data == "Fin de jeu"){
       setTimeout(() => {SetScoreFinal();}, 100); //PROMISE !! /!\ !!
     }
-
 
     ////////////////////////////////////////////
     //  Si je suis l'hote
@@ -212,19 +214,9 @@ peer.on('connection', function(conn) {
 // Affiche le message dans le chat
 function messageTemp(data){
   var chatBox = document.getElementById("chatBox")
-  var div1 = document.createElement("div");
-  var div2 = document.createElement("div");
-  var span = document.createElement("span");
-
-  div1.setAttribute("class", "d-flex justify-content-start mb-4");
-  div2.setAttribute("class", "msg_cotainer");
-  span.setAttribute("class", "msg_time");
-
-  div2.innerHTML = data;
-
-  div2.appendChild(span);
-  div1.appendChild(div2);
-  chatBox.appendChild(div1);
+  var div = document.createElement("div");
+  div.innerHTML = data;
+  chatBox.appendChild(div);
 }
 
 ///////////////////////////////////////////////////////
