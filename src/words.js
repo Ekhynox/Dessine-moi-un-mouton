@@ -12,19 +12,19 @@ var words_use=[]; //tab des 3 propositions de mots
 var wordUse;
 var choisi = false;
 
-export function GetChoisi(){
+export function GetChoisi(){ //retourne le booléen de choix
   return choisi;
 }
 
-export function SetChoisi(tmp){
+export function SetChoisi(tmp){ //modifie le booléen de choix
   choisi=tmp;
 }
 
-export function GetWordUse(){
+export function GetWordUse(){ //retourne le mot choisi modifier
   return SansAccent(wordUse);
 }
 
-export function SansAccent(msg){
+export function SansAccent(msg){ //retourne le mot choisi sans accent, sans espaces avant et après, transforme le string en minuscule
   var accent = [
       /[\300-\306]/g, /[\340-\346]/g, // A, a
       /[\310-\313]/g, /[\350-\353]/g, // E, e
@@ -43,16 +43,16 @@ export function SansAccent(msg){
   return msg;
 }
 
-function Click_choose_word(val) {
+function Click_choose_word(val) { //fait l'affichage du mot choisi et l'envoie à tout les joueurs
   words_use=[]; //liste de propositions vider
-  wordUse=val;
-  const tmp = (element) => element === val;
-  var ind = words_copy.findIndex(tmp);
-  if (ind !== -1)
+  wordUse=val;  //sauvegarde le mot choisi
+  const tmp = (element) => element === val; //crée une condition pour le findIndex
+  var ind = words_copy.findIndex(tmp);  //on récupère l'indice du mot choisi dans la liste de mot disponible
+  if (ind !== -1) //on regarde si on est dans la liste de mots
     words_copy.splice(ind, 1);  //on suprime le mot de la liste que si il exist dedans
-  document.getElementById("wchoixfinal").innerHTML= `<h3>${val}</h3>`
-  choisi=true;
-  SetMot();
+  document.getElementById("wchoixfinal").innerHTML= `<h3>${val}</h3>` //on affiche le mot choisi
+  choisi=true; //on set le booléen en true
+  SetMot(); //on envoie le mot choisi a tout les joueurs
 }
 
 export function Words_list()
@@ -77,21 +77,21 @@ export function Words_list()
     var bt2 = document.createElement("BUTTON");
     var bt3 = document.createElement("BUTTON");
 
-    bt1.setAttribute("id", "choose_word");
+    bt1.setAttribute("id", "choose_word");  //on leurs donnent des attribues
     bt2.setAttribute("id", "choose_word");
     bt3.setAttribute("id", "choose_word");
 
       bt3.setAttribute("class", "buttoncss");
 
-    bt1.setAttribute("value", words_use[0]);
+    bt1.setAttribute("value", words_use[0]);  //on définie leurs valeurs
     bt2.setAttribute("value", words_use[1]);
     bt3.setAttribute("value", words_use[2]);
 
-    bt1.className = "btn";
+    bt1.className = "btn";  //on leurs donnent une classe
     bt2.className = "btn";
     bt3.className = "btn";
 
-    bt1.innerHTML = words_use[0];
+    bt1.innerHTML = words_use[0]; //on affiche les boutons avec comme text les mots choisis
     bt2.innerHTML = words_use[1];
     bt3.innerHTML = words_use[2];
 
@@ -128,7 +128,7 @@ export function JaroDistance(a, b) {
   console.log(a + " => " + b);
   var matches = _matching(a, b);
   if (matches > 0) {
-    // calculate the jaro distance
+    //on calcule la jaro distance
     var m = matches;
     var t = _transpositions(a, b);
     var s1 = a.length;
