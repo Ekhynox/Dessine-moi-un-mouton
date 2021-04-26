@@ -9,7 +9,8 @@ import {ChangeThemeApp} from './App';
 import {ChangeThemeAppViewer} from './AppViewer';
 import {ChangeThemeSign} from './SignInSide';
 import {ChangeThemeWaiting} from './WaitingRoom';
-import {Getetat, SetSignInSide, SetWaiting, SetJeu} from './index';
+import {ChangeThemeScoreFinal} from './ScoreFinal';
+import {Getetat, SetSignInSide, SetWaiting, SetJeu, SetScoreFinal} from './index';
 
 var theme = "dark";
 
@@ -43,6 +44,10 @@ export function setTheme(){
       document.getElementById('root'),
       );
     }
+    if(etatjeu == "ScoreFinal"){
+      ChangeThemeScoreFinal();
+      SetScoreFinal();
+    }
   }
   else {
     theme = "light";
@@ -71,6 +76,10 @@ export function setTheme(){
       </React.StrictMode>,
       document.getElementById('root'),
       );
+    }
+    if(etatjeu == "ScoreFinal"){
+      ChangeThemeScoreFinal();
+      SetScoreFinal();
     }
   }
 }

@@ -1,41 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {useStylesLight, useStylesDark} from './css/ScoreFinalStyle'
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControl, FormControlLabel, Grid, Link, Paper, TextField, Typography} from '@material-ui/core';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
 import MenuAppBar from './Header';
-import { makeStyles } from '@material-ui/core/styles';
+import {getTheme, setTheme} from './theme';
 
-export const UseStyles = makeStyles((theme) => ({
-  root: {
-    height:'100vh',
-    backgroundImage: 'url(https://source.unsplash.com/collection/24051068/)',
-    backgroundRepeat: 'no-repeat',
-    backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    margin: theme.spacing('auto', 'auto'),
-  },
-  cardjoueur: {
-    width: '100%',
-    height: '75%',
-    borderRadius: 16,
-    boxShadow: '0 8px 16px 0 #BDC9D7',
-    overflow: 'hidden',
-    fontSize: '1.25rem',
-    fontWeight: 600,
-    flexWrap: 'wrap',
-    margin : theme.spacing (8, 2),
-    background:'rgba(240, 160, 240, 0.30)',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    alignContent: 'center',
-  },
-}));
+var light;
+var dark;
+var classes;
+
+export function ChangeThemeScoreFinal(){
+  var theme = getTheme();
+
+  if(theme == "light") {
+    classes = light;
+  }
+  else {
+    classes = dark;
+  }
+}
 
 function ScoreFinal() {
-  const classes = UseStyles();
+  light = useStylesLight();
+  dark = useStylesDark();
+  ChangeThemeScoreFinal();
 
   return (
     <Grid container xs={12} component="main" className={classes.root}>
