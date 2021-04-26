@@ -323,10 +323,11 @@ function whoDraw(){
 
 //Recupere le dessinateur actuel puis le passe de viewer puis donne le cancas au prochain joueur
 export function ChangePlayer(){
+  console.log(tabPlayer.length);
       indicejoueur = whoDraw();
       tabPlayer[indicejoueur].canvas = false;
       indicejoueur = indicejoueur+1;
-      if(indicejoueur < tabPlayer.length){
+      if(indicejoueur < tabPlayer.length && tabPlayer.length > 1){
         tabPlayer[indicejoueur].canvas = true;
         if(GetPlayer().etat == "host"){
           SendTabPlayerToAll();
@@ -340,7 +341,7 @@ export function ChangePlayer(){
           SendTabPlayerToAll();
           SetJeu();
         }
-        if(GetPlayer().etat == "host" && nbManche == maxManche){
+        if(GetPlayer().etat == "host" && nbManche == maxManche && tabPlayer.length > 1){
           setTimeout(() => {FinDeJeu();}, 100); //PROMISE !! /!\ !!
         }
     }

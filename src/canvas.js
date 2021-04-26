@@ -365,13 +365,13 @@ function testPixel(dir, pixel){
   }
   return false;
 }
-
+var newColor;
 function setPixel(posx, posy){
   /*
   context.fillStyle = rgbcolor;
   context.fillRect(posx, posy, 1, 1)
   */
-  var newColor = context.createImageData(1,1);
+  newColor = context.createImageData(1,1);
   newColor.data[0] = rgbcolor.red;
   newColor.data[1] = rgbcolor.green;
   newColor.data[2] = rgbcolor.blue;
