@@ -10,6 +10,8 @@ import {ChangeThemeAppViewer} from './AppViewer';
 import {ChangeThemeSign} from './SignInSide';
 import {ChangeThemeWaiting} from './WaitingRoom';
 import {ChangeThemeScoreFinal} from './ScoreFinal';
+import {Click_choose_word} from './words';
+import {GetTab, SetTab} from './index';
 import {Getetat, SetSignInSide, SetWaiting, SetJeu, SetScoreFinal} from './index';
 
 var theme = "dark";
@@ -34,6 +36,7 @@ export function setTheme(){
       </React.StrictMode>,
       document.getElementById('root'),
       );
+      Click_choose_word(GetTab()[0].mot);
     }
     if(etatjeu == "JeuViewer"){
       ChangeThemeAppViewer();
@@ -67,6 +70,7 @@ export function setTheme(){
       </React.StrictMode>,
       document.getElementById('root'),
       );
+      Click_choose_word(GetTab()[0].mot);
     }
     if(etatjeu == "JeuViewer"){
       ChangeThemeAppViewer();

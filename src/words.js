@@ -60,7 +60,7 @@ export function SansAccent(msg){ //retourne le mot choisi sans accent, sans espa
   return msg;
 }
 
-function Click_choose_word(val) { //fait l'affichage du mot choisi et l'envoie à tout les joueurs
+export function Click_choose_word(val) { //fait l'affichage du mot choisi et l'envoie à tout les joueurs
   words_use=[]; //liste de propositions vider
   wordUse=val;  //sauvegarde le mot choisi
   const tmp = (element) => element === val; //crée une condition pour le findIndex
