@@ -198,6 +198,12 @@ export const useStylesLight = makeStyles((theme) => ({
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, 0.3)',
   },
 
+  motChoisi : {
+    fontSize: '200%',
+    fontWeight: 600,
+    margin: theme.spacing('auto', 'auto'),
+  }
+
 }));
 /*
 ██████   █████  ██████  ██   ██     ████████ ██   ██ ███████ ███    ███ ███████ 
@@ -399,5 +405,12 @@ export const useStylesDark = makeStyles((theme) => ({
     margin : theme.spacing (3, 1),
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, 0.3)',
   },
+
+  motChoisi : {
+    fontSize: '200%',
+    fontWeight: 600,
+    color: '#FFFFFF',
+    margin: theme.spacing('auto', 'auto'),
+  }
 
 }));

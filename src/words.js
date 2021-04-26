@@ -7,6 +7,21 @@ import {SetMot} from './index';
 import {get_wordlist} from './wordslist';
 import {getTheme, setTheme} from './theme';
 
+//gestion du darkTheme pour les boutons de choix de mots
+var light;
+var dark;
+var classes;
+
+export function ChangeTheme(){
+  var theme = getTheme();
+
+  if(theme == "light") {
+    classes = light;
+  }
+  else {
+    classes = dark;
+  }
+}
 
 
 var words_copy=get_wordlist().slice();  //cree une copie de la liste de mots c'est avec elle qu'on évite les doublon
@@ -52,10 +67,23 @@ function Click_choose_word(val) { //fait l'affichage du mot choisi et l'envoie �
   var ind = words_copy.findIndex(tmp);  //on récupère l'indice du mot choisi dans la liste de mot disponible
   if (ind !== -1) //on regarde si on est dans la liste de mots
     words_copy.splice(ind, 1);  //on suprime le mot de la liste que si il exist dedans
-  document.getElementById("wchoixfinal").innerHTML= `<h3>${val}</h3>` //on affiche le mot choisi
+//  document.getElementById("wchoixfinal").innerHTML= `<h3>${val}</h3>` //on affiche le mot choisi
+  const el = React.createElement(MotChoisiItem, {value : val}, document.getElementById("wchoixfinal"));
+  ReactDOM.render(el, document.getElementById("wchoixfinal"));
+
   choisi=true; //on set le booléen en true
   SetMot(); //on envoie le mot choisi a tout les joueurs
 }
+
+
+export const MotChoisiItem= ({value}) => {
+  light = useStylesLight();
+  dark = useStylesDark();
+  ChangeTheme();
+  return(
+      <Typography className={classes.motChoisi}>{value}</Typography>
+  );
+};
 
 export function Words_list()
 {
@@ -75,33 +103,7 @@ export function Words_list()
   //var d = words_use;
   var wchoix = document.getElementById("wchoix");
   if (wchoix != undefined){
-  /*  var bt1 = document.createElement("BUTTON");
-    var bt2 = document.createElement("BUTTON");
-    var bt3 = document.createElement("BUTTON");
-
-    bt1.setAttribute("id", "choose_word");  //on leurs donnent des attribues
-    bt2.setAttribute("id", "choose_word");
-    bt3.setAttribute("id", "choose_word");
-
-      bt3.setAttribute("class", "buttoncss");
-
-    bt1.setAttribute("value", words_use[0]);  //on définie leurs valeurs
-    bt2.setAttribute("value", words_use[1]);
-    bt3.setAttribute("value", words_use[2]);
-
-    bt1.className = "btn";  //on leurs donnent une classe
-    bt2.className = "btn";
-    bt3.className = "btn";
-
-    bt1.innerHTML = words_use[0]; //on affiche les boutons avec comme text les mots choisis
-    bt2.innerHTML = words_use[1];
-    bt3.innerHTML = words_use[2];
-
-    wchoix.appendChild(bt1);
-    wchoix.appendChild(bt2);
-    wchoix.appendChild(bt3);
-*/
-
+  //création des boutons de choix de mots
 var rows = [];
 rows[0] = React.createElement(ButtonItem, {value : words_use[0]}, document.getElementById("wchoix"));
 rows[1] = React.createElement(ButtonItem, {value : words_use[1]}, document.getElementById("wchoix"));
@@ -119,21 +121,7 @@ ReactDOM.render(rows, document.getElementById("wchoix"));
   }
 }
 
-var light;
-var dark;
-var classes;
-
-export function ChangeTheme(){
-  var theme = getTheme();
-
-  if(theme == "light") {
-    classes = light;
-  }
-  else {
-    classes = dark;
-  }
-}
-
+//élément react pour créer un bouton dans la modale
 export const ButtonItem= ({value}) => {
   light = useStylesLight();
   dark = useStylesDark();
