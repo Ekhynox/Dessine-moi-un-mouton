@@ -184,6 +184,20 @@ export const useStylesLight = makeStyles((theme) => ({
       width : "4vh",
   },
 
+  BtnMots : {
+    fontFamily: 'Barlow, san-serif',
+    fontSize: '60%',
+    fontWeight: 'bold',
+    background: 'linear-gradient(45deg, #f0a0f0, #e55be5, #8B00FF, #4a148c)',
+    borderRadius: 6,
+    border: 0,
+    width: '30%',
+    height: '15%',
+    padding: theme.spacing ('auto', 'auto'),
+    margin : theme.spacing (3, 1),
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, 0.3)',
+  },
+
 }));
 /*
 ██████   █████  ██████  ██   ██     ████████ ██   ██ ███████ ███    ███ ███████ 
@@ -370,6 +384,20 @@ export const useStylesDark = makeStyles((theme) => ({
       background:'#222',
       color: "white",
       width : "4vh",
+  },
+
+  BtnMots : {
+    fontFamily: 'Barlow, san-serif',
+    fontSize: '60%',
+    fontWeight: 'bold',
+    background: 'linear-gradient(45deg, #f0a0f0, #e55be5, #8B00FF, #4a148c)',
+    borderRadius: 6,
+    border: 0,
+    width: '30%',
+    height: '15%',
+    padding: theme.spacing ('auto', 'auto'),
+    margin : theme.spacing (3, 1),
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, 0.3)',
   },
 
 }));

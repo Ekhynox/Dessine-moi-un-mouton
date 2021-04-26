@@ -5,6 +5,8 @@ import {useStylesLight, useStylesDark} from './css/AppStyle';
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControl, FormControlLabel, Grid, Link, Paper, TextField, Typography} from '@material-ui/core';
 import {SetMot} from './index';
 import {get_wordlist} from './wordslist';
+import {getTheme, setTheme} from './theme';
+
 
 
 var words_copy=get_wordlist().slice();  //cree une copie de la liste de mots c'est avec elle qu'on évite les doublon
@@ -117,9 +119,27 @@ ReactDOM.render(rows, document.getElementById("wchoix"));
   }
 }
 
+var light;
+var dark;
+var classes;
+
+export function ChangeTheme(){
+  var theme = getTheme();
+
+  if(theme == "light") {
+    classes = light;
+  }
+  else {
+    classes = dark;
+  }
+}
+
 export const ButtonItem= ({value}) => {
+  light = useStylesLight();
+  dark = useStylesDark();
+  ChangeTheme();
   return(
-      <Button variant="outlined" className={classes.ChoixMots} value ={value} id="choose_word">{value}</Button>
+      <Button className={classes.BtnMots} variant="outlined" value ={value} id="choose_word">{value}</Button>
   );
 };
 
