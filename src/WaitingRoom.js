@@ -1,10 +1,10 @@
 import React from 'react';
 import MenuAppBar from './Header';
 import {useStylesLight, useStylesDark} from './css/WaitingRoomStyle'
-import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
+import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography, Slider} from '@material-ui/core';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
 import {BiSend} from 'react-icons/bi';
-import {SetConnecte, SetJeu} from './index';
+import {SetConnecte, SetJeu, GetTab, SetTab} from './index';
 import {Connexion, MyId, ConnectionToHost} from './connexion';
 import {getTheme, setTheme} from './theme';
 import cx from 'clsx';
@@ -20,13 +20,25 @@ export function ChangeThemeWaiting(){
   if(theme == "light") {
     classes = light;
     styles = light;
-    console.log("change theme light");
   }
   else {
     classes = dark;
     styles = dark;
-    console.log("change theme dark");
   }
+}
+
+export function valueManche(value) {
+  var tab = GetTab();
+  tab[0].manche = value;
+  SetTab(tab);
+  return value;
+}
+
+export function valueTemps(value) {
+  var tab = GetTab();
+  tab[0].temps = value;
+  SetTab(tab);
+  return value;
 }
 
 export default function SignInSide() {
@@ -121,14 +133,42 @@ export default function SignInSide() {
         <Row wrap p={2} alignItems={'baseline'} className={classes.header}>
           <Item stretched className={classes.headline}>Choisis une phase de jeu</Item>
         </Row>
-            <Button className ={styles.button}
-              type="submit"
-              fullWidth
-              variant="contained"
-              onClick={start}
-              >Jouer</Button>
-      </Column>
-      </Grid>
-     </Grid>
+        <Typography className ={styles.slide} id="discrete-slider" gutterBottom>
+          Temps
+        </Typography>
+        <Slider
+          className ={styles.slide}
+          defaultValue={60}
+          getAriaValueText={valueTemps}
+          aria-labelledby="discrete-slider"
+          valueLabelDisplay="auto"
+          step={10}
+          marks
+          min={10}
+          max={120}
+        />
+        <Typography className ={styles.slide} id="discrete-slider" gutterBottom>
+          Manche
+        </Typography>
+        <Slider
+          className ={styles.slide}
+          defaultValue={4}
+          getAriaValueText={valueManche}
+          aria-labelledby="discrete-slider"
+          valueLabelDisplay="auto"
+          step={1}
+          marks
+          min={1}
+          max={10}
+        />
+        <Button className ={styles.button}
+          type="submit"
+          fullWidth
+          variant="contained"
+          onClick={start}
+          >Jouer</Button>
+        </Column>
+    </Grid>
+  </Grid>
   );
 }

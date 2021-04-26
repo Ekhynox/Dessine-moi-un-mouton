@@ -23,7 +23,6 @@ var indicejoueur = 0;
 var game = true;
 var connecte=false;
 var repondu = false;
-var maxManche = 1;
 var nbManche = 0;
 var player = {
   etat: "host",
@@ -35,6 +34,8 @@ var player = {
   msg: false,
   canvas : true,
   mot: "",
+  temps : "",
+  manche :"",
 };
 
 export function setGame(statut){
@@ -337,18 +338,18 @@ export function ChangePlayer(){
         nbManche = nbManche+1;
         indicejoueur = 0;
         tabPlayer[indicejoueur].canvas = true;
-        if(GetPlayer().etat == "host" && nbManche < maxManche){
+        if(GetPlayer().etat == "host" && nbManche < tabPlayer[0].manche){
           SendTabPlayerToAll();
           SetJeu();
         }
-        if(GetPlayer().etat == "host" && nbManche == maxManche && tabPlayer.length > 1){
+        if(GetPlayer().etat == "host" && nbManche == tabPlayer[0].manche && tabPlayer.length > 1){
           setTimeout(() => {FinDeJeu();}, 100); //PROMISE !! /!\ !!
         }
     }
 }
 
 function FinDeJeu(){
-  if(nbManche == maxManche){
+  if(nbManche == tabPlayer[0].manche){
     var fin = "Fin de jeu";
     SendToAll(fin);
     SetScoreFinal();

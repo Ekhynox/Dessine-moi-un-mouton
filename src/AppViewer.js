@@ -31,11 +31,9 @@ export function ChangeThemeAppViewer(){
 
   if(theme == "light") {
     classes = light;
-    console.log("change theme light");
   }
   else {
     classes = dark;
-    console.log("change theme dark");
   }
 }
 

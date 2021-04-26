@@ -20,7 +20,7 @@ import {Column, Row, Item} from '@mui-treasury/components/flex';
 import { makeStyles } from '@material-ui/core/styles';
 // fonction
 import {Connexion, SetCanvas, Send, NouvelleManche} from './connexion';
-import {SetJeu, ChangePlayer, GetPlayer} from './index';
+import {SetJeu, ChangePlayer, GetPlayer, GetTab} from './index';
 import {ColorChange, DownloadCanvasn, SetCanvasDraw} from './canvas';
 import {verybigPen, bigPen, smallPen, verysmallPen, erase, pinceau, clear, rect, rectfull, circle, circlefull, line, fill, save, undo} from './canvas';
 import {GetChoisi, SetChoisi, Words_list} from './words';
@@ -37,11 +37,9 @@ export function ChangeThemeApp(){
 
   if(theme == "light") {
     classes = light;
-    console.log("change theme light");
   }
   else {
     classes = dark;
-    console.log("change theme dark");
   }
 }
 
@@ -95,7 +93,7 @@ function endround(){
 
 //fonction minuteur
   var MIN = 0; // MIN = Minimum expected value of time
-  var MAX = 7; // MAX = Maximium expected value of time
+  var MAX = GetTab()[0].temps; // MAX = Maximium expected value of time
 
   const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
 
