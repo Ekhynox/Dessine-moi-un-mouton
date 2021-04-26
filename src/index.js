@@ -383,6 +383,7 @@ document.addEventListener('keydown', function(event) {
     var id = document.getElementById("peerID").value;
     ConnectionToHost(id);
     document.getElementById("zoneId").innerHTML = "Connecté!";
+    document.getElementById("gridJouer").innerHTML = "";
     connecte=true;
   }
 });
