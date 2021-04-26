@@ -111,9 +111,23 @@ export const useStylesLight = makeStyles((theme) => ({
   slide: {
     width: '80%',
     margin : theme.spacing ('auto', 'auto'),
-  }
+  },
 
-  
+  type_msg : {
+      borderRadius: 16,
+      background:'#222',
+      color: "white",
+      width : "90%",
+      height: "4vh",
+  },
+
+  send_btn : {
+      borderRadius: 16,
+      background:'#222',
+      color: "white",
+      width : "4vh",
+  },
+
 
 }));
 
@@ -225,6 +239,21 @@ export const useStylesDark = makeStyles((theme) => ({
   slide: {
     width: '80%',
     margin : theme.spacing ('auto', 'auto'),
-  }
+  },
+
+  type_msg : {
+      borderRadius: 16,
+      background:'#222',
+      color: "white",
+      width : "90%",
+      height: "4vh",
+  },
+
+  send_btn : {
+      borderRadius: 16,
+      background:'#222',
+      color: "white",
+      width : "4vh",
+  },
 
 }));
