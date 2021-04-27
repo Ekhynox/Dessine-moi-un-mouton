@@ -119,13 +119,13 @@ export default function SignInSide() {
         </div>
       </Grid>
       <Grid item xs={12} sm={3} elevation={6} square className={classes.cardchat}>
-          <div id="chatBox" className="card-body"></div>
+        <div id="chatBox" className={classes.chatbox}></div>
           <div className="card-footer input-group">
               <input id="message"  className={classes.type_msg} placeholder="Type your message..."></input>
               <div className="input-group-append">
                   <button id="send" className={classes.send_btn} ><BiSend/></button>
               </div>
-          </div>
+        </div>
       </Grid>
      <Grid id="gridJouer" item xs={false} sm={4} className={classes.paper}>
       <Column p={0} gap={0} container direction="row" className={classes.card}>

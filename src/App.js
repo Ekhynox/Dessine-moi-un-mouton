@@ -215,9 +215,9 @@ const ButtonItem= ({value}) => {
             colors = {["#e91e63", "#9c27b0", "#673ab7", "#2196f3", "#03a9f4", "#00bcd4", "#009688", "#4caf50", "#8bc34a", "#ffeb3b", "#ffc107", "#ff9800", "#ff5722", "#795548", "#607d8b", "black", "white"]}/>
         </Grid>
         <Grid item xs={12} sm={3} elevation={6} square className={classes.cardchat}>
-          <div id="chatBox" className="card-body"></div>
+          <div id="chatBox" className={classes.chatbox}></div>
             <div className="card-footer input-group">
-                <input id="message" className={classes.type_msg} placeholder="Type your message..."></input>
+                <input id="message"  className={classes.type_msg} placeholder="Type your message..."></input>
                 <div className="input-group-append">
                     <button id="send" className={classes.send_btn} ><BiSend/></button>
                 </div>

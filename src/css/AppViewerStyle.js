@@ -95,9 +95,26 @@ import {makeStyles} from '@material-ui/core/styles';
     display: 'flex',
     flexDirection: 'column',
     boxShadow: '0 8px 16px 0 #BDC9D7',
-    overflow: 'hidden',
     background:'rgba(240, 160, 240, 0.30)',
     overflow: 'auto',
+    fontSize: '1.25rem',
+    fontWeight: 450,
+  },
+
+  chatbox: {
+    margin: theme.spacing(1),
+    width: '97%',
+    height: '70vh',
+    display: 'flex',
+    flexDirection: 'column',
+    fontSize: '1.25rem',
+    fontWeight: 400,
+    position: 'relative',
+    overflow: 'auto',
+
+    '&:hover': {
+      overflowY: 'auto',
+    },
   },
 
   styleB: {
@@ -255,12 +272,27 @@ cardchat: {
   flexDirection: 'column',
   boxShadow: '0 8px 16px 0 #BDC9D7',
   overflow: 'hidden',
-  background:'rgba(240, 160, 240, 0.30)',
+  background:'rgba(74, 20, 140, 0.50)',
   overflow: 'auto',
   fontSize: '1.25rem',
   fontWeight: 400,
   color: '#FFFFFF',
+},
 
+chatbox: {
+  margin: theme.spacing(1),
+  width: '97%',
+  height: '70vh',
+  display: 'flex',
+  flexDirection: 'column',
+  fontSize: '1.25rem',
+  fontWeight: 400,
+  position: 'relative',
+  overflow: 'auto',
+
+  '&:hover': {
+    overflowY: 'auto',
+  },
 },
 
 styleB: {

@@ -103,6 +103,21 @@ export const useStylesLight = makeStyles((theme) => ({
     fontWeight: 450,
   },
 
+  chatbox: {
+    margin: theme.spacing(1),
+    width: '97%',
+    height: '70vh',
+    display: 'flex',
+    flexDirection: 'column',
+    fontSize: '1.25rem',
+    fontWeight: 400,
+    position: 'relative',
+    overflow: 'auto',
+    '&:hover': {
+      overflowY: 'auto',
+    },
+  },
+
   styleB: {
       color: 'white',
       fontSize: '150%',
@@ -309,6 +324,21 @@ export const useStylesDark = makeStyles((theme) => ({
     fontSize: '1.25rem',
     fontWeight: 400,
     color: '#FFFFFF',
+  },
+
+  chatbox: {
+    margin: theme.spacing(1),
+    width: '97%',
+    height: '70vh',
+    display: 'flex',
+    flexDirection: 'column',
+    fontSize: '1.25rem',
+    fontWeight: 400,
+    position: 'relative',
+    overflow: 'auto',
+    '&:hover': {
+      overflowY: 'auto',
+    },
   },
 
   styleB: {

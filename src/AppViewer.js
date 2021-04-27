@@ -60,12 +60,12 @@ function App() {
         <video autoPlay id="Video"></video>
       </Grid>
       <Grid item xs={12} sm={3} elevation={6} square className={classes.cardchat}>
-        <div id="chatBox" className="card-body"></div>
-        <div className="card-footer input-group">
-          <input id="message" className={classes.type_msg} placeholder="Type your message..."></input>
-          <div className="input-group-append">
-            <button id="send" className={classes.send_btn} ><BiSend/></button>
-          </div>
+        <div id="chatBox" className={classes.chatbox}></div>
+          <div className="card-footer input-group">
+              <input id="message"  className={classes.type_msg} placeholder="Type your message..."></input>
+              <div className="input-group-append">
+                  <button id="send" className={classes.send_btn} ><BiSend/></button>
+              </div>
         </div>
       </Grid>
     </Grid>

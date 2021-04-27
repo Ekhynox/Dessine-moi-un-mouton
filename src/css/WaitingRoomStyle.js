@@ -87,6 +87,36 @@ export const useStylesLight = makeStyles((theme) => ({
     fontWeight: 400,
   },
 
+  chatbox: {
+    margin: theme.spacing(8, 2),
+    width: '90%',
+    height: '90%',
+    borderRadius: 16,
+    display: 'flex',
+    flexDirection: 'column',
+    boxShadow: '0 8px 16px 0 #BDC9D7',
+    overflow: 'hidden',
+    background:'rgba(240, 160, 240, 0.30)',
+    overflow: 'auto',
+    fontSize: '1.25rem',
+    fontWeight: 400,
+  },
+
+  chatbox: {
+    margin: theme.spacing(1),
+    width: '97%',
+    height: '70vh',
+    display: 'flex',
+    flexDirection: 'column',
+    fontSize: '1.25rem',
+    fontWeight: 400,
+    position: 'relative',
+    overflow: 'auto',
+    '&:hover': {
+      overflowY: 'auto',
+    },
+  },
+
   headline: {
     color: '#122740',
     fontSize: '1.25rem',
@@ -222,12 +252,26 @@ export const useStylesDark = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     boxShadow: '0 8px 16px 0 #BDC9D7',
-    overflow: 'hidden',
     background:'rgba(74, 20, 140, 0.50)',
-    overflow: 'auto',
     fontSize: '1.25rem',
     fontWeight: 450,
     color: '#FFFFFF',
+  },
+
+  chatbox: {
+    margin: theme.spacing(1),
+    width: '97%',
+    height: '70vh',
+    display: 'flex',
+    flexDirection: 'column',
+    fontSize: '1.25rem',
+    fontWeight: 400,
+    position: 'relative',
+    overflow: 'auto',
+
+    '&:hover': {
+      overflowY: 'auto',
+    },
   },
 
   headline: {
