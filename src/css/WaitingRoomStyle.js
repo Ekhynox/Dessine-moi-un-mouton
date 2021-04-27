@@ -142,12 +142,22 @@ export const useStylesLight = makeStyles((theme) => ({
     margin : theme.spacing ('auto', 'auto'),
   },
 
-  slide: {
-    width: '80%',
-    margin : theme.spacing ('auto', 'auto'),
+  slidename: {
+    margin : theme.spacing (2, 'auto'),
+    padding: theme.spacing(2, 2),
     fontSize: '1.5rem',
     fontWeight: 600,
-    color: '#311b92',
+    color: '#64b5f6',
+  },
+
+  slide: {
+    color: '#64b5f6',
+  },
+
+  SlideGrid: {
+    width: '80%',
+    height: '40%',
+    margin : theme.spacing ('auto', 'auto'),
   },
 
   type_msg : {
@@ -300,17 +310,21 @@ export const useStylesDark = makeStyles((theme) => ({
   },
 
   slidename: {
-    margin : theme.spacing ('auto', 'auto'),
+    margin : theme.spacing (2, 'auto'),
+    padding: theme.spacing(2, 2),
     fontSize: '1.5rem',
     fontWeight: 600,
     color: '#64b5f6',
   },
 
   slide: {
-    width: '80%',
-    padding : theme.spacing (2, 2),
-    margin : theme.spacing ('auto', 'auto'),
     color: '#64b5f6',
+  },
+
+  SlideGrid: {
+    width: '80%',
+    height: '40%',
+    margin : theme.spacing ('auto', 'auto'),
   },
 
   type_msg : {

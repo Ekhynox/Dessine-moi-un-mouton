@@ -132,6 +132,7 @@ export default function SignInSide() {
         <Row wrap p={2} alignItems={'baseline'} className={classes.header}>
           <Item stretched className={classes.headline}>Choisis une phase de jeu</Item>
         </Row>
+        <Grid item xs={false} className = {styles.SlideGrid} justify="center">
         <Typography className ={styles.slidename} id="discrete-slider" gutterBottom>
           Temps
         </Typography>
@@ -160,6 +161,7 @@ export default function SignInSide() {
           min={1}
           max={10}
         />
+        </Grid>
         <Button className ={styles.button}
           type="submit"
           fullWidth
