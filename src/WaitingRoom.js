@@ -132,7 +132,7 @@ export default function SignInSide() {
         <Row wrap p={2} alignItems={'baseline'} className={classes.header}>
           <Item stretched className={classes.headline}>Choisis une phase de jeu</Item>
         </Row>
-        <Typography className ={styles.slide} id="discrete-slider" gutterBottom>
+        <Typography className ={styles.slidename} id="discrete-slider" gutterBottom>
           Temps
         </Typography>
         <Slider
@@ -146,7 +146,7 @@ export default function SignInSide() {
           min={10}
           max={120}
         />
-        <Typography className ={styles.slide} id="discrete-slider" gutterBottom>
+        <Typography className ={styles.slidename} id="discrete-slider" gutterBottom>
           Manche
         </Typography>
         <Slider

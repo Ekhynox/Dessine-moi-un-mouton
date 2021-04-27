@@ -299,11 +299,16 @@ export const useStylesDark = makeStyles((theme) => ({
     margin : theme.spacing ('auto', 'auto'),
   },
 
-  slide: {
-    width: '80%',
+  slidename: {
     margin : theme.spacing ('auto', 'auto'),
     fontSize: '1.5rem',
     fontWeight: 600,
+    color: '#64b5f6',
+  },
+
+  slide: {
+    width: '80%',
+    margin : theme.spacing ('auto', 'auto'),
     color: '#64b5f6',
   },
 
