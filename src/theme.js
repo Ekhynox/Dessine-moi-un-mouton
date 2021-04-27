@@ -5,6 +5,7 @@ import App from './App';
 import AppViewer from './AppViewer';
 import SignInSide from './SignInSide';
 import WaitingRoom from './WaitingRoom';
+import {ChangeThemeUs} from './AboutUs';
 import {ChangeThemeApp} from './App';
 import {ChangeThemeAppViewer} from './AppViewer';
 import {ChangeThemeSign} from './SignInSide';
@@ -13,7 +14,7 @@ import {ChangeThemeScoreFinal} from './ScoreFinal';
 import {ChangeThemeHelp} from './Help';
 import {Click_choose_word} from './words';
 import {GetTab, SetTab} from './index';
-import {Getetat, Help, HelpEnd, SetSignInSide, SetWaiting, SetJeu, SetScoreFinal} from './index';
+import {AboutUs, Getetat, Help, HelpEnd, SetSignInSide, SetWaiting, SetJeu, SetScoreFinal} from './index';
 
 var theme = "dark";
 
@@ -60,6 +61,10 @@ export function setTheme(){
       ChangeThemeHelp();
       HelpEnd();
     }
+    if(etatjeu == "AboutUs"){
+      ChangeThemeUs();
+      AboutUs();
+    }
   }
   else {
     theme = "light";
@@ -101,6 +106,10 @@ export function setTheme(){
     if(etatjeu == "HelpEnd"){
       ChangeThemeHelp();
       HelpEnd();
+    }
+    if(etatjeu == "AboutUs"){
+      ChangeThemeUs();
+      AboutUs();
     }
   }
 }

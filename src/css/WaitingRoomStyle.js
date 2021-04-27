@@ -147,7 +147,6 @@ export const useStylesLight = makeStyles((theme) => ({
     padding: theme.spacing(2, 2),
     fontSize: '1.5rem',
     fontWeight: 600,
-    color: '#64b5f6',
   },
 
   slide: {

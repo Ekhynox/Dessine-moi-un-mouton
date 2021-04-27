@@ -1,5 +1,4 @@
 //Page de dessin
-import './css/App.css';
 import {useStylesLight, useStylesDark} from './css/AppViewerStyle'
 import MenuAppBar from './Header';
 import React, {useState} from 'react';

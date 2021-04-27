@@ -1,14 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { UseStyles } from './css/AboutUsStyle';
+import { useStylesLight, useStylesDark } from './css/AboutUsStyle';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography} from '@material-ui/core';
 import MenuAppBar from './Header';
 import { AboutUs } from './index';
+import {getTheme, setTheme} from './theme';
+
+
+var light;
+var dark;
+var classes;
+
+export function ChangeThemeUs(){
+  var theme = getTheme();
+
+  if(theme == "light") {
+    classes = light;
+  }
+  else {
+    classes = dark;
+  }
+}
 
 export function AboutUsView() {
 
-  const classes = UseStyles();
+  light = useStylesLight();
+  dark = useStylesDark();
+  ChangeThemeUs();
 
   return (
     <Grid container xs={12} component="main" className={classes.root}>
@@ -21,19 +40,19 @@ export function AboutUsView() {
           Membres :
         </Typography>
         <Box border={1} borderRadius={4} className={classes.box} display="flex">
-            <Row gap={2} p={2.5}>
-              <Row item xs={2} container alignItems="center">
+            <Grid container>
+              <Grid item xs={2} container alignItems="center">
                 <Avatar alt="avatar1" className={classes.avatar} src={"https://avatars.githubusercontent.com/u/47141502"}/>
-              </Row>
-              <Row container item xs={9} direction="column" className={classes.tool} >
+              </Grid>
+              <Grid container item xs={9} direction="column" className={classes.tool} >
                 <Typography variant="h5" gutterBottom >
                   COUTURIER-PETRASSON Claire
                 </Typography>
                 <Typography variant="h5" gutterBottom >
                 <a href="https://github.com/Chocoluna">Github: Chocoluna</a>
                 </Typography>
-              </Row>
-            </Row>
+              </Grid>
+            </Grid>
         </Box>
         <Box border={1} borderRadius={4} className={classes.box} display="flex">
             <Grid container>

@@ -1,8 +1,7 @@
 //Page de dessin
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
-import {useStylesLight, useStylesDark} from './css/AppStyle'
-import './css/App.css';
+import {useStylesLight, useStylesDark} from './css/AppStyle';
 import MenuAppBar from './Header';
 import reactCSS from 'reactcss';
 import 'bootstrap/dist/css/bootstrap.css';
