@@ -308,6 +308,7 @@ export const useStylesDark = makeStyles((theme) => ({
 
   slide: {
     width: '80%',
+    padding : theme.spacing (2, 2),
     margin : theme.spacing ('auto', 'auto'),
     color: '#64b5f6',
   },
