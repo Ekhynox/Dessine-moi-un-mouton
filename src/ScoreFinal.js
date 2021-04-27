@@ -28,10 +28,11 @@ function ScoreFinal() {
 
   return (
     <Grid container xs={12} component="main" className={classes.root}>
+      <CssBaseline />
       <Grid item xs={true} sm={12}>
         <MenuAppBar/>
       </Grid>
-      <Grid item xs={false} sm={3} container direction="row" id="game">
+      <Grid item container direction="row" id="game" justify="center">
         <Column p={1} gap={0} className={classes.cardjoueur}>
           <Row wrap p={2}>
             <Item stretched>Participant.e.s</Item>

@@ -21,19 +21,19 @@ export function AboutUsView() {
           Membres :
         </Typography>
         <Box border={1} borderRadius={4} className={classes.box} display="flex">
-            <Row gap={2} p={2.5}>
-              <Row item xs={2} container alignItems="center">
+            <Grid container>
+              <Grid item xs={2} container alignItems="center">
                 <Avatar alt="avatar1" className={classes.avatar} src={"https://avatars.githubusercontent.com/u/47141502"}/>
-              </Row>
-              <Row container item xs={9} direction="column" className={classes.tool} >
+              </Grid>
+              <Grid container item xs={9} direction="column" className={classes.tool} >
                 <Typography variant="h5" gutterBottom >
                   COUTURIER-PETRASSON Claire
                 </Typography>
                 <Typography variant="h5" gutterBottom >
                 <a href="https://github.com/Chocoluna">Github: Chocoluna</a>
                 </Typography>
-              </Row>
-            </Row>
+              </Grid>
+            </Grid>
         </Box>
         <Box border={1} borderRadius={4} className={classes.box} display="flex">
             <Grid container>

@@ -39,7 +39,7 @@ export const UseStyles = makeStyles((theme) => ({
 
   box: {
     margin: theme.spacing(1),
-    background:'rgba(240, 160, 240, 0.30)',
+    background:'rgba(240, 160, 240, 0.50)',
   },
 }));
 

@@ -67,7 +67,7 @@ const ChangeAvatar = (img) => {
     <Grid container xs={12} component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={true} sm={12} >
-        <Row><MenuAppBar /></Row>
+        <MenuAppBar />
       </Grid>
 
       <Grid item xs={false} sm={8} container direction="row" className={classes.image}>

@@ -162,7 +162,7 @@ const ButtonItem= ({value}) => {
              </div>
         </Modal>
         <Grid item xs={true} sm={12} >
-          <Row><MenuAppBar /></Row>
+          <MenuAppBar />
         </Grid>
         <Grid item xs={false} sm={3} container direction="row" id="game">
           <Column p={1} gap={0} className={classes.cardjoueur}>
