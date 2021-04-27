@@ -10,9 +10,10 @@ import {ChangeThemeAppViewer} from './AppViewer';
 import {ChangeThemeSign} from './SignInSide';
 import {ChangeThemeWaiting} from './WaitingRoom';
 import {ChangeThemeScoreFinal} from './ScoreFinal';
+import {ChangeThemeHelp} from './Help';
 import {Click_choose_word} from './words';
 import {GetTab, SetTab} from './index';
-import {Getetat, SetSignInSide, SetWaiting, SetJeu, SetScoreFinal} from './index';
+import {Getetat, Help, HelpEnd, SetSignInSide, SetWaiting, SetJeu, SetScoreFinal} from './index';
 
 var theme = "dark";
 
@@ -51,6 +52,14 @@ export function setTheme(){
       ChangeThemeScoreFinal();
       SetScoreFinal();
     }
+    if(etatjeu == "Help"){
+      ChangeThemeHelp();
+      Help();
+    }
+    if(etatjeu == "HelpEnd"){
+      ChangeThemeHelp();
+      HelpEnd();
+    }
   }
   else {
     theme = "light";
@@ -84,6 +93,14 @@ export function setTheme(){
     if(etatjeu == "ScoreFinal"){
       ChangeThemeScoreFinal();
       SetScoreFinal();
+    }
+    if(etatjeu == "Help"){
+      ChangeThemeHelp();
+      Help();
+    }
+    if(etatjeu == "HelpEnd"){
+      ChangeThemeHelp();
+      HelpEnd();
     }
   }
 }

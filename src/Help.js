@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { UseStyles, ValidationTextField} from './css/HelpStyle';
+import { useStylesLight, useStylesDark, ValidationTextField} from './css/HelpStyle';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -17,11 +17,28 @@ import {Column, Row, Item} from '@mui-treasury/components/flex';
 import { borders } from '@material-ui/system';
 import MenuAppBar from './Header';
 import { HelpEnd } from './index';
+import {getTheme, setTheme} from './theme';
 
+var light;
+var dark;
+var classes;
+
+export function ChangeThemeHelp(){
+  var theme = getTheme();
+
+  if(theme == "light") {
+    classes = light;
+  }
+  else {
+    classes = dark;
+  }
+}
 
 export function HelpView() {
 
-    const classes = UseStyles();
+  light = useStylesLight();
+  dark = useStylesDark();
+  ChangeThemeHelp();
 
     var support = {
       pseudo: "",
@@ -93,7 +110,9 @@ export function HelpView() {
 
 export function HelpViewEnd() {
 
-  const classes = UseStyles();
+  light = useStylesLight();
+  dark = useStylesDark();
+  ChangeThemeHelp();
 
   return (
     <Grid container xs={12} component="main" className={classes.root}>

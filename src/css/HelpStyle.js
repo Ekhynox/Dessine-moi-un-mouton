@@ -24,7 +24,7 @@ export const ValidationTextField = withStyles({
   },
   })(TextField);
 
-export const UseStyles = makeStyles((theme) => ({
+export const useStylesLight = makeStyles((theme) => ({
   root: {
     height:'100vh',
     backgroundImage: 'url(https://source.unsplash.com/collection/24051068/)',
@@ -68,3 +68,42 @@ export const UseStyles = makeStyles((theme) => ({
 ██   ██ ███████ ██████  █████          ██    ███████ █████   ██ ████ ██ █████ 
 ██   ██ ██   ██ ██   ██ ██  ██         ██    ██   ██ ██      ██  ██  ██ ██    
 ██████  ██   ██ ██   ██ ██   ██        ██    ██   ██ ███████ ██      ██ ███████ */
+
+export const useStylesDark = makeStyles((theme) => ({
+  root: {
+    height:'100vh',
+    backgroundImage: 'url(https://source.unsplash.com/collection/31854366/)',
+    backgroundRepeat: 'no-repeat',
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    margin: theme.spacing('auto', 'auto'),
+  },
+
+  paper: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    alignContent: 'center',
+    color: '#FFFFFF',
+  },
+
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+
+  cadre: {
+    margin: theme.spacing(0.5),
+    background:'rgba(240, 160, 240, 0.30)',
+    borderRadius: 4,
+    width: '30%',
+  },
+
+  submit: {
+    margin: theme.spacing(1, 1, 1),
+    width: '10%',
+    height: '7%',
+  },
+}));
