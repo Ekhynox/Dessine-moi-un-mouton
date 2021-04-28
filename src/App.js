@@ -211,7 +211,7 @@ const ButtonItem= ({value}) => {
             onChange={colorChange}
             width = {1}
             circleSize ={21}
-            colors = {["#e91e63", "#9c27b0", "#673ab7", "#2196f3", "#03a9f4", "#00bcd4", "#009688", "#4caf50", "#8bc34a", "#ffeb3b", "#ffc107", "#ff9800", "#ff5722", "#795548", "#607d8b", "black", "white"]}/>
+            colors = {["#f06292", "#f8bbd0", "#ce93d8", "#673ab7", "#0d47a1", "#4fc3f7", "#80deea", "#00695c", "#8bc34a", "#ffeb3b", "#ff9800", "#d50000", "#5d4037", "#bdbdbd", "#607d8b", "black", "white"]}/>
         </Grid>
         <Grid item xs={12} sm={3} elevation={6} square className={classes.cardchat}>
           <div id="chatBox" className={classes.chatbox}></div>
