@@ -17,6 +17,9 @@ import { RiArrowGoBackFill } from "react-icons/ri";
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, LinearProgress, Link, Modal, Paper, TextField, Typography } from '@material-ui/core';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
 import { makeStyles } from '@material-ui/core/styles';
+//Minuteur
+import PropTypes from "prop-types";
+import CircularProgress from '@material-ui/core/CircularProgress';
 // fonction
 import {Connexion, SetCanvas, Send, NouvelleManche} from './connexion';
 import {SetJeu, ChangePlayer, GetPlayer, GetTab} from './index';
@@ -25,11 +28,8 @@ import {verybigPen, bigPen, smallPen, verysmallPen, erase, pinceau, clear, rect,
 import {GetChoisi, SetChoisi, Words_list} from './words';
 import {getTheme, setTheme} from './theme';
 import cx from 'clsx';
-import PropTypes from "prop-types";
+//CSS
 import {useStylesLight, useStylesDark} from './css/AppStyle';
-import CircularProgress from '@material-ui/core/CircularProgress';
-
-
 
 var light;
 var dark;
