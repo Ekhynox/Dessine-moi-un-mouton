@@ -1,5 +1,4 @@
 //Page de dessin
-import {useStylesLight, useStylesDark} from './css/AppViewerStyle'
 import MenuAppBar from './Header';
 import React, {useState} from 'react';
 import reactCSS from 'reactcss';
@@ -20,6 +19,7 @@ import {Column, Row, Item} from '@mui-treasury/components/flex';
 import {Connexion, SetCanvas, Send} from './connexion';
 import {getTheme, setTheme} from './theme';
 import cx from 'clsx';
+import {useStylesLight, useStylesDark} from './css/AppViewerStyle';
 
 var light;
 var dark;

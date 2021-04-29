@@ -1,6 +1,5 @@
 import React from 'react';
 import MenuAppBar from './Header';
-import {useStylesLight, useStylesDark} from './css/WaitingRoomStyle'
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography, Slider} from '@material-ui/core';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
 import {BiSend} from 'react-icons/bi';
@@ -8,6 +7,7 @@ import {SetConnecte, SetJeu, GetTab, SetTab} from './index';
 import {Connexion, MyId, ConnectionToHost} from './connexion';
 import {getTheme, setTheme} from './theme';
 import cx from 'clsx';
+import {useStylesLight, useStylesDark} from './css/WaitingRoomStyle'
 
 var light;
 var dark;

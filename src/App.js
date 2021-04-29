@@ -1,7 +1,6 @@
 //Page de dessin
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
-import {useStylesLight, useStylesDark} from './css/AppStyle';
 import MenuAppBar from './Header';
 import reactCSS from 'reactcss';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -27,6 +26,10 @@ import {GetChoisi, SetChoisi, Words_list} from './words';
 import {getTheme, setTheme} from './theme';
 import cx from 'clsx';
 import PropTypes from "prop-types";
+import {useStylesLight, useStylesDark} from './css/AppStyle';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+
 
 var light;
 var dark;
@@ -99,33 +102,8 @@ const ButtonItem= ({value}) => {
   var MIN = 0; // MIN = Minimum expected value of time
   var MAX = GetTab()[0].temps; // MAX = Maximium expected value of time
 
-  const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
-
-  function LinearProgressWithLabel(props) {
-    if (GetChoisi()){ //On affiche le chrono que si on a choisi un mot
-      return (
-        <Box display="flex" alignItems="center">
-          <Box className={classes.minuteur} mr={1}>
-            <LinearProgress variant="determinate" value={normalise(props.value)} />
-          </Box>
-          <Box minWidth={35}>
-            <Typography variant="body2" color="textSecondary">{`${Math.round(
-              props.value
-            )}Sec`}</Typography>
-          </Box>
-        </Box>
-      );
-    }
-    return(<div/>);
-}
-
-  LinearProgressWithLabel.propTypes = {
-    /**
-     * The value of the progress indicator for the determinate and buffer variants.
-     * Value between 0 and 100.
-     */
-    value: PropTypes.number.isRequired
-  };
+  const normalise = (value) => ((value - MAX) * 100) / (MAX - MIN);
+  const normaliselabel = (value) => (MAX - value);
 
   const [progress, setProgress] = React.useState(MIN);
 
@@ -143,6 +121,42 @@ const ButtonItem= ({value}) => {
     };
   }, []);
 //fin minuteur
+
+
+function CircularProgressWithLabel(props) {
+  return (
+    <Box position="relative" display="inline-flex">
+      <CircularProgress
+        className={classes.minuteur}
+        variant="determinate"
+        size={50}
+        thickness = {7}
+        value={normalise(props.value)}/>
+      <Box
+        top={0}
+        left={0}
+        bottom={0}
+        right={0}
+        position="absolute"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Typography className={classes.minuteur} variant="caption" component="div" color="textSecondary" value={normalise(props.value)} >
+          {`${normaliselabel(props.value)}s`}
+        </Typography>
+      </Box>
+    </Box>
+  );
+}
+
+CircularProgressWithLabel.propTypes = {
+  /**
+   * The value of the progress indicator for the determinate variant.
+   * Value between 0 and 100.
+   */
+  value: PropTypes.number.isRequired,
+};
 
   return (
     <Grid container xs={12} component="main" className={classes.root}>
@@ -173,13 +187,11 @@ const ButtonItem= ({value}) => {
           </Column>
         </Grid>
         <Grid item xs={false} sm={4} elevation={6} square>
-            <Row wrap p={2}>
-              <Row>
-                <div id="wchoixfinal"></div>
-              </Row>
-              <Row className={classes.minuteur}>
-                <LinearProgressWithLabel value={progress} />
-              </Row>
+            <Row wrap p={3}>
+               <Row className={classes.minuteurbox} p={1} gap={0}>
+                  <CircularProgressWithLabel value={progress}/>
+                  <div id="wchoixfinal"></div>
+                </Row>
               <Row className={classes.canvas}>
                 <div>
                   <canvas className={classes.drawbox} id="DrawBox"></canvas>

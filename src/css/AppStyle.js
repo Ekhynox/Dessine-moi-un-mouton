@@ -23,9 +23,17 @@ export const useStylesLight = makeStyles((theme) => ({
     margin: theme.spacing('auto', 'auto'),
   },
 
+    minuteurbox:{
+    width: '100%',
+    height: '100%',
+    background:'rgba(240, 160, 240, 0.30)',
+    margin: theme.spacing(5, 0),
+    borderRadius: 16,
+  },
+
   minuteur:{
-      width: "25rem",
-      margin: theme.spacing(1, 1),
+    color: "black",
+    margin: theme.spacing(0, 5),
   },
 
   paper: {
@@ -40,7 +48,7 @@ export const useStylesLight = makeStyles((theme) => ({
     background: 'white',
     borderRadius: 15,
     display: 'flex',
-    marginTop: '6vh',
+
   },
 
   drawbox:{
@@ -243,9 +251,17 @@ export const useStylesDark = makeStyles((theme) => ({
     margin: theme.spacing('auto', 'auto'),
   },
 
+  minuteurbox:{
+    width: '100%',
+    height: '100%',
+    background:'rgba(74, 20, 140, 0.50)',
+    margin: theme.spacing(5, 0),
+    borderRadius: 16,
+  },
+
   minuteur:{
-      width: "25rem",
-      margin: theme.spacing(1, 1),
+    color: "white",
+    margin: theme.spacing(0, 5),
   },
 
   paper: {
@@ -260,7 +276,6 @@ export const useStylesDark = makeStyles((theme) => ({
     background: 'white',
     borderRadius: 15,
     display: 'flex',
-    marginTop: '6vh',
   },
 
   drawbox:{
