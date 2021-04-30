@@ -147,10 +147,11 @@ export const useStylesLight = makeStyles((theme) => ({
     padding: theme.spacing(2, 2),
     fontSize: '1.5rem',
     fontWeight: 600,
+    color: '#0d47a1',
   },
 
   slide: {
-    color: '#64b5f6',
+    color: '#0d47a1',
   },
 
   SlideGrid: {

@@ -32,7 +32,7 @@ export const useStylesLight = makeStyles((theme) => ({
   },
 
   minuteur:{
-    color: "black",
+    color: "#0d47a1",
     margin: theme.spacing(0, 5),
   },
 
@@ -260,7 +260,7 @@ export const useStylesDark = makeStyles((theme) => ({
   },
 
   minuteur:{
-    color: "white",
+    color: "#64b5f6",
     margin: theme.spacing(0, 5),
   },
 
