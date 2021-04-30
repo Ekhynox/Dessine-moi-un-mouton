@@ -1,4 +1,4 @@
-//Page de dessin
+//Page de stream
 import MenuAppBar from './Header';
 import React, {useState} from 'react';
 import reactCSS from 'reactcss';
@@ -12,13 +12,14 @@ import { BsCircle, BsSquare } from 'react-icons/bs';
 import { SiCurl } from "react-icons/si";
 import { VscPaintcan } from 'react-icons/vsc';
 import { RiArrowGoBackFill } from "react-icons/ri";
+import cx from 'clsx';
 //import Material-ui from '@material-ui';
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
 // fonction
 import {Connexion, SetCanvas, Send} from './connexion';
+//css
 import {getTheme, setTheme} from './theme';
-import cx from 'clsx';
 import {useStylesLight, useStylesDark} from './css/AppViewerStyle';
 
 var light;

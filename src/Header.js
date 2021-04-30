@@ -45,7 +45,6 @@ function MenuAppBar() {
   const handleChange = (event) => {
     setAuth(event.target.checked);
     setTheme();
-    console.log(getTheme());
   };
 
   const handleMenu = (event) => {

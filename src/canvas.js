@@ -30,6 +30,7 @@ function CanvasInit(){
   clear();
 }
 
+//Pinceau
 var isDrawing;
 var drawPinceau = true;
 var drawRectangle = false;
@@ -107,7 +108,6 @@ export function clear() {
     context.fillStyle = 'white';
     context.fillRect(0,0,canvas.width, canvas.height);
     context.fillStyle = 'black';
-    // context.strokeStyle = "black";
     ajoutActionCanvas();
 }
 
@@ -119,7 +119,6 @@ export function rect() {
     drawCircleFull=false
     drawLine = false;
     fillIn = false;
-    // context.strokeStyle = "black";
 }
 
 export function rectfull() {
@@ -130,7 +129,6 @@ export function rectfull() {
     drawCircleFull=false;
     drawLine = false;
     fillIn = false;
-    // context.fillStyle = "black";
 }
 
 export function circle() {
@@ -141,7 +139,6 @@ export function circle() {
     drawCircleFull=false;
     drawLine = false;
     fillIn = false;
-    // context.strokeStyle = "black";
 }
 
 export function circlefull() {
@@ -152,7 +149,6 @@ export function circlefull() {
     drawCircleFull=true;
     drawLine = false;
     fillIn = false;
-    // context.fillStyle = "black";
 }
 
 export function line(){
@@ -163,7 +159,6 @@ export function line(){
     drawCircleFull=false;
     drawLine = true;
     fillIn = false;
-    // context.strokeStyle = "black";
 }
 
 export function fill(){
@@ -259,7 +254,6 @@ function getMousePos(canvas, mouse) {
 var posInit;
 var posEnd;
 var game = false;
-
 
 document.addEventListener('mousedown', function(mouse) //on commence le dessin
 {
@@ -442,7 +436,7 @@ document.addEventListener('mousemove', function (mouse) {
         setTimeout(() => {
             context.beginPath();
             context.strokeRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
-          }, 100); //PROMISE !! /!\ !!
+          }, 100);
       }
       if (isDrawing && drawRectangleFull)
       {
@@ -451,7 +445,7 @@ document.addEventListener('mousemove', function (mouse) {
         setTimeout(() => {
             context.beginPath();
             context.fillRect(posInit.x, posInit.y, posEnd.x - posInit.x, posEnd.y - posInit.y);
-          }, 100); //PROMISE !! /!\ !!
+          }, 100);
       }
 
       if(isDrawing && drawCircle)
@@ -462,7 +456,7 @@ document.addEventListener('mousemove', function (mouse) {
             context.beginPath();
             context.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x), Math.abs(posEnd.y - posInit.y), 0, 0, 2*Math.PI);
             context.stroke();
-          }, 100); //PROMISE !! /!\ !!
+          }, 100);
       }
       if(isDrawing && drawCircleFull)
       {
@@ -472,7 +466,7 @@ document.addEventListener('mousemove', function (mouse) {
             context.beginPath();
             context.ellipse(posInit.x, posInit.y, Math.abs(posEnd.x - posInit.x), Math.abs(posEnd.y - posInit.y), 0, 0, 2*Math.PI);
             context.fill();
-          }, 100); //PROMISE !! /!\ !!
+          }, 100);
       }
 
       if(isDrawing && drawLine)
@@ -484,7 +478,7 @@ document.addEventListener('mousemove', function (mouse) {
             context.moveTo(posInit.x, posInit.y);
             context.lineTo(posEnd.x, posEnd.y);
             context.stroke();
-          }, 100); //PROMISE !! /!\ !!
+          }, 100);
       }
     }
   }

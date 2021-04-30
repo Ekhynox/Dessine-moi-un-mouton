@@ -20,16 +20,22 @@ var theme = "dark";
 
 export function setTheme(){
   var etatjeu = Getetat();
+
+  ////////////////////////////////////////////////////////
+  //                    LIGHT THEME
   if(theme == "light"){
     theme = "dark";
+
     if(etatjeu == "sign"){
       ChangeThemeSign();
       SetSignInSide();
     }
+
     if(etatjeu == "WaitingRoom"){
       ChangeThemeWaiting();
       SetWaiting();
     }
+
     if(etatjeu == "Jeu"){
       ChangeThemeApp();
       ReactDOM.render(
@@ -40,6 +46,7 @@ export function setTheme(){
       );
       Click_choose_word(GetTab()[0].mot);
     }
+
     if(etatjeu == "JeuViewer"){
       ChangeThemeAppViewer();
       ReactDOM.render(
@@ -49,33 +56,43 @@ export function setTheme(){
       document.getElementById('root'),
       );
     }
+
     if(etatjeu == "ScoreFinal"){
       ChangeThemeScoreFinal();
       SetScoreFinal();
     }
+
     if(etatjeu == "Help"){
       ChangeThemeHelp();
       Help();
     }
+
     if(etatjeu == "HelpEnd"){
       ChangeThemeHelp();
       HelpEnd();
     }
+
     if(etatjeu == "AboutUs"){
       ChangeThemeUs();
       AboutUs();
     }
+
   }
+  ////////////////////////////////////////////////////////
+  //                  DARK THEME
   else {
     theme = "light";
+
     if(etatjeu == "sign"){
       ChangeThemeSign();
       SetSignInSide();
     }
+
     if(etatjeu == "WaitingRoom"){
       ChangeThemeWaiting();
       SetWaiting();
     }
+
     if(etatjeu == "Jeu"){
       ChangeThemeApp();
       ReactDOM.render(
@@ -86,6 +103,7 @@ export function setTheme(){
       );
       Click_choose_word(GetTab()[0].mot);
     }
+
     if(etatjeu == "JeuViewer"){
       ChangeThemeAppViewer();
       ReactDOM.render(
@@ -95,22 +113,27 @@ export function setTheme(){
       document.getElementById('root'),
       );
     }
+
     if(etatjeu == "ScoreFinal"){
       ChangeThemeScoreFinal();
       SetScoreFinal();
     }
+
     if(etatjeu == "Help"){
       ChangeThemeHelp();
       Help();
     }
+
     if(etatjeu == "HelpEnd"){
       ChangeThemeHelp();
       HelpEnd();
     }
+
     if(etatjeu == "AboutUs"){
       ChangeThemeUs();
       AboutUs();
     }
+
   }
 }
 

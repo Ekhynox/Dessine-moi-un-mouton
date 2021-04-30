@@ -5,7 +5,7 @@ import './css/index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import Peer from 'peerjs';
-import {SetJeu, SetWaiting, SetPlayer, GetPlayer, AddInTab, GetTab, Connected, SetTab, meInTab, ChangePlayer, SetScoreFinal, setRepondu} from './index';
+import {SetJeu, SetWaiting, SetPlayer, GetPlayer, AddInTab, GetTab, Connected, SetTab, meInTab, ChangePlayer, SetScoreFinal, SetConnecte, setRepondu} from './index';
 //import {PersonItem} from './WaitingRoom';
 import { Column, Row, Item } from '@mui-treasury/components/flex';
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@material-ui/core';
@@ -96,6 +96,7 @@ export function ConnectionToHost(id){
   conn.on('open', function(id) {
     conn.send(player);
   });
+  SetConnecte(true);
 }
 
 //Envoyer le tableau mise à jour à tous les joueurs lors de la connexion d'une nouvelle personne.
@@ -147,7 +148,6 @@ export function Send(msg) {
 //Reception
 peer.on('connection', function(conn) {
   conn.on('data', function(data){
-    console.log(data);
     var me = GetPlayer();
 
     ////////////////////////////////////////////
@@ -167,7 +167,7 @@ peer.on('connection', function(conn) {
     ////////////////////////////////////////////
     //Si fin de jeu
     if(data == "Fin de jeu"){
-      setTimeout(() => {SetScoreFinal();}, 100); //PROMISE !! /!\ !!
+      setTimeout(() => {SetScoreFinal();}, 100);
     }
 
     ////////////////////////////////////////////

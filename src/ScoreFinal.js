@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {useStylesLight, useStylesDark} from './css/ScoreFinalStyle'
+import MenuAppBar from './Header';
+//import Material-ui from '@material-ui';
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControl, FormControlLabel, Grid, Link, Paper, TextField, Typography} from '@material-ui/core';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
-import MenuAppBar from './Header';
+//CSS
 import {getTheme, setTheme} from './theme';
+import {useStylesLight, useStylesDark} from './css/ScoreFinalStyle'
 
 var light;
 var dark;

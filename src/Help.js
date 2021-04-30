@@ -53,7 +53,6 @@ export function HelpView() {
       support.explication = document.getElementById('ExplicationlHelp').value;
       if (support.pseudo!="" && support.mail!="" && support.explication!=""){
         HelpEnd();
-        console.log(support);
       }
     }
 

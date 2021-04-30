@@ -14,6 +14,7 @@ import {SetCanvasDraw} from './canvas';
 import {GetWordUse, JaroDistance, SansAccent, Words_list} from './words';
 import { HelpView, HelpViewEnd} from './Help';
 import { AboutUsView } from './AboutUs';
+import avatar4 from './img/4.jpg';
 
 SetSignInSide();
 
@@ -27,7 +28,7 @@ var nbManche = 0;
 var player = {
   etat: "host",
   pseudos: "",
-  avatar: "",
+  avatar: avatar4,
   peerID: "",
   score: 0,
   co: false,
@@ -37,6 +38,10 @@ var player = {
   temps : "",
   manche :"",
 };
+
+////////////////////////////////////////////////////////////
+//                    GETTER et SETTER
+///////////////////////////////////////////////////////////
 
 export function setGame(statut){
   game = statut;
@@ -108,6 +113,10 @@ export function setRepondu(){
   repondu = false;
 }
 
+////////////////////////////////////////////////////////////
+//                  RENDER DES PAGES
+////////////////////////////////////////////////////////////
+
 //Render de la page d'accueil
 export function SetSignInSide(){
   DellInTab(player);
@@ -133,9 +142,9 @@ export function SetWaiting(){
   </React.StrictMode>,
   document.getElementById('root')
   );
-  setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
-  setTimeout(() => { setPool(tabPlayer); }, 100); //PROMISE !! /!\ !!
-  setTimeout(() => { player.peerID = MyId(); }, 100); //PROMISE !! /!\ !!
+  setTimeout(() => { chat(); }, 100);
+  setTimeout(() => { setPool(tabPlayer); }, 100);
+  setTimeout(() => { player.peerID = MyId(); }, 100);
   etatjeu="WaitingRoom";
 }
 
@@ -158,10 +167,10 @@ export function SetJeu(){
       </React.StrictMode>,
       document.getElementById('root'),
       );
-      setTimeout(() => { start(); }, 100); //PROMISE !! /!\ !!
-      setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
-      setTimeout(() => { Words_list(); }, 100); //PROMISE !! /!\ !!
-      setTimeout(() => { Connexion(); }, 100); //PROMISE !! /!\ !!
+      setTimeout(() => { start(); }, 100);
+      setTimeout(() => { chat(); }, 100);
+      setTimeout(() => { Words_list(); }, 100);
+      setTimeout(() => { Connexion(); }, 100);
       etatjeu="Jeu";
     }
     else{
@@ -171,13 +180,16 @@ export function SetJeu(){
       </React.StrictMode>,
       document.getElementById('root'),
       );
-      setTimeout(() => { chat(); }, 100); //PROMISE !! /!\ !!
-      setTimeout(() => { setPool(tabPlayer); }, 100); //PROMISE !! /!\ !!
+      setTimeout(() => { chat(); }, 100);
+      setTimeout(() => { setPool(tabPlayer); }, 100);
       etatjeu="JeuViewer";
     }
   }
 }
 
+/*
+-- Render de la Page Help
+*/
 export function Help() {
   ReactDOM.render(
     <React.StrictMode>
@@ -188,6 +200,9 @@ export function Help() {
   etatjeu="Help";
 }
 
+/*
+-- Render de la Page HelpEnd
+*/
 export function HelpEnd() {
   ReactDOM.render(
     <React.StrictMode>
@@ -198,6 +213,9 @@ export function HelpEnd() {
   etatjeu="HelpEnd";
 }
 
+/*
+-- Render de la Page AboutUs
+*/
 export function AboutUs() {
   ReactDOM.render(
     <React.StrictMode>
@@ -208,6 +226,10 @@ export function AboutUs() {
   etatjeu="AboutUs";
 }
 
+/*
+-- Render de la WaitingRoom
+-- Mise a jour du tableau de joueur
+*/
 export function SetScoreFinal(){
   ReactDOM.render(
     <React.StrictMode>
@@ -215,9 +237,13 @@ export function SetScoreFinal(){
     </React.StrictMode>,
     document.getElementById('root')
   );
-  setTimeout(() => { setPool(tabPlayer); }, 100); //PROMISE !! /!\ !!
+  setTimeout(() => { setPool(tabPlayer); }, 100);
   etatjeu="ScoreFinal";
 }
+
+////////////////////////////////////////////////////////////
+//                       CHAT
+////////////////////////////////////////////////////////////
 
 /*
 -- Lors d'un click sur le bouton, on recupere les entrée dans le champ input du chat puis envoie le message à tout les utilisateurs
@@ -228,16 +254,14 @@ function chat(){
   //setup les variables pour la fonction Send() ('envoyer un message')
   var send = document.getElementById('send');
   send.onclick = function(){
-    console.log(repondu);
     var message = document.getElementById("message").value;
     if (etatjeu=="Jeu" || etatjeu=="JeuViewer"){
        compartToChat(message); //Ne pas envoyer le message aux autres si il a trouver le mots
     }
-    if(etatjeu =="WaitingRoom"){
+    if(etatjeu == "WaitingRoom"){
       var pseudos = player.pseudos;
       message = pseudos + " : " + message;
       if(player.etat == "host" ){
-
         SendToAll(message);
       }
       else{
@@ -250,7 +274,6 @@ function chat(){
   document.addEventListener('keydown', function(event) {
     if ((event.key === 'Enter') && (document.getElementById("message").value != ""))
     {
-        console.log(repondu);
       var message = document.getElementById("message").value;
       if (etatjeu=="Jeu" || etatjeu=="JeuViewer") {
         compartToChat(message); //Ne pas envoyer le message aux autres si il a trouver le mots
@@ -270,6 +293,15 @@ function chat(){
   });
 }
 
+/*
+-- Lors l'on envoie un message, On compare le message avec le mot choisi par le dessinateur
+-- Si c'est le bon mot :
+    - On affiche @ pseudo a trouvé,
+    - On incrémente le score du joueur,
+    - On renvoie le tableau aux autres joueurs.
+  Si ce n'est pas le bon mot :
+    - On affiche le message.
+*/
 function compartToChat(msg){
   if (true){ //vérifier que le joueur n'a pas déjà donnée la bonne réponse
     setTimeout(() => {
@@ -300,14 +332,16 @@ function compartToChat(msg){
           Send(pseudosMessage);
         }
       }
-    }, 100) //PROMISE !! /!\ !!
+    }, 100)
   }
   return false;
 }
 
-/*
--- auguemente le score du joueur dans le tableau de joueurs
-*/
+////////////////////////////////////////////////////////////
+//          SCORE, TABLEAU DE JOUEUR, MANCHE
+////////////////////////////////////////////////////////////
+
+//Auguemente le score du joueur dans le tableau de joueurs
 function addScore(){
   for (var i = 0; i < tabPlayer.length; i++) {
     if (tabPlayer[i].pseudos==player.pseudos){
@@ -325,9 +359,8 @@ function whoDraw(){
   return i;
 }
 
-//Recupere le dessinateur actuel puis le passe de viewer puis donne le cancas au prochain joueur
+//Récupère la position du dessinateur actuel, puis le passe la main au prochain joueur
 export function ChangePlayer(){
-  console.log(tabPlayer.length);
       indicejoueur = whoDraw();
       tabPlayer[indicejoueur].canvas = false;
       indicejoueur = indicejoueur+1;
@@ -348,11 +381,12 @@ export function ChangePlayer(){
           repondu = false;
         }
         if(GetPlayer().etat == "host" && nbManche == tabPlayer[0].manche && tabPlayer.length > 1){
-          setTimeout(() => {FinDeJeu();}, 100); //PROMISE !! /!\ !!
+          setTimeout(() => {FinDeJeu();}, 100);
         }
     }
 }
 
+//Termine la manche et affiche le score final
 function FinDeJeu(){
   if(nbManche == tabPlayer[0].manche){
     var fin = "Fin de jeu";
@@ -360,6 +394,10 @@ function FinDeJeu(){
     SetScoreFinal();
   }
 }
+
+////////////////////////////////////////////////////////////
+//                     CANAVAS
+////////////////////////////////////////////////////////////
 
 //Set le canvas ainsi que le context puis le transmet aux outils de dessin
 function start(){
@@ -372,6 +410,11 @@ function start(){
   SetCanvasDraw(canvas, context);
 }
 
+
+////////////////////////////////////////////////////////////
+//             Ecoute sur la touche entrée
+////////////////////////////////////////////////////////////
+
 document.addEventListener('keydown', function(event) {
   if ((etatjeu == "sign") && (event.key === 'Enter') && (document.getElementById("pseudos").value != "")){
     player.pseudos = document.getElementById("pseudos").value;
@@ -379,7 +422,7 @@ document.addEventListener('keydown', function(event) {
     AddInTab(player);
     SetWaiting();
   }
-  else if ((etatjeu == "WaitingRoom") && (event.key === 'Enter') && (connecte==false) && (document.getElementById("peerID").value != "")){
+  else if ((etatjeu == "WaitingRoom") && (event.key === 'Enter') && (connecte == false) && (document.getElementById("peerID").value != "")){
     var id = document.getElementById("peerID").value;
     ConnectionToHost(id);
     document.getElementById("zoneId").innerHTML = "Connecté!";

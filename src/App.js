@@ -5,30 +5,30 @@ import MenuAppBar from './Header';
 import reactCSS from 'reactcss';
 import 'bootstrap/dist/css/bootstrap.css';
 // React Color
-import {CirclePicker } from 'react-color';
+import { CirclePicker } from 'react-color';
 // React Icons
-import { BiSave, BiEraser, BiSend } from 'react-icons/bi';
-import { FaPaintBrush, FaTrashAlt, FaCircle, FaSquare } from 'react-icons/fa';
+import { BiEraser, BiSave, BiSend } from 'react-icons/bi';
+import { FaCircle, FaPaintBrush,  FaSquare ,FaTrashAlt} from 'react-icons/fa';
 import { BsCircle, BsSquare } from 'react-icons/bs';
 import { SiCurl } from "react-icons/si";
 import { VscPaintcan } from 'react-icons/vsc';
 import { RiArrowGoBackFill } from "react-icons/ri";
 //import Material-ui from '@material-ui';
 import {Avatar, Box, Button, Card, CardActions, CardContent, Checkbox, CssBaseline, Divider, FormControlLabel, Grid, LinearProgress, Link, Modal, Paper, TextField, Typography } from '@material-ui/core';
-import {Column, Row, Item} from '@mui-treasury/components/flex';
+import {Column, Item, Row} from '@mui-treasury/components/flex';
 import { makeStyles } from '@material-ui/core/styles';
+import cx from 'clsx';
 //Minuteur
 import PropTypes from "prop-types";
 import CircularProgress from '@material-ui/core/CircularProgress';
 // fonction
-import {Connexion, SetCanvas, Send, NouvelleManche} from './connexion';
-import {SetJeu, ChangePlayer, GetPlayer, GetTab} from './index';
-import {ColorChange, DownloadCanvasn, SetCanvasDraw} from './canvas';
-import {verybigPen, bigPen, smallPen, verysmallPen, erase, pinceau, clear, rect, rectfull, circle, circlefull, line, fill, save, undo} from './canvas';
-import {GetChoisi, SetChoisi, Words_list} from './words';
-import {getTheme, setTheme} from './theme';
-import cx from 'clsx';
+import { Connexion, NouvelleManche, SetCanvas, Send } from './connexion';
+import { ChangePlayer, GetPlayer, GetTab, SetJeu } from './index';
+import { ColorChange, DownloadCanvasn, SetCanvasDraw } from './canvas';
+import { verybigPen, bigPen, smallPen, verysmallPen, erase, pinceau, clear, rect, rectfull, circle, circlefull, line, fill, save, undo} from './canvas';
+import { GetChoisi, SetChoisi, Words_list} from './words';
 //CSS
+import {getTheme, setTheme} from './theme';
 import {useStylesLight, useStylesDark} from './css/AppStyle';
 
 var light;
@@ -51,6 +51,7 @@ function App() {
   dark = useStylesDark();
   ChangeThemeApp();
 
+  //Modal
   const rootRef = React.useRef(null);
   //fonction pour gérer l'état de la fenêtre modal
   const [open, setOpen] = React.useState(true);
@@ -63,19 +64,18 @@ function App() {
     setOpen(false);
   };
 
-  //const colorChange = ({ hex }) => hex = ColorChange(hex); // fonction change la couleur du pinceau
+  // fonction change la couleur du pinceau
   const colorChange = ({hex}) => {
-    hex = ColorChange(hex); // fonction change la couleur du pinceau
+    hex = ColorChange(hex);
   }
 
-//fonction fin de manche
+//fonction fin de manche :
 function endround(){
-  handleOpen(); //on raffiche le modal
-  document.getElementById("wchoixfinal").innerHTML=""; //on nettoie l'html
+  handleOpen();
+  document.getElementById("wchoixfinal").innerHTML="";
 
   setTimeout(function () {
     var wchoix = document.getElementById("wchoix");
-  //  wchoix.innerHTML = "";
     var val = "Nouvelle Manche";
     const el = React.createElement(ButtonItem, {value : val}, document.getElementById("wchoix"));
     ReactDOM.render(el, document.getElementById("wchoix"));
@@ -90,13 +90,6 @@ function endroundbest(){
   NouvelleManche();
   SetJeu();
 }
-
-const ButtonItem= ({value}) => {
-  ChangeThemeApp();
-  return(
-      <Button className={classes.BtnMots} onClick={endroundbest} value ={value} id="nextTurn">{value}</Button>
-  );
-};
 
 //fonction minuteur
   var MIN = 0; // MIN = Minimum expected value of time
@@ -120,8 +113,6 @@ const ButtonItem= ({value}) => {
 
     };
   }, []);
-//fin minuteur
-
 
 function CircularProgressWithLabel(props) {
   return (
@@ -156,6 +147,15 @@ CircularProgressWithLabel.propTypes = {
    * Value between 0 and 100.
    */
   value: PropTypes.number.isRequired,
+};
+//fin minuteur
+
+
+const ButtonItem= ({value}) => {
+  ChangeThemeApp();
+  return(
+      <Button className={classes.BtnMots} onClick={endroundbest} value ={value} id="nextTurn">{value}</Button>
+  );
 };
 
   return (

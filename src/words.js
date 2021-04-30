@@ -133,7 +133,6 @@ export const ButtonItem= ({value}) => {
 
 
 export function JaroDistance(a, b) {
-  console.log(a + " => " + b);
   var matches = _matching(a, b);
   if (matches > 0) {
     //on calcule la jaro distance
