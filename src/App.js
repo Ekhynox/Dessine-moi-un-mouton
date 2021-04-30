@@ -190,7 +190,7 @@ const ButtonItem= ({value}) => {
             <Row wrap p={3}>
                <Row className={classes.minuteurbox} p={1} gap={0}>
                   <CircularProgressWithLabel value={progress}/>
-                  <div id="wchoixfinal"></div>
+                  <div className={classes.motChoisi} id="wchoixfinal"></div>
                 </Row>
               <Row className={classes.canvas}>
                 <div>
@@ -225,7 +225,7 @@ const ButtonItem= ({value}) => {
             circleSize ={21}
             colors = {["#f06292", "#f8bbd0", "#ce93d8", "#673ab7", "#0d47a1", "#4fc3f7", "#80deea", "#00695c", "#8bc34a", "#ffeb3b", "#ff9800", "#d50000", "#5d4037", "#bdbdbd", "#607d8b", "black", "white"]}/>
         </Grid>
-        <Grid item xs={12} sm={3} elevation={6} square className={classes.cardchat}>
+        <Grid item xs={false} sm={3} elevation={6} square className={classes.cardchat}>
           <div id="chatBox" className={classes.chatbox}></div>
             <div className="card-footer input-group">
                 <input id="message"  className={classes.type_msg} placeholder="Type your message..."></input>

@@ -223,9 +223,9 @@ export const useStylesLight = makeStyles((theme) => ({
   },
 
   motChoisi : {
-    fontSize: '200%',
+    fontSize: '120%',
     fontWeight: 600,
-    margin: theme.spacing('auto', 'auto'),
+    margin: theme.spacing('auto', 1),
   }
 
 }));
@@ -454,10 +454,10 @@ export const useStylesDark = makeStyles((theme) => ({
   },
 
   motChoisi : {
-    fontSize: '200%',
+    fontSize: '120%',
     fontWeight: 600,
     color: '#FFFFFF',
-    margin: theme.spacing('auto', 'auto'),
+    margin: theme.spacing('auto', 1),
   }
 
 }));
