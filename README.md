@@ -13,6 +13,17 @@ DOMINGUES Kévin p1607884
 
 UCAR Ibrahim p1706473
 
+## Instruction pour l’installation :
+
+- Installation de la dernière version de Node / mettre à jour node via : ### `npm install --global npm`
+- Installation de ReactApp : ### `npm install --global create-react-app`
+- Installation des dépendances : ### `npm i react-scripts.`
+
+##Installation instruction:
+- Install the latest version of Node.js or update Node.js with : ### `npm install --global npm`
+- Install ReactApp : ### `npm install --global create-react-app`
+- Install all dependencies : ### `npm i react-scripts.`
+
 
 # Getting Started with Create React App
 
